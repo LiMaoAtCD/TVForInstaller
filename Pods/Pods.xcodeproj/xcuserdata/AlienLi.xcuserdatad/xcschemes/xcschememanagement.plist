@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TVForInstaller-CBStoreHouseRefreshControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7F31B310BEB9E3111F86AF71</key>
+		<key>016DEA87AE5C629F15E30FEA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98B57C7AF47953C8B2BD89FD</key>
+		<key>8272173221875579D23A55B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB000010EC194F76F83C6078</key>
 		<dict>
 			<key>primary</key>
 			<true/>

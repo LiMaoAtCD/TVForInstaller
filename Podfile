@@ -3,6 +3,7 @@
 
 target 'TVForInstaller' do
 	pod 'AFNetworking'
+    pod 'CBStoreHouseRefreshControl'
 	
 end
 

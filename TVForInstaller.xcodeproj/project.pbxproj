@@ -10,12 +10,14 @@
 		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
-		87DBE1EF1AFAFF0000AFB7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EE1AFAFF0000AFB7BF /* ViewController.m */; };
 		87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */; };
 		87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */; };
 		87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */; };
 		87DBE2031AFAFF0000AFB7BF /* TVForInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */; };
 		87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */; };
+		87DBE2131AFB09BE00AFB7BF /* OrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */; };
+		87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2151AFB0A5E00AFB7BF /* ViewController.m */; };
+		87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE2171AFB0B5900AFB7BF /* storehouse.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +38,6 @@
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		87DBE1ED1AFAFF0000AFB7BF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		87DBE1EE1AFAFF0000AFB7BF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		87DBE1F11AFAFF0000AFB7BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		87DBE1F61AFAFF0000AFB7BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -46,6 +46,11 @@
 		87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVForInstallerTests.m; sourceTree = "<group>"; };
 		87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
 		87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
+		87DBE2111AFB09BE00AFB7BF /* OrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewController.h; sourceTree = "<group>"; };
+		87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewController.m; sourceTree = "<group>"; };
+		87DBE2141AFB0A5E00AFB7BF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		87DBE2151AFB0A5E00AFB7BF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		87DBE2171AFB0B5900AFB7BF /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
 		B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,9 +117,11 @@
 				87DBE20C1AFB01F900AFB7BF /* Vendor */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
-				87DBE1ED1AFAFF0000AFB7BF /* ViewController.h */,
-				87DBE1EE1AFAFF0000AFB7BF /* ViewController.m */,
+				87DBE2111AFB09BE00AFB7BF /* OrderTableViewController.h */,
+				87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */,
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
+				87DBE2141AFB0A5E00AFB7BF /* ViewController.h */,
+				87DBE2151AFB0A5E00AFB7BF /* ViewController.m */,
 				87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */,
 				87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */,
 				87DBE1E61AFAFF0000AFB7BF /* Supporting Files */,
@@ -151,6 +158,7 @@
 		87DBE20C1AFB01F900AFB7BF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				87DBE2171AFB0B5900AFB7BF /* storehouse.plist */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
+				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,10 +308,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87DBE1EF1AFAFF0000AFB7BF /* ViewController.m in Sources */,
+				87DBE2131AFB09BE00AFB7BF /* OrderTableViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
+				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

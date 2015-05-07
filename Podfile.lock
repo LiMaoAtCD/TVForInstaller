@@ -20,11 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CBStoreHouseRefreshControl (1.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - CBStoreHouseRefreshControl
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  CBStoreHouseRefreshControl: a814bd725e74ff4c1e8dd96eb02358199b0da04f
 
 COCOAPODS: 0.36.3
