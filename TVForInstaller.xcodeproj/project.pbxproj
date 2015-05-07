@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
 		87DBE1EF1AFAFF0000AFB7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EE1AFAFF0000AFB7BF /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */; };
 		87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */; };
 		87DBE2031AFAFF0000AFB7BF /* TVForInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */; };
+		87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TVForInstaller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.release.xcconfig"; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBE1E71AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +44,9 @@
 		87DBE1FC1AFAFF0000AFB7BF /* TVForInstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVForInstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBE2011AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVForInstallerTests.m; sourceTree = "<group>"; };
+		87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
+		87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
+		B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +68,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304AB7D0B3BE0DC478A4352A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */,
+				8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		488D5A3FC8DCC7161CFF28C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		87DBE1DA1AFAFF0000AFB7BF = {
 			isa = PBXGroup;
 			children = (
 				87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */,
 				87DBE1FF1AFAFF0000AFB7BF /* TVForInstallerTests */,
 				87DBE1E41AFAFF0000AFB7BF /* Products */,
+				304AB7D0B3BE0DC478A4352A /* Pods */,
+				488D5A3FC8DCC7161CFF28C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +108,8 @@
 		87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				87DBE20D1AFB020800AFB7BF /* Util */,
+				87DBE20C1AFB01F900AFB7BF /* Vendor */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
 				87DBE1ED1AFAFF0000AFB7BF /* ViewController.h */,
@@ -119,6 +148,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		87DBE20C1AFB01F900AFB7BF /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		87DBE20D1AFB020800AFB7BF /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
+				87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87DBE2061AFAFF0000AFB7BF /* Build configuration list for PBXNativeTarget "TVForInstaller" */;
 			buildPhases = (
+				B3FA76FD52466F4866C61106 /* Check Pods Manifest.lock */,
 				87DBE1DF1AFAFF0000AFB7BF /* Sources */,
 				87DBE1E01AFAFF0000AFB7BF /* Frameworks */,
 				87DBE1E11AFAFF0000AFB7BF /* Resources */,
+				268038413F48264E3D42309B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,12 +261,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		268038413F48264E3D42309B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3FA76FD52466F4866C61106 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		87DBE1DF1AFAFF0000AFB7BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				87DBE1EF1AFAFF0000AFB7BF /* ViewController.m in Sources */,
+				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 			);
@@ -345,6 +426,7 @@
 		};
 		87DBE2071AFAFF0000AFB7BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TVForInstaller/Info.plist;
@@ -355,6 +437,7 @@
 		};
 		87DBE2081AFAFF0000AFB7BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TVForInstaller/Info.plist;
@@ -416,6 +499,7 @@
 				87DBE2081AFAFF0000AFB7BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87DBE2091AFAFF0000AFB7BF /* Build configuration list for PBXNativeTarget "TVForInstallerTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +508,7 @@
 				87DBE20B1AFAFF0000AFB7BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
