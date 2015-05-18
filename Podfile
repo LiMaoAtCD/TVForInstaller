@@ -4,6 +4,8 @@
 target 'TVForInstaller' do
 	pod 'AFNetworking'
     pod 'CBStoreHouseRefreshControl'
+    pod 'SDWebImage'
+
 	
 end
 
