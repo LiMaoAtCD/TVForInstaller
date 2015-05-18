@@ -8,42 +8,53 @@
 
 #import "InstallViewController.h"
 #import "InstallSegmentViewController.h"
+
+#import "S1ViewController.h"
+#import "InstallHistoryViewController.h"
 @interface InstallViewController ()
 
 @end
 
+
+
 @implementation InstallViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-
-}
-
--(void)viewWillAppear:(BOOL)animated{
     UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     InstallSegmentViewController *navigationController = [[InstallSegmentViewController alloc]initWithRootViewController:pageController];
     
-    UIViewController *demo = [[UIViewController alloc]init];
-    UIViewController *demo2 = [[UIViewController alloc]init];
-
-    demo.view.backgroundColor = [UIColor redColor];
-    demo2.view.backgroundColor = [UIColor whiteColor];
-
-    [navigationController.viewControllerArray addObjectsFromArray:@[demo,demo2]];
+    
+    S1ViewController *vc1 = [[S1ViewController alloc]initWithNibName:@"S1ViewController" bundle:nil];
+    vc1.view.backgroundColor = [UIColor yellowColor];
+    
+    
+    InstallHistoryViewController *vc2 = [[InstallHistoryViewController alloc]initWithNibName:@"InstallHistoryViewController" bundle:nil];
+    
+    vc2.view.backgroundColor = [UIColor redColor];
+    
+    [navigationController.viewControllerArray addObjectsFromArray:@[vc1,vc2]];
+    
     
     [self addChildViewController:navigationController];
     
     navigationController.view.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 64 - 44);
-
+    
     [self.view addSubview:navigationController.view];
     
     
     
     [navigationController willMoveToParentViewController:self];
     [navigationController didMoveToParentViewController:self];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+   
 }
 
 - (void)didReceiveMemoryWarning {

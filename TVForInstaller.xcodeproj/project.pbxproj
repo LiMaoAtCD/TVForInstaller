@@ -11,8 +11,10 @@
 		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
-		87D274871B09EC7000189C33 /* ChildrenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274861B09EC7000189C33 /* ChildrenTableViewController.m */; };
-		87D2748A1B09EC8500189C33 /* InstallHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274891B09EC8500189C33 /* InstallHistoryTableViewController.m */; };
+		87D274901B09F12900189C33 /* S1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2748E1B09F12800189C33 /* S1ViewController.m */; };
+		87D274911B09F12900189C33 /* S1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D2748F1B09F12900189C33 /* S1ViewController.xib */; };
+		87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274931B09F13B00189C33 /* InstallHistoryViewController.m */; };
+		87D274961B09F13B00189C33 /* InstallHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
 		87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */; };
@@ -44,10 +46,12 @@
 		87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		87D274821B09E37B00189C33 /* InstallSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallSegmentViewController.h; sourceTree = "<group>"; };
 		87D274831B09E37B00189C33 /* InstallSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallSegmentViewController.m; sourceTree = "<group>"; };
-		87D274851B09EC7000189C33 /* ChildrenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildrenTableViewController.h; sourceTree = "<group>"; };
-		87D274861B09EC7000189C33 /* ChildrenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildrenTableViewController.m; sourceTree = "<group>"; };
-		87D274881B09EC8500189C33 /* InstallHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryTableViewController.h; sourceTree = "<group>"; };
-		87D274891B09EC8500189C33 /* InstallHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryTableViewController.m; sourceTree = "<group>"; };
+		87D2748D1B09F12800189C33 /* S1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1ViewController.h; sourceTree = "<group>"; };
+		87D2748E1B09F12800189C33 /* S1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1ViewController.m; sourceTree = "<group>"; };
+		87D2748F1B09F12900189C33 /* S1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = S1ViewController.xib; sourceTree = "<group>"; };
+		87D274921B09F13B00189C33 /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
+		87D274931B09F13B00189C33 /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstallHistoryViewController.xib; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBE1E71AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -117,14 +121,16 @@
 		87D274811B09E01C00189C33 /* InstallViewController */ = {
 			isa = PBXGroup;
 			children = (
-				87D2747A1B09DC1000189C33 /* InstallViewController.h */,
-				87D2747B1B09DC1000189C33 /* InstallViewController.m */,
 				87D274821B09E37B00189C33 /* InstallSegmentViewController.h */,
 				87D274831B09E37B00189C33 /* InstallSegmentViewController.m */,
-				87D274851B09EC7000189C33 /* ChildrenTableViewController.h */,
-				87D274861B09EC7000189C33 /* ChildrenTableViewController.m */,
-				87D274881B09EC8500189C33 /* InstallHistoryTableViewController.h */,
-				87D274891B09EC8500189C33 /* InstallHistoryTableViewController.m */,
+				87D2747A1B09DC1000189C33 /* InstallViewController.h */,
+				87D2747B1B09DC1000189C33 /* InstallViewController.m */,
+				87D2748D1B09F12800189C33 /* S1ViewController.h */,
+				87D2748E1B09F12800189C33 /* S1ViewController.m */,
+				87D2748F1B09F12900189C33 /* S1ViewController.xib */,
+				87D274921B09F13B00189C33 /* InstallHistoryViewController.h */,
+				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
+				87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */,
 			);
 			name = InstallViewController;
 			sourceTree = "<group>";
@@ -295,9 +301,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D274961B09F13B00189C33 /* InstallHistoryViewController.xib in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
+				87D274911B09F12900189C33 /* S1ViewController.xib in Resources */,
 				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,16 +357,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87D2748A1B09EC8500189C33 /* InstallHistoryTableViewController.m in Sources */,
 				87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */,
 				87DBE2131AFB09BE00AFB7BF /* OrderTableViewController.m in Sources */,
 				87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
+				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
+				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
-				87D274871B09EC7000189C33 /* ChildrenTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

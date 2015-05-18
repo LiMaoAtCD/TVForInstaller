@@ -1,5 +1,5 @@
 //
-//  ChildrenTableViewController.h
+//  InstallHistoryViewController.h
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/5/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChildrenTableViewController : UITableViewController
+@interface InstallHistoryViewController : UIViewController
 
 @end
