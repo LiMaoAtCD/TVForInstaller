@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TVForInstaller-HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TVForInstaller-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>016DEA87AE5C629F15E30FEA</key>
+		<key>3C9A13E1A6CF43C4E27404F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8272173221875579D23A55B5</key>
+		<key>5EC591D866F2C91F98546873</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB000010EC194F76F83C6078</key>
+		<key>7B6C47FF77FBDBD290A21A85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C51D8AE4980873F8B1BC85DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECEFF87A12FFCAB049AA8C0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

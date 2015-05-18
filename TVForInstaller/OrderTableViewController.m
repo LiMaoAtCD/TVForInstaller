@@ -27,7 +27,6 @@
     
     self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView target:self refreshAction:@selector(refreshTriggered:) plist:@"storehouse" color:[UIColor redColor] lineWidth:1.5 dropHeight:80 scale:1 horizontalRandomness:150 reverseLoadingAnimation:YES internalAnimationFactor:0.5];
  
-//    self.tableView.backgroundColor = [UIColor blackColor];
 }
 
 - (void)didReceiveMemoryWarning {
