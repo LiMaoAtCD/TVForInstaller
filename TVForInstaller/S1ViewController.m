@@ -75,16 +75,21 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     S1TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"S1TableViewCell" forIndexPath:indexPath];
     
     cell.nameLabel.text= @"王潇潇";
     cell.installNumber.text = @"3";
     cell.gradeLabel.text =@"32";
     cell.lodgeLabel.text= @"3";
+    
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ([self.delegate respondsToSelector:@selector(didSelectionDelegate:)]) {
         [self.delegate didSelectionDelegate:indexPath];

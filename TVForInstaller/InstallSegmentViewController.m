@@ -18,12 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    @property (nonatomic, strong) NSMutableArray *viewControllerArray;
-//    @property (nonatomic, weak) id<RKSwipeBetweenViewControllersDelegate> navDelegate;
-//    @property (nonatomic, strong) UIView *selectionBar;
-//    @property (nonatomic, strong)UIPageViewController *pageController;
-//    @property (nonatomic, strong)UIView *navigationView;
-//    @property (nonatomic, strong)NSArray *buttonText;
+
     
     self.buttonText = @[@"S1级用户",@"装机历史"];
     self.selectionBar.backgroundColor = [UIColor whiteColor];

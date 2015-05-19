@@ -224,7 +224,6 @@
 			children = (
 				87EA3AA71B0A1094004AB8F7 /* Login */,
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
-				87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
@@ -323,6 +322,7 @@
 		87EA3AA71B0A1094004AB8F7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */,
 				87EA3AAB1B0A11A1004AB8F7 /* LoginNavigationController.h */,
 				87EA3AAC1B0A11A1004AB8F7 /* LoginNavigationController.m */,
 				87EA3AA81B0A10AE004AB8F7 /* LoginViewController.h */,

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,6 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="V61-ZH-iR7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DGL-9X-vxW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aLT-BS-8jO">
@@ -95,12 +97,12 @@
                                                     <exclude reference="b1q-9L-syy"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="4oM-Uc-arF"/>
-                                                    <exclude reference="Lr3-GJ-vvK"/>
-                                                    <exclude reference="g0w-aF-EkN"/>
                                                     <exclude reference="gB7-Q7-Pzy"/>
                                                     <exclude reference="rOw-Kg-jdd"/>
                                                     <exclude reference="th8-Kc-isV"/>
+                                                    <exclude reference="4oM-Uc-arF"/>
+                                                    <exclude reference="Lr3-GJ-vvK"/>
+                                                    <exclude reference="g0w-aF-EkN"/>
                                                     <exclude reference="A9R-Ob-Gfw"/>
                                                     <exclude reference="C6F-HB-yaZ"/>
                                                     <exclude reference="mdD-0r-MQf"/>
@@ -113,12 +115,12 @@
                                                     <include reference="b1q-9L-syy"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="4oM-Uc-arF"/>
-                                                    <include reference="Lr3-GJ-vvK"/>
-                                                    <include reference="g0w-aF-EkN"/>
                                                     <include reference="gB7-Q7-Pzy"/>
                                                     <include reference="rOw-Kg-jdd"/>
                                                     <include reference="th8-Kc-isV"/>
+                                                    <include reference="4oM-Uc-arF"/>
+                                                    <include reference="Lr3-GJ-vvK"/>
+                                                    <include reference="g0w-aF-EkN"/>
                                                     <include reference="A9R-Ob-Gfw"/>
                                                     <exclude reference="C6F-HB-yaZ"/>
                                                     <include reference="mdD-0r-MQf"/>
@@ -150,10 +152,10 @@
                                 <exclude reference="aLT-BS-8jO"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="A1F-5U-bP4"/>
                                 <exclude reference="WB3-xi-SsN"/>
                                 <exclude reference="Ygi-qy-M3r"/>
                                 <exclude reference="aMa-6u-Gsh"/>
-                                <exclude reference="A1F-5U-bP4"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -161,10 +163,10 @@
                                 <include reference="aLT-BS-8jO"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="A1F-5U-bP4"/>
                                 <include reference="WB3-xi-SsN"/>
                                 <include reference="Ygi-qy-M3r"/>
                                 <include reference="aMa-6u-Gsh"/>
-                                <include reference="A1F-5U-bP4"/>
                             </mask>
                         </variation>
                     </view>
@@ -174,13 +176,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOY-QY-BXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131" y="338.25"/>
+            <point key="canvasLocation" x="-168" y="-469.5"/>
         </scene>
         <!--Detail Controller-->
         <scene sceneID="fib-79-g0W">
             <objects>
                 <tableViewController storyboardIdentifier="S1DetailController" id="8RF-Yk-CDa" customClass="S1DetailController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KMY-LP-kP3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -199,7 +202,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FsE-8K-uW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798.5" y="336.75"/>
+            <point key="canvasLocation" x="499.5" y="-471"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5e9-b8-zOU">
@@ -210,6 +213,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jSy-Mv-Qhf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5Cd-kj-kPW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-du-TDx">
@@ -237,7 +241,8 @@
                                                             <exclude reference="b2b-qt-2cj"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="12" width="12" height="21"/>
                                                         <mask key="constraints">
                                                             <exclude reference="5nT-Ra-qC1"/>
                                                             <include reference="b2b-qt-2cj"/>
@@ -261,7 +266,8 @@
                                                             <exclude reference="swZ-a6-QeC"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="120" y="13" width="100" height="21"/>
                                                         <mask key="constraints">
                                                             <exclude reference="YLN-7C-rs4"/>
                                                             <include reference="rQD-CH-nO6"/>
@@ -286,7 +292,8 @@
                                                             <exclude reference="kaa-hX-OqQ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="220" y="15" width="100" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="DkR-un-yIs"/>
                                                             <include reference="Hbt-RY-bnT"/>
@@ -311,7 +318,8 @@
                                                             <exclude reference="PFn-RV-ZSc"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="20" y="12" width="100" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="AkI-pH-gaA"/>
                                                             <include reference="Okq-CI-3ap"/>
@@ -350,16 +358,16 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="Fb1-pF-cLT"/>
-                                                    <exclude reference="9Oa-wx-fnZ"/>
-                                                    <exclude reference="dMS-cp-4QN"/>
-                                                    <exclude reference="gZQ-w6-bEb"/>
-                                                    <exclude reference="kRn-JO-TdY"/>
-                                                    <exclude reference="8cS-zr-F4L"/>
-                                                    <exclude reference="Wmz-A5-vFo"/>
                                                     <exclude reference="Rg6-im-itQ"/>
                                                     <exclude reference="S1A-cz-YMg"/>
                                                     <exclude reference="ZmE-UC-YIt"/>
                                                     <exclude reference="iqb-wn-EJk"/>
+                                                    <exclude reference="8cS-zr-F4L"/>
+                                                    <exclude reference="Wmz-A5-vFo"/>
+                                                    <exclude reference="9Oa-wx-fnZ"/>
+                                                    <exclude reference="dMS-cp-4QN"/>
+                                                    <exclude reference="gZQ-w6-bEb"/>
+                                                    <exclude reference="kRn-JO-TdY"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -371,16 +379,16 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="Fb1-pF-cLT"/>
-                                                    <include reference="9Oa-wx-fnZ"/>
-                                                    <include reference="dMS-cp-4QN"/>
-                                                    <include reference="gZQ-w6-bEb"/>
-                                                    <exclude reference="kRn-JO-TdY"/>
-                                                    <include reference="8cS-zr-F4L"/>
-                                                    <include reference="Wmz-A5-vFo"/>
                                                     <include reference="Rg6-im-itQ"/>
                                                     <exclude reference="S1A-cz-YMg"/>
                                                     <include reference="ZmE-UC-YIt"/>
                                                     <include reference="iqb-wn-EJk"/>
+                                                    <include reference="8cS-zr-F4L"/>
+                                                    <include reference="Wmz-A5-vFo"/>
+                                                    <include reference="9Oa-wx-fnZ"/>
+                                                    <include reference="dMS-cp-4QN"/>
+                                                    <include reference="gZQ-w6-bEb"/>
+                                                    <exclude reference="kRn-JO-TdY"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -414,10 +422,10 @@
                                 <exclude reference="xDQ-du-TDx"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ytO-SM-SPp"/>
                                 <exclude reference="0ge-01-icn"/>
                                 <exclude reference="Dcw-GY-BPq"/>
                                 <exclude reference="uTK-dB-CN4"/>
-                                <exclude reference="ytO-SM-SPp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -425,10 +433,10 @@
                                 <include reference="xDQ-du-TDx"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ytO-SM-SPp"/>
                                 <include reference="0ge-01-icn"/>
                                 <include reference="Dcw-GY-BPq"/>
                                 <include reference="uTK-dB-CN4"/>
-                                <include reference="ytO-SM-SPp"/>
                             </mask>
                         </variation>
                     </view>
@@ -438,13 +446,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ao-49-UgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-271.5" y="338.25"/>
+            <point key="canvasLocation" x="-168" y="234.75"/>
         </scene>
         <!--Install History Detail Controller-->
         <scene sceneID="E74-4R-qo5">
             <objects>
                 <tableViewController storyboardIdentifier="InstallHistoryDetailController" id="OyW-Vb-mNo" customClass="InstallHistoryDetailController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03o-L5-IKn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -463,7 +472,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKJ-bN-7lG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="439.5" y="336.75"/>
+            <point key="canvasLocation" x="543" y="233.25"/>
         </scene>
     </scenes>
 </document>

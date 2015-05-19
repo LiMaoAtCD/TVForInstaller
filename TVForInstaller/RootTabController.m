@@ -27,12 +27,13 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-//    [self manageLogState];
+    [self manageLogState];
    
     
 }
 
 -(void)manageLogState{
+    
     if ([AccountManager isLogin]) {
         
         
