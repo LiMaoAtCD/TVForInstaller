@@ -16,6 +16,8 @@
 		8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8785E90C1B0AF5A9003F4415 /* Install.storyboard */; };
 		8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */; };
 		8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9131B0B08E3003F4415 /* S1TableViewCell.m */; };
+		8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */; };
+		8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91A1B0B28E8003F4415 /* S1DetailController.m */; };
 		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
@@ -67,6 +69,10 @@
 		8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryCell.m; sourceTree = "<group>"; };
 		8785E9121B0B08E3003F4415 /* S1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1TableViewCell.h; sourceTree = "<group>"; };
 		8785E9131B0B08E3003F4415 /* S1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1TableViewCell.m; sourceTree = "<group>"; };
+		8785E9161B0B279D003F4415 /* InstallHistoryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryDetailController.h; sourceTree = "<group>"; };
+		8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryDetailController.m; sourceTree = "<group>"; };
+		8785E9191B0B28E8003F4415 /* S1DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1DetailController.h; sourceTree = "<group>"; };
+		8785E91A1B0B28E8003F4415 /* S1DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1DetailController.m; sourceTree = "<group>"; };
 		87D2747A1B09DC1000189C33 /* InstallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallViewController.h; sourceTree = "<group>"; };
 		87D2747B1B09DC1000189C33 /* InstallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallViewController.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
@@ -151,6 +157,8 @@
 				87D2748E1B09F12800189C33 /* S1ViewController.m */,
 				8785E9121B0B08E3003F4415 /* S1TableViewCell.h */,
 				8785E9131B0B08E3003F4415 /* S1TableViewCell.m */,
+				8785E9191B0B28E8003F4415 /* S1DetailController.h */,
+				8785E91A1B0B28E8003F4415 /* S1DetailController.m */,
 			);
 			name = S1ViewController;
 			sourceTree = "<group>";
@@ -162,6 +170,8 @@
 				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
 				8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */,
 				8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */,
+				8785E9161B0B279D003F4415 /* InstallHistoryDetailController.h */,
+				8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */,
 			);
 			name = InstallHistory;
 			sourceTree = "<group>";
@@ -466,8 +476,10 @@
 			files = (
 				87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */,
 				87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */,
+				8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
+				8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */,
 				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,

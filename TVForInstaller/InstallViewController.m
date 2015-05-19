@@ -14,6 +14,9 @@
 
 #import "ComminUtility.h"
 
+#import "InstallHistoryDetailController.h"
+#import "S1DetailController.h"
+
 @interface InstallViewController ()<InstallSegmentViewControllerDelegate,S1SelectionDelegate>
 
 @end
@@ -63,10 +66,20 @@
 
 -(void)needToShowViewController:(NSIndexPath *)path{
     
-    NSLog(@"path : %@",path);
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Install" bundle:nil];
+    
+    InstallHistoryDetailController *detail = [sb instantiateViewControllerWithIdentifier:@"InstallHistoryDetailController"];
+    detail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:detail sender:nil];
 }
 -(void)didSelectionDelegate:(NSIndexPath *)indexPath{
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Install" bundle:nil];
+    
+    S1DetailController *detail = [sb instantiateViewControllerWithIdentifier:@"S1DetailController"];
+    detail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:detail sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {

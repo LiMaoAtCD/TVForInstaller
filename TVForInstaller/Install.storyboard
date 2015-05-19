@@ -174,7 +174,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOY-QY-BXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="15"/>
+            <point key="canvasLocation" x="1131" y="338.25"/>
+        </scene>
+        <!--Detail Controller-->
+        <scene sceneID="fib-79-g0W">
+            <objects>
+                <tableViewController storyboardIdentifier="S1DetailController" id="8RF-Yk-CDa" customClass="S1DetailController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KMY-LP-kP3">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gh1-AV-Qsg">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gh1-AV-Qsg" id="Ak6-RW-YXV">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8RF-Yk-CDa" id="vAo-xv-CjZ"/>
+                            <outlet property="delegate" destination="8RF-Yk-CDa" id="hus-iH-hgd"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FsE-8K-uW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798.5" y="336.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5e9-b8-zOU">
@@ -415,10 +440,10 @@
             </objects>
             <point key="canvasLocation" x="-271.5" y="338.25"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Install History Detail Controller-->
         <scene sceneID="E74-4R-qo5">
             <objects>
-                <tableViewController id="OyW-Vb-mNo" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="InstallHistoryDetailController" id="OyW-Vb-mNo" customClass="InstallHistoryDetailController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03o-L5-IKn">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
