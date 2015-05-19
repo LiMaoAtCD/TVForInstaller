@@ -10,4 +10,7 @@
 
 @implementation NetworkingManager
 
+
+//+(void)Login;
+
 @end

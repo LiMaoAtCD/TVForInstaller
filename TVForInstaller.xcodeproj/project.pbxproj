@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
+		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
+		871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23331B0ACF7200B484CA /* RegisterViewController.m */; };
+		871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23361B0ACF8300B484CA /* ForgetViewController.m */; };
+		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
@@ -22,9 +26,15 @@
 		87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */; };
 		87DBE2031AFAFF0000AFB7BF /* TVForInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */; };
 		87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */; };
-		87DBE2131AFB09BE00AFB7BF /* OrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */; };
 		87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2151AFB0A5E00AFB7BF /* ViewController.m */; };
 		87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE2171AFB0B5900AFB7BF /* storehouse.plist */; };
+		87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */; };
+		87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */; };
+		87EA3AA51B0A1055004AB8F7 /* OrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EA3AA31B0A1055004AB8F7 /* OrderViewController.xib */; };
+		87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AA91B0A10AE004AB8F7 /* LoginViewController.m */; };
+		87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AAC1B0A11A1004AB8F7 /* LoginNavigationController.m */; };
+		87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */; };
+		87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +50,14 @@
 /* Begin PBXFileReference section */
 		6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TVForInstaller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.release.xcconfig"; sourceTree = "<group>"; };
+		871A232F1B0ACA1C00B484CA /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		871A23301B0ACA1C00B484CA /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		871A23321B0ACF7200B484CA /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		871A23331B0ACF7200B484CA /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		871A23351B0ACF8300B484CA /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
+		871A23361B0ACF8300B484CA /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
+		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
+		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		87D2747A1B09DC1000189C33 /* InstallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallViewController.h; sourceTree = "<group>"; };
 		87D2747B1B09DC1000189C33 /* InstallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallViewController.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
@@ -65,11 +83,21 @@
 		87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVForInstallerTests.m; sourceTree = "<group>"; };
 		87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
 		87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
-		87DBE2111AFB09BE00AFB7BF /* OrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewController.h; sourceTree = "<group>"; };
-		87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewController.m; sourceTree = "<group>"; };
 		87DBE2141AFB0A5E00AFB7BF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		87DBE2151AFB0A5E00AFB7BF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		87DBE2171AFB0B5900AFB7BF /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
+		87EA3A9D1B0A0C7D004AB8F7 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		87EA3AA31B0A1055004AB8F7 /* OrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderViewController.xib; sourceTree = "<group>"; };
+		87EA3AA81B0A10AE004AB8F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		87EA3AA91B0A10AE004AB8F7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		87EA3AAB1B0A11A1004AB8F7 /* LoginNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNavigationController.h; sourceTree = "<group>"; };
+		87EA3AAC1B0A11A1004AB8F7 /* LoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationController.m; sourceTree = "<group>"; };
+		87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabController.h; sourceTree = "<group>"; };
+		87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabController.m; sourceTree = "<group>"; };
 		B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,14 +186,19 @@
 		87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */ = {
 			isa = PBXGroup;
 			children = (
-				87D274811B09E01C00189C33 /* InstallViewController */,
-				87DBE20D1AFB020800AFB7BF /* Util */,
-				87DBE20C1AFB01F900AFB7BF /* Vendor */,
+				87EA3AA71B0A1094004AB8F7 /* Login */,
+				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
+				87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
-				87DBE2111AFB09BE00AFB7BF /* OrderTableViewController.h */,
-				87DBE2121AFB09BE00AFB7BF /* OrderTableViewController.m */,
-				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
+				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
+				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
+				87D274811B09E01C00189C33 /* InstallViewController */,
+				87EA3AA61B0A105A004AB8F7 /* Applications */,
+				87EA3AA01B0A1016004AB8F7 /* Orders */,
+				87EA3A9C1B0A0C2C004AB8F7 /* Settings */,
+				87DBE20D1AFB020800AFB7BF /* Util */,
+				87DBE20C1AFB01F900AFB7BF /* Vendor */,
 				87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */,
 				87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */,
 				87DBE1E61AFAFF0000AFB7BF /* Supporting Files */,
@@ -215,8 +248,53 @@
 			children = (
 				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
 				87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */,
+				871A232F1B0ACA1C00B484CA /* AccountManager.h */,
+				871A23301B0ACA1C00B484CA /* AccountManager.m */,
+				8785E9031B0ADB90003F4415 /* ComminUtility.h */,
+				8785E9041B0ADB90003F4415 /* ComminUtility.m */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		87EA3A9C1B0A0C2C004AB8F7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				87EA3A9D1B0A0C7D004AB8F7 /* SettingViewController.h */,
+				87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		87EA3AA01B0A1016004AB8F7 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
+				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
+				87EA3AA31B0A1055004AB8F7 /* OrderViewController.xib */,
+			);
+			name = Orders;
+			sourceTree = "<group>";
+		};
+		87EA3AA61B0A105A004AB8F7 /* Applications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Applications;
+			sourceTree = "<group>";
+		};
+		87EA3AA71B0A1094004AB8F7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				87EA3AAB1B0A11A1004AB8F7 /* LoginNavigationController.h */,
+				87EA3AAC1B0A11A1004AB8F7 /* LoginNavigationController.m */,
+				87EA3AA81B0A10AE004AB8F7 /* LoginViewController.h */,
+				87EA3AA91B0A10AE004AB8F7 /* LoginViewController.m */,
+				871A23321B0ACF7200B484CA /* RegisterViewController.h */,
+				871A23331B0ACF7200B484CA /* RegisterViewController.m */,
+				871A23351B0ACF8300B484CA /* ForgetViewController.h */,
+				871A23361B0ACF8300B484CA /* ForgetViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +379,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */,
+				87EA3AA51B0A1055004AB8F7 /* OrderViewController.xib in Resources */,
 				87D274961B09F13B00189C33 /* InstallHistoryViewController.xib in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
@@ -358,15 +438,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */,
-				87DBE2131AFB09BE00AFB7BF /* OrderTableViewController.m in Sources */,
 				87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
+				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
 				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
+				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
+				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
+				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
+				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
+				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
+				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
+				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
