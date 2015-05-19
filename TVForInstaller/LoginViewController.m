@@ -11,8 +11,7 @@
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
-@property (weak, nonatomic) IBOutlet UIView *CellularView;
-@property (weak, nonatomic) IBOutlet UIView *passwordView;
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
@@ -26,13 +25,12 @@
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:recognizer];
     
-    self.CellularView.backgroundColor = [UIColor grayColor];
-    self.passwordView.backgroundColor = [UIColor grayColor];
-    
-    
-    [ComminUtility configureTitle:@"登录" forViewController:self];
+    [ComminUtility configureTitle:@"电视管家" forViewController:self];
     
     self.navigationItem.leftBarButtonItem = nil;
+    
+    self.CellularTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"用户名" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 
 }
 
@@ -43,20 +41,6 @@
 }
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    if (textField == self.CellularTextField) {
-        
-        self.CellularView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
-        self.passwordView.backgroundColor = [UIColor lightGrayColor];
-
-    } else if (textField == self.passwordTextField){
-        
-        self.CellularView.backgroundColor = [UIColor lightGrayColor];
-        self.passwordView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
-    }
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -75,6 +59,8 @@
 
 - (IBAction)Login:(id)sender {
     //TODO:
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
