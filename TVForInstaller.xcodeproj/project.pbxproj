@@ -12,13 +12,15 @@
 		871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23331B0ACF7200B484CA /* RegisterViewController.m */; };
 		871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23361B0ACF8300B484CA /* ForgetViewController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
+		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
+		8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8785E90C1B0AF5A9003F4415 /* Install.storyboard */; };
+		8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */; };
+		8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9131B0B08E3003F4415 /* S1TableViewCell.m */; };
 		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
 		87D274901B09F12900189C33 /* S1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2748E1B09F12800189C33 /* S1ViewController.m */; };
-		87D274911B09F12900189C33 /* S1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D2748F1B09F12900189C33 /* S1ViewController.xib */; };
 		87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274931B09F13B00189C33 /* InstallHistoryViewController.m */; };
-		87D274961B09F13B00189C33 /* InstallHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
 		87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */; };
@@ -58,6 +60,13 @@
 		871A23361B0ACF8300B484CA /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
+		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
+		8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONString.m"; sourceTree = "<group>"; };
+		8785E90C1B0AF5A9003F4415 /* Install.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Install.storyboard; sourceTree = "<group>"; };
+		8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryCell.h; sourceTree = "<group>"; };
+		8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryCell.m; sourceTree = "<group>"; };
+		8785E9121B0B08E3003F4415 /* S1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1TableViewCell.h; sourceTree = "<group>"; };
+		8785E9131B0B08E3003F4415 /* S1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1TableViewCell.m; sourceTree = "<group>"; };
 		87D2747A1B09DC1000189C33 /* InstallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallViewController.h; sourceTree = "<group>"; };
 		87D2747B1B09DC1000189C33 /* InstallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallViewController.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
@@ -66,10 +75,8 @@
 		87D274831B09E37B00189C33 /* InstallSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallSegmentViewController.m; sourceTree = "<group>"; };
 		87D2748D1B09F12800189C33 /* S1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1ViewController.h; sourceTree = "<group>"; };
 		87D2748E1B09F12800189C33 /* S1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1ViewController.m; sourceTree = "<group>"; };
-		87D2748F1B09F12900189C33 /* S1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = S1ViewController.xib; sourceTree = "<group>"; };
 		87D274921B09F13B00189C33 /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		87D274931B09F13B00189C33 /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
-		87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstallHistoryViewController.xib; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBE1E71AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -137,6 +144,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8785E9111B0B089F003F4415 /* S1ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = S1ViewController;
+			sourceTree = "<group>";
+		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,16 +163,20 @@
 		87D274811B09E01C00189C33 /* InstallViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8785E9111B0B089F003F4415 /* S1ViewController */,
 				87D274821B09E37B00189C33 /* InstallSegmentViewController.h */,
 				87D274831B09E37B00189C33 /* InstallSegmentViewController.m */,
 				87D2747A1B09DC1000189C33 /* InstallViewController.h */,
 				87D2747B1B09DC1000189C33 /* InstallViewController.m */,
 				87D2748D1B09F12800189C33 /* S1ViewController.h */,
 				87D2748E1B09F12800189C33 /* S1ViewController.m */,
-				87D2748F1B09F12900189C33 /* S1ViewController.xib */,
 				87D274921B09F13B00189C33 /* InstallHistoryViewController.h */,
 				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
-				87D274941B09F13B00189C33 /* InstallHistoryViewController.xib */,
+				8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */,
+				8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */,
+				8785E9121B0B08E3003F4415 /* S1TableViewCell.h */,
+				8785E9131B0B08E3003F4415 /* S1TableViewCell.m */,
+				8785E90C1B0AF5A9003F4415 /* Install.storyboard */,
 			);
 			name = InstallViewController;
 			sourceTree = "<group>";
@@ -246,6 +264,8 @@
 		87DBE20D1AFB020800AFB7BF /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */,
+				8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */,
 				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
 				87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */,
 				871A232F1B0ACA1C00B484CA /* AccountManager.h */,
@@ -381,11 +401,10 @@
 			files = (
 				87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */,
 				87EA3AA51B0A1055004AB8F7 /* OrderViewController.xib in Resources */,
-				87D274961B09F13B00189C33 /* InstallHistoryViewController.xib in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
-				87D274911B09F12900189C33 /* S1ViewController.xib in Resources */,
+				8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */,
 				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +463,7 @@
 				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
+				8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
@@ -451,7 +471,9 @@
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
+				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
+				8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,

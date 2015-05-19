@@ -11,6 +11,9 @@
 
 #import "S1ViewController.h"
 #import "InstallHistoryViewController.h"
+
+#import "ComminUtility.h"
+
 @interface InstallViewController ()
 
 @end
@@ -26,16 +29,15 @@
     // Do any additional setup after loading the view.
     UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Install" bundle:nil];
+    
     InstallSegmentViewController *navigationController = [[InstallSegmentViewController alloc]initWithRootViewController:pageController];
     
     
-    S1ViewController *vc1 = [[S1ViewController alloc]initWithNibName:@"S1ViewController" bundle:nil];
-    vc1.view.backgroundColor = [UIColor yellowColor];
+    S1ViewController *vc1 = [sb instantiateViewControllerWithIdentifier:@"S1ViewController"];
+
+    InstallHistoryViewController *vc2 = [sb instantiateViewControllerWithIdentifier:@"InstallHistoryViewController"];
     
-    
-    InstallHistoryViewController *vc2 = [[InstallHistoryViewController alloc]initWithNibName:@"InstallHistoryViewController" bundle:nil];
-    
-    vc2.view.backgroundColor = [UIColor redColor];
     
     [navigationController.viewControllerArray addObjectsFromArray:@[vc1,vc2]];
     
@@ -50,8 +52,13 @@
     
     [navigationController willMoveToParentViewController:self];
     [navigationController didMoveToParentViewController:self];
+    
+    [ComminUtility configureTitle:@"装机" forViewController:self];
+    
+    self.navigationItem.leftBarButtonItem = nil;
 
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
    

@@ -84,7 +84,7 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="6" id="xMU-ON-06s">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="2"/>
                                             </constraint>
                                         </constraints>
                                         <variation key="default">
@@ -103,7 +103,7 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="D7V-DC-dzq">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="2"/>
                                             </constraint>
                                         </constraints>
                                         <variation key="default">
@@ -211,7 +211,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHi-3e-BQW">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.7843137255" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Obh-lR-zCV"/>
                                 </constraints>
@@ -235,7 +235,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mas-0y-JVX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.7843137255" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8R8-bH-gRx"/>
                                 </constraints>
@@ -265,7 +265,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="忘记密码?">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -377,64 +377,135 @@
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flt-z9-RWI">
                                         <rect key="frame" x="20" y="20" width="378" height="466"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-zo-rIX">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterBG" translatesAutoresizingMaskIntoConstraints="NO" id="Jcz-JT-ciY">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-zo-rIX">
                                                 <rect key="frame" x="24" y="98" width="329" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tes-C4-Ox6">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邀请码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tes-C4-Ox6">
                                                 <rect key="frame" x="24" y="274" width="329" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-2m-pxT">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-2m-pxT">
                                                 <rect key="frame" x="24" y="151" width="329" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIo-XH-Tuh">
-                                                <rect key="frame" x="24" y="20" width="329" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akh-y4-aY1">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="身份证号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akh-y4-aY1">
                                                 <rect key="frame" x="24" y="345" width="329" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="20" y="318" width="329" height="30"/>
+                                                </variation>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfK-uj-5Gp">
                                                 <rect key="frame" x="20" y="416" width="338" height="30"/>
                                                 <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="提交">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-XJ-HTg">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-XJ-HTg">
                                                 <rect key="frame" x="20" y="221" width="329" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aJi-kr-x10">
+                                                <rect key="frame" x="24" y="345" width="329" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="20" y="366" width="223" height="30"/>
+                                                </variation>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-yC-9MT">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="获取验证码">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="314" y="366" width="64" height="30"/>
+                                                </variation>
+                                            </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Jcz-JT-ciY" firstAttribute="leading" secondItem="flt-z9-RWI" secondAttribute="leading" id="0Mr-p0-qZm"/>
+                                            <constraint firstItem="Jcz-JT-ciY" firstAttribute="top" secondItem="flt-z9-RWI" secondAttribute="top" id="Pxt-Qk-oNZ"/>
+                                            <constraint firstAttribute="height" constant="600" id="Vcf-nE-CaU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jcz-JT-ciY" secondAttribute="trailing" id="aCR-xn-HbA"/>
+                                            <constraint firstAttribute="bottom" secondItem="Jcz-JT-ciY" secondAttribute="bottom" id="cLx-c8-vau">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                                            </constraint>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="Jcz-JT-ciY"/>
+                                                <exclude reference="aJi-kr-x10"/>
+                                                <exclude reference="ETn-yC-9MT"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="Vcf-nE-CaU"/>
+                                                <exclude reference="0Mr-p0-qZm"/>
+                                                <exclude reference="Pxt-Qk-oNZ"/>
+                                                <exclude reference="aCR-xn-HbA"/>
+                                                <exclude reference="cLx-c8-vau"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="Jcz-JT-ciY"/>
+                                                <include reference="aJi-kr-x10"/>
+                                                <include reference="ETn-yC-9MT"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="Vcf-nE-CaU"/>
+                                                <include reference="0Mr-p0-qZm"/>
+                                                <include reference="Pxt-Qk-oNZ"/>
+                                                <include reference="aCR-xn-HbA"/>
+                                                <include reference="cLx-c8-vau"/>
+                                            </mask>
                                         </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="flt-z9-RWI" secondAttribute="trailing" id="Hb3-Xy-kKq"/>
                                     <constraint firstAttribute="height" constant="800" id="Moi-1B-r8n"/>
+                                    <constraint firstItem="flt-z9-RWI" firstAttribute="top" secondItem="RdV-47-nGw" secondAttribute="top" id="RcI-t1-0rz"/>
+                                    <constraint firstItem="flt-z9-RWI" firstAttribute="leading" secondItem="RdV-47-nGw" secondAttribute="leading" id="VRS-P3-lXl"/>
+                                    <constraint firstAttribute="bottom" secondItem="flt-z9-RWI" secondAttribute="bottom" constant="200" id="YjI-7j-EhW"/>
+                                    <constraint firstAttribute="width" secondItem="flt-z9-RWI" secondAttribute="width" id="nUr-An-32U"/>
                                     <constraint firstAttribute="width" constant="418" id="zpv-1f-wWm"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Moi-1B-r8n"/>
                                         <exclude reference="zpv-1f-wWm"/>
+                                        <exclude reference="Hb3-Xy-kKq"/>
+                                        <exclude reference="RcI-t1-0rz"/>
+                                        <exclude reference="VRS-P3-lXl"/>
+                                        <exclude reference="YjI-7j-EhW"/>
+                                        <exclude reference="nUr-An-32U"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Moi-1B-r8n"/>
                                         <exclude reference="zpv-1f-wWm"/>
+                                        <include reference="Hb3-Xy-kKq"/>
+                                        <include reference="RcI-t1-0rz"/>
+                                        <include reference="VRS-P3-lXl"/>
+                                        <include reference="YjI-7j-EhW"/>
+                                        <include reference="nUr-An-32U"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -491,4 +562,7 @@
             <point key="canvasLocation" x="1329" y="1150.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="RegisterBG" width="720" height="640"/>
+    </resources>
 </document>

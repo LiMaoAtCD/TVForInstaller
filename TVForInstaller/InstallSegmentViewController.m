@@ -25,7 +25,7 @@
 //    @property (nonatomic, strong)UIView *navigationView;
 //    @property (nonatomic, strong)NSArray *buttonText;
     
-    self.buttonText = @[@"装机历史",@"S1级用户"];
+    self.buttonText = @[@"S1级用户",@"装机历史"];
     self.selectionBar.backgroundColor = [UIColor whiteColor];
 }
 

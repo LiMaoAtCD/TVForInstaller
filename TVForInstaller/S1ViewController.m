@@ -7,8 +7,14 @@
 //
 
 #import "S1ViewController.h"
+#import "S1TableViewCell.h"
+@interface S1ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface S1ViewController ()
+@property (strong, nonatomic) UIView *headerView;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 
 @end
 
@@ -17,7 +23,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, 44)];
+    label1.text = @"姓名";
+    label1.textAlignment = NSTextAlignmentCenter;
+    [self.headerView addSubview:label1];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 4, 0, self.view.frame.size.width / 4, 44)];
+    label2.text = @"当天装机数";
+    label2.textAlignment = NSTextAlignmentCenter;
+
+    [self.headerView addSubview:label2];
+    
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 2 / 4, 0,self.view.frame.size.width / 4, 44)];
+    label3.text = @"当天积分";
+    label3.textAlignment = NSTextAlignmentCenter;
+
+    [self.headerView addSubview:label3];
+    
+    UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 3 / 4, 0, self.view.frame.size.width / 4, 44)];
+    label4.text = @"当天投诉数";
+    label4.textAlignment = NSTextAlignmentCenter;
+
+    [self.headerView addSubview:label4];
+
+
+
+    
+    
+    self.headerView.backgroundColor = [UIColor redColor];
+    
+    
+    self.tableView.tableHeaderView  =self.headerView;
+    
+    self.tableView.tableFooterView =[[UIView alloc] init];
+    
 }
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    S1TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"S1TableViewCell" forIndexPath:indexPath];
+    
+    cell.nameLabel.text= @"王潇潇";
+    cell.installNumber.text = @"3";
+    cell.gradeLabel.text =@"32";
+    cell.lodgeLabel.text= @"3";
+    return cell;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

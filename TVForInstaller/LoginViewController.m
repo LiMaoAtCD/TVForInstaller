@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "ComminUtility.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
@@ -28,6 +28,11 @@
     
     self.CellularView.backgroundColor = [UIColor grayColor];
     self.passwordView.backgroundColor = [UIColor grayColor];
+    
+    
+    [ComminUtility configureTitle:@"登录" forViewController:self];
+    
+    self.navigationItem.leftBarButtonItem = nil;
 
 }
 
@@ -38,24 +43,20 @@
 }
 
 
-
-
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
     if (textField == self.CellularTextField) {
         
-        self.CellularView.backgroundColor = [UIColor greenColor];
-        self.passwordView.backgroundColor = [UIColor grayColor];
+        self.CellularView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
+        self.passwordView.backgroundColor = [UIColor lightGrayColor];
 
     } else if (textField == self.passwordTextField){
         
-        self.CellularView.backgroundColor = [UIColor grayColor];
-        self.passwordView.backgroundColor = [UIColor greenColor];
+        self.CellularView.backgroundColor = [UIColor lightGrayColor];
+        self.passwordView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
     }
     
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -74,10 +75,8 @@
 
 - (IBAction)Login:(id)sender {
     //TODO:
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 @end

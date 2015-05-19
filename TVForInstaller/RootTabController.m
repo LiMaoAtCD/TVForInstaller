@@ -27,9 +27,14 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+//    [self manageLogState];
+   
     
+}
+
+-(void)manageLogState{
     if ([AccountManager isLogin]) {
-        //】
+        
         
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
@@ -38,12 +43,14 @@
         
     } else{
         //
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
         
-       
+        [self showDetailViewController:login sender:self];
+        
         
     }
 
-    
 }
 
 - (void)didReceiveMemoryWarning {

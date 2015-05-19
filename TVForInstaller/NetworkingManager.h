@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+
+typedef void(^NetWorkHandler)(AFHTTPRequestOperation *operation, id responseObject);
+
 @interface NetworkingManager : NSObject
 
 
-
++(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler;
 
 @end
