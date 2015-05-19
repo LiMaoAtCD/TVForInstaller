@@ -174,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOY-QY-BXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="391.5" y="338.25"/>
+            <point key="canvasLocation" x="1206" y="15"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5e9-b8-zOU">
@@ -203,7 +203,7 @@
                                                         <constraint firstAttribute="width" constant="100" id="5nT-Ra-qC1"/>
                                                         <constraint firstAttribute="height" constant="21" id="b2b-qt-2cj"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -226,7 +226,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="rQD-CH-nO6"/>
                                                         <constraint firstAttribute="width" constant="100" id="swZ-a6-QeC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -251,7 +251,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Hbt-RY-bnT"/>
                                                         <constraint firstAttribute="width" constant="100" id="kaa-hX-OqQ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -276,7 +276,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Okq-CI-3ap"/>
                                                         <constraint firstAttribute="width" constant="100" id="PFn-RV-ZSc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -414,6 +414,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ao-49-UgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-271.5" y="338.25"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="E74-4R-qo5">
+            <objects>
+                <tableViewController id="OyW-Vb-mNo" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03o-L5-IKn">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NPa-Ia-EpI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NPa-Ia-EpI" id="JI6-sc-yCi">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OyW-Vb-mNo" id="ZCl-G5-OK8"/>
+                            <outlet property="delegate" destination="OyW-Vb-mNo" id="hpA-Hp-Nmv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WKJ-bN-7lG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="439.5" y="336.75"/>
         </scene>
     </scenes>
 </document>

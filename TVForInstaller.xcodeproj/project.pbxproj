@@ -147,8 +147,23 @@
 		8785E9111B0B089F003F4415 /* S1ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				87D2748D1B09F12800189C33 /* S1ViewController.h */,
+				87D2748E1B09F12800189C33 /* S1ViewController.m */,
+				8785E9121B0B08E3003F4415 /* S1TableViewCell.h */,
+				8785E9131B0B08E3003F4415 /* S1TableViewCell.m */,
 			);
 			name = S1ViewController;
+			sourceTree = "<group>";
+		};
+		8785E9151B0B1FCB003F4415 /* InstallHistory */ = {
+			isa = PBXGroup;
+			children = (
+				87D274921B09F13B00189C33 /* InstallHistoryViewController.h */,
+				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
+				8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */,
+				8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */,
+			);
+			name = InstallHistory;
 			sourceTree = "<group>";
 		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
@@ -163,20 +178,13 @@
 		87D274811B09E01C00189C33 /* InstallViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8785E9111B0B089F003F4415 /* S1ViewController */,
+				8785E90C1B0AF5A9003F4415 /* Install.storyboard */,
 				87D274821B09E37B00189C33 /* InstallSegmentViewController.h */,
 				87D274831B09E37B00189C33 /* InstallSegmentViewController.m */,
 				87D2747A1B09DC1000189C33 /* InstallViewController.h */,
 				87D2747B1B09DC1000189C33 /* InstallViewController.m */,
-				87D2748D1B09F12800189C33 /* S1ViewController.h */,
-				87D2748E1B09F12800189C33 /* S1ViewController.m */,
-				87D274921B09F13B00189C33 /* InstallHistoryViewController.h */,
-				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
-				8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */,
-				8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */,
-				8785E9121B0B08E3003F4415 /* S1TableViewCell.h */,
-				8785E9131B0B08E3003F4415 /* S1TableViewCell.m */,
-				8785E90C1B0AF5A9003F4415 /* Install.storyboard */,
+				8785E9151B0B1FCB003F4415 /* InstallHistory */,
+				8785E9111B0B089F003F4415 /* S1ViewController */,
 			);
 			name = InstallViewController;
 			sourceTree = "<group>";

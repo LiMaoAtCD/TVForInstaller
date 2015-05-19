@@ -8,6 +8,9 @@
 
 #import "InstallHistoryViewController.h"
 #import "InstallHistoryCell.h"
+
+
+
 @interface InstallHistoryViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +27,7 @@
     
     self.tableView.estimatedRowHeight = 44.;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,10 +50,16 @@
     
     InstallHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InstallHistoryCell" forIndexPath:indexPath];
     
-    cell.addressLabel.text = @"dkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfajkd";
+    cell.addressLabel.text = @"dkjahfahfjahfajkddkjahfahfjahfajkddkjahfahfjahfa";
     
     return cell;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.delegate respondsToSelector:@selector(needToShowViewController:)]) {
+        [self.delegate needToShowViewController:indexPath];
+    }
 }
 
 

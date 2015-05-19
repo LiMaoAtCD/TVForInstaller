@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol S1SelectionDelegate <NSObject>
+
+-(void)didSelectionDelegate:(NSIndexPath*)indexPath;
+
+@end
+
+
 @interface S1ViewController : UIViewController
+
+@property (weak,nonatomic) id<S1SelectionDelegate> delegate;
 
 @end

@@ -8,6 +8,10 @@
 
 #import "RKSwipeBetweenViewControllers.h"
 
+
+
+
 @interface InstallSegmentViewController : RKSwipeBetweenViewControllers
+
 
 @end

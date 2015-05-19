@@ -14,7 +14,7 @@
 
 #import "ComminUtility.h"
 
-@interface InstallViewController ()
+@interface InstallViewController ()<InstallSegmentViewControllerDelegate,S1SelectionDelegate>
 
 @end
 
@@ -34,10 +34,12 @@
     InstallSegmentViewController *navigationController = [[InstallSegmentViewController alloc]initWithRootViewController:pageController];
     
     
+    
     S1ViewController *vc1 = [sb instantiateViewControllerWithIdentifier:@"S1ViewController"];
+    vc1.delegate = self;
 
     InstallHistoryViewController *vc2 = [sb instantiateViewControllerWithIdentifier:@"InstallHistoryViewController"];
-    
+    vc2.delegate = self;
     
     [navigationController.viewControllerArray addObjectsFromArray:@[vc1,vc2]];
     
@@ -59,9 +61,12 @@
 
 }
 
-
--(void)viewWillAppear:(BOOL)animated{
-   
+-(void)needToShowViewController:(NSIndexPath *)path{
+    
+    NSLog(@"path : %@",path);
+    
+}
+-(void)didSelectionDelegate:(NSIndexPath *)indexPath{
 }
 
 - (void)didReceiveMemoryWarning {
