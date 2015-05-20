@@ -52,6 +52,7 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdA-J2-OzO">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mJe-eG-lS2"/>
                                 </constraints>
@@ -90,6 +91,7 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nP2-sG-zwC">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="MJr-fX-Ajv"/>
                                 </constraints>
@@ -359,7 +361,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RdV-47-nGw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="RdV-47-nGw">
                                 <rect key="frame" x="-4" y="60" width="418" height="506"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flt-z9-RWI">
@@ -385,6 +387,7 @@
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-zo-rIX">
                                                 <rect key="frame" x="24" y="98" width="329" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="RDl-yK-qow"/>
                                                 </constraints>
@@ -404,6 +407,7 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-2m-pxT">
                                                 <rect key="frame" x="24" y="151" width="329" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="syr-ma-r5s"/>
                                                 </constraints>
@@ -423,6 +427,7 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="身份证号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akh-y4-aY1">
                                                 <rect key="frame" x="24" y="345" width="329" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="F7b-XW-INT"/>
                                                 </constraints>
@@ -463,9 +468,13 @@
                                                         <include reference="9FW-A4-NdE"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="submitForRegister:" destination="P9F-cF-Zio" eventType="touchUpInside" id="IrM-hV-Xcs"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aaX-XJ-HTg">
                                                 <rect key="frame" x="20" y="221" width="329" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="e2T-l4-xdf"/>
                                                 </constraints>
@@ -485,6 +494,7 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aJi-kr-x10">
                                                 <rect key="frame" x="24" y="345" width="329" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="39" id="lYf-0J-Se6">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="30"/>
@@ -529,6 +539,9 @@
                                                         <include reference="xA1-yL-kp2"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="getVerifyCode:" destination="P9F-cF-Zio" eventType="touchUpInside" id="eAB-lq-ZuT"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TVregister" translatesAutoresizingMaskIntoConstraints="NO" id="Eee-vj-w3h">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -898,7 +911,9 @@
                                     <constraint firstAttribute="height" constant="800" id="Moi-1B-r8n"/>
                                     <constraint firstItem="flt-z9-RWI" firstAttribute="top" secondItem="RdV-47-nGw" secondAttribute="top" id="RcI-t1-0rz"/>
                                     <constraint firstItem="flt-z9-RWI" firstAttribute="leading" secondItem="RdV-47-nGw" secondAttribute="leading" id="VRS-P3-lXl"/>
-                                    <constraint firstAttribute="bottom" secondItem="flt-z9-RWI" secondAttribute="bottom" constant="200" id="YjI-7j-EhW"/>
+                                    <constraint firstAttribute="bottom" secondItem="flt-z9-RWI" secondAttribute="bottom" constant="200" id="YjI-7j-EhW">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" secondItem="flt-z9-RWI" secondAttribute="width" id="nUr-An-32U"/>
                                     <constraint firstAttribute="width" constant="418" id="zpv-1f-wWm"/>
                                 </constraints>

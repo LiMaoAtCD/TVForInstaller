@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *inviteTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ChinaIdentifyTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *identityCodeTextFIeld;
+
 @property (weak, nonatomic) IBOutlet UIButton *getIdentitycodeButton;
 
 
@@ -36,8 +37,6 @@
     [ComminUtility configureTitle:@"注册" forViewController:self];
     
     [self configureTextFields];
-    
-    
     [self registerForKeyboardNotifications];
     
 }
@@ -57,14 +56,7 @@
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    CGRect bkgndRect = self.activeField.superview.frame;
-//    bkgndRect.size.height += kbSize.height;
-//    [self.activeField.superview setFrame:bkgndRect];
-//    [self.scrollView setContentOffset:CGPointMake(0.0, self.activeField.frame.origin.y-kbSize.height) animated:YES];
-    
+
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
@@ -84,7 +76,9 @@
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64, 0, 0, 0);
+
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
@@ -116,6 +110,27 @@
 }
 
 
+
+
+-(BOOL)checkRegisterInfoCompletion{
+    
+    
+    
+    return YES;
+}
+
+- (IBAction)getVerifyCode:(id)sender {
+    
+
+    
+}
+
+
+- (IBAction)submitForRegister:(id)sender {
+    
+    
+    
+}
 
 
 

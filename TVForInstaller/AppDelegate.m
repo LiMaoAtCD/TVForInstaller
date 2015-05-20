@@ -59,6 +59,8 @@
 //    [UITabBarItem appearance] 
 //    // set the selected icon color
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]];
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+
 ////    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
 //    // remove the shadow
 //    [[UITabBar appearance] setShadowImage:nil];
