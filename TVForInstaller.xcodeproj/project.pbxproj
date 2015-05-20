@@ -18,6 +18,7 @@
 		8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9131B0B08E3003F4415 /* S1TableViewCell.m */; };
 		8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */; };
 		8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91A1B0B28E8003F4415 /* S1DetailController.m */; };
+		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
 		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
@@ -73,6 +74,8 @@
 		8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryDetailController.m; sourceTree = "<group>"; };
 		8785E9191B0B28E8003F4415 /* S1DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1DetailController.h; sourceTree = "<group>"; };
 		8785E91A1B0B28E8003F4415 /* S1DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1DetailController.m; sourceTree = "<group>"; };
+		8785E91C1B0C162A003F4415 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
+		8785E91D1B0C162A003F4415 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		87D2747A1B09DC1000189C33 /* InstallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallViewController.h; sourceTree = "<group>"; };
 		87D2747B1B09DC1000189C33 /* InstallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallViewController.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 		87DBE20D1AFB020800AFB7BF /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				8785E91C1B0C162A003F4415 /* NSString+Hashes.h */,
+				8785E91D1B0C162A003F4415 /* NSString+Hashes.m */,
 				8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */,
 				8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */,
 				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
@@ -485,6 +490,7 @@
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
 				8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,

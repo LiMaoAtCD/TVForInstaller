@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TVForInstaller-JGProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3C9A13E1A6CF43C4E27404F8</key>
+		<key>09F59661DE0FDDF86291620A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EC591D866F2C91F98546873</key>
+		<key>2B917EA02A5D767721D15DE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7B6C47FF77FBDBD290A21A85</key>
+		<key>495518D5D23E29DD03BDCA5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C51D8AE4980873F8B1BC85DA</key>
+		<key>57517F954E936CC8AAB11B29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECEFF87A12FFCAB049AA8C0B</key>
+		<key>603C1AC8F662B25124F69AF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A0E747D93624411FB6E6FD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

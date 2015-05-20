@@ -6,7 +6,7 @@ target 'TVForInstaller' do
     pod 'CBStoreHouseRefreshControl'
     pod 'SDWebImage'
     pod "HMSegmentedControl"
-
+	pod 'JGProgressHUD'
 
 
 end

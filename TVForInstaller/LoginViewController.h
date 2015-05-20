@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^alertBlock)(void);
+
 @interface LoginViewController : UIViewController
+
+
 
 @end
