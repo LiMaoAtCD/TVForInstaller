@@ -15,6 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="l81-bu-w4P"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MKh-To-WnW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0CT-Jo-uWq">
@@ -130,10 +131,10 @@
                                 <exclude reference="0CT-Jo-uWq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="YPB-uj-4xr"/>
                                 <exclude reference="2hj-ka-cR6"/>
                                 <exclude reference="IDe-5X-QfM"/>
                                 <exclude reference="Rpo-xp-lIV"/>
-                                <exclude reference="YPB-uj-4xr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -141,10 +142,10 @@
                                 <include reference="0CT-Jo-uWq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="YPB-uj-4xr"/>
                                 <include reference="2hj-ka-cR6"/>
                                 <include reference="IDe-5X-QfM"/>
                                 <include reference="Rpo-xp-lIV"/>
-                                <include reference="YPB-uj-4xr"/>
                             </mask>
                         </variation>
                     </view>
@@ -174,75 +175,406 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arI-9T-mAt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-u1-ZQs">
-                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhuangji" translatesAutoresizingMaskIntoConstraints="NO" id="rST-1U-yCY">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="384" id="tZo-2d-SR4"/>
+                                                    <constraint firstAttribute="height" constant="33" id="BEL-QV-T4A"/>
+                                                    <constraint firstAttribute="width" constant="33" id="e8J-7h-bOj"/>
                                                 </constraints>
-                                                <string key="text">                            如何获取积分？
-1、装机
-    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。
-2、推荐新会员
-    对S级会员来说：
-    推广期间（5-6月）推荐新会员，新会员必须是之前未注册用户，并于注册后14天（2周）内完成1000积分的任务量算是推荐成功，每推荐成功一个新会员得100积分。7月后推荐新会员，新会员必须是之前未注册用户，并于注册后5天内完成200积分任务量算是推荐成功，每推荐成功一个新会员得10积分。
-    对S1级会员来说：
-    推荐新会员得规则不变，不过推荐成功一名新会员得10积分，没有推广期间的优惠政策。
-3、成为S级，获取额外积分
-    作为我们的S级会员来说，会有很多机会获得额外积分。如：
-l     所管理的S1级用户完成或超出当天任务量加1分，未完成不扣分；
-l     下线所有S1级用户当月总积分达到30000-50000分（不含50000分），可以获得当月总积分3%的奖励，如当月所管理的S1级用户总积分达到了40000，则该S级用户可以得到1200元的奖励；
-l     下线所有S1级用户当月总积分达到50000分及以上，可以获得当月总积分5%的奖励；
-l     下线所有S1级用户当月总积分不足30000分无奖励
-积分兑换现金规则？
-    我们的兑现规则上一分换一元，推广期间渠道会员不超过200人之前日结，推广期间超过200人周结，7月份以后全部月结。(此活动与苹果公司无关)</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="tZo-2d-SR4"/>
+                                                        <exclude reference="BEL-QV-T4A"/>
+                                                        <exclude reference="e8J-7h-bOj"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
-                                                        <include reference="tZo-2d-SR4"/>
+                                                        <include reference="BEL-QV-T4A"/>
+                                                        <include reference="e8J-7h-bOj"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-u1-ZQs">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="J9S-qv-Uir"/>
+                                                    <constraint firstAttribute="height" constant="111" id="SdA-uz-GAc">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="90"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="384" id="dV8-K8-A6L"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="J9S-qv-Uir"/>
+                                                        <exclude reference="SdA-uz-GAc"/>
+                                                        <exclude reference="dV8-K8-A6L"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="J9S-qv-Uir"/>
+                                                        <include reference="SdA-uz-GAc"/>
+                                                        <include reference="dV8-K8-A6L"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="装机" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZN-nT-y8N">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="42" id="YiZ-UP-Vei"/>
+                                                    <constraint firstAttribute="height" constant="21" id="jK8-Vo-63y"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="YiZ-UP-Vei"/>
+                                                        <exclude reference="jK8-Vo-63y"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="YiZ-UP-Vei"/>
+                                                        <include reference="jK8-Vo-63y"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuijian" translatesAutoresizingMaskIntoConstraints="NO" id="DWT-0O-fj7">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="q24-8S-8KE"/>
+                                                    <constraint firstAttribute="width" constant="33" id="qRv-l9-hjb"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="q24-8S-8KE"/>
+                                                        <exclude reference="qRv-l9-hjb"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="q24-8S-8KE"/>
+                                                        <include reference="qRv-l9-hjb"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyJ-W5-ukK">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="Tvv-i5-e3F"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="VRp-8L-ZNO"/>
+                                                </constraints>
+                                                <string key="text">    推广期间（5-6月）推荐新会员，新会员必须是之前未注册用户，并于注册后14天（2周）内完成1000积分的任务量算是推荐成功，每推荐成功一个新会员得100积分。7月后推荐新会员，新会员必须是之前未注册用户，并于注册后5天内完成200积分任务量算是推荐成功，每推荐成功一个新会员得10积分。</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Tvv-i5-e3F"/>
+                                                        <exclude reference="VRp-8L-ZNO"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="Tvv-i5-e3F"/>
+                                                        <exclude reference="VRp-8L-ZNO"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐新会员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbV-Jk-xZT">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="7FC-6b-cRl"/>
+                                                    <constraint firstAttribute="width" constant="89" id="rFh-Nv-tJJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="7FC-6b-cRl"/>
+                                                        <exclude reference="rFh-Nv-tJJ"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="7FC-6b-cRl"/>
+                                                        <include reference="rFh-Nv-tJJ"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="s" translatesAutoresizingMaskIntoConstraints="NO" id="P6z-IO-sQA">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="88J-6v-NrQ"/>
+                                                    <constraint firstAttribute="width" constant="33" id="RHC-7O-jyf"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="88J-6v-NrQ"/>
+                                                        <exclude reference="RHC-7O-jyf"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="88J-6v-NrQ"/>
+                                                        <include reference="RHC-7O-jyf"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gga-QX-fbC">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="Kil-cu-FSv"/>
+                                                    <constraint firstAttribute="height" constant="90" id="suW-st-Xam"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Kil-cu-FSv"/>
+                                                        <exclude reference="suW-st-Xam"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Kil-cu-FSv"/>
+                                                        <include reference="suW-st-Xam"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成为S级获取额外积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHP-dF-dRD">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="OH9-1q-SaI"/>
+                                                    <constraint firstAttribute="width" constant="166" id="w5L-a5-CBV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="OH9-1q-SaI"/>
+                                                        <exclude reference="w5L-a5-CBV"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="OH9-1q-SaI"/>
+                                                        <include reference="w5L-a5-CBV"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guize" translatesAutoresizingMaskIntoConstraints="NO" id="6gF-HC-pI4">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="33" id="4M3-J2-TMS"/>
+                                                    <constraint firstAttribute="height" constant="33" id="ITN-UZ-Une"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="4M3-J2-TMS"/>
+                                                        <exclude reference="ITN-UZ-Une"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="4M3-J2-TMS"/>
+                                                        <include reference="ITN-UZ-Une"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xn-RC-vge">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="J21-tk-H1L"/>
+                                                    <constraint firstAttribute="height" constant="90" id="Yfa-KM-61K"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="J21-tk-H1L"/>
+                                                        <exclude reference="Yfa-KM-61K"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <exclude reference="J21-tk-H1L"/>
+                                                        <include reference="Yfa-KM-61K"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分兑换现金规则" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOe-7d-8cg">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="3Sg-l3-A0w"/>
+                                                    <constraint firstAttribute="height" constant="21" id="ApV-76-9fy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="3Sg-l3-A0w"/>
+                                                        <exclude reference="ApV-76-9fy"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="3Sg-l3-A0w"/>
+                                                        <include reference="ApV-76-9fy"/>
                                                     </mask>
                                                 </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="gga-QX-fbC" secondAttribute="trailing" constant="8" id="0YB-LL-PhR"/>
+                                            <constraint firstItem="P6z-IO-sQA" firstAttribute="top" secondItem="HyJ-W5-ukK" secondAttribute="bottom" constant="15" id="2S6-HO-Q1z"/>
+                                            <constraint firstAttribute="trailing" secondItem="HyJ-W5-ukK" secondAttribute="trailing" constant="8" id="4Cy-CH-Ofg"/>
+                                            <constraint firstItem="DWT-0O-fj7" firstAttribute="centerX" secondItem="dn5-u1-ZQs" secondAttribute="centerX" constant="0.5" id="4oB-li-sGP"/>
+                                            <constraint firstItem="fbV-Jk-xZT" firstAttribute="centerX" secondItem="DWT-0O-fj7" secondAttribute="centerX" id="9B2-FJ-jUA"/>
+                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leadingMargin" id="BiJ-Zp-5ot"/>
+                                            <constraint firstItem="6Xn-RC-vge" firstAttribute="top" secondItem="eOe-7d-8cg" secondAttribute="bottom" constant="3" id="FYl-9O-ScG"/>
+                                            <constraint firstItem="HyJ-W5-ukK" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leading" constant="8" id="Glx-Vi-T53"/>
+                                            <constraint firstItem="gga-QX-fbC" firstAttribute="centerX" secondItem="UHP-dF-dRD" secondAttribute="centerX" id="HM0-LS-UfY"/>
+                                            <constraint firstItem="gga-QX-fbC" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leading" constant="8" id="IeP-BT-YSc"/>
+                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="top" secondItem="rST-1U-yCY" secondAttribute="bottom" constant="19" id="LwF-qd-RVg"/>
+                                            <constraint firstItem="rST-1U-yCY" firstAttribute="top" secondItem="arI-9T-mAt" secondAttribute="top" constant="25" id="M44-2e-uhp"/>
+                                            <constraint firstItem="DWT-0O-fj7" firstAttribute="top" secondItem="dn5-u1-ZQs" secondAttribute="bottom" constant="3" id="Q4G-BF-cH1"/>
+                                            <constraint firstAttribute="trailing" secondItem="dn5-u1-ZQs" secondAttribute="trailing" constant="8" id="RYC-yy-ezU"/>
+                                            <constraint firstAttribute="centerX" secondItem="rST-1U-yCY" secondAttribute="centerX" constant="-0.5" id="Rbq-Eu-Zr5">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                            </constraint>
+                                            <constraint firstItem="gga-QX-fbC" firstAttribute="top" secondItem="UHP-dF-dRD" secondAttribute="bottom" constant="3" id="SvC-oa-FTO"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Xn-RC-vge" secondAttribute="trailing" constant="8" id="TBE-ML-vUv"/>
+                                            <constraint firstItem="P6z-IO-sQA" firstAttribute="centerX" secondItem="UHP-dF-dRD" secondAttribute="centerX" constant="0.5" id="WGB-1i-3Bn"/>
+                                            <constraint firstItem="UHP-dF-dRD" firstAttribute="top" secondItem="P6z-IO-sQA" secondAttribute="bottom" constant="8" id="Yyd-m7-Ukh"/>
+                                            <constraint firstItem="gga-QX-fbC" firstAttribute="centerX" secondItem="6gF-HC-pI4" secondAttribute="centerX" constant="-0.5" id="c6C-2w-iae"/>
+                                            <constraint firstItem="HyJ-W5-ukK" firstAttribute="centerX" secondItem="P6z-IO-sQA" secondAttribute="centerX" constant="-0.5" id="g5J-xE-Qcn"/>
+                                            <constraint firstItem="kZN-nT-y8N" firstAttribute="top" secondItem="rST-1U-yCY" secondAttribute="bottom" constant="8" id="gf5-zG-IrA"/>
                                             <constraint firstAttribute="height" constant="770" id="h2O-hB-v6V"/>
+                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leading" constant="8" id="hlf-vx-mEA"/>
+                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="top" secondItem="kZN-nT-y8N" secondAttribute="bottom" constant="3" id="ikP-ig-aSm"/>
+                                            <constraint firstItem="fbV-Jk-xZT" firstAttribute="top" secondItem="DWT-0O-fj7" secondAttribute="bottom" constant="8" id="jVK-kh-4eY"/>
+                                            <constraint firstItem="HyJ-W5-ukK" firstAttribute="top" secondItem="fbV-Jk-xZT" secondAttribute="bottom" constant="3" id="lCB-Er-2gh"/>
                                             <constraint firstAttribute="bottom" secondItem="dn5-u1-ZQs" secondAttribute="bottom" constant="-51" id="m2l-ML-GSy"/>
-                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="top" secondItem="arI-9T-mAt" secondAttribute="topMargin" id="nK8-te-tRp"/>
-                                            <constraint firstAttribute="bottom" secondItem="dn5-u1-ZQs" secondAttribute="bottom" constant="11" id="pet-HS-i2Z"/>
-                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leadingMargin" id="ptd-IP-axg"/>
-                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="trailing" secondItem="arI-9T-mAt" secondAttribute="trailingMargin" id="rgv-bj-SH8"/>
+                                            <constraint firstItem="rST-1U-yCY" firstAttribute="centerX" secondItem="kZN-nT-y8N" secondAttribute="centerX" constant="0.5" id="ozT-df-VgO"/>
+                                            <constraint firstItem="6Xn-RC-vge" firstAttribute="leading" secondItem="arI-9T-mAt" secondAttribute="leading" constant="8" id="uPp-Ck-5Lm"/>
+                                            <constraint firstItem="6gF-HC-pI4" firstAttribute="top" secondItem="gga-QX-fbC" secondAttribute="bottom" constant="8" id="vt0-zQ-sWK"/>
+                                            <constraint firstItem="dn5-u1-ZQs" firstAttribute="centerX" secondItem="rST-1U-yCY" secondAttribute="centerX" id="wCn-8c-oR9"/>
+                                            <constraint firstItem="eOe-7d-8cg" firstAttribute="top" secondItem="6gF-HC-pI4" secondAttribute="bottom" constant="8" id="zSf-ph-m1r"/>
+                                            <constraint firstItem="6gF-HC-pI4" firstAttribute="centerX" secondItem="eOe-7d-8cg" secondAttribute="centerX" constant="0.5" id="zfx-TQ-Q3h"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="rST-1U-yCY"/>
                                                 <exclude reference="dn5-u1-ZQs"/>
+                                                <exclude reference="kZN-nT-y8N"/>
+                                                <exclude reference="DWT-0O-fj7"/>
+                                                <exclude reference="HyJ-W5-ukK"/>
+                                                <exclude reference="fbV-Jk-xZT"/>
+                                                <exclude reference="P6z-IO-sQA"/>
+                                                <exclude reference="gga-QX-fbC"/>
+                                                <exclude reference="UHP-dF-dRD"/>
+                                                <exclude reference="6gF-HC-pI4"/>
+                                                <exclude reference="6Xn-RC-vge"/>
+                                                <exclude reference="eOe-7d-8cg"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="h2O-hB-v6V"/>
+                                                <exclude reference="BiJ-Zp-5ot"/>
+                                                <exclude reference="LwF-qd-RVg"/>
+                                                <exclude reference="RYC-yy-ezU"/>
+                                                <exclude reference="hlf-vx-mEA"/>
+                                                <exclude reference="ikP-ig-aSm"/>
                                                 <exclude reference="m2l-ML-GSy"/>
-                                                <exclude reference="nK8-te-tRp"/>
-                                                <exclude reference="pet-HS-i2Z"/>
-                                                <exclude reference="ptd-IP-axg"/>
-                                                <exclude reference="rgv-bj-SH8"/>
+                                                <exclude reference="wCn-8c-oR9"/>
+                                                <exclude reference="M44-2e-uhp"/>
+                                                <exclude reference="Rbq-Eu-Zr5"/>
+                                                <exclude reference="ozT-df-VgO"/>
+                                                <exclude reference="gf5-zG-IrA"/>
+                                                <exclude reference="4Cy-CH-Ofg"/>
+                                                <exclude reference="Glx-Vi-T53"/>
+                                                <exclude reference="g5J-xE-Qcn"/>
+                                                <exclude reference="lCB-Er-2gh"/>
+                                                <exclude reference="4oB-li-sGP"/>
+                                                <exclude reference="Q4G-BF-cH1"/>
+                                                <exclude reference="9B2-FJ-jUA"/>
+                                                <exclude reference="jVK-kh-4eY"/>
+                                                <exclude reference="2S6-HO-Q1z"/>
+                                                <exclude reference="WGB-1i-3Bn"/>
+                                                <exclude reference="Yyd-m7-Ukh"/>
+                                                <exclude reference="0YB-LL-PhR"/>
+                                                <exclude reference="HM0-LS-UfY"/>
+                                                <exclude reference="IeP-BT-YSc"/>
+                                                <exclude reference="SvC-oa-FTO"/>
+                                                <exclude reference="c6C-2w-iae"/>
+                                                <exclude reference="vt0-zQ-sWK"/>
+                                                <exclude reference="zfx-TQ-Q3h"/>
+                                                <exclude reference="zSf-ph-m1r"/>
+                                                <exclude reference="FYl-9O-ScG"/>
+                                                <exclude reference="TBE-ML-vUv"/>
+                                                <exclude reference="uPp-Ck-5Lm"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="rST-1U-yCY"/>
                                                 <include reference="dn5-u1-ZQs"/>
+                                                <include reference="kZN-nT-y8N"/>
+                                                <include reference="DWT-0O-fj7"/>
+                                                <include reference="HyJ-W5-ukK"/>
+                                                <include reference="fbV-Jk-xZT"/>
+                                                <include reference="P6z-IO-sQA"/>
+                                                <include reference="gga-QX-fbC"/>
+                                                <include reference="UHP-dF-dRD"/>
+                                                <include reference="6gF-HC-pI4"/>
+                                                <include reference="6Xn-RC-vge"/>
+                                                <include reference="eOe-7d-8cg"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="h2O-hB-v6V"/>
+                                                <include reference="BiJ-Zp-5ot"/>
+                                                <exclude reference="LwF-qd-RVg"/>
+                                                <include reference="RYC-yy-ezU"/>
+                                                <include reference="hlf-vx-mEA"/>
+                                                <include reference="ikP-ig-aSm"/>
                                                 <exclude reference="m2l-ML-GSy"/>
-                                                <include reference="nK8-te-tRp"/>
-                                                <include reference="pet-HS-i2Z"/>
-                                                <include reference="ptd-IP-axg"/>
-                                                <include reference="rgv-bj-SH8"/>
+                                                <include reference="wCn-8c-oR9"/>
+                                                <include reference="M44-2e-uhp"/>
+                                                <include reference="Rbq-Eu-Zr5"/>
+                                                <include reference="ozT-df-VgO"/>
+                                                <include reference="gf5-zG-IrA"/>
+                                                <include reference="4Cy-CH-Ofg"/>
+                                                <include reference="Glx-Vi-T53"/>
+                                                <include reference="g5J-xE-Qcn"/>
+                                                <include reference="lCB-Er-2gh"/>
+                                                <include reference="4oB-li-sGP"/>
+                                                <include reference="Q4G-BF-cH1"/>
+                                                <include reference="9B2-FJ-jUA"/>
+                                                <include reference="jVK-kh-4eY"/>
+                                                <include reference="2S6-HO-Q1z"/>
+                                                <include reference="WGB-1i-3Bn"/>
+                                                <include reference="Yyd-m7-Ukh"/>
+                                                <include reference="0YB-LL-PhR"/>
+                                                <include reference="HM0-LS-UfY"/>
+                                                <include reference="IeP-BT-YSc"/>
+                                                <include reference="SvC-oa-FTO"/>
+                                                <include reference="c6C-2w-iae"/>
+                                                <include reference="vt0-zQ-sWK"/>
+                                                <include reference="zfx-TQ-Q3h"/>
+                                                <include reference="zSf-ph-m1r"/>
+                                                <include reference="FYl-9O-ScG"/>
+                                                <include reference="TBE-ML-vUv"/>
+                                                <include reference="uPp-Ck-5Lm"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -253,23 +585,23 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                     <constraint firstItem="arI-9T-mAt" firstAttribute="leading" secondItem="VDP-a5-9Vw" secondAttribute="leading" id="EZo-Dt-UZc"/>
                                     <constraint firstAttribute="height" secondItem="arI-9T-mAt" secondAttribute="height" id="NZ8-0C-3a0"/>
                                     <constraint firstAttribute="bottom" secondItem="arI-9T-mAt" secondAttribute="bottom" constant="30" id="Q02-Pd-YnV"/>
+                                    <constraint firstItem="arI-9T-mAt" firstAttribute="width" secondItem="VDP-a5-9Vw" secondAttribute="width" id="SmT-04-IdF"/>
                                     <constraint firstItem="arI-9T-mAt" firstAttribute="top" secondItem="VDP-a5-9Vw" secondAttribute="top" id="UVU-dW-Elh"/>
                                     <constraint firstAttribute="bottom" secondItem="arI-9T-mAt" secondAttribute="bottom" id="hzl-ap-hWl"/>
-                                    <constraint firstAttribute="bottom" secondItem="dn5-u1-ZQs" secondAttribute="bottom" constant="41" id="txn-DA-uhQ"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="arI-9T-mAt"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="5TM-Yv-SJq"/>
-                                        <exclude reference="txn-DA-uhQ"/>
                                         <exclude reference="6G4-ey-DVn"/>
                                         <exclude reference="EZo-Dt-UZc"/>
                                         <exclude reference="NZ8-0C-3a0"/>
                                         <exclude reference="Q02-Pd-YnV"/>
+                                        <exclude reference="SmT-04-IdF"/>
                                         <exclude reference="UVU-dW-Elh"/>
                                         <exclude reference="hzl-ap-hWl"/>
+                                        <exclude reference="5TM-Yv-SJq"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -277,14 +609,14 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                         <include reference="arI-9T-mAt"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="5TM-Yv-SJq"/>
-                                        <include reference="txn-DA-uhQ"/>
                                         <include reference="6G4-ey-DVn"/>
                                         <include reference="EZo-Dt-UZc"/>
                                         <exclude reference="NZ8-0C-3a0"/>
                                         <include reference="Q02-Pd-YnV"/>
+                                        <include reference="SmT-04-IdF"/>
                                         <include reference="UVU-dW-Elh"/>
                                         <exclude reference="hzl-ap-hWl"/>
+                                        <exclude reference="5TM-Yv-SJq"/>
                                     </mask>
                                 </variation>
                             </scrollView>
@@ -338,7 +670,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="aUM-cp-pou">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceTableViewCell" id="x4V-z7-eqf" customClass="DeviceTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -349,7 +681,6 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小米电视" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr8-N2-7M2">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="24" y="11" width="290" height="21"/>
@@ -367,7 +698,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="deviceTitle" destination="Mr8-N2-7M2" id="zj6-0h-uMx"/>
                                         </connections>
@@ -399,7 +730,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aUM-cp-pou" firstAttribute="top" secondItem="MXV-dJ-ruZ" secondAttribute="topMargin" id="3Me-Gx-6oB"/>
                             <constraint firstItem="RYc-Sc-fGq" firstAttribute="top" secondItem="MXV-dJ-ruZ" secondAttribute="topMargin" id="9q2-8l-T7V">
@@ -475,13 +806,12 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已连接的设备" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1b-KW-IB4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已连接的设备：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1b-KW-IB4">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yBc-at-KTS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -500,7 +830,6 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                     <constraint firstAttribute="height" constant="21" id="ADA-Dp-OUW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -514,13 +843,15 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                 </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Md2-zn-0eS" firstAttribute="top" secondItem="f1b-KW-IB4" secondAttribute="bottom" constant="12" id="7F2-Og-nHy"/>
                             <constraint firstItem="Md2-zn-0eS" firstAttribute="top" secondItem="28L-XQ-Vlr" secondAttribute="bottom" constant="12" id="TvU-hq-dni"/>
                             <constraint firstItem="28L-XQ-Vlr" firstAttribute="top" secondItem="7hQ-Tw-GcN" secondAttribute="bottom" constant="11" id="YFd-X7-xUa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="28L-XQ-Vlr" secondAttribute="trailing" constant="-6" id="YNy-kW-mAS"/>
-                            <constraint firstItem="28L-XQ-Vlr" firstAttribute="leading" secondItem="f1b-KW-IB4" secondAttribute="trailing" constant="8" id="bLW-Ze-gVi"/>
+                            <constraint firstItem="28L-XQ-Vlr" firstAttribute="leading" secondItem="f1b-KW-IB4" secondAttribute="trailing" constant="8" id="bLW-Ze-gVi">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-12"/>
+                            </constraint>
                             <constraint firstItem="f1b-KW-IB4" firstAttribute="top" secondItem="7hQ-Tw-GcN" secondAttribute="bottom" constant="11" id="cex-dS-ouW"/>
                             <constraint firstItem="f1b-KW-IB4" firstAttribute="leading" secondItem="kMl-C7-iSd" secondAttribute="leadingMargin" id="muq-cM-wVM"/>
                         </constraints>
@@ -573,15 +904,16 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                         <viewControllerLayoutGuide type="bottom" id="YIt-xx-DPw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1wL-k4-yAD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-BR-8Xg">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYO-BR-8Xg">
                                 <rect key="frame" x="-20" y="8" width="440" height="244"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USS-sB-hLG">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="USS-sB-hLG">
                                         <rect key="frame" x="0.0" y="0.0" width="440" height="435"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOE-l7-fT8">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOE-l7-fT8">
                                                 <rect key="frame" x="44" y="86" width="353" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ihU-dl-w0l"/>
@@ -599,7 +931,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kuang" translatesAutoresizingMaskIntoConstraints="NO" id="vul-cU-3Cp">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="kuang" translatesAutoresizingMaskIntoConstraints="NO" id="vul-cU-3Cp">
                                                 <rect key="frame" x="20" y="44" width="400" height="180"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="mJy-j2-TeB">
@@ -617,8 +949,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-Na-yNz">
-                                                <rect key="frame" x="43" y="122" width="354" height="1"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-Na-yNz">
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="U4Z-x6-jgh">
@@ -636,7 +967,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
                                                 <rect key="frame" x="43" y="129" width="354" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="OOM-ei-HMp"/>
@@ -654,7 +985,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TVregister" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-VN-yja">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="TVregister" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-VN-yja">
                                                 <rect key="frame" x="190" y="20" width="60" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="OQj-Mg-PGT"/>
@@ -673,7 +1004,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
                                                 <rect key="frame" x="44" y="172" width="248" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="248" id="JhS-bt-dAZ"/>
@@ -694,8 +1025,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XvF-65-oYh">
-                                                <rect key="frame" x="44" y="165" width="354" height="1"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XvF-65-oYh">
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="A1K-vt-VAS"/>
@@ -711,7 +1041,7 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01u-T7-HW2">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01u-T7-HW2">
                                                 <rect key="frame" x="169" y="385" width="62" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="NBR-L0-nAd"/>
@@ -805,6 +1135,9 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 <exclude reference="hN1-7X-wy5"/>
                                             </mask>
                                             <mask key="constraints">
+                                                <exclude reference="Pri-V9-Ndf"/>
+                                                <exclude reference="mLr-sT-jx3"/>
+                                                <exclude reference="tYs-4Q-NHc"/>
                                                 <exclude reference="DPo-tV-K2T"/>
                                                 <exclude reference="YiH-pp-N7g"/>
                                                 <exclude reference="ZAs-OD-G5u"/>
@@ -825,9 +1158,6 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 <exclude reference="eMj-p7-IsA"/>
                                                 <exclude reference="pbb-MC-azJ"/>
                                                 <exclude reference="rNX-V7-fg2"/>
-                                                <exclude reference="Pri-V9-Ndf"/>
-                                                <exclude reference="mLr-sT-jx3"/>
-                                                <exclude reference="tYs-4Q-NHc"/>
                                                 <exclude reference="IYe-xQ-3LX"/>
                                                 <exclude reference="nnb-6U-1H2"/>
                                             </mask>
@@ -837,6 +1167,9 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 <include reference="hN1-7X-wy5"/>
                                             </mask>
                                             <mask key="constraints">
+                                                <include reference="Pri-V9-Ndf"/>
+                                                <include reference="mLr-sT-jx3"/>
+                                                <include reference="tYs-4Q-NHc"/>
                                                 <include reference="DPo-tV-K2T"/>
                                                 <include reference="YiH-pp-N7g"/>
                                                 <include reference="ZAs-OD-G5u"/>
@@ -857,9 +1190,6 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                                                 <include reference="eMj-p7-IsA"/>
                                                 <include reference="pbb-MC-azJ"/>
                                                 <include reference="rNX-V7-fg2"/>
-                                                <include reference="Pri-V9-Ndf"/>
-                                                <include reference="mLr-sT-jx3"/>
-                                                <include reference="tYs-4Q-NHc"/>
                                                 <include reference="IYe-xQ-3LX"/>
                                                 <include reference="nnb-6U-1H2"/>
                                             </mask>
@@ -905,18 +1235,18 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="yev-oL-ILy"/>
                                 <exclude reference="9fO-uA-mJK"/>
                                 <exclude reference="IQY-tm-9t4"/>
                                 <exclude reference="cG8-5S-d1J"/>
-                                <exclude reference="yev-oL-ILy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
+                                <include reference="yev-oL-ILy"/>
                                 <include reference="9fO-uA-mJK"/>
                                 <include reference="IQY-tm-9t4"/>
                                 <include reference="cG8-5S-d1J"/>
-                                <include reference="yev-oL-ILy"/>
                             </mask>
                         </variation>
                     </view>
@@ -935,6 +1265,10 @@ l     下线所有S1级用户当月总积分不足30000分无奖励
     <resources>
         <image name="IdentityBg" width="136" height="57"/>
         <image name="TVregister" width="117" height="117"/>
+        <image name="guize" width="33" height="33"/>
         <image name="kuang" width="695" height="572"/>
+        <image name="s" width="33" height="33"/>
+        <image name="tuijian" width="33" height="33"/>
+        <image name="zhuangji" width="33" height="33"/>
     </resources>
 </document>

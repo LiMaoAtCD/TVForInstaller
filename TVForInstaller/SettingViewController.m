@@ -44,22 +44,22 @@
 */
 - (IBAction)push:(id)sender {
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-    
-    InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
-    
-    info.hidesBottomBarWhenPushed = YES;
-    [self.navigationController showViewController:info sender:self];
-    
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
 //    
-//    AboutViewController *info = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+//    InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
 //    
 //    info.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController showViewController:info sender:self];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+    
+    AboutViewController *info = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+    
+    info.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:info sender:self];
 //
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-//    
+////
 //    DeviceViewController *info = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
 //    
 //    info.hidesBottomBarWhenPushed = YES;
