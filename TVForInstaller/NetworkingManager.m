@@ -27,4 +27,8 @@
     }];
 }
 
++(void)uploadPeronsalInfoName:(NSString*)name cellPhone:(NSString*)phoneNumber chinaID:(NSString*)chinaID withCompletionHandler:(NetWorkHandler)completionHandler{
+    
+}
+
 @end

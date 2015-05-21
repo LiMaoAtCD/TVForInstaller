@@ -16,4 +16,5 @@ typedef void(^NetWorkHandler)(AFHTTPRequestOperation *operation, id responseObje
 
 +(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler;
 
++(void)uploadPeronsalInfoName:(NSString*)name cellPhone:(NSString*)phoneNumber chinaID:(NSString*)chinaID withCompletionHandler:(NetWorkHandler)completionHandler;
 @end
