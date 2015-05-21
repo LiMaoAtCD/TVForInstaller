@@ -11,7 +11,15 @@
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
 		871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23331B0ACF7200B484CA /* RegisterViewController.m */; };
 		871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23361B0ACF8300B484CA /* ForgetViewController.m */; };
+		871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B77491B0C9BBB00810EE3 /* DeviceViewController.m */; };
+		871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */; };
+		871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774F1B0CA54C00810EE3 /* DeviceContainer.m */; };
 		872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8C21B0C839500C680B5 /* AppTableViewController.m */; };
+		872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872DA8C41B0C883F00C680B5 /* Setting.storyboard */; };
+		872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8CF1B0C94E100C680B5 /* AboutViewController.m */; };
+		8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */; };
+		8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDED1B0D8E0700E3685C /* InfoViewController.m */; };
+		8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8785E90C1B0AF5A9003F4415 /* Install.storyboard */; };
@@ -65,7 +73,22 @@
 		871A23331B0ACF7200B484CA /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		871A23351B0ACF8300B484CA /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
 		871A23361B0ACF8300B484CA /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
+		871B77481B0C9BBB00810EE3 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
+		871B77491B0C9BBB00810EE3 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		871B774B1B0CA41700810EE3 /* DeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTableViewCell.h; sourceTree = "<group>"; };
+		871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
+		871B774E1B0CA54C00810EE3 /* DeviceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceContainer.h; sourceTree = "<group>"; };
+		871B774F1B0CA54C00810EE3 /* DeviceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceContainer.m; sourceTree = "<group>"; };
 		872DA8C21B0C839500C680B5 /* AppTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableViewController.m; sourceTree = "<group>"; };
+		872DA8C41B0C883F00C680B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		872DA8CE1B0C94E100C680B5 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		872DA8CF1B0C94E100C680B5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		8736FDE91B0D808900E3685C /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
+		8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
+		8736FDEC1B0D8E0700E3685C /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		8736FDED1B0D8E0700E3685C /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		8736FDEF1B0DA63D00E3685C /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -163,6 +186,48 @@
 				6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		871B77471B0C9BAA00810EE3 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				871B77481B0C9BBB00810EE3 /* DeviceViewController.h */,
+				871B77491B0C9BBB00810EE3 /* DeviceViewController.m */,
+				871B774B1B0CA41700810EE3 /* DeviceTableViewCell.h */,
+				871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */,
+				871B774E1B0CA54C00810EE3 /* DeviceContainer.h */,
+				871B774F1B0CA54C00810EE3 /* DeviceContainer.m */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
+		872DA8C91B0C893800C680B5 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				8736FDEC1B0D8E0700E3685C /* InfoViewController.h */,
+				8736FDED1B0D8E0700E3685C /* InfoViewController.m */,
+				8736FDEF1B0DA63D00E3685C /* InfoTableViewCell.h */,
+				8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		872DA8CD1B0C94C600C680B5 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				872DA8CE1B0C94E100C680B5 /* AboutViewController.h */,
+				872DA8CF1B0C94E100C680B5 /* AboutViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		8736FDE81B0D806A00E3685C /* modifyPassword */ = {
+			isa = PBXGroup;
+			children = (
+				8736FDE91B0D808900E3685C /* ModifyPasswordViewController.h */,
+				8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */,
+			);
+			name = modifyPassword;
 			sourceTree = "<group>";
 		};
 		8785E9111B0B089F003F4415 /* S1ViewController */ = {
@@ -322,8 +387,13 @@
 		87EA3A9C1B0A0C2C004AB8F7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				872DA8C41B0C883F00C680B5 /* Setting.storyboard */,
 				87EA3A9D1B0A0C7D004AB8F7 /* SettingViewController.h */,
 				87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */,
+				8736FDE81B0D806A00E3685C /* modifyPassword */,
+				871B77471B0C9BAA00810EE3 /* Device */,
+				872DA8CD1B0C94C600C680B5 /* About */,
+				872DA8C91B0C893800C680B5 /* Info */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -457,6 +527,7 @@
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
 				8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */,
 				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
+				872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */,
 				87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */,
 				87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */,
 				8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */,
@@ -516,6 +588,7 @@
 				8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */,
 				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
+				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
 				8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
@@ -525,6 +598,8 @@
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
+				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
+				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,
 				8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
@@ -532,9 +607,12 @@
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */,
+				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
+				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
+				8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

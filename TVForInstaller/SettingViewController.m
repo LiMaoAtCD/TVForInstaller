@@ -7,6 +7,12 @@
 //
 
 #import "SettingViewController.h"
+#import "ComminUtility.h"
+
+#import "InfoViewController.h"
+#import "AboutViewController.h"
+#import "DeviceViewController.h"
+#import "ModifyPasswordViewController.h"
 
 @interface SettingViewController ()
 
@@ -17,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [ComminUtility configureTitle:@"设置" forViewController:self];
+    
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +42,38 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)push:(id)sender {
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+    
+    InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+    
+    info.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:info sender:self];
+    
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+//    
+//    AboutViewController *info = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+//    
+//    info.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController showViewController:info sender:self];
+//
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+//    
+//    DeviceViewController *info = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
+//    
+//    info.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController showViewController:info sender:self];
+    
+}
+- (IBAction)ppp:(id)sender {
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+    
+    ModifyPasswordViewController *info = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+    
+    info.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:info sender:self];
+}
 
 @end

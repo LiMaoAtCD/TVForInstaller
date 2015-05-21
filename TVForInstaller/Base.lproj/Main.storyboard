@@ -483,10 +483,75 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okx-30-dbe">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrA-vu-Few">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                            <rect key="frame" x="17" y="21" width="100" height="100"/>
+                                                        </variation>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7r-iw-zBO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                            <rect key="frame" x="150" y="21" width="100" height="100"/>
+                                                        </variation>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fae-4u-uMO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                            <rect key="frame" x="285" y="21" width="100" height="100"/>
+                                                        </variation>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bu9-8p-sDM">
+                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                            <rect key="frame" x="44" y="135" width="46" height="30"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="push:" destination="Ola-Pi-avM" eventType="touchUpInside" id="uTt-BU-7ZX"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-zR-VoM">
+                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                            <rect key="frame" x="177" y="135" width="46" height="30"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="ppp:" destination="Ola-Pi-avM" eventType="touchUpInside" id="WJ9-Tq-OrP"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="UrA-vu-Few"/>
+                                                        <exclude reference="R7r-iw-zBO"/>
+                                                        <exclude reference="Fae-4u-uMO"/>
+                                                        <exclude reference="bu9-8p-sDM"/>
+                                                        <exclude reference="uaZ-zR-VoM"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="subviews">
+                                                        <include reference="UrA-vu-Few"/>
+                                                        <include reference="R7r-iw-zBO"/>
+                                                        <include reference="Fae-4u-uMO"/>
+                                                        <include reference="bu9-8p-sDM"/>
+                                                        <include reference="uaZ-zR-VoM"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.17254901959999999" green="0.7843137255" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ae7-o9-3DU" secondAttribute="trailing" id="5nC-2a-Qyb"/>
                                             <constraint firstItem="ae7-o9-3DU" firstAttribute="leading" secondItem="1tO-Yu-P5k" secondAttribute="leading" id="6rF-gK-QLV"/>
