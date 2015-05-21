@@ -33,7 +33,8 @@
     UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
 //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
     footerView.text = @"共搜索到0台设备";
-    footerView.textColor = [UIColor whiteColor];
+    footerView.font = [UIFont boldSystemFontOfSize:12.0];
+    footerView.textColor = [UIColor blackColor];
     footerView.textAlignment = NSTextAlignmentCenter;
     self.tableView.tableFooterView = footerView;
     
@@ -75,13 +76,13 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *customLabel = [[UILabel alloc] init];
-    customLabel.textColor = [UIColor whiteColor];
+    customLabel.textColor = [UIColor blackColor];
     customLabel.font = [UIFont systemFontOfSize:12.0];
     customLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     return customLabel;
 }
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
-    return  30.;
+    return  20.;
 }
 
 

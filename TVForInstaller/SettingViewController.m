@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gradeLabel;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *DetailViews;
 
 @end
 
@@ -41,6 +42,71 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self.DetailViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *view  = obj;
+        
+        UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickDetailView:)];
+        
+        [view addGestureRecognizer:tap];
+
+    }];
+    
+    
+}
+
+-(void)clickDetailView:(UITapGestureRecognizer *)gesture{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+    switch (gesture.view.tag) {
+        case 0:
+        {
+            DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
+            device.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:device sender:self];
+        }
+            break;
+        case 1:
+        {
+            DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
+            [self.navigationController showViewController:device sender:self];
+        }
+            break;
+        case 2:
+        {
+            DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
+            [self.navigationController showViewController:device sender:self];
+        }
+            break;
+        case 3:
+        {
+            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+            info.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:info sender:self];
+        }
+            break;
+        case 4:
+        {
+            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+            pwd.hidesBottomBarWhenPushed = YES;
+            
+            [self.navigationController showViewController:pwd sender:self];
+        }
+            break;
+        case 5:
+        {
+            AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+            about.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:about sender:self];
+        }
+            break;
+
+    }
+}
+
+
+
 -(void)tapToChangeAvator{
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
@@ -52,6 +118,9 @@
     avatar.delegate = self;
     [self showDetailViewController:avatar sender:self];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -711,19 +711,19 @@
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7r-iw-zBO">
+                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7r-iw-zBO">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fae-4u-uMO">
+                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fae-4u-uMO">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egN-vk-XxU">
+                                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egN-vk-XxU">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWx-LG-OXs">
+                                                    <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWx-LG-OXs">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -745,7 +745,7 @@
                                                             <action selector="ppp:" destination="Ola-Pi-avM" eventType="touchUpInside" id="WJ9-Tq-OrP"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPp-AX-c5K">
+                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPp-AX-c5K">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1025,6 +1025,12 @@
                         <outlet property="avatarImageView" destination="1Up-L3-9Ha" id="Tqr-Lg-jv0"/>
                         <outlet property="gradeLabel" destination="J0C-Nf-UkF" id="J1V-fi-1Wz"/>
                         <outlet property="nameLabel" destination="eBt-OU-lsH" id="i7N-Z3-ixO"/>
+                        <outletCollection property="DetailViews" destination="UrA-vu-Few" id="PPR-7x-m4Z"/>
+                        <outletCollection property="DetailViews" destination="R7r-iw-zBO" id="Zit-65-nvy"/>
+                        <outletCollection property="DetailViews" destination="Fae-4u-uMO" id="VoB-Ux-b2g"/>
+                        <outletCollection property="DetailViews" destination="JPp-AX-c5K" id="EEC-tM-FOH"/>
+                        <outletCollection property="DetailViews" destination="egN-vk-XxU" id="ZII-ke-fue"/>
+                        <outletCollection property="DetailViews" destination="wWx-LG-OXs" id="LtE-hr-jc7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdi-4k-7o9" userLabel="First Responder" sceneMemberID="firstResponder"/>
