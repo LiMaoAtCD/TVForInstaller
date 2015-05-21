@@ -36,6 +36,7 @@
 		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
 		87D274901B09F12900189C33 /* S1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2748E1B09F12800189C33 /* S1ViewController.m */; };
 		87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274931B09F13B00189C33 /* InstallHistoryViewController.m */; };
+		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
 		87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */; };
@@ -121,6 +122,8 @@
 		87D2748E1B09F12800189C33 /* S1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1ViewController.m; sourceTree = "<group>"; };
 		87D274921B09F13B00189C33 /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		87D274931B09F13B00189C33 /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
+		87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatorDetailViewController.m; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBE1E71AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 				872DA8C41B0C883F00C680B5 /* Setting.storyboard */,
 				87EA3A9D1B0A0C7D004AB8F7 /* SettingViewController.h */,
 				87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */,
+				87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */,
+				87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */,
 				8736FDE81B0D806A00E3685C /* modifyPassword */,
 				871B77471B0C9BAA00810EE3 /* Device */,
 				872DA8CD1B0C94C600C680B5 /* About */,
@@ -588,6 +593,7 @@
 				8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */,
 				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
+				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
 				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
 				8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */,

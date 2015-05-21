@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    Camera,
+    Album,
+} AvatarType;
+
+@protocol AvatarSelectionDelegate <NSObject>
+
+-(void)didSelectButtonAtIndex:(AvatarType)type;
+
+@end
+
+
 @interface AvatorDetailViewController : UIViewController
 
+
+@property (nonatomic,weak)id<AvatarSelectionDelegate> delegate;
 @end

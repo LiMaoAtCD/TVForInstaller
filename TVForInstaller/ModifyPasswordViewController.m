@@ -8,6 +8,8 @@
 
 #import "ModifyPasswordViewController.h"
 #import "ComminUtility.h"
+#import <JGProgressHUD.h>
+
 @interface ModifyPasswordViewController ()
 
 
@@ -56,7 +58,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 - (IBAction)getIdentityCode:(id)sender {
+    
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.indicatorView = nil;
+    hud.textLabel.text = @"获取中...";
+    [hud showInView:self.view animated:YES];
     
     
 }

@@ -9,6 +9,13 @@
 #import "AvatorDetailViewController.h"
 
 @interface AvatorDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIView *mainVIew;
+
+@property (weak, nonatomic) IBOutlet UIView *transparentView;
+
+
+
+
 
 @end
 
@@ -17,6 +24,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.transparentView.backgroundColor = [UIColor blackColor];
+    self.transparentView.alpha = 0.0;
+    
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.transparentView.alpha = 0.3;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +52,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)takePhoto:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
+        [self.delegate didSelectButtonAtIndex:Camera];
+    }
+    
+}
+- (IBAction)getAlbum:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
+        [self.delegate didSelectButtonAtIndex:Album];
+    }
+
+}
+- (IBAction)cancel:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
