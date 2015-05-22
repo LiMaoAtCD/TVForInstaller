@@ -666,6 +666,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TnP-Nh-UHs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Mo-pS-ehD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -683,6 +684,7 @@
                         <viewControllerLayoutGuide type="bottom" id="i7L-NI-s2Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cbS-mD-hQ3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -700,6 +702,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BDG-aP-04f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D38-yx-tpl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

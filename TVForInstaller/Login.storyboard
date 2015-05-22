@@ -233,7 +233,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vdA-J2-OzO" secondAttribute="trailing" constant="4" id="1Zk-HQ-5Fw"/>
                             <constraint firstItem="6Ds-mi-MuN" firstAttribute="top" secondItem="4DB-jq-3dF" secondAttribute="bottom" constant="26" id="5ky-BG-L1R"/>
                             <constraint firstItem="nP2-sG-zwC" firstAttribute="top" secondItem="4QK-vE-9cE" secondAttribute="bottom" constant="12" id="8Gx-ea-thy"/>
-                            <constraint firstItem="Jk3-OC-CSu" firstAttribute="top" secondItem="KgF-gF-fjv" secondAttribute="bottom" constant="2" id="B2M-ag-DtH"/>
+                            <constraint firstItem="Jk3-OC-CSu" firstAttribute="top" secondItem="KgF-gF-fjv" secondAttribute="bottom" constant="2" id="B2M-ag-DtH">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="nP2-sG-zwC" secondAttribute="trailing" constant="3" id="GWK-GB-eny"/>
                             <constraint firstItem="vdA-J2-OzO" firstAttribute="top" secondItem="6Ds-mi-MuN" secondAttribute="bottom" constant="10" id="II8-px-d00"/>
                             <constraint firstItem="Jk3-OC-CSu" firstAttribute="trailing" secondItem="u6R-3d-m97" secondAttribute="trailingMargin" id="KOS-ro-CMw"/>
@@ -458,7 +460,9 @@
                                                 <rect key="frame" x="20" y="416" width="338" height="30"/>
                                                 <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="7Ql-cO-JYl"/>
+                                                    <constraint firstAttribute="height" constant="30" id="7Ql-cO-JYl">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="9FW-A4-NdE"/>
                                                 </constraints>
                                                 <state key="normal" title="提  交">
@@ -474,7 +478,7 @@
                                                 <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="7Ql-cO-JYl"/>
-                                                        <include reference="9FW-A4-NdE"/>
+                                                        <exclude reference="9FW-A4-NdE"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>

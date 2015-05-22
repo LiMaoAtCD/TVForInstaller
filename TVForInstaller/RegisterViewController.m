@@ -11,6 +11,7 @@
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 #import "NSString+Hashes.h"
+#import "AccountManager.h"
 
 typedef void(^alertBlock)(void);
 
@@ -39,6 +40,7 @@ typedef void(^alertBlock)(void);
 
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSUInteger count;
+@property (nonatomic,strong) JGProgressHUD *hud;
 
 @end
 
@@ -175,7 +177,8 @@ typedef void(^alertBlock)(void);
 -(void)count:(id)sender{
     self.count--;
     
-    if (self.count >0) {
+    if (self.count > 0) {
+        
         [self getcode:NO];
     } else{
         [self getcode:YES];
@@ -185,32 +188,38 @@ typedef void(^alertBlock)(void);
 - (IBAction)getVerifyCode:(id)sender {
     
     self.count = 60;
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"获取验证码";
-    [hud showInView:self.view];
+    self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    self.hud.textLabel.text = @"获取验证码";
+    [self.hud showInView:self.view];
 
     self.timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(count:) userInfo:nil repeats:YES];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        hud.textLabel.text = @"验证码获取成功";
-        hud.indicatorView = nil;
-        [hud dismissAfterDelay:1.0];
-        
-        [self getcode:YES];
-        
-    });
-    
-//    [NetworkingManager fetchVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
 //        hud.textLabel.text = @"验证码获取成功";
 //        hud.indicatorView = nil;
-//        [hud dismissAfterDelay:2.0];
+//        [hud dismissAfterDelay:1.0];
 //        
-//    
-//    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [hud dismissAnimated:YES];
+//        [self getcode:YES];
+//        
+//    });
 //
-//    }];
+    
+    if (self.cellphoneNumber != nil||
+        ![self.cellphoneNumber isEqualToString:@""]) {
+        
+        [NetworkingManager fetchVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.hud.textLabel.text = @"验证码获取成功";
+            self.hud.indicatorView = nil;
+            [self.hud dismissAfterDelay:2.0];
+            
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.hud dismissAnimated:YES];
+            
+        }];
+    }
+    
     
 }
 
@@ -303,11 +312,47 @@ typedef void(^alertBlock)(void);
 - (IBAction)submitForRegister:(id)sender {
     
     if ([self checkRegisterInfoCompletion]) {
-    
+        self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        self.hud.textLabel.text =@"注册中";
+        [self.hud showInView:self.view];
         [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"responseObject:%@\n",responseObject);
             
+            if ([responseObject[@"success"] integerValue] == 0) {
+                //error
+                self.hud.textLabel.text =@"注册失败";
+                self.hud.indicatorView = nil;
+
+                [self.hud dismissAfterDelay:2.0];
+                
+            } else{
+                self.hud.textLabel.text =@"注册成功";
+                self.hud.indicatorView = nil;
+                [self.hud dismissAfterDelay:2.0];
+                
+                NSDictionary *data = responseObject[@"obj"];
+                if (![data[@"name"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setName:data[@"name"]];
+                }
+                if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setAvatarUrlString:data[@"headimg"]];
+                }
+                if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setIDCard:data[@"idcard"]];
+                }
+                if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setLeaderID:data[@"leaderid"]];
+                }
+                if (![data[@"password"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setPassword:data[@"password"]];
+                }
+                if (![data[@"phone"] isKindOfClass:[NSNull class]]) {
+                    [AccountManager setCellphoneNumber:data[@"phone"]];
+                }
+            }
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.hud dismiss];
         }];
     }
 }

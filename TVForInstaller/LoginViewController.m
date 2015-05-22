@@ -10,6 +10,7 @@
 #import "ComminUtility.h"
 #import "NetworkingManager.h"
 #import "NSString+Hashes.h"
+#import "AccountManager.h"
 
 #import <JGProgressHUD.h>
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (nonatomic, strong) JGProgressHUD *HUD;
 
 @property (nonatomic,copy) NSString *Account;
 @property (nonatomic,copy) NSString *password;
@@ -83,18 +86,36 @@
     
     if ([self checkTextFieldCompletion]) {
         
-        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        HUD.textLabel.text= @"登录中";
-        [HUD showInView:self.view animated:YES];
+        self.HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        self.HUD.textLabel.text= @"登录中";
+        [self.HUD showInView:self.view animated:YES];
 
         [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self dismissViewControllerAnimated:YES completion:nil];
             //TODO: 登录回调处理
-            
-            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                //error
+                self.HUD.textLabel.text =@"用户名或密码错误";
+                self.HUD.indicatorView = nil;
+                
+                [self.HUD dismissAfterDelay:2.0];
+                
+            } else{
+                self.HUD.textLabel.text =@"登录成功";
+                self.HUD.indicatorView = nil;
+                [self.HUD dismissAfterDelay:2.0];
+                
+                NSDictionary *data = responseObject[@"obj"];
+//                AccountManager
+                
+
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+
+
+            }
             
         } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [HUD dismiss];
+            [self.HUD dismiss];
 
         }];
     }

@@ -43,10 +43,10 @@
         
     } else{
         //
-//        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-//        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-//        
-//        [self showDetailViewController:login sender:self];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        
+        [self showDetailViewController:login sender:self];
 //
         
     }

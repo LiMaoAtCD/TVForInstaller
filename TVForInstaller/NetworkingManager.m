@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 
-#define kServer @"http://192.168.0.166:8080/tvgeek/appEngController.do?enterService"
+#define kServer @"http://10.0.0.116:8080/jeecg-framework/appengController.do?enterService"
 
 
 @implementation NetworkingManager
