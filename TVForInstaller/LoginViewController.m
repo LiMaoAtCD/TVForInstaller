@@ -84,16 +84,19 @@
     if ([self checkTextFieldCompletion]) {
         
         JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        HUD.textLabel.text= @"登录中...";
+        HUD.textLabel.text= @"登录中";
         [HUD showInView:self.view animated:YES];
-        [HUD dismissAfterDelay:2];
 
-        
-        
-//        [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//            [HUD dismiss];
-//        }];
+        [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            //TODO: 登录回调处理
+            
+            
+            
+        } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [HUD dismiss];
+
+        }];
     }
     
     

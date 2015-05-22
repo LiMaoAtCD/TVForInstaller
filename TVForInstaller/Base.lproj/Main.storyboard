@@ -19,7 +19,6 @@
                     <connections>
                         <segue destination="URF-Rn-MXf" kind="relationship" relationship="viewControllers" id="yqJ-Zm-sQt"/>
                         <segue destination="kkA-Om-Lbh" kind="relationship" relationship="viewControllers" id="QSG-cX-khY"/>
-                        <segue destination="oFp-qB-aOm" kind="relationship" relationship="viewControllers" id="b51-VN-z9d"/>
                         <segue destination="Llt-jl-Aai" kind="relationship" relationship="viewControllers" id="rm7-Pt-HcG"/>
                     </connections>
                 </tabBarController>
@@ -47,7 +46,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="6dN-Je-aDP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -503,7 +502,7 @@
                                                             <constraint firstAttribute="height" constant="21" id="HD8-62-nhx"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
                                                             <mask key="constraints">

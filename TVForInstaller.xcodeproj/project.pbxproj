@@ -338,12 +338,12 @@
 		87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */ = {
 			isa = PBXGroup;
 			children = (
-				87EA3AA71B0A1094004AB8F7 /* Login */,
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
+				87EA3AA71B0A1094004AB8F7 /* Login */,
 				87D274811B09E01C00189C33 /* InstallViewController */,
 				87EA3AA61B0A105A004AB8F7 /* Applications */,
 				87EA3AA01B0A1016004AB8F7 /* Orders */,
