@@ -404,6 +404,9 @@
                                                         <include reference="RDl-yK-qow"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="dqt-J7-fkb"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-2m-pxT">
                                                 <rect key="frame" x="24" y="151" width="329" height="30"/>
@@ -424,6 +427,9 @@
                                                         <include reference="syr-ma-r5s"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="e4j-9w-1bI"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="身份证号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akh-y4-aY1">
                                                 <rect key="frame" x="24" y="345" width="329" height="30"/>
@@ -444,6 +450,9 @@
                                                         <include reference="F7b-XW-INT"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="7bm-kf-YfS"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfK-uj-5Gp">
                                                 <rect key="frame" x="20" y="416" width="338" height="30"/>
@@ -491,6 +500,9 @@
                                                         <include reference="e2T-l4-xdf"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="r6B-fn-TN3"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aJi-kr-x10">
                                                 <rect key="frame" x="24" y="345" width="329" height="30"/>
@@ -513,6 +525,9 @@
                                                         <include reference="lYf-0J-Se6"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="sBg-Pd-Yr2"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-yC-9MT">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -675,6 +690,9 @@
                                                         <include reference="xBc-7g-lmo"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="P9F-cF-Zio" id="Me7-V9-5K5"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.13725490200000001" green="0.43137254899999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -9,6 +9,33 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface ComminUtility : NSObject
-+(void)configureTitle:(NSString*)title forViewController:(UIViewController*)vc;
 
+
+/**
+ *  配置navigationBar
+ *
+ *  @param title 标题
+ *  @param vc    viewcontroller
+ */
+
+
++(void)configureTitle:(NSString*)title forViewController:(UIViewController*)vc;
+/**
+ *  验证身份证号是否合法
+ *
+ *  @param identityCard 身份证号
+ *
+ *  @return none
+ */
++(BOOL)validateIdentityCard: (NSString *)identityCard;
+
+/**
+ *  验证手机号码
+ *
+ *  @param str none
+ *
+ *  @return none
+ 
+ */
++(BOOL)checkTel:(NSString *)str;
 @end
