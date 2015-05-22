@@ -24,20 +24,14 @@
 		8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
-		8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8785E90C1B0AF5A9003F4415 /* Install.storyboard */; };
-		8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */; };
-		8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9131B0B08E3003F4415 /* S1TableViewCell.m */; };
-		8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */; };
-		8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91A1B0B28E8003F4415 /* S1DetailController.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
 		8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E95F1B0C6E34003F4415 /* AppOneInstallCell.m */; };
 		8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9621B0C6E7F003F4415 /* AppCollectionTableCell.m */; };
 		8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */; };
-		87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747B1B09DC1000189C33 /* InstallViewController.m */; };
+		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
+		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
+		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
-		87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274831B09E37B00189C33 /* InstallSegmentViewController.m */; };
-		87D274901B09F12900189C33 /* S1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2748E1B09F12800189C33 /* S1ViewController.m */; };
-		87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D274931B09F13B00189C33 /* InstallHistoryViewController.m */; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
@@ -100,15 +94,6 @@
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
 		8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONString.m"; sourceTree = "<group>"; };
-		8785E90C1B0AF5A9003F4415 /* Install.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Install.storyboard; sourceTree = "<group>"; };
-		8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryCell.h; sourceTree = "<group>"; };
-		8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryCell.m; sourceTree = "<group>"; };
-		8785E9121B0B08E3003F4415 /* S1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1TableViewCell.h; sourceTree = "<group>"; };
-		8785E9131B0B08E3003F4415 /* S1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1TableViewCell.m; sourceTree = "<group>"; };
-		8785E9161B0B279D003F4415 /* InstallHistoryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryDetailController.h; sourceTree = "<group>"; };
-		8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryDetailController.m; sourceTree = "<group>"; };
-		8785E9191B0B28E8003F4415 /* S1DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1DetailController.h; sourceTree = "<group>"; };
-		8785E91A1B0B28E8003F4415 /* S1DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1DetailController.m; sourceTree = "<group>"; };
 		8785E91C1B0C162A003F4415 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		8785E91D1B0C162A003F4415 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		8785E91F1B0C25E0003F4415 /* AppTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTableViewController.h; sourceTree = "<group>"; };
@@ -118,16 +103,14 @@
 		8785E9621B0C6E7F003F4415 /* AppCollectionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCollectionTableCell.m; sourceTree = "<group>"; };
 		8785E9681B0C750E003F4415 /* APPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPCollectionViewCell.h; sourceTree = "<group>"; };
 		8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPCollectionViewCell.m; sourceTree = "<group>"; };
-		87D2747A1B09DC1000189C33 /* InstallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallViewController.h; sourceTree = "<group>"; };
-		87D2747B1B09DC1000189C33 /* InstallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallViewController.m; sourceTree = "<group>"; };
+		878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChildrenViewController.h; sourceTree = "<group>"; };
+		878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChildrenViewController.m; sourceTree = "<group>"; };
+		878EE40B1B0EDDFF002E6B4E /* InvatationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvatationViewController.h; sourceTree = "<group>"; };
+		878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatationViewController.m; sourceTree = "<group>"; };
+		878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
+		878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
-		87D274821B09E37B00189C33 /* InstallSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallSegmentViewController.h; sourceTree = "<group>"; };
-		87D274831B09E37B00189C33 /* InstallSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallSegmentViewController.m; sourceTree = "<group>"; };
-		87D2748D1B09F12800189C33 /* S1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S1ViewController.h; sourceTree = "<group>"; };
-		87D2748E1B09F12800189C33 /* S1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S1ViewController.m; sourceTree = "<group>"; };
-		87D274921B09F13B00189C33 /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
-		87D274931B09F13B00189C33 /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
 		87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatorDetailViewController.m; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,32 +240,6 @@
 			name = modifyPassword;
 			sourceTree = "<group>";
 		};
-		8785E9111B0B089F003F4415 /* S1ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				87D2748D1B09F12800189C33 /* S1ViewController.h */,
-				87D2748E1B09F12800189C33 /* S1ViewController.m */,
-				8785E9121B0B08E3003F4415 /* S1TableViewCell.h */,
-				8785E9131B0B08E3003F4415 /* S1TableViewCell.m */,
-				8785E9191B0B28E8003F4415 /* S1DetailController.h */,
-				8785E91A1B0B28E8003F4415 /* S1DetailController.m */,
-			);
-			name = S1ViewController;
-			sourceTree = "<group>";
-		};
-		8785E9151B0B1FCB003F4415 /* InstallHistory */ = {
-			isa = PBXGroup;
-			children = (
-				87D274921B09F13B00189C33 /* InstallHistoryViewController.h */,
-				87D274931B09F13B00189C33 /* InstallHistoryViewController.m */,
-				8785E90E1B0B0683003F4415 /* InstallHistoryCell.h */,
-				8785E90F1B0B0683003F4415 /* InstallHistoryCell.m */,
-				8785E9161B0B279D003F4415 /* InstallHistoryDetailController.h */,
-				8785E9171B0B279D003F4415 /* InstallHistoryDetailController.m */,
-			);
-			name = InstallHistory;
-			sourceTree = "<group>";
-		};
 		8785E9641B0C73E0003F4415 /* AppCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +249,33 @@
 			name = AppCollection;
 			sourceTree = "<group>";
 		};
+		878EE4051B0EDD77002E6B4E /* MyChildren */ = {
+			isa = PBXGroup;
+			children = (
+				878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */,
+				878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */,
+			);
+			name = MyChildren;
+			sourceTree = "<group>";
+		};
+		878EE4061B0EDD8C002E6B4E /* Invitation */ = {
+			isa = PBXGroup;
+			children = (
+				878EE40B1B0EDDFF002E6B4E /* InvatationViewController.h */,
+				878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */,
+			);
+			name = Invitation;
+			sourceTree = "<group>";
+		};
+		878EE4071B0EDD99002E6B4E /* InstallHistory */ = {
+			isa = PBXGroup;
+			children = (
+				878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */,
+				878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */,
+			);
+			name = InstallHistory;
+			sourceTree = "<group>";
+		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,20 +283,6 @@
 				87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */,
 			);
 			name = RKSwipeBetweenViewController;
-			sourceTree = "<group>";
-		};
-		87D274811B09E01C00189C33 /* InstallViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8785E90C1B0AF5A9003F4415 /* Install.storyboard */,
-				87D274821B09E37B00189C33 /* InstallSegmentViewController.h */,
-				87D274831B09E37B00189C33 /* InstallSegmentViewController.m */,
-				87D2747A1B09DC1000189C33 /* InstallViewController.h */,
-				87D2747B1B09DC1000189C33 /* InstallViewController.m */,
-				8785E9151B0B1FCB003F4415 /* InstallHistory */,
-				8785E9111B0B089F003F4415 /* S1ViewController */,
-			);
-			name = InstallViewController;
 			sourceTree = "<group>";
 		};
 		87DBE1DA1AFAFF0000AFB7BF = {
@@ -344,7 +314,6 @@
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
 				87EA3AA71B0A1094004AB8F7 /* Login */,
-				87D274811B09E01C00189C33 /* InstallViewController */,
 				87EA3AA61B0A105A004AB8F7 /* Applications */,
 				87EA3AA01B0A1016004AB8F7 /* Orders */,
 				87EA3A9C1B0A0C2C004AB8F7 /* Settings */,
@@ -419,12 +388,15 @@
 				87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */,
 				87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */,
 				87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */,
-				871973D11B0EC52A00D6CF36 /* Grade */,
-				871973D01B0EC50D00D6CF36 /* MyAccount */,
-				8736FDE81B0D806A00E3685C /* modifyPassword */,
 				871B77471B0C9BAA00810EE3 /* Device */,
-				872DA8CD1B0C94C600C680B5 /* About */,
+				871973D01B0EC50D00D6CF36 /* MyAccount */,
+				871973D11B0EC52A00D6CF36 /* Grade */,
+				878EE4051B0EDD77002E6B4E /* MyChildren */,
+				878EE4061B0EDD8C002E6B4E /* Invitation */,
+				878EE4071B0EDD99002E6B4E /* InstallHistory */,
 				872DA8C91B0C893800C680B5 /* Info */,
+				8736FDE81B0D806A00E3685C /* modifyPassword */,
+				872DA8CD1B0C94C600C680B5 /* About */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -556,7 +528,6 @@
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
-				8785E90D1B0AF5A9003F4415 /* Install.storyboard in Resources */,
 				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
 				872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */,
 			);
@@ -610,19 +581,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */,
-				87D2747C1B09DC1000189C33 /* InstallViewController.m in Sources */,
-				87D274841B09E37B00189C33 /* InstallSegmentViewController.m in Sources */,
-				8785E91B1B0B28E8003F4415 /* S1DetailController.m in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */,
+				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
-				8785E9181B0B279D003F4415 /* InstallHistoryDetailController.m in Sources */,
-				87D274901B09F12900189C33 /* S1ViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
-				87D274951B09F13B00189C33 /* InstallHistoryViewController.m in Sources */,
-				8785E9141B0B08E3003F4415 /* S1TableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
@@ -633,6 +598,7 @@
 				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,
+				878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */,
 				8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
@@ -640,9 +606,9 @@
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
-				8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
+				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,

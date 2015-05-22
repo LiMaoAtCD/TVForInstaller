@@ -1,24 +1,23 @@
 //
-//  InstallHistoryViewController.m
+//  InvatationViewController.m
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/5/22.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
-#import "InstallHistoryViewController.h"
+#import "InvatationViewController.h"
 #import "ComminUtility.h"
-@interface InstallHistoryViewController ()
+@interface InvatationViewController ()
 
 @end
 
-@implementation InstallHistoryViewController
+@implementation InvatationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [ComminUtility configureTitle:@"装机历史" forViewController:self];
-
+    [ComminUtility configureTitle:@"邀请码" forViewController:self];
 }
 
 -(void)pop{

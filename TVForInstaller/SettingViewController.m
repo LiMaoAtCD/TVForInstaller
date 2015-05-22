@@ -16,6 +16,9 @@
 #import "AvatorDetailViewController.h"
 #import "GradeViewController.h"
 #import "MyAccoutViewController.h"
+#import "InvatationViewController.h"
+#import "MyChildrenViewController.h"
+#import "InstallHistoryViewController.h"
 
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
@@ -85,20 +88,42 @@
             break;
         case 3:
         {
-            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
-            info.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:info sender:self];
+            MyChildrenViewController *child = [sb instantiateViewControllerWithIdentifier:@"MyChildrenViewController"];
+            child.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:child sender:self];
         }
             break;
         case 4:
         {
-            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
-            pwd.hidesBottomBarWhenPushed = YES;
+            InvatationViewController *invate = [sb instantiateViewControllerWithIdentifier:@"InvatationViewController"];
+            invate.hidesBottomBarWhenPushed = YES;
             
-            [self.navigationController showViewController:pwd sender:self];
+            [self.navigationController showViewController:invate sender:self];
         }
             break;
         case 5:
+        {
+            InstallHistoryViewController *install = [sb instantiateViewControllerWithIdentifier:@"InstallHistoryViewController"];
+            install.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:install sender:self];
+        }
+            break;
+        case 6:
+        {
+            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+            info.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:info sender:self];
+
+        }
+            break;
+        case 7:
+        {
+            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+            pwd.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:pwd sender:self];
+        }
+            break;
+        case 8:
         {
             AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
             about.hidesBottomBarWhenPushed = YES;
