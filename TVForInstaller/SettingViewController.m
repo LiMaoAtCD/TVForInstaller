@@ -35,6 +35,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ComminUtility configureTitle:@"设置" forViewController:self];
+    UIButton *logout = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [logout setAttributedTitle:[[NSAttributedString alloc]initWithString:@"注销" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}] forState:UIControlStateNormal];
+    logout.frame = CGRectMake(0, 0, 40, 30);
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logout];
+    
     
     self.navigationItem.leftBarButtonItem = nil;
     
@@ -44,6 +51,8 @@
     self.avatarImageView.layer.borderWidth = 2.0;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToChangeAvator)];
     [self.avatarImageView addGestureRecognizer:tap];
+    
+    
     
 }
 
