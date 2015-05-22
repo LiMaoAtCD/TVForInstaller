@@ -14,9 +14,11 @@
 #import "DeviceViewController.h"
 #import "ModifyPasswordViewController.h"
 #import "AvatorDetailViewController.h"
+#import "GradeViewController.h"
+#import "MyAccoutViewController.h"
 
 
-@interface SettingViewController ()<AvatarSelectionDelegate>
+@interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gradeLabel;
@@ -69,14 +71,16 @@
             break;
         case 1:
         {
-            DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
-            [self.navigationController showViewController:device sender:self];
+            MyAccoutViewController *account = [sb instantiateViewControllerWithIdentifier:@"MyAccoutViewController"];
+            account.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:account sender:self];
         }
             break;
         case 2:
         {
-            DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
-            [self.navigationController showViewController:device sender:self];
+            GradeViewController *grade = [sb instantiateViewControllerWithIdentifier:@"GradeViewController"];
+            grade.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:grade sender:self];
         }
             break;
         case 3:
@@ -127,61 +131,64 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+-(void)launchImagePickerWithType:(AvatarType)type{
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    
+    picker.delegate = self;
+    
+    picker.allowsEditing = YES;
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-- (IBAction)push:(id)sender {
+    if (type == Camera) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+    } else{
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
     
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-//    
-//    InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
-//    
-//    info.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController showViewController:info sender:self];
-    
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-    
-    AboutViewController *info = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
-    
-    info.hidesBottomBarWhenPushed = YES;
-    [self.navigationController showViewController:info sender:self];
-//
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-////
-//    DeviceViewController *info = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
-//    
-//    info.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController showViewController:info sender:self];
-    
-}
-- (IBAction)ppp:(id)sender {
-    
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
-    
-    ModifyPasswordViewController *info = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
-    
-    info.hidesBottomBarWhenPushed = YES;
-    [self.navigationController showViewController:info sender:self];
+    [self showDetailViewController:picker sender:self];
 }
 
 
 -(void)didSelectButtonAtIndex:(AvatarType)type{
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     if (type == Camera) {
         //调用系统相机
-        
-        NSLog(@"xxx");
+        if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear] ) {
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+       
+    
     } else {
         //调用相册
-        
-        NSLog(@"xxxx");
-
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    
+    picker.delegate = self;
+    
+    picker.allowsEditing = YES;
+    
+    [self showDetailViewController:picker sender:self];
+}
+
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    @autoreleasepool {
+        
+        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        //TODO: deal image;
+        self.avatarImageView.image = image;
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
 }
 
 @end

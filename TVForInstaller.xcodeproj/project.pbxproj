@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
+		871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */; };
+		871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D61B0EC54300D6CF36 /* GradeViewController.m */; };
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
 		871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23331B0ACF7200B484CA /* RegisterViewController.m */; };
 		871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23361B0ACF8300B484CA /* ForgetViewController.m */; };
@@ -68,6 +70,10 @@
 /* Begin PBXFileReference section */
 		6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TVForInstaller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.release.xcconfig"; sourceTree = "<group>"; };
+		871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccoutViewController.h; sourceTree = "<group>"; };
+		871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccoutViewController.m; sourceTree = "<group>"; };
+		871973D51B0EC54300D6CF36 /* GradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeViewController.h; sourceTree = "<group>"; };
+		871973D61B0EC54300D6CF36 /* GradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeViewController.m; sourceTree = "<group>"; };
 		871A232F1B0ACA1C00B484CA /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		871A23301B0ACA1C00B484CA /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		871A23321B0ACF7200B484CA /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -189,6 +195,24 @@
 				6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		871973D01B0EC50D00D6CF36 /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */,
+				871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */,
+			);
+			name = MyAccount;
+			sourceTree = "<group>";
+		};
+		871973D11B0EC52A00D6CF36 /* Grade */ = {
+			isa = PBXGroup;
+			children = (
+				871973D51B0EC54300D6CF36 /* GradeViewController.h */,
+				871973D61B0EC54300D6CF36 /* GradeViewController.m */,
+			);
+			name = Grade;
 			sourceTree = "<group>";
 		};
 		871B77471B0C9BAA00810EE3 /* Device */ = {
@@ -395,6 +419,8 @@
 				87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */,
 				87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */,
 				87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */,
+				871973D11B0EC52A00D6CF36 /* Grade */,
+				871973D01B0EC50D00D6CF36 /* MyAccount */,
 				8736FDE81B0D806A00E3685C /* modifyPassword */,
 				871B77471B0C9BAA00810EE3 /* Device */,
 				872DA8CD1B0C94C600C680B5 /* About */,
@@ -605,12 +631,14 @@
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
+				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,
 				8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
 				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
+				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				8785E9101B0B0683003F4415 /* InstallHistoryCell.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,

@@ -727,24 +727,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bu9-8p-sDM">
-                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                        <state key="normal" title="Button">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="push:" destination="Ola-Pi-avM" eventType="touchUpInside" id="uTt-BU-7ZX"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-zR-VoM">
-                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                        <state key="normal" title="Button">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="ppp:" destination="Ola-Pi-avM" eventType="touchUpInside" id="WJ9-Tq-OrP"/>
-                                                        </connections>
-                                                    </button>
                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPp-AX-c5K">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -817,8 +799,6 @@
                                                         <exclude reference="Fae-4u-uMO"/>
                                                         <exclude reference="egN-vk-XxU"/>
                                                         <exclude reference="wWx-LG-OXs"/>
-                                                        <exclude reference="bu9-8p-sDM"/>
-                                                        <exclude reference="uaZ-zR-VoM"/>
                                                         <exclude reference="JPp-AX-c5K"/>
                                                     </mask>
                                                     <mask key="constraints">
@@ -861,8 +841,6 @@
                                                         <include reference="Fae-4u-uMO"/>
                                                         <include reference="egN-vk-XxU"/>
                                                         <include reference="wWx-LG-OXs"/>
-                                                        <exclude reference="bu9-8p-sDM"/>
-                                                        <exclude reference="uaZ-zR-VoM"/>
                                                         <include reference="JPp-AX-c5K"/>
                                                     </mask>
                                                     <mask key="constraints">

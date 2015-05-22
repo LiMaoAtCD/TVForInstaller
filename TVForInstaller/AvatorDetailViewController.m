@@ -53,17 +53,23 @@
 }
 */
 - (IBAction)takePhoto:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
-        [self.delegate didSelectButtonAtIndex:Camera];
-    }
+    [self dismissViewControllerAnimated:YES completion:^(){
+        if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
+            [self.delegate didSelectButtonAtIndex:Camera];
+        }
+    }];
+    
     
 }
 - (IBAction)getAlbum:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
-        [self.delegate didSelectButtonAtIndex:Album];
-    }
+    [self dismissViewControllerAnimated:YES completion:^(){
+        
+        if ([self.delegate respondsToSelector:@selector(didSelectButtonAtIndex:)]) {
+            [self.delegate didSelectButtonAtIndex:Album];
+        }
+
+        
+    }];
 
 }
 - (IBAction)cancel:(id)sender {
