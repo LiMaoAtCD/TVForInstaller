@@ -31,7 +31,7 @@
 
 }
 
-+ (UIImage *) imageWithView:(UIView *)view
++(UIImage *)imageWithView:(UIView *)view
 {
     view.backgroundColor= [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);

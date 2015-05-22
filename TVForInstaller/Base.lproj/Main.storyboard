@@ -1110,7 +1110,9 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="iC9-qj-QbT" firstAttribute="top" secondItem="Hlo-fj-O01" secondAttribute="bottom" constant="3" id="6aG-Ws-AFr"/>
+                                                            <constraint firstItem="iC9-qj-QbT" firstAttribute="top" secondItem="Hlo-fj-O01" secondAttribute="bottom" constant="3" id="6aG-Ws-AFr">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                            </constraint>
                                                             <constraint firstAttribute="centerX" secondItem="Hlo-fj-O01" secondAttribute="centerX" id="8ev-0o-L3S"/>
                                                             <constraint firstItem="iC9-qj-QbT" firstAttribute="centerX" secondItem="Hlo-fj-O01" secondAttribute="centerX" constant="-5" id="VUM-yz-g4c">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
@@ -1724,6 +1726,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="egN-vk-XxU" secondAttribute="bottom" constant="401" id="2EF-Hs-Muh">
                                         <variation key="heightClass=regular-widthClass=compact" constant="200"/>
