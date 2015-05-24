@@ -46,4 +46,17 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+/**
+ *  修改密码
+ *
+ *  @param password          新密码
+ *  @param code              验证码
+ *  @param completionHandler  ok
+ *  @param failHandler       fail
+ */
++(void)ModifyPasswordwithNewPassword:(NSString*)password verifyCode:(NSString*)code withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+
 @end
