@@ -182,8 +182,6 @@
         return NO;
     }
     
-    
-    
     if ([self.password isEqualToString:@""] || self.password == nil){
 
         [self alertWithMessage:@"密码不能为空" withCompletionHandler:^{

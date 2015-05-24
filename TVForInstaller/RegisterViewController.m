@@ -255,6 +255,13 @@ typedef void(^alertBlock)(void);
         }];
         return NO;
     }
+
+    if (![ComminUtility checkPassword:self.password]) {
+        [self alertWithMessage:@"密码为6～18为数字字母组合" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
     
     if (![self.confirmPassword.text isEqualToString:self.password]||
         self.password == nil) {
@@ -262,7 +269,7 @@ typedef void(^alertBlock)(void);
             
         }];
         return NO;
-
+        
     }
     
     if ([self.inviteCode isEqualToString:@""]||

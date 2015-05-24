@@ -38,4 +38,12 @@
  
  */
 +(BOOL)checkTel:(NSString *)str;
+/**
+ *  验证密码位数
+ *
+ *  @param password 6——18位数字字母
+ *
+ *  @return nil
+ */
++ (BOOL)checkPassword:(NSString *) password;
 @end
