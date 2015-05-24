@@ -373,6 +373,10 @@ typedef void(^alertBlock)(void);
         [AccountManager setScore:[data[@"score"] integerValue]];
     }
     
+    if (![data[@"id"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setTokenID:data[@"id"]];
+    }
+    
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];
     
