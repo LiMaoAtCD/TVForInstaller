@@ -136,10 +136,6 @@ typedef void(^alertBlock)(void);
 
 - (IBAction)modifyPassword:(id)sender {
     
-    
-    
-    
-    
     if ([self checkCompletion]) {
         
         JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
