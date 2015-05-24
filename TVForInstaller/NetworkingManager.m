@@ -29,7 +29,7 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [hud showInView:delegate.window];
-    [hud dismissAfterDelay:1.0];
+    [hud dismissAfterDelay:2.0];
     
 }
 

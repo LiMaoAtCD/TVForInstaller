@@ -33,7 +33,7 @@
 
 -(void)manageLogState{
     
-    if ([AccountManager isLogin]) {
+    if (![AccountManager isLogin]) {
         
         
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
@@ -42,12 +42,6 @@
         [self showDetailViewController:login sender:self];
         
     } else{
-        //
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-        
-        [self showDetailViewController:login sender:self];
-//
         
     }
 

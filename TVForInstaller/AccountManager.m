@@ -19,6 +19,11 @@
 
 +(void)setLogin:(BOOL)login{
     
+    if (login == NO) {
+        [self setPassword:nil];
+        [self setCellphoneNumber:nil];
+    }
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setBool:login forKey:@"Account_login"];
     [ud synchronize];
@@ -93,5 +98,31 @@
     [ud setObject:leaderID forKey:@"account_leader_ID"];
     [ud synchronize];
 }
+
++(void)setScore:(NSInteger)score{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:score forKey:@"ud_score"];
+    [ud synchronize];
+}
+
++(NSInteger)getScore{
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud integerForKey:@"ud_score"];
+}
+
++(NSString*)getTokenID{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return  [ud objectForKey:@"account_token_ID"];
+
+}
++(void)setTokenID:(NSString*)token{
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:token forKey:@"account_token_ID"];
+    [ud synchronize];
+    
+}
+
 
 @end

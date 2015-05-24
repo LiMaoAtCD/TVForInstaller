@@ -20,6 +20,9 @@
 #import "MyChildrenViewController.h"
 #import "InstallHistoryViewController.h"
 
+#import "AccountManager.h"
+#import "LoginViewController.h"
+
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -39,7 +42,7 @@
     
     [logout setAttributedTitle:[[NSAttributedString alloc]initWithString:@"注销" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}] forState:UIControlStateNormal];
     logout.frame = CGRectMake(0, 0, 40, 30);
-    
+    [logout addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logout];
     
     
@@ -54,6 +57,33 @@
     
     
     
+}
+
+
+-(void)dealLogout{
+    
+    [AccountManager setLogin:NO];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    LoginViewController *login = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    [self showDetailViewController:login sender:nil];
+
+}
+
+-(void)logout{
+    //TODO: 注销
+    
+    UIAlertController *alert  = [UIAlertController alertControllerWithTitle:@"" message:@"确认注销吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action  = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dealLogout];
+    }];
+    [alert addAction:action];
+    [alert addAction:loginAction];
+    
+    [self showDetailViewController:alert sender:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

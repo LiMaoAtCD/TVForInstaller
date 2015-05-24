@@ -317,44 +317,59 @@ typedef void(^alertBlock)(void);
         [self.hud showInView:self.view];
         [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-//            NSLog(@"responseObject:%@\n",responseObject);
-            
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
-                self.hud.textLabel.text =@"注册失败";
-                self.hud.indicatorView = nil;
-
-                [self.hud dismissAfterDelay:2.0];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.hud.textLabel.text =@"注册失败";
+                    self.hud.indicatorView = nil;
+                    
+                    [self.hud dismissAfterDelay:2.0];
+                });
+              
                 
             } else{
-                self.hud.textLabel.text =@"注册成功";
-                self.hud.indicatorView = nil;
-                [self.hud dismissAfterDelay:2.0];
                 
-                NSDictionary *data = responseObject[@"obj"];
-                if (![data[@"name"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setName:data[@"name"]];
-                }
-                if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setAvatarUrlString:data[@"headimg"]];
-                }
-                if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setIDCard:data[@"idcard"]];
-                }
-                if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setLeaderID:data[@"leaderid"]];
-                }
-                if (![data[@"password"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setPassword:data[@"password"]];
-                }
-                if (![data[@"phone"] isKindOfClass:[NSNull class]]) {
-                    [AccountManager setCellphoneNumber:data[@"phone"]];
-                }
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.hud.textLabel.text =@"注册成功";
+                    self.hud.indicatorView = nil;
+                    [self.hud dismissAfterDelay:2.0];
+                    NSDictionary *data = responseObject[@"obj"];
+                    
+                    [self dealRegister:data];
+                });
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self.hud dismiss];
         }];
     }
+}
+
+
+-(void)dealRegister:(NSDictionary*)data{
+    if (![data[@"name"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setName:data[@"name"]];
+    }
+    if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setAvatarUrlString:data[@"headimg"]];
+    }
+    if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setIDCard:data[@"idcard"]];
+    }
+    if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setLeaderID:data[@"leaderid"]];
+    }
+    
+    if (![data[@"phone"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setCellphoneNumber:data[@"phone"]];
+    }
+    if (![data[@"score"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setScore:[data[@"score"] integerValue]];
+    }
+    
+    [AccountManager setPassword:self.password];
+    [AccountManager setLogin:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)dealloc{

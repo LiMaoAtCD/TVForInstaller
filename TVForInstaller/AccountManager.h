@@ -14,7 +14,6 @@
 +(void)setLogin:(BOOL)login;
 
 
-
 +(NSString*)getPassword;
 +(void)setPassword:(NSString*)password;
 
@@ -30,12 +29,15 @@
 +(NSString*)getAvatarUrlString;
 +(void)setAvatarUrlString:(NSString*)url;
 
-
-
-
 +(NSString*)getLeaderID;
 +(void)setLeaderID:(NSString*)leaderID;
 
++(void)setScore:(NSInteger)score;
++(NSInteger)getScore;
+
+
++(NSString*)getTokenID;
++(void)setTokenID:(NSString*)token;
 
 
 
