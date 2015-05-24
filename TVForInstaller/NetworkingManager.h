@@ -78,7 +78,14 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchGradeByTokenID:(NSString*)tokenID withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
-
+/**
+ *  请求邀请码
+ *
+ *  @param tokenID           token
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchInviteByTokenID:(NSString*)tokenID withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 @end

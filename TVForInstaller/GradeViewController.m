@@ -72,6 +72,7 @@
 }
 
 -(void)fetchGrade{
+    
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     hud.textLabel.text = @"获取积分中";
     [hud showInView:self.view animated:YES];
@@ -152,12 +153,18 @@
     if (indexPath.section == 0) {
         GradeTotalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GradeTotalTableViewCell" forIndexPath:indexPath];
         cell.totalImage.image =[UIImage imageNamed:@"temp"];
-        cell.totalGradeLabel.text = @"9999";
+        cell.totalGradeLabel.text = [NSString stringWithFormat:@"%ld", [AccountManager getScore]];
+        cell.totalGradeLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     } else{
         gradeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gradeDetailTableViewCell" forIndexPath:indexPath];
-        cell.detailDate.text = self.items[indexPath.row][@"createdate"];
-        cell.detailActionLabel.text = self.items[indexPath.row][@"actioncode"];
+        
+        NSString *date = self.items[indexPath.row][@"createdate"];
+        NSArray *day =[date componentsSeparatedByString:@" "];
+        cell.detailDate.text = day[0];
+        cell.detailActionLabel.text = self.items[indexPath.row][@"actionname"];
+        
+        
         cell.detailgradeLabel.text = self.items[indexPath.row][@"addorcutscore"];
 
 
