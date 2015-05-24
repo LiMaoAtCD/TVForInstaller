@@ -142,33 +142,27 @@
             break;
         case 5:
         {
-            InstallHistoryViewController *install = [sb instantiateViewControllerWithIdentifier:@"InstallHistoryViewController"];
-            install.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:install sender:self];
+            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+            info.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:info sender:self];
         }
             break;
         case 6:
         {
-            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
-            info.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:info sender:self];
+            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+            pwd.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:pwd sender:self];
 
         }
             break;
         case 7:
-        {
-            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
-            pwd.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:pwd sender:self];
-        }
-            break;
-        case 8:
         {
             AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
             about.hidesBottomBarWhenPushed = YES;
             [self.navigationController showViewController:about sender:self];
         }
             break;
+  
 
     }
 }
