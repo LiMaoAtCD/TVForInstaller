@@ -10,6 +10,7 @@
 #import "ComminUtility.h"
 #import "NetworkingManager.h"
 #import "NSString+Hashes.h"
+#import "AccountManager.h"
 
 #import <JGProgressHUD.h>
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (nonatomic, strong) JGProgressHUD *HUD;
 
 @property (nonatomic,copy) NSString *Account;
 @property (nonatomic,copy) NSString *password;
@@ -83,29 +86,97 @@
     
     if ([self checkTextFieldCompletion]) {
         
-        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        HUD.textLabel.text= @"登录中...";
-        [HUD showInView:self.view animated:YES];
-        [HUD dismissAfterDelay:2];
+        self.HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        self.HUD.textLabel.text= @"登录中";
+        [self.HUD showInView:self.view animated:YES];
 
-        
-        
-//        [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//            [HUD dismiss];
-//        }];
+        [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                //error
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.HUD.indicatorView = nil;
+                    self.HUD.textLabel.text =@"用户名或密码错误";
+                    
+                    [self.HUD dismissAfterDelay:2.0];
+                });
+               
+                
+            } else{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.HUD.textLabel.text =@"登录成功";
+                    self.HUD.indicatorView = nil;
+                    [self.HUD dismissAfterDelay:2.0];
+                    [self dealLoginMessages:(NSDictionary*)responseObject];
+                });
+                
+
+            }
+            
+        } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.HUD dismiss];
+
+        }];
     }
     
     
 }
+
+-(void)dealLoginMessages:(NSDictionary*)responseObject{
+    
+    //TODO: 登录成功处理数据
+    
+    NSDictionary *data = responseObject[@"obj"];
+    NSLog(@"返回的数据: %@",data);
+    
+    if (![data[@"name"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setName:data[@"name"]];
+    }
+    if (![data[@"phone"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setCellphoneNumber:data[@"phone"]];
+    }
+    if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setLeaderID:data[@"leaderid"]];
+    }
+    if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setAvatarUrlString:data[@"headimg"]];
+    }
+    if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setIDCard:data[@"idcard"]];
+    }
+    if (![data[@"score"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setScore:[data[@"score"] integerValue]];
+    }
+    [AccountManager setPassword:self.password];
+    [AccountManager setLogin:YES];
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 -(BOOL)checkTextFieldCompletion{
     
     if ([self.Account isEqual: @""]|| self.Account == nil
         ) {
-        [self alertWithMessage:@"账号不能为空" withCompletionHandler:^{
+        [self alertWithMessage:@"手机号不能为空" withCompletionHandler:^{
             self.CellularTextField.text = nil;
             [self.CellularTextField becomeFirstResponder];
 
+        }];
+        
+        return NO;
+    }
+    
+    if (![ComminUtility checkTel:self.Account]
+        ) {
+        [self alertWithMessage:@"手机号不合法" withCompletionHandler:^{
+            self.CellularTextField.text = nil;
+            [self.CellularTextField becomeFirstResponder];
+            
         }];
         
         return NO;

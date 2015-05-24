@@ -1,5 +1,5 @@
 //
-//  InstallHistoryViewController.h
+//  MyAccoutViewController.h
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/5/22.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InstallHistoryViewController : UIViewController
+@interface MyAccoutViewController : UIViewController
 
 @end

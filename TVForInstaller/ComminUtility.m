@@ -31,7 +31,7 @@
 
 }
 
-+ (UIImage *) imageWithView:(UIView *)view
++(UIImage *)imageWithView:(UIView *)view
 {
     view.backgroundColor= [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
@@ -44,4 +44,54 @@
     return img;
 }
 
++(BOOL)validateIdentityCard: (NSString *)identityCard
+{
+    BOOL flag;
+    if (identityCard.length <= 0) {
+        flag = NO;
+        return flag;
+    }
+    NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
+    return [identityCardPredicate evaluateWithObject:identityCard];
+}
+
+
+/**
+ *  检查手机号合法性
+ *
+ *  @param str 手机号码
+ *
+ *  @return 是否合法
+ */
++ (BOOL)checkTel:(NSString *)str{
+    if ([str length] == 0) {
+        return NO;
+    }
+    
+    //1[0-9]{10}
+    
+    //^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$
+    
+    //    NSString *regex = @"[0-9]{11}";
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:str];
+    
+    return isMatch;
+    
+}
+
+//#pragma 正则匹配用户密码6-18位数字和字母组合
++ (BOOL)checkPassword:(NSString *) password
+{
+    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,18}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL isMatch = [pred evaluateWithObject:password];
+    return isMatch;
+    
+}
 @end

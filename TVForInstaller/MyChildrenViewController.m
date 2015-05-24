@@ -1,27 +1,29 @@
 //
-//  InstallSegmentViewController.m
+//  MyChildrenViewController.m
 //  TVForInstaller
 //
-//  Created by AlienLi on 15/5/18.
+//  Created by AlienLi on 15/5/22.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
-#import "InstallSegmentViewController.h"
-
-@interface InstallSegmentViewController ()
+#import "MyChildrenViewController.h"
+#import "ComminUtility.h"
+@interface MyChildrenViewController ()
 
 @end
 
-@implementation InstallSegmentViewController
+@implementation MyChildrenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
+    [ComminUtility configureTitle:@"我的下级" forViewController:self];
     
-    self.buttonText = @[@"S1级用户",@"装机历史"];
-    self.selectionBar.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

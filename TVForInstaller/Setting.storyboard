@@ -20,7 +20,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0CT-Jo-uWq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoTableViewCell" rowHeight="44" id="915-XC-6yf" customClass="InfoTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -35,7 +35,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="ifL-wM-MiZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -229,7 +229,7 @@
                                                     <constraint firstAttribute="height" constant="21" id="jK8-Vo-63y"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -293,7 +293,7 @@
                                                     <constraint firstAttribute="width" constant="89" id="rFh-Nv-tJJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -356,7 +356,7 @@
                                                     <constraint firstAttribute="width" constant="166" id="w5L-a5-CBV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -419,7 +419,7 @@
                                                     <constraint firstAttribute="height" constant="21" id="ApV-76-9fy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -657,6 +657,60 @@
             </objects>
             <point key="canvasLocation" x="414" y="500.25"/>
         </scene>
+        <!--My Children View Controller-->
+        <scene sceneID="a38-Kl-kru">
+            <objects>
+                <viewController storyboardIdentifier="MyChildrenViewController" id="Gey-sf-tPB" customClass="MyChildrenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Tz-38-3vy"/>
+                        <viewControllerLayoutGuide type="bottom" id="TnP-Nh-UHs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Mo-pS-ehD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JNj-dU-cuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="414" y="1316.25"/>
+        </scene>
+        <!--Invatation View Controller-->
+        <scene sceneID="IUw-0I-ecl">
+            <objects>
+                <viewController storyboardIdentifier="InvatationViewController" id="wsq-dE-aHP" customClass="InvatationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hjz-Z9-SCb"/>
+                        <viewControllerLayoutGuide type="bottom" id="i7L-NI-s2Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cbS-mD-hQ3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2fC-r2-jbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1068" y="1316.25"/>
+        </scene>
+        <!--Install History View Controller-->
+        <scene sceneID="bp2-z6-ePt">
+            <objects>
+                <viewController storyboardIdentifier="InstallHistoryViewController" id="4dK-sc-1FU" customClass="InstallHistoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kul-zE-vri"/>
+                        <viewControllerLayoutGuide type="bottom" id="BDG-aP-04f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D38-yx-tpl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Og-9c-Xoq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752" y="1316.25"/>
+        </scene>
         <!--Device View Controller-->
         <scene sceneID="xhY-Ze-jh1">
             <objects>
@@ -812,7 +866,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yBc-at-KTS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1262,6 +1317,42 @@
             </objects>
             <point key="canvasLocation" x="2551.5" y="488.25"/>
         </scene>
+        <!--Grade View Controller-->
+        <scene sceneID="8hS-Qc-fvb">
+            <objects>
+                <viewController storyboardIdentifier="GradeViewController" id="W1p-E5-pT7" customClass="GradeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FY0-TC-cOX"/>
+                        <viewControllerLayoutGuide type="bottom" id="UfD-EX-2Ht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yTr-lu-6Lh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Au-tTr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2596.5" y="1147.5"/>
+        </scene>
+        <!--My Accout View Controller-->
+        <scene sceneID="eTi-6J-xbB">
+            <objects>
+                <viewController storyboardIdentifier="MyAccoutViewController" id="PfY-h8-AsR" customClass="MyAccoutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NXV-g7-P3D"/>
+                        <viewControllerLayoutGuide type="bottom" id="uIR-2c-NbO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FVU-uC-bxo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wh-Ek-mbo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3301.5" y="1143.75"/>
+        </scene>
         <!--Avator Detail View Controller-->
         <scene sceneID="944-R2-z9l">
             <objects>
@@ -1281,7 +1372,7 @@
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="pfE-VS-Tkl"/>
+                                            <constraint firstAttribute="height" constant="40" id="pfE-VS-Tkl"/>
                                         </constraints>
                                         <state key="normal" title="拍照">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1305,7 +1396,9 @@
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="6bb-0f-74O"/>
+                                            <constraint firstAttribute="height" constant="30" id="6bb-0f-74O">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                            </constraint>
                                         </constraints>
                                         <state key="normal" title="相册">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1329,7 +1422,9 @@
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="d6T-tG-u77"/>
+                                            <constraint firstAttribute="height" constant="30" id="d6T-tG-u77">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                            </constraint>
                                         </constraints>
                                         <state key="normal" title="取消">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1351,7 +1446,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdg-JV-nvY">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nEI-UP-lOC"/>
                                         </constraints>
@@ -1368,7 +1463,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NTK-Z9-K9s">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="7oh-az-QPQ"/>
                                         </constraints>
@@ -1385,7 +1480,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1A-xH-9s3">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="XZO-EI-tod"/>
                                         </constraints>
@@ -1400,14 +1495,14 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选取头像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDG-pm-L6l">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更换头像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDG-pm-L6l">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="9Kh-dz-GHW"/>
                                             <constraint firstAttribute="height" constant="10" id="E8S-gC-opD"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -1424,7 +1519,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bv6-vr-Ze8">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="OAi-bY-geo"/>
                                         </constraints>
@@ -1440,12 +1535,14 @@
                                         </variation>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Bv6-vr-Ze8" secondAttribute="bottom" constant="29" id="135-pj-u88"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bv6-vr-Ze8" secondAttribute="bottom" constant="29" id="135-pj-u88">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="GwV-jN-jc6" secondAttribute="trailing" id="43a-8z-fzR"/>
                                     <constraint firstAttribute="height" constant="600" id="9yL-Ux-In2">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="200"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="C1A-xH-9s3" secondAttribute="trailing" id="Es5-uA-xaE"/>
                                     <constraint firstAttribute="trailing" secondItem="1m9-L3-8o6" secondAttribute="trailing" id="Gyk-v7-8KJ"/>
@@ -1453,7 +1550,7 @@
                                     <constraint firstAttribute="centerX" secondItem="jDG-pm-L6l" secondAttribute="centerX" id="Hwc-8I-BxI"/>
                                     <constraint firstItem="1m9-L3-8o6" firstAttribute="leading" secondItem="2xc-WF-rKa" secondAttribute="leading" id="Jyh-bz-Bqb"/>
                                     <constraint firstItem="bRJ-qO-A6U" firstAttribute="top" secondItem="2xc-WF-rKa" secondAttribute="top" constant="16" id="KbB-EW-k3a">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="xdg-JV-nvY" secondAttribute="trailing" id="MAH-kX-vnU"/>
                                     <constraint firstAttribute="trailing" secondItem="bRJ-qO-A6U" secondAttribute="trailing" id="POs-PG-5Xh"/>
@@ -1464,8 +1561,12 @@
                                     <constraint firstItem="1m9-L3-8o6" firstAttribute="top" secondItem="xdg-JV-nvY" secondAttribute="bottom" constant="7" id="Vre-vj-n0G">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
-                                    <constraint firstItem="jDG-pm-L6l" firstAttribute="top" secondItem="2xc-WF-rKa" secondAttribute="top" constant="8" id="VuS-nI-r4Q"/>
-                                    <constraint firstItem="C1A-xH-9s3" firstAttribute="top" secondItem="jDG-pm-L6l" secondAttribute="bottom" constant="2" id="W7s-47-i7W"/>
+                                    <constraint firstItem="jDG-pm-L6l" firstAttribute="top" secondItem="2xc-WF-rKa" secondAttribute="top" constant="8" id="VuS-nI-r4Q">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                                    </constraint>
+                                    <constraint firstItem="C1A-xH-9s3" firstAttribute="top" secondItem="jDG-pm-L6l" secondAttribute="bottom" constant="2" id="W7s-47-i7W">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                    </constraint>
                                     <constraint firstItem="GwV-jN-jc6" firstAttribute="leading" secondItem="2xc-WF-rKa" secondAttribute="leading" id="ZtC-Xs-SFR"/>
                                     <constraint firstAttribute="trailing" secondItem="Bv6-vr-Ze8" secondAttribute="trailing" id="ak4-qs-yAi"/>
                                     <constraint firstItem="NTK-Z9-K9s" firstAttribute="top" secondItem="1m9-L3-8o6" secondAttribute="bottom" id="grV-WE-nI9"/>

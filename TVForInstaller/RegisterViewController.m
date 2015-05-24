@@ -8,6 +8,13 @@
 
 #import "RegisterViewController.h"
 #import "ComminUtility.h"
+#import "NetworkingManager.h"
+#import <JGProgressHUD.h>
+#import "NSString+Hashes.h"
+#import "AccountManager.h"
+
+typedef void(^alertBlock)(void);
+
 @interface RegisterViewController ()<UITextFieldDelegate>
 
 
@@ -18,13 +25,22 @@
 @property (weak, nonatomic) IBOutlet UITextField *ChinaIdentifyTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *identityCodeTextFIeld;
 
+
 @property (weak, nonatomic) IBOutlet UIButton *getIdentitycodeButton;
 
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic,strong) UITextField *activeField;
+@property (nonatomic,copy)NSString * cellphoneNumber;
+@property (nonatomic,copy)NSString * password;
+@property (nonatomic,copy)NSString * verifycode;
+@property (nonatomic,copy)NSString * chinaID;
+@property (nonatomic,copy)NSString * inviteCode;
 
+@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic,assign) NSUInteger count;
+@property (nonatomic,strong) JGProgressHUD *hud;
 
 @end
 
@@ -92,6 +108,53 @@
     self.activeField = nil;
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.cellphoneTextfield) {
+        
+        
+        if ([string isEqualToString:@""]) {
+            self.cellphoneNumber = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.cellphoneNumber = [textField.text stringByAppendingString:string];
+        }
+    } else if (textField == self.confirmPassword){
+        
+        if ([string isEqualToString:@""]) {
+            self.password = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.password = [textField.text stringByAppendingString:string];
+            
+        }
+    }else if (textField == self.inviteTextField){
+        
+        if ([string isEqualToString:@""]) {
+            self.inviteCode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.inviteCode = [textField.text stringByAppendingString:string];
+            
+        }
+    }else if (textField == self.ChinaIdentifyTextfield){
+        
+        if ([string isEqualToString:@""]) {
+            self.chinaID = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.chinaID = [textField.text stringByAppendingString:string];
+            
+        }
+    }else if (textField == self.identityCodeTextFIeld){
+        
+        if ([string isEqualToString:@""]) {
+            self.verifycode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.verifycode = [textField.text stringByAppendingString:string];
+            
+        }
+    }
+
+    return YES;
+}
+
+
 
 -(void)configureTextFields{
     
@@ -101,6 +164,7 @@
     self.inviteTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"邀请码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self.ChinaIdentifyTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"身份证" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self.identityCodeTextFIeld.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
 }
 
 
@@ -110,28 +174,216 @@
 }
 
 
-
-
--(BOOL)checkRegisterInfoCompletion{
+-(void)count:(id)sender{
+    self.count--;
     
-    
-    
-    return YES;
+    if (self.count > 0) {
+        
+        [self getcode:NO];
+    } else{
+        [self getcode:YES];
+    }
 }
 
 - (IBAction)getVerifyCode:(id)sender {
     
+    self.count = 60;
+    self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    self.hud.textLabel.text = @"获取验证码";
+    [self.hud showInView:self.view];
 
+    self.timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(count:) userInfo:nil repeats:YES];
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        hud.textLabel.text = @"验证码获取成功";
+//        hud.indicatorView = nil;
+//        [hud dismissAfterDelay:1.0];
+//        
+//        [self getcode:YES];
+//        
+//    });
+//
+    
+    if (self.cellphoneNumber != nil||
+        ![self.cellphoneNumber isEqualToString:@""]) {
+        
+        [NetworkingManager fetchVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.hud.textLabel.text = @"验证码获取成功";
+            self.hud.indicatorView = nil;
+            [self.hud dismissAfterDelay:2.0];
+            
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.hud dismissAnimated:YES];
+            
+        }];
+    }
+    
     
 }
 
+/**
+ *  获取验证码成功
+ *
+ *  @param isSuccess 是否成功
+ */
+-(void)getcode:(BOOL)isSuccess{
+    if (isSuccess) {
+        [self.timer invalidate];
+        [self.getIdentitycodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        self.getIdentitycodeButton.userInteractionEnabled = YES;
 
+    } else{
+        [self.getIdentitycodeButton setTitle:[NSString stringWithFormat:@"%ld s",self.count] forState:UIControlStateNormal];
+        self.getIdentitycodeButton.userInteractionEnabled = NO;
+
+    }
+}
+
+
+
+/**
+ *  检查注册信息是否完整
+ *
+ *  @return    none
+ */
+-(BOOL)checkRegisterInfoCompletion{
+    
+    if (![ComminUtility checkTel:self.cellphoneNumber]) {
+        [self alertWithMessage:@"手机号码不合法" withCompletionHandler:^{
+        }];
+        return NO;
+    }
+
+    if (![ComminUtility checkPassword:self.password]) {
+        [self alertWithMessage:@"密码为6～18为数字字母组合" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
+    
+    if (![self.confirmPassword.text isEqualToString:self.password]||
+        self.password == nil) {
+        [self alertWithMessage:@"二次密码输入不一致" withCompletionHandler:^{
+            
+        }];
+        return NO;
+        
+    }
+    
+    if ([self.inviteCode isEqualToString:@""]||
+        self.inviteCode == nil) {
+        [self alertWithMessage:@"邀请码不能为空" withCompletionHandler:nil];
+        return NO;
+
+    }
+    
+    if ([self.verifycode isEqualToString:@""]||
+        self.verifycode == nil) {
+        [self alertWithMessage:@"验证码不能为空" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
+    
+    if (![ComminUtility validateIdentityCard:self.chinaID]||
+        self.chinaID == nil) {
+        [self alertWithMessage:@"身份证号不合法" withCompletionHandler:^{
+
+        }];
+        return NO;
+    }
+
+    
+    return YES;
+}
+
+-(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        handler();
+    }];
+    
+    [controller addAction:action];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+/**
+ *  注册
+ *
+ *  @param sender
+ */
 - (IBAction)submitForRegister:(id)sender {
     
-    
-    
+    if ([self checkRegisterInfoCompletion]) {
+        self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        self.hud.textLabel.text =@"注册中";
+        [self.hud showInView:self.view];
+        [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                //error
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.hud.textLabel.text =@"注册失败";
+                    self.hud.indicatorView = nil;
+                    
+                    [self.hud dismissAfterDelay:2.0];
+                });
+              
+                
+            } else{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.hud.textLabel.text =@"注册成功";
+                    self.hud.indicatorView = nil;
+                    [self.hud dismissAfterDelay:2.0];
+                    NSDictionary *data = responseObject[@"obj"];
+                    
+                    [self dealRegister:data];
+                });
+            }
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.hud dismiss];
+        }];
+    }
 }
 
+
+-(void)dealRegister:(NSDictionary*)data{
+    if (![data[@"name"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setName:data[@"name"]];
+    }
+    if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setAvatarUrlString:data[@"headimg"]];
+    }
+    if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setIDCard:data[@"idcard"]];
+    }
+    if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setLeaderID:data[@"leaderid"]];
+    }
+    
+    if (![data[@"phone"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setCellphoneNumber:data[@"phone"]];
+    }
+    if (![data[@"score"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setScore:[data[@"score"] integerValue]];
+    }
+    
+    [AccountManager setPassword:self.password];
+    [AccountManager setLogin:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)dealloc{
+    [self.timer invalidate];
+    self.timer=  nil;
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -10,11 +10,40 @@
 #import <AFNetworking.h>
 
 typedef void(^NetWorkHandler)(AFHTTPRequestOperation *operation, id responseObject);
+typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *error);
 
+//(void (^)(AFHTTPRequestOperation *operation, NSError *error))
 @interface NetworkingManager : NSObject
 
+/**
+ *  登录
+ *
+ *  @param account           phone
+ *  @param password          password
+ *  @param completionHandler
+ */
++(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler FailHandler:(NetWorkFailHandler)failHandler;
 
-+(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler;
+/**
+ *  注册
+ *
+ *  @param phone             手机号码
+ *  @param password          密码
+ *  @param inviteCode        邀请码
+ *  @param chinaID           身份证号
+ *  @param verifyCode        验证码
+ *  @param completionHandler 成功回调
+ *  @param failHandler       失败回调
+ */
++(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
-+(void)uploadPeronsalInfoName:(NSString*)name cellPhone:(NSString*)phoneNumber chinaID:(NSString*)chinaID withCompletionHandler:(NetWorkHandler)completionHandler;
+/**
+ *  获取验证码
+ *
+ *  @param cellphoneNumber   手机号码
+ *  @param completionHandler 成功回调
+ *  @param failHandler       失败回调
+ */
++(void)fetchVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 @end

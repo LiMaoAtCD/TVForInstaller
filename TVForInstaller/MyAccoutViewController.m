@@ -1,24 +1,24 @@
 //
-//  InstallHistoryViewController.m
+//  MyAccoutViewController.m
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/5/22.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
-#import "InstallHistoryViewController.h"
+#import "MyAccoutViewController.h"
 #import "ComminUtility.h"
-@interface InstallHistoryViewController ()
+@interface MyAccoutViewController ()
 
 @end
 
-@implementation InstallHistoryViewController
+@implementation MyAccoutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [ComminUtility configureTitle:@"装机历史" forViewController:self];
-
+    [ComminUtility configureTitle:@"我的账户" forViewController:self];
+    
 }
 
 -(void)pop{
