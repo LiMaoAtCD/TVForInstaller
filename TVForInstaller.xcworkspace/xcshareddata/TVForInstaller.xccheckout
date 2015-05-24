@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>543CFBA8-8380-4E37-B85B-6D6F7BF34A16</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TVForInstaller</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951</key>
+		<string>https://github.com/liamscofield/TVForInstaller.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TVForInstaller.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/liamscofield/TVForInstaller.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TVForInstaller</string>
+		</dict>
+	</array>
+</dict>
+</plist>
