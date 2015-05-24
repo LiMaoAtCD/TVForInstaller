@@ -24,6 +24,8 @@
 		8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */; };
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
+		8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8773380E1B11AB3F00C2DDC4 /* grade.plist */; };
+		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -96,6 +98,8 @@
 		877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gradeDetailTableViewCell.m; sourceTree = "<group>"; };
 		8773380B1B11A45600C2DDC4 /* GradeTotalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeTotalTableViewCell.h; sourceTree = "<group>"; };
 		8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeTotalTableViewCell.m; sourceTree = "<group>"; };
+		8773380E1B11AB3F00C2DDC4 /* grade.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grade.plist; sourceTree = "<group>"; };
+		877338101B11B3D000C2DDC4 /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			children = (
 				871973D51B0EC54300D6CF36 /* GradeViewController.h */,
 				871973D61B0EC54300D6CF36 /* GradeViewController.m */,
+				877338101B11B3D000C2DDC4 /* storehouse.plist */,
+				8773380E1B11AB3F00C2DDC4 /* grade.plist */,
 				877338081B11A44A00C2DDC4 /* gradeDetailTableViewCell.h */,
 				877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */,
 				8773380B1B11A45600C2DDC4 /* GradeTotalTableViewCell.h */,
@@ -533,8 +539,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */,
 				87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */,
 				87EA3AA51B0A1055004AB8F7 /* OrderViewController.xib in Resources */,
+				877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
