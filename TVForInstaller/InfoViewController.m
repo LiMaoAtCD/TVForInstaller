@@ -10,6 +10,7 @@
 #import "ComminUtility.h"
 #import "InfoTableViewCell.h"
 #import <JGProgressHUD.h>
+#import "AccountManager.h"
 
 typedef void(^alertBlock)(void);
 
@@ -21,6 +22,7 @@ typedef void(^alertBlock)(void);
 @property (nonatomic,copy) NSString *cellphone;
 @property (nonatomic,copy) NSString *chinaID;
 
+@property (nonatomic,strong) NSMutableArray *localInfo;
 
 @end
 
@@ -36,6 +38,33 @@ typedef void(^alertBlock)(void);
     self.items = @[@{@"title":@"姓名",@"placeholder":@"您的真实姓名"},
                    @{@"title":@"手机号码",@"placeholder":@"您的手机号码"},
                    @{@"title":@"身份证号",@"placeholder":@"您的身份证号"}];
+    
+    NSString *name = [AccountManager getName];
+    NSString *cellphone = [AccountManager getCellphoneNumber];
+    NSString *idCard = [AccountManager getIDCard];
+
+    self.localInfo =[@[] mutableCopy];
+    if (name) {
+        self.localInfo[0] = name ;
+    } else{
+        self.localInfo[0] = [NSNull null];
+    }
+    
+    if (cellphone) {
+         self.localInfo[1] = cellphone;
+    }else{
+        self.localInfo[1] = [NSNull null];
+
+    }
+    if (idCard) {
+        self.localInfo[2] = idCard;
+    }else{
+        self.localInfo[2] = [NSNull null];
+
+    }
+
+    
+    
     
     [[UITextField appearance] setTintColor:[UIColor lightGrayColor]];
     
@@ -79,7 +108,13 @@ typedef void(^alertBlock)(void);
     InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoTableViewCell" forIndexPath:indexPath];
     cell.InfoTitle.text  = self.items[indexPath.row][@"title"];
     
+    
     cell.InfoTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.items[indexPath.row][@"placeholder"] attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+    if (![self.localInfo[indexPath.row] isKindOfClass:[NSNull class]]) {
+        cell.InfoTextField.text = self.localInfo[indexPath.row];
+
+    }
+
     cell.InfoTextField.delegate = self;
     cell.InfoTextField.tag = indexPath.row;
     

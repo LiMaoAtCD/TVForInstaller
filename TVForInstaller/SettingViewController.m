@@ -23,6 +23,9 @@
 #import "AccountManager.h"
 #import "LoginViewController.h"
 
+#import "NetworkingManager.h"
+#import <JGProgressHUD.h>
+
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -56,6 +59,8 @@
     [self.avatarImageView addGestureRecognizer:tap];
     
     
+   
+    
     
 }
 
@@ -88,6 +93,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    self.nameLabel.text = [AccountManager getName];
+    self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
+    
+    
     
     [self.DetailViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *view  = obj;
@@ -134,10 +144,13 @@
             break;
         case 4:
         {
-            InvatationViewController *invate = [sb instantiateViewControllerWithIdentifier:@"InvatationViewController"];
-            invate.hidesBottomBarWhenPushed = YES;
+//            InvatationViewController *invate = [sb instantiateViewControllerWithIdentifier:@"InvatationViewController"];
+//            invate.hidesBottomBarWhenPushed = YES;
+//            
+//            [self.navigationController showViewController:invate sender:self];
             
-            [self.navigationController showViewController:invate sender:self];
+            [self getInviteCode];
+            
         }
             break;
         case 5:
@@ -246,6 +259,54 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+    
+}
+
+-(void)getInviteCode{
+    //TODO:: 获取邀请码
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.textLabel.text = @"获取邀请码";
+//    hud.interactionType = JGProgressHUDInteractionTypeBlockTouchesOnHUDView;
+    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
+        
+        [hud dismiss];
+    };
+    [hud showInRect:CGRectInset(self.view.frame, 50, 150) inView:self.view];
+
+    
+    //
+    [NetworkingManager fetchInviteByTokenID:[AccountManager getTokenID] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"success"] integerValue] == 0) {
+            //error
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.indicatorView = nil;
+                hud.textLabel.text = @"获取失败";
+                
+                [hud dismissAfterDelay:2.0];
+            });
+            
+            
+        } else{
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSString *code = responseObject[@"obj"];
+                NSLog(@"%@",code);
+
+                hud.textLabel.text = [NSString stringWithFormat:@"邀请码:%@",code];
+                hud.indicatorView = nil;
+
+                
+                
+            });
+        }
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [hud dismiss];
+        
+    }];
+
+
     
 }
 
