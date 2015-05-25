@@ -19,10 +19,14 @@
 
 #import <UIImageView+WebCache.h>
 
+#import <CBStoreHouseRefreshControl.h>
+
 @interface AppTableViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
 @property (nonatomic,strong) NSMutableArray *appLists;
+@property (nonatomic,strong) CBStoreHouseRefreshControl *storeHouseRefreshControl;
+
 
 @end
 
@@ -39,13 +43,24 @@
     
     [self fetchApplicationList];
     
+     self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView target:self refreshAction:@selector(refreshTriggered:) plist:@"storehouse" color:[UIColor whiteColor] lineWidth:1.5 dropHeight:80 scale:1 horizontalRandomness:150 reverseLoadingAnimation:YES internalAnimationFactor:0.5];
+    
+}
+
+
+
+-(void)refreshTriggered:(id)sender{
+    
+    [self fetchApplicationList];
+    
 }
 
 -(void)fetchApplicationList{
     
+    
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     hud.textLabel.text = @"正在获取应用列表";
-    [hud showInView:self.view];
+    [hud showInView:self.tableView animated:YES];
     
     
     
@@ -71,6 +86,8 @@
 
             
         }
+        
+        [self.storeHouseRefreshControl finishingLoading];
         
         
         
@@ -140,12 +157,29 @@
     
     
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
+    label.text = [self tableView:self.tableView titleForHeaderInSection:section];
+    label.font = [UIFont boldSystemFontOfSize:12.0];
+    
+    return label;
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return 83;
     }else {
         return 150;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 1.0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 22.0;
 }
 
 
@@ -184,6 +218,16 @@
 
     NSLog(@"软件地址：%@",softwareAddress);
     
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.storeHouseRefreshControl scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.storeHouseRefreshControl scrollViewDidEndDragging];
 }
 
 /*
