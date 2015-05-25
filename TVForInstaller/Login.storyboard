@@ -533,7 +533,7 @@
                                                     <outlet property="delegate" destination="P9F-cF-Zio" id="sBg-Pd-Yr2"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-yC-9MT">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-yC-9MT">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="5pB-y3-H8q">
@@ -553,6 +553,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <mask key="constraints">
                                                         <include reference="5pB-y3-H8q"/>
                                                         <include reference="xA1-yL-kp2"/>
@@ -1149,7 +1150,7 @@
                                                     <outlet property="delegate" destination="a1y-mi-TQ9" id="zVs-ht-GyA"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwp-LQ-Yce">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwp-LQ-Yce">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Tia-8U-Y8I"/>
@@ -1167,6 +1168,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <mask key="constraints">
                                                         <include reference="Tia-8U-Y8I"/>
                                                         <include reference="ivf-yL-oyp"/>

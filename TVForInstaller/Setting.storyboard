@@ -62,7 +62,8 @@
                                                             <exclude reference="IVr-1c-uVZ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="94" y="7" width="198" height="30"/>
                                                         <mask key="constraints">
                                                             <include reference="IVr-1c-uVZ"/>
                                                         </mask>
@@ -1108,7 +1109,7 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01u-T7-HW2">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01u-T7-HW2">
                                                 <rect key="frame" x="169" y="385" width="62" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="NBR-L0-nAd"/>
@@ -1126,6 +1127,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <mask key="constraints">
                                                         <include reference="NBR-L0-nAd"/>
                                                         <include reference="Xrc-ab-ltv"/>
@@ -1409,7 +1411,8 @@
                                                             <exclude reference="flz-8L-QAe"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="260" y="19" width="42" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="9GJ-gB-su5"/>
                                                             <include reference="flz-8L-QAe"/>
