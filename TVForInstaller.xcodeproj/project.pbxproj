@@ -56,6 +56,7 @@
 		87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AAC1B0A11A1004AB8F7 /* LoginNavigationController.m */; };
 		87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */; };
 		87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */; };
+		87F3B9F81B12F664004F55B2 /* CompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F3B9F71B12F664004F55B2 /* CompleteCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		87EA3AAE1B0A11AF004AB8F7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabController.h; sourceTree = "<group>"; };
 		87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabController.m; sourceTree = "<group>"; };
+		87F3B9F61B12F664004F55B2 /* CompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteCell.h; sourceTree = "<group>"; };
+		87F3B9F71B12F664004F55B2 /* CompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteCell.m; sourceTree = "<group>"; };
 		B2774CDB7A14319073A81E4A /* Pods-TVForInstaller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -438,6 +441,8 @@
 				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
 				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
 				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
+				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
+				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
+				87F3B9F81B12F664004F55B2 /* CompleteCell.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 				8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */,

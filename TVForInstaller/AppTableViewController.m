@@ -79,7 +79,7 @@
             //获取成功
             
             
-            [hud dismissAfterDelay:2.0];
+            [hud dismissAfterDelay:1.0];
             
             NSArray *temp = responseObject[@"obj"];
             [self dealResponseData:temp];
