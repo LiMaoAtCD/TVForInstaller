@@ -164,7 +164,13 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     APPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"APPCollectionViewCell" forIndexPath:indexPath];
     
-    cell.appImageView  = [UIImageView ]
+    
+    NSString *url = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softicon"];
+    
+    NSURL *imageURL = [NSURL URLWithString:url];
+    [cell.appImageView sd_setImageWithURL:imageURL placeholderImage:nil];
+    
+    cell.appNameLabel.text =  _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"];
     
     return cell;
 }
