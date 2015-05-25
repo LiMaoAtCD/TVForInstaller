@@ -472,12 +472,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="DTT-b7-rQR" secondAttribute="trailing" constant="-16" id="ChK-Nf-bqe"/>
+                            <constraint firstAttribute="trailing" secondItem="DTT-b7-rQR" secondAttribute="trailing" id="ChK-Nf-bqe"/>
                             <constraint firstItem="kvS-Xg-QKR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leadingMargin" constant="-16" id="IEg-S9-V5v"/>
                             <constraint firstItem="kvS-Xg-QKR" firstAttribute="top" secondItem="BgC-eG-8Gw" secondAttribute="topMargin" id="Iah-Rj-Rwf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kvS-Xg-QKR" secondAttribute="trailing" constant="-16" id="KYt-uW-ORR"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="bottom" secondItem="BgC-eG-8Gw" secondAttribute="bottomMargin" id="jVB-Zl-Mm5"/>
-                            <constraint firstItem="DTT-b7-rQR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leadingMargin" constant="-16" id="kU6-6G-2jB"/>
+                            <constraint firstItem="DTT-b7-rQR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leading" id="kU6-6G-2jB"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="top" secondItem="kvS-Xg-QKR" secondAttribute="bottom" constant="1" id="zOM-QQ-dSv">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>

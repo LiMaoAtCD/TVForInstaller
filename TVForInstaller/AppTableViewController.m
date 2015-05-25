@@ -94,6 +94,8 @@
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud dismiss];
+        [self.storeHouseRefreshControl finishingLoading];
+
     }];
 }
 

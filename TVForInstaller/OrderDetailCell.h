@@ -10,4 +10,15 @@
 
 @interface OrderDetailCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *tvImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tvBrandLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cellphoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *customerAddressLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *tvSizeLabel;
 @end

@@ -10,4 +10,8 @@
 
 @interface PayInfoCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UITextField *cellphoneTF;
+
+
 @end

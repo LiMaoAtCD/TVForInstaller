@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface TVInfoCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *tvspecificationLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *macAddressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *getInfoFromTVButton;
+
+
 
 @end

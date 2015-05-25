@@ -13,10 +13,14 @@
 #import "PayInfoCell.h"
 
 #import "ComminUtility.h"
+#import "SAMenuDropDown.h"
 
-@interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,SAMenuDropDownDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic,strong) SAMenuDropDown *menuDrop;
+@property(nonatomic,strong) NSArray *dropDownItems;
 
 @end
 
@@ -26,13 +30,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView.estimatedRowHeight = 44;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+   
  
     [ComminUtility configureTitle:@"详情" forViewController:self];
+    
+   
+    
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    _dropDownItems = @[@"100",@"100",@"100",@"100"];
 }
 
 -(void)pop{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -40,6 +51,11 @@
     [super viewWillAppear:animated];
     
     [self.view layoutIfNeeded];
+   
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +83,9 @@
 
     } else{
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
+        
+        
+        
         return cell;
 
     }
@@ -97,8 +116,28 @@
     }
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 2) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(10, 10, self.view.frame.size.width -20, 30);
+        [button setBackgroundColor:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]];
+        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(clickToPostOrder:) forControlEvents:UIControlEventTouchUpInside];
+        UIView *view =[[UIView alloc] init];
+        
+        [view addSubview:button];
+        return view;
+    }
+    return nil;
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+
+    if (section == 2) {
+        return 50;
+
+    }
     return 0.1;
 }
 
@@ -106,6 +145,12 @@
     return 20;
 }
 
+-(void)clickToPostOrder:(UIButton *)button{
+    //TODO: 提交订单
+    
+    
+    
+}
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    if (indexPath.section ==2) {
@@ -121,5 +166,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end
