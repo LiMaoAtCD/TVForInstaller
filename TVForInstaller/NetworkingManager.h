@@ -88,4 +88,15 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
 +(void)fetchInviteByTokenID:(NSString*)tokenID withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
+/**
+ *  获取应用列表
+ *
+ *  @param completionHandler 完成
+ *  @param failHandler       网络请求失败
+ */
++(void)fetchApplicationwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+
+
 @end

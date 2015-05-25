@@ -8,6 +8,7 @@
 
 #import "MyAccoutViewController.h"
 #import "ComminUtility.h"
+#import "NetworkingManager.h"
 @interface MyAccoutViewController ()
 
 @end
@@ -19,6 +20,7 @@
     // Do any additional setup after loading the view.
     [ComminUtility configureTitle:@"我的账户" forViewController:self];
     
+
 }
 
 -(void)pop{

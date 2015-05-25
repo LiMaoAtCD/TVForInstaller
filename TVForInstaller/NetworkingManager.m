@@ -121,4 +121,15 @@
         failHandler(operation,error);
     }];
 }
+
++(void)fetchApplicationwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:@"http://10.0.0.116:8080/jeecg-framework/softController.do?getSoftService" parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+}
+
 @end

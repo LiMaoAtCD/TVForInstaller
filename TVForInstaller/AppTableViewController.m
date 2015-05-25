@@ -14,7 +14,19 @@
 #import "AppCollectionTableCell.h"
 #import "APPCollectionViewCell.h"
 
+#import "NetworkingManager.h"
+#import <JGProgressHUD.h>
+
+#import <UIImageView+WebCache.h>
+
+#import <CBStoreHouseRefreshControl.h>
+
 @interface AppTableViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+
+
+@property (nonatomic,strong) NSMutableArray *appLists;
+@property (nonatomic,strong) CBStoreHouseRefreshControl *storeHouseRefreshControl;
+
 
 @end
 
@@ -23,30 +35,89 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
 
     [ComminUtility configureTitle:@"应用" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
-
     
+    
+    
+    [self fetchApplicationList];
+    
+     self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView target:self refreshAction:@selector(refreshTriggered:) plist:@"storehouse" color:[UIColor whiteColor] lineWidth:1.5 dropHeight:80 scale:1 horizontalRandomness:150 reverseLoadingAnimation:YES internalAnimationFactor:0.5];
     
 }
 
+
+
+-(void)refreshTriggered:(id)sender{
+    
+    [self fetchApplicationList];
+    
+}
+
+-(void)fetchApplicationList{
+    
+    
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.textLabel.text = @"正在获取应用列表";
+    [hud showInView:self.tableView animated:YES];
+    
+    
+    
+    [NetworkingManager fetchApplicationwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject[@"success"] integerValue] == 0) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.indicatorView = nil;
+                hud.textLabel.text =@"列表获取失败";
+                [hud dismissAfterDelay:2.0];
+            });
+            
+            
+        } else{
+            //获取成功
+            
+            
+            [hud dismissAfterDelay:1.0];
+            
+            NSArray *temp = responseObject[@"obj"];
+            [self dealResponseData:temp];
+
+            
+        }
+        
+        [self.storeHouseRefreshControl finishingLoading];
+        
+        
+        
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [hud dismiss];
+    }];
+}
+
+-(void)dealResponseData:(NSArray *)obj{
+
+    if (obj.count >0) {
+        
+        _appLists = [obj mutableCopy];
+        
+        [self.tableView reloadData];
+        
+    }
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source &delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 6;
+    return _appLists.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -68,7 +139,7 @@
     } else{
         AppCollectionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppCollectionTableCell" forIndexPath:indexPath];
         
-        
+        cell.collectionView.tag = indexPath.section -1;
         
         return cell;
 
@@ -77,25 +148,23 @@
     
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    switch (section) {
-            
-        case 1:
-            return @"点播";
-            break;
-        case 2:
-            return @"直播";
-            break;
-        case 3:
-            return @"游戏";
-            break;
-        case 4:
-            return @"工具";
-            break;
-        case 5:
-            return @"娱乐";
-            break;
+ 
+    if (section ==0 ) {
+        return nil;
+    } else{
+        return _appLists[section -1][@"classify"];
     }
-    return nil;
+    
+    
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
+    label.text = [self tableView:self.tableView titleForHeaderInSection:section];
+    label.font = [UIFont boldSystemFontOfSize:12.0];
+    
+    return label;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
@@ -105,21 +174,60 @@
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 1.0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 22.0;
+}
 
 
 
+
+
+#pragma mark - colleciton dataSource & delegate
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    
+    NSArray *softList = _appLists[collectionView.tag][@"softlist"];
+    return softList.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     APPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"APPCollectionViewCell" forIndexPath:indexPath];
     
+    
+    NSString *url = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softicon"];
+    
+    NSURL *imageURL = [NSURL URLWithString:url];
+    [cell.appImageView sd_setImageWithURL:imageURL placeholderImage:nil];
+    
+    cell.appNameLabel.text =  _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"];
+    
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    
+    NSString *softwareAddress = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softaddr"];
+
+    NSLog(@"软件地址：%@",softwareAddress);
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.storeHouseRefreshControl scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.storeHouseRefreshControl scrollViewDidEndDragging];
 }
 
 /*
