@@ -39,6 +39,10 @@
 		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
 		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
+		87C0221B1B12FCD2005452C0 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221A1B12FCD2005452C0 /* OrderDetailViewController.m */; };
+		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
+		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
+		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
@@ -130,6 +134,14 @@
 		878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatationViewController.m; sourceTree = "<group>"; };
 		878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		87C022191B12FCD2005452C0 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		87C0221A1B12FCD2005452C0 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
+		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
+		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
+		87C022201B130C91005452C0 /* TVInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVInfoCell.m; sourceTree = "<group>"; };
+		87C022221B130CA6005452C0 /* PayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoCell.h; sourceTree = "<group>"; };
+		87C022231B130CA6005452C0 /* PayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoCell.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
@@ -304,6 +316,52 @@
 			name = InstallHistory;
 			sourceTree = "<group>";
 		};
+		87C022161B12FC2A005452C0 /* unsubmit */ = {
+			isa = PBXGroup;
+			children = (
+				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
+				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
+				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
+				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
+				87C022181B12FCBB005452C0 /* Detail */,
+			);
+			name = unsubmit;
+			sourceTree = "<group>";
+		};
+		87C022171B12FC3C005452C0 /* complete */ = {
+			isa = PBXGroup;
+			children = (
+				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
+				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
+				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
+				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
+				87C022251B130E35005452C0 /* Detail */,
+			);
+			name = complete;
+			sourceTree = "<group>";
+		};
+		87C022181B12FCBB005452C0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				87C022191B12FCD2005452C0 /* OrderDetailViewController.h */,
+				87C0221A1B12FCD2005452C0 /* OrderDetailViewController.m */,
+				87C0221C1B130C7D005452C0 /* OrderDetailCell.h */,
+				87C0221D1B130C7D005452C0 /* OrderDetailCell.m */,
+				87C0221F1B130C91005452C0 /* TVInfoCell.h */,
+				87C022201B130C91005452C0 /* TVInfoCell.m */,
+				87C022221B130CA6005452C0 /* PayInfoCell.h */,
+				87C022231B130CA6005452C0 /* PayInfoCell.m */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		87C022251B130E35005452C0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,14 +493,8 @@
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
 				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
-				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
-				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
-				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
-				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
-				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
-				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
-				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
-				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
+				87C022161B12FC2A005452C0 /* unsubmit */,
+				87C022171B12FC3C005452C0 /* complete */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -626,10 +678,13 @@
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
+				87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
+				87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */,
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
@@ -654,6 +709,7 @@
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87F3B9F81B12F664004F55B2 /* CompleteCell.m in Sources */,
+				87C0221B1B12FCD2005452C0 /* OrderDetailViewController.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 				8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */,
