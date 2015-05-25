@@ -131,7 +131,7 @@
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TUI-Y8-wxq">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="knZ-NL-o4R">
                                                 <size key="itemSize" width="71" height="107"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -269,6 +269,10 @@
                                                             <include reference="wdf-re-vhb"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outlet property="appImageView" destination="rKS-Lu-2MB" id="k02-TK-bfa"/>
+                                                        <outlet property="appNameLabel" destination="26d-Gp-QlK" id="KzR-zg-XOC"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                             <connections>
