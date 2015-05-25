@@ -96,7 +96,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source &delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -151,6 +151,8 @@
 
 
 
+
+#pragma mark - colleciton dataSource & delegate
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -173,6 +175,15 @@
     cell.appNameLabel.text =  _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"];
     
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    
+    NSString *softwareAddress = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softaddr"];
+
+    NSLog(@"软件地址：%@",softwareAddress);
+    
 }
 
 /*
