@@ -59,8 +59,7 @@
     [self.avatarImageView addGestureRecognizer:tap];
     
     
-    self.nameLabel.text = [AccountManager getName];
-    self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
+   
     
     
 }
@@ -94,6 +93,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    self.nameLabel.text = [AccountManager getName];
+    self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
+    
+    
     
     [self.DetailViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *view  = obj;
