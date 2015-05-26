@@ -11,6 +11,9 @@
 @interface UnSubmitCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *TVImageView;
+@property (weak, nonatomic) IBOutlet UILabel *TVTypeLabel;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *cellphoneButton;
