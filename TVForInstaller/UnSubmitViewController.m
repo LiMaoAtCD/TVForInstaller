@@ -66,6 +66,14 @@
     return 165.0;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
 -(void)clickToCall:(UIButton*)btn{
     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"拨打电话" preferredStyle:UIAlertControllerStyleAlert];
     

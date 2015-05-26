@@ -38,6 +38,7 @@
 		8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9621B0C6E7F003F4415 /* AppCollectionTableCell.m */; };
 		8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */; };
 		878CEC3B1B14228900FE0E21 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878CEC3A1B14228900FE0E21 /* NumberChooseViewController.m */; };
+		878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */; };
 		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
 		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
@@ -133,6 +134,8 @@
 		8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPCollectionViewCell.m; sourceTree = "<group>"; };
 		878CEC391B14228900FE0E21 /* NumberChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberChooseViewController.h; sourceTree = "<group>"; };
 		878CEC3A1B14228900FE0E21 /* NumberChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberChooseViewController.m; sourceTree = "<group>"; };
+		878CEC3C1B14460200FE0E21 /* ChildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildTableViewCell.h; sourceTree = "<group>"; };
+		878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildTableViewCell.m; sourceTree = "<group>"; };
 		878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChildrenViewController.h; sourceTree = "<group>"; };
 		878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChildrenViewController.m; sourceTree = "<group>"; };
 		878EE40B1B0EDDFF002E6B4E /* InvatationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvatationViewController.h; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 			children = (
 				878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */,
 				878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */,
+				878CEC3C1B14460200FE0E21 /* ChildTableViewCell.h */,
+				878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */,
 			);
 			name = MyChildren;
 			sourceTree = "<group>";
@@ -692,6 +697,7 @@
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
+				878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				878CEC3B1B14228900FE0E21 /* NumberChooseViewController.m in Sources */,
