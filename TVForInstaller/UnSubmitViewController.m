@@ -14,6 +14,8 @@
 #import <JGProgressHUD.h>
 #import "UIColor+HexRGB.h"
 #import "AccountManager.h"
+#import <MJRefresh.h>
+
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -30,13 +32,21 @@
     // Do any additional setup after loading the view.
     
     if ([AccountManager isLogin]) {
-        [self fetchOrder];
+        
+        [self.tableView addLegendHeaderWithRefreshingBlock:^{
+            [self fetchOrder];
 
+        }];
     }
     
     
 }
 
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tableView.header beginRefreshing];
+}
 -(void)fetchOrder{
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     hud.textLabel.text =@"正在获取订单";
@@ -64,13 +74,21 @@
                 
                 self.orderList = [data mutableCopy];
                 [self.tableView reloadData];
+            } else{
+                hud.textLabel.text = @"没有订单";
+                hud.indicatorView = nil;
+                
+                [hud dismissAfterDelay:2.0];
+
             }
             
-            
+            [self.tableView.header endRefreshing];
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud dismiss];
+        [self.tableView.header endRefreshing];
+
     }];
 
 }

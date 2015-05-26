@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "275D8027A6C56F4B7C921680"
+               BlueprintIdentifier = "4887AEECBFF16D7613859EE1"
                BuildableName = "libPods-TVForInstaller-CBStoreHouseRefreshControl.a"
                BlueprintName = "Pods-TVForInstaller-CBStoreHouseRefreshControl"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275D8027A6C56F4B7C921680"
-            BuildableName = "libPods-TVForInstaller-CBStoreHouseRefreshControl.a"
-            BlueprintName = "Pods-TVForInstaller-CBStoreHouseRefreshControl"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

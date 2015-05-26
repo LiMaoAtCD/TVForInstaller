@@ -831,10 +831,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="5Yh-w9-d0J">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" constant="50" id="950-04-Zcq">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -876,7 +876,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="centerX" secondItem="n9k-4Z-mO5" secondAttribute="centerX" id="16d-6U-qiy">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="4.5"/>
                                                             </constraint>
                                                             <constraint firstItem="bu4-jK-Y9E" firstAttribute="top" secondItem="n9k-4Z-mO5" secondAttribute="bottom" constant="10" id="Hk5-Qq-DrM">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
@@ -928,12 +928,12 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="XOE-XJ-Kz2">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="co6-rH-UNc"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fAe-DN-be2"/>
                                                                     <constraint firstAttribute="width" constant="50" id="kkh-ei-3LU">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1027,10 +1027,10 @@
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JPs-t8-gnF"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cD3-8U-OQn"/>
                                                                     <constraint firstAttribute="width" constant="50" id="meY-f0-ruA">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" constant="50" id="phW-OI-2BJ">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1097,11 +1097,11 @@
                                                                 <exclude reference="Gld-js-hdn"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="aPn-rV-FHN"/>
-                                                                <exclude reference="vny-Qj-D1t"/>
                                                                 <exclude reference="7kl-On-wG2"/>
                                                                 <exclude reference="O45-a1-n77"/>
                                                                 <exclude reference="hBY-Wp-Agh"/>
+                                                                <exclude reference="aPn-rV-FHN"/>
+                                                                <exclude reference="vny-Qj-D1t"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1110,11 +1110,11 @@
                                                                 <include reference="Gld-js-hdn"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="aPn-rV-FHN"/>
-                                                                <include reference="vny-Qj-D1t"/>
                                                                 <include reference="7kl-On-wG2"/>
                                                                 <exclude reference="O45-a1-n77"/>
                                                                 <include reference="hBY-Wp-Agh"/>
+                                                                <include reference="aPn-rV-FHN"/>
+                                                                <include reference="vny-Qj-D1t"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -1125,11 +1125,11 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="QN0-NJ-tnk">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Vre-jq-Ky7"/>
                                                                     <constraint firstAttribute="width" constant="50" id="YN8-La-v2z">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zEW-Rb-rC6"/>
                                                                 </constraints>
@@ -1199,11 +1199,11 @@
                                                                 <exclude reference="Qfa-ng-nWd"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="Ply-Un-HOe"/>
+                                                                <exclude reference="oRQ-8o-4hs"/>
                                                                 <exclude reference="0Dd-jJ-iX3"/>
                                                                 <exclude reference="EXT-uO-lpv"/>
                                                                 <exclude reference="sYG-DG-0zA"/>
-                                                                <exclude reference="Ply-Un-HOe"/>
-                                                                <exclude reference="oRQ-8o-4hs"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1212,11 +1212,11 @@
                                                                 <include reference="Qfa-ng-nWd"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="Ply-Un-HOe"/>
+                                                                <exclude reference="oRQ-8o-4hs"/>
                                                                 <include reference="0Dd-jJ-iX3"/>
                                                                 <include reference="EXT-uO-lpv"/>
                                                                 <include reference="sYG-DG-0zA"/>
-                                                                <include reference="Ply-Un-HOe"/>
-                                                                <exclude reference="oRQ-8o-4hs"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -1227,10 +1227,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="EMV-2z-idA">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" constant="50" id="hvM-eg-xLO">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="snC-jZ-fQa"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="vmv-9j-86g"/>
@@ -1303,11 +1303,11 @@
                                                                 <exclude reference="iC9-qj-QbT"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="8ev-0o-L3S"/>
-                                                                <exclude reference="pHc-s2-YrU"/>
                                                                 <exclude reference="6aG-Ws-AFr"/>
                                                                 <exclude reference="VUM-yz-g4c"/>
                                                                 <exclude reference="kkV-eE-bAr"/>
+                                                                <exclude reference="8ev-0o-L3S"/>
+                                                                <exclude reference="pHc-s2-YrU"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1316,11 +1316,11 @@
                                                                 <include reference="iC9-qj-QbT"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="8ev-0o-L3S"/>
-                                                                <include reference="pHc-s2-YrU"/>
                                                                 <exclude reference="6aG-Ws-AFr"/>
                                                                 <include reference="VUM-yz-g4c"/>
                                                                 <include reference="kkV-eE-bAr"/>
+                                                                <include reference="8ev-0o-L3S"/>
+                                                                <include reference="pHc-s2-YrU"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -1331,12 +1331,12 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="8N7-Mc-Toq">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QJa-0f-wBF"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="cBP-rh-gKS"/>
                                                                     <constraint firstAttribute="width" constant="50" id="zci-Gn-qdf">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1401,11 +1401,11 @@
                                                             </mask>
                                                             <mask key="constraints">
                                                                 <exclude reference="bTQ-vS-6KY"/>
+                                                                <exclude reference="bNj-ah-Bvz"/>
+                                                                <exclude reference="s1S-0F-bYg"/>
                                                                 <exclude reference="Zim-08-4nl"/>
                                                                 <exclude reference="aMx-2g-sYI"/>
                                                                 <exclude reference="ySC-tc-Du9"/>
-                                                                <exclude reference="bNj-ah-Bvz"/>
-                                                                <exclude reference="s1S-0F-bYg"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1415,11 +1415,11 @@
                                                             </mask>
                                                             <mask key="constraints">
                                                                 <include reference="bTQ-vS-6KY"/>
+                                                                <exclude reference="bNj-ah-Bvz"/>
+                                                                <include reference="s1S-0F-bYg"/>
                                                                 <include reference="Zim-08-4nl"/>
                                                                 <include reference="aMx-2g-sYI"/>
                                                                 <include reference="ySC-tc-Du9"/>
-                                                                <exclude reference="bNj-ah-Bvz"/>
-                                                                <include reference="s1S-0F-bYg"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -1431,11 +1431,11 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="8ac-jP-UEN"/>
                                                                     <constraint firstAttribute="height" constant="50" id="Gfw-ci-5fj">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="P8d-Fi-n0Y"/>
                                                                     <constraint firstAttribute="width" constant="50" id="u21-dK-JSF">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="22"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1486,6 +1486,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="XUN-IT-UjR" secondAttribute="bottom" constant="20" id="0c6-Vg-kiU"/>
                                                             <constraint firstAttribute="height" constant="100" id="135-1C-dt4">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="107"/>
                                                             </constraint>
@@ -1512,6 +1513,7 @@
                                                                 <exclude reference="NYp-ev-sgO"/>
                                                                 <exclude reference="dcd-sL-PYq"/>
                                                                 <exclude reference="yvk-dw-vFh"/>
+                                                                <exclude reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <exclude reference="KiM-2W-7N6"/>
                                                                 <exclude reference="udE-Mw-GFz"/>
@@ -1527,9 +1529,10 @@
                                                                 <exclude reference="NYp-ev-sgO"/>
                                                                 <include reference="dcd-sL-PYq"/>
                                                                 <include reference="yvk-dw-vFh"/>
+                                                                <include reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <include reference="KiM-2W-7N6"/>
-                                                                <include reference="udE-Mw-GFz"/>
+                                                                <exclude reference="udE-Mw-GFz"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -1540,10 +1543,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="DfD-eA-H9B">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" constant="50" id="bqj-WT-FeQ">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1589,7 +1592,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                                             </constraint>
                                                             <constraint firstItem="86f-8l-rD6" firstAttribute="top" secondItem="ctJ-mb-z81" secondAttribute="top" constant="19" id="EXW-0l-YCK">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="18"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                                             </constraint>
                                                             <constraint firstItem="86f-8l-rD6" firstAttribute="centerX" secondItem="0zs-vn-Us8" secondAttribute="centerX" id="U79-IP-KZS"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="aDN-jv-lxl"/>
@@ -1606,11 +1609,11 @@
                                                             <mask key="constraints">
                                                                 <exclude reference="aDN-jv-lxl"/>
                                                                 <exclude reference="zZ1-BW-Z0k"/>
+                                                                <exclude reference="87t-hN-qUH"/>
+                                                                <exclude reference="kls-7M-LJa"/>
                                                                 <exclude reference="2Be-pC-wNP"/>
                                                                 <exclude reference="EXW-0l-YCK"/>
                                                                 <exclude reference="U79-IP-KZS"/>
-                                                                <exclude reference="87t-hN-qUH"/>
-                                                                <exclude reference="kls-7M-LJa"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1621,11 +1624,11 @@
                                                             <mask key="constraints">
                                                                 <exclude reference="aDN-jv-lxl"/>
                                                                 <include reference="zZ1-BW-Z0k"/>
+                                                                <include reference="87t-hN-qUH"/>
+                                                                <exclude reference="kls-7M-LJa"/>
                                                                 <include reference="2Be-pC-wNP"/>
                                                                 <include reference="EXW-0l-YCK"/>
                                                                 <include reference="U79-IP-KZS"/>
-                                                                <include reference="87t-hN-qUH"/>
-                                                                <exclude reference="kls-7M-LJa"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
