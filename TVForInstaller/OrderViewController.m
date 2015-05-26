@@ -82,17 +82,17 @@ typedef enum : NSUInteger {
         
         UIColor *color = [UIColor colorWithRed:19./255 green:82./255 blue:115./255 alpha:1.0];
 
-        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
+        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         
-        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo1"] forState:UIControlStateNormal];
+        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo"] forState:UIControlStateNormal];
         
         self.unsumitButton.userInteractionEnabled = NO;
         self.unsumitButton.showsTouchWhenHighlighted = NO;
         
         
-        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
         
-        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
+        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you1"] forState:UIControlStateNormal];
         
         self.completeButton.userInteractionEnabled = YES;
         
@@ -119,16 +119,16 @@ typedef enum : NSUInteger {
         }
         
         UIColor *color = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
-        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
         
-        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo"] forState:UIControlStateNormal];
+        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo1"] forState:UIControlStateNormal];
         
         self.unsumitButton.userInteractionEnabled = YES;
         
         
-        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
+        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         
-        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you1"] forState:UIControlStateNormal];
+        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
         
         self.completeButton.userInteractionEnabled = NO;
 
