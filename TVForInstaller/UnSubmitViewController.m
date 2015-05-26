@@ -11,7 +11,6 @@
 #import "OrderDetailController.h"
 
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
 #import "UIColor+HexRGB.h"
 #import "AccountManager.h"
 #import <MJRefresh.h>
@@ -48,25 +47,13 @@
     [self.tableView.header beginRefreshing];
 }
 -(void)fetchOrder{
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text =@"正在获取订单";
-    [hud showInView:self.view animated:YES];
-    
-    
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"] integerValue] ==0) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text = @"订单获取失败";
-                hud.indicatorView = nil;
-                
-                [hud dismissAfterDelay:2.0];
-            });
-            
+
             
         } else{
             
-            [hud dismissAfterDelay:2.0];
             NSArray *data = responseObject[@"obj"];
             NSLog(@"received data: %@",data);
             
@@ -75,18 +62,13 @@
                 self.orderList = [data mutableCopy];
                 [self.tableView reloadData];
             } else{
-                hud.textLabel.text = @"没有订单";
-                hud.indicatorView = nil;
-                
-                [hud dismissAfterDelay:2.0];
-
+            
             }
             
             [self.tableView.header endRefreshing];
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismiss];
         [self.tableView.header endRefreshing];
 
     }];

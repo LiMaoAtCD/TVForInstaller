@@ -8,7 +8,7 @@
 
 #import "OrderViewController.h"
 #import "UnSubmitViewController.h"
-#import "CompletionOrderViewController.h"
+#import "CompleteTableViewController.h"
 
 
 #import "ComminUtility.h"
@@ -23,7 +23,7 @@ typedef enum : NSUInteger {
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic,strong) UnSubmitViewController *unsubmitViewController;
-@property (nonatomic,strong) CompletionOrderViewController *completionOrderViewController;
+@property (nonatomic,strong) CompleteTableViewController *completeTableViewController;
 @property (weak, nonatomic) IBOutlet UIButton *unsumitButton;
 @property (weak, nonatomic) IBOutlet UIButton *completeButton;
 
@@ -73,10 +73,10 @@ typedef enum : NSUInteger {
         
         [self.unsubmitViewController didMoveToParentViewController:self];
         
-        if (self.completionOrderViewController) {
+        if (self.completeTableViewController) {
             
-            [self.completionOrderViewController removeFromParentViewController];
-            [self.completionOrderViewController.view removeFromSuperview];
+            [self.completeTableViewController removeFromParentViewController];
+            [self.completeTableViewController.view removeFromSuperview];
         }
         
         
@@ -99,18 +99,18 @@ typedef enum : NSUInteger {
         
     } else{
         
-        if (!self.completionOrderViewController) {
+        if (!self.completeTableViewController) {
             
-            self.completionOrderViewController = [sb instantiateViewControllerWithIdentifier:@"CompletionOrderViewController"];
+            self.completeTableViewController = [sb instantiateViewControllerWithIdentifier:@"CompleteTableViewController"];
         }
         
-        [self addChildViewController:self.completionOrderViewController];
+        [self addChildViewController:self.completeTableViewController];
         
-        [self.completionOrderViewController willMoveToParentViewController:self];
+        [self.completeTableViewController willMoveToParentViewController:self];
         
-        [self.contentView addSubview:self.completionOrderViewController.view];
+        [self.contentView addSubview:self.completeTableViewController.view];
         
-        [self.completionOrderViewController didMoveToParentViewController:self];
+        [self.completeTableViewController didMoveToParentViewController:self];
         
         if (self.unsubmitViewController) {
             

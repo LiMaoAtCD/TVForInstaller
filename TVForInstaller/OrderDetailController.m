@@ -20,6 +20,10 @@
 
 @property (nonatomic,strong)NSArray *pickerItems;
 
+@property(nonatomic,strong) UIButton *zhijiaButton;
+@property(nonatomic,strong) UIButton *HDMIButton;
+@property(nonatomic,strong) UIButton *YijiButton;
+
 
 @end
 
@@ -95,6 +99,7 @@
         
         
         TVInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TVInfoCell" forIndexPath:indexPath];
+        cell.tvspecificationLabel.text = self.orderInfo[@"version"];
         
         return cell;
         
@@ -102,12 +107,14 @@
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
         
         [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        self.zhijiaButton = cell.zhijiaButton;
         cell.tag = 0;
         [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         cell.tag = 1;
-
+        self.HDMIButton = cell.hdmiButton;
         [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         cell.tag = 2;
+        self.YijiButton = cell.moveTVButton;
 
         return cell;
         
@@ -129,11 +136,16 @@
     [self showDetailViewController:number sender:self];
     
 }
--(void)didPickerItems:(NSInteger)itemsIndex{
-    
+-(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type{
     NSLog(@"选择了%@ 元",self.pickerItems[itemsIndex]);
+    if (type == CashNumberTypeZhiJia) {
+        [self.zhijiaButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    } else if (type == CashNumberTypeHDMI){
+        [self.HDMIButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    }else{
+        [self.YijiButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    }
 }
-
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -161,9 +173,9 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 2) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(10, 10, self.view.frame.size.width -20, 30);
+        button.frame = CGRectMake(10, 10, self.view.frame.size.width -20, 40);
         [button setBackgroundColor:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]];
-        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"提  交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickToPostOrder:) forControlEvents:UIControlEventTouchUpInside];
         UIView *view =[[UIView alloc] init];
         
@@ -177,7 +189,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     if (section == 2) {
-        return 50;
+        return 80;
         
     }
     return 0.1;

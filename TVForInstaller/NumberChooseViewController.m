@@ -50,8 +50,8 @@
 
 - (IBAction)sure:(id)sender {
     //TODO:
-    if ([self.delegate respondsToSelector:@selector(didPickerItems:)]) {
-        [self.delegate didPickerItems:self.selectedIndex];
+    if ([self.delegate respondsToSelector:@selector(didPickerItems:onType:)]) {
+        [self.delegate didPickerItems:self.selectedIndex onType:self.type];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];

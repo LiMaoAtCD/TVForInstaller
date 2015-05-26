@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @protocol PickerDelegate <NSObject>
 
--(void)didPickerItems:(NSInteger)itemsIndex;
+-(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type;
 
 @end
 
