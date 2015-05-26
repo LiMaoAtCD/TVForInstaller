@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-#define kServer @"http://10.0.0.116:8080/jeecg-framework/appengController.do?enterService"
+#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
 
 
 @implementation NetworkingManager
@@ -126,10 +126,24 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:@"http://10.0.0.116:8080/jeecg-framework/softController.do?getSoftService" parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:@"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService" parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
+}
+
++(void)fetchOrderwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+     NSString * param = [@{@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+
 }
 
 @end

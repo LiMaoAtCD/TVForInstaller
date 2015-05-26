@@ -20,7 +20,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="193" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Tu-Ti-AOU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UnSubmitCell" rowHeight="193" id="Ffk-BE-hoH" customClass="UnSubmitCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -694,7 +694,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XJx-EZ-95J" id="CY9-9R-nwj">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp" translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-6E-fHx">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zuoshi" translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-6E-fHx">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="0cz-zM-96H"/>
@@ -781,8 +781,10 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的心有一道墙，带我发现一到窗，就算你有一刀强你的心有一道墙，带我发现一到窗，就算你有一刀强你的心有一道墙，带我发现一到窗，就算你有一刀强你的心有一道墙，带我发现一到窗，就算你有一刀强你的心有一道墙，带我发现一到窗，就算你有一刀强" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84P-Co-Ogu">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84P-Co-Ogu">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <string key="text"> 高新区成都市高新区中和大道66号润兰花院一栋3单元2号11-1室
+</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -823,7 +825,7 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="瓜娃子啊" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLS-r6-KcJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李梦游" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLS-r6-KcJ">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Krt-kN-VOT"/>
@@ -1884,6 +1886,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="PaySegment" destination="fxi-eh-uL1" id="RY8-aX-hUP"/>
                                     <outlet property="cellphoneTF" destination="Kmr-QI-tuX" id="6Ta-W8-us5"/>
                                     <outlet property="hdmiButton" destination="S1W-dn-R12" id="IjR-zk-ZjR"/>
                                     <outlet property="moveTVButton" destination="kRP-NV-mjM" id="hdk-iB-9l3"/>

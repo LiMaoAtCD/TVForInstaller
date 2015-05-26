@@ -96,6 +96,13 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchApplicationwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+/**
+ *  获取今日订单
+ *
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchOrderwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 
