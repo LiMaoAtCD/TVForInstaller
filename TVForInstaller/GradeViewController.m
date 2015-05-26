@@ -152,7 +152,7 @@
 
     if (indexPath.section == 0) {
         GradeTotalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GradeTotalTableViewCell" forIndexPath:indexPath];
-        cell.totalImage.image =[UIImage imageNamed:@"temp"];
+        cell.totalImage.image =[UIImage imageNamed:@"jifenchaxun1"];
         cell.totalGradeLabel.text = [NSString stringWithFormat:@"%ld", [AccountManager getScore]];
         cell.totalGradeLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
@@ -166,7 +166,10 @@
         
         
         cell.detailgradeLabel.text = self.items[indexPath.row][@"addorcutscore"];
-
+        
+        if (indexPath.row %2 ==0) {
+            cell.backgroundColor = [UIColor colorWithRed:219.0/255 green:252./255 blue:255./255 alpha:1.0];
+        }
 
         return cell;
     }

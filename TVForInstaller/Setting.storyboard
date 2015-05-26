@@ -1380,7 +1380,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="3XI-Lj-5WZ"/>
                                                         <constraint firstAttribute="width" constant="62" id="Zxj-Kf-B62"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -1402,7 +1402,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="9GJ-gB-su5"/>
                                                         <constraint firstAttribute="width" constant="42" id="flz-8L-QAe"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -1411,8 +1411,7 @@
                                                             <exclude reference="flz-8L-QAe"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="260" y="19" width="42" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="9GJ-gB-su5"/>
                                                             <include reference="flz-8L-QAe"/>
@@ -1541,8 +1540,7 @@
                                                             <exclude reference="rk2-xe-ule"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="257" y="10" width="30" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="ZbC-L1-a7R"/>
                                                             <include reference="rk2-xe-ule"/>
@@ -2034,7 +2032,7 @@
         <image name="IdentityBg" width="136" height="57"/>
         <image name="TVregister" width="117" height="117"/>
         <image name="guize" width="33" height="33"/>
-        <image name="jifenchaxun1" width="60" height="60"/>
+        <image name="jifenchaxun1" width="90" height="90"/>
         <image name="kuang" width="695" height="572"/>
         <image name="s" width="33" height="33"/>
         <image name="tuijian" width="33" height="33"/>

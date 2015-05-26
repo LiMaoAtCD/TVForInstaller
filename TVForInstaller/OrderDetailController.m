@@ -14,7 +14,8 @@
 
 #import "ComminUtility.h"
 
-@interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource>
+#import "NumberChooseViewController.h"
+@interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate>
 
 
 
@@ -87,7 +88,12 @@
         
         [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         cell.tag = 0;
-        
+        [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        cell.tag = 1;
+
+        [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        cell.tag = 2;
+
         return cell;
         
     }
@@ -99,7 +105,22 @@
     
    //TODO::
     
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
+    self.modalTransitionStyle= UIModalPresentationCurrentContext;
+    number.type = button.tag;
+    number.delegate = self;
+    number.pickerItems =@[@100,@200,@300];
+    
+    [self showDetailViewController:number sender:self];
+    
 }
+-(void)didPickerItems:(NSInteger)itemsIndex{
+    
+    NSLog(@"选择了第%ld个",itemsIndex);
+}
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     

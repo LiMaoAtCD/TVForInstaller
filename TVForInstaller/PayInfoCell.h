@@ -16,5 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *zhijiaButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *hdmiButton;
+@property (weak, nonatomic) IBOutlet UIButton *moveTVButton;
 
 @end
