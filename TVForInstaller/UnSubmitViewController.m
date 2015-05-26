@@ -118,7 +118,15 @@
     cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
     cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
     cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
-//    cell.dateLabel.text= self.orderList[]
+    
+    
+    NSDate *date = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSString *dateString = [formatter stringFromDate:date];
+    cell.dateLabel.text= dateString;
     
 
     
@@ -134,6 +142,8 @@
     OrderDetailController *detail =[sb instantiateViewControllerWithIdentifier:@"OrderDetailController"];
     
     detail.hidesBottomBarWhenPushed = YES;
+    
+    detail.orderInfo = self.orderList[indexPath.row];
     
     [self.navigationController showViewController:detail sender:self];
     

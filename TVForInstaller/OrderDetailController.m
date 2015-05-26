@@ -26,15 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [ComminUtility configureTitle:@"详情" forViewController:self];
-    
-    
-    
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -46,6 +38,7 @@
 }
 
 -(void)pop{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -58,7 +51,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
+    NSLog(@"%@",self.orderInfo);
 }
 
 #pragma mark - Table view data source
@@ -77,10 +70,29 @@
     
     if (indexPath.section == 0) {
         OrderDetailCell *cell =[tableView dequeueReusableCellWithIdentifier:@"OrderDetailCell" forIndexPath:indexPath];
+        cell.nameLabel.text = self.orderInfo[@"hoster"];
+        cell.tvSizeLabel.text = self.orderInfo[@"size"];
+        cell.tvBrandLabel.text = self.orderInfo[@"brand"];
+        cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
+        cell.cellphoneLabel.text = self.orderInfo[@"phone"];
+        cell.customerAddressLabel.text = self.orderInfo[@"address"];
+        
+        
+        NSDate *date = [NSDate date];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        
+        NSString *dateString = [formatter stringFromDate:date];
+        cell.dateLabel.text= dateString;
         
         return cell;
+        
     } else if(indexPath.section ==1){
+        
+        
         TVInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TVInfoCell" forIndexPath:indexPath];
+        
         return cell;
         
     } else{
@@ -104,8 +116,6 @@
 -(void)clickToShowDropDown:(UIButton*)button{
     
    //TODO::
-    
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
     NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
     self.modalTransitionStyle= UIModalPresentationCurrentContext;
