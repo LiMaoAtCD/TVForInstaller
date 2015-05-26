@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *macAddressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getInfoFromTVButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *installedAppLabel;
 
 
 @end

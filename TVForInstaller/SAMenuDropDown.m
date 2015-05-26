@@ -12,7 +12,7 @@
 #define kSAImageFromBundle(imgName)                   [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] bundlePath]\
                                                                stringByAppendingPathComponent:imgName]]
 
-#define kSACellHeight                                40.0
+#define kSACellHeight                                20.0
 
 
 @interface MenuItemData : NSObject
@@ -262,7 +262,7 @@
     [_sourceButtom.superview addSubview:self];
     [self addSubview:_tableMenu];
 
-    [self setBackgroundColor:[UIColor blackColor]];
+    [self setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 

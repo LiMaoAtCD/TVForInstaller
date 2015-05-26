@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneTF;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *zhijiaButton;
+
+
 @end

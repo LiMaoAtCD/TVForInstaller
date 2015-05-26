@@ -1,61 +1,42 @@
 //
-//  OrderDetailViewController.m
+//  OrderDetailController.m
 //  TVForInstaller
 //
-//  Created by AlienLi on 15/5/25.
+//  Created by AlienLi on 15/5/26.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
-#import "OrderDetailViewController.h"
+#import "OrderDetailController.h"
 
 #import "OrderDetailCell.h"
 #import "TVInfoCell.h"
 #import "PayInfoCell.h"
 
 #import "ComminUtility.h"
-#import "SAMenuDropDown.h"
 
-@interface OrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,SAMenuDropDownDelegate>
+@interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property(nonatomic,strong) SAMenuDropDown *menuDrop;
-@property(nonatomic,strong) NSArray *dropDownItems;
 
 @end
 
-@implementation OrderDetailViewController
+@implementation OrderDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-   
- 
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [ComminUtility configureTitle:@"详情" forViewController:self];
     
-   
+    
     
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    _dropDownItems = @[@"100",@"100",@"100",@"100"];
-}
-
--(void)pop{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self.view layoutIfNeeded];
-   
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,11 +44,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.view layoutIfNeeded];
+    
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
     return 3;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
     return 1;
 }
 
@@ -80,16 +81,23 @@
     } else if(indexPath.section ==1){
         TVInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TVInfoCell" forIndexPath:indexPath];
         return cell;
-
+        
     } else{
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
         
-        
+        [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        cell.tag = 0;
         
         return cell;
-
+        
     }
     
+    
+}
+
+-(void)clickToShowDropDown:(UIButton*)button{
+    
+   //TODO::
     
 }
 
@@ -133,10 +141,10 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-
+    
     if (section == 2) {
         return 50;
-
+        
     }
     return 0.1;
 }
@@ -152,11 +160,53 @@
     
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section ==2) {
-//        return 196;
-//    }
-//}
+
+
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
 /*
 #pragma mark - Navigation
 
@@ -166,7 +216,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
 
 @end

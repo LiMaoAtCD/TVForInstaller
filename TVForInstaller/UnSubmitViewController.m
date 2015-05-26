@@ -9,6 +9,7 @@
 #import "UnSubmitViewController.h"
 #import "UnSubmitCell.h"
 #import "OrderDetailViewController.h"
+#import "OrderDetailController.h"
 
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -54,7 +55,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
-    OrderDetailViewController *detail =[sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+    OrderDetailController *detail =[sb instantiateViewControllerWithIdentifier:@"OrderDetailController"];
     
     detail.hidesBottomBarWhenPushed = YES;
     
