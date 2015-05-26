@@ -18,6 +18,8 @@
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate>
 
 
+@property (nonatomic,strong)NSArray *pickerItems;
+
 
 @end
 
@@ -29,6 +31,7 @@
     [ComminUtility configureTitle:@"详情" forViewController:self];
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.pickerItems = @[@100,@200,@300];;
     
 }
 
@@ -121,14 +124,14 @@
     self.modalTransitionStyle= UIModalPresentationCurrentContext;
     number.type = button.tag;
     number.delegate = self;
-    number.pickerItems =@[@100,@200,@300];
+    number.pickerItems = self.pickerItems;
     
     [self showDetailViewController:number sender:self];
     
 }
 -(void)didPickerItems:(NSInteger)itemsIndex{
     
-    NSLog(@"选择了第%ld个",itemsIndex);
+    NSLog(@"选择了%@ 元",self.pickerItems[itemsIndex]);
 }
 
 
