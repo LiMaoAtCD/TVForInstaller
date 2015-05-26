@@ -13,6 +13,7 @@
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 #import "UIColor+HexRGB.h"
+#import "AccountManager.h"
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -28,7 +29,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self fetchOrder];
+    if ([AccountManager isLogin]) {
+        [self fetchOrder];
+
+    }
     
     
 }
