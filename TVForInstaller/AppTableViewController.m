@@ -94,6 +94,8 @@
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud dismiss];
+        [self.storeHouseRefreshControl finishingLoading];
+
     }];
 }
 
@@ -159,11 +161,15 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 20)];
     label.text = [self tableView:self.tableView titleForHeaderInSection:section];
     label.font = [UIFont boldSystemFontOfSize:12.0];
     
-    return label;
+    UIView *view = [[UIView alloc] init];
+    
+    [view addSubview:label];
+    
+    return view;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -179,7 +185,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 22.0;
+    return 20.0;
 }
 
 

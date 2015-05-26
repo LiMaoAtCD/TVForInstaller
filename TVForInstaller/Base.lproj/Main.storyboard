@@ -33,7 +33,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zVM-7h-t2e">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppOneInstallCell" rowHeight="83" id="9js-B0-lPj" customClass="AppOneInstallCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -133,7 +133,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="knZ-NL-o4R">
-                                                <size key="itemSize" width="71" height="107"/>
+                                                <size key="itemSize" width="103" height="107"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -143,7 +143,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="71" height="107"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="107"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-t3-q5l">
@@ -175,7 +175,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="哭开始名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26d-Gp-QlK">
                                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -354,6 +354,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OvQ-Ox-Sy4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BgC-eG-8Gw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvS-Xg-QKR">
@@ -418,7 +419,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.074509803921568626" green="0.39215686274509803" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rT0-us-VD1" firstAttribute="leading" secondItem="ii6-fG-E95" secondAttribute="trailing" constant="8" id="Byj-Tu-wru"/>
                                     <constraint firstItem="ii6-fG-E95" firstAttribute="leading" secondItem="kvS-Xg-QKR" secondAttribute="leading" constant="136" id="FMn-Pn-LwT"/>
@@ -471,12 +471,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="DTT-b7-rQR" secondAttribute="trailing" constant="-16" id="ChK-Nf-bqe"/>
+                            <constraint firstAttribute="trailing" secondItem="DTT-b7-rQR" secondAttribute="trailing" id="ChK-Nf-bqe"/>
                             <constraint firstItem="kvS-Xg-QKR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leadingMargin" constant="-16" id="IEg-S9-V5v"/>
                             <constraint firstItem="kvS-Xg-QKR" firstAttribute="top" secondItem="BgC-eG-8Gw" secondAttribute="topMargin" id="Iah-Rj-Rwf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kvS-Xg-QKR" secondAttribute="trailing" constant="-16" id="KYt-uW-ORR"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="bottom" secondItem="BgC-eG-8Gw" secondAttribute="bottomMargin" id="jVB-Zl-Mm5"/>
-                            <constraint firstItem="DTT-b7-rQR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leadingMargin" constant="-16" id="kU6-6G-2jB"/>
+                            <constraint firstItem="DTT-b7-rQR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leading" id="kU6-6G-2jB"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="top" secondItem="kvS-Xg-QKR" secondAttribute="bottom" constant="1" id="zOM-QQ-dSv">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
@@ -487,13 +487,13 @@
                                 <exclude reference="DTT-b7-rQR"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="IEg-S9-V5v"/>
-                                <exclude reference="Iah-Rj-Rwf"/>
-                                <exclude reference="KYt-uW-ORR"/>
                                 <exclude reference="ChK-Nf-bqe"/>
                                 <exclude reference="jVB-Zl-Mm5"/>
                                 <exclude reference="kU6-6G-2jB"/>
                                 <exclude reference="zOM-QQ-dSv"/>
+                                <exclude reference="IEg-S9-V5v"/>
+                                <exclude reference="Iah-Rj-Rwf"/>
+                                <exclude reference="KYt-uW-ORR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -502,13 +502,13 @@
                                 <include reference="DTT-b7-rQR"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="IEg-S9-V5v"/>
-                                <include reference="Iah-Rj-Rwf"/>
-                                <include reference="KYt-uW-ORR"/>
                                 <include reference="ChK-Nf-bqe"/>
                                 <include reference="jVB-Zl-Mm5"/>
                                 <include reference="kU6-6G-2jB"/>
                                 <include reference="zOM-QQ-dSv"/>
+                                <include reference="IEg-S9-V5v"/>
+                                <include reference="Iah-Rj-Rwf"/>
+                                <include reference="KYt-uW-ORR"/>
                             </mask>
                         </variation>
                     </view>
@@ -1755,7 +1755,7 @@
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="egN-vk-XxU" secondAttribute="bottom" constant="401" id="2EF-Hs-Muh">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="120"/>
                                     </constraint>
                                     <constraint firstAttribute="width" secondItem="1tO-Yu-P5k" secondAttribute="width" id="Gd6-4m-DCm"/>
                                     <constraint firstAttribute="height" secondItem="1tO-Yu-P5k" secondAttribute="height" id="Pg5-Rr-XF5"/>

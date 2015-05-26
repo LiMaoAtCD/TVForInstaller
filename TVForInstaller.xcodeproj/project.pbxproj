@@ -30,15 +30,22 @@
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
 		8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8773380E1B11AB3F00C2DDC4 /* grade.plist */; };
 		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
+		877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877778E11B13FEC0003DB4AA /* OrderDetailController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
 		8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E95F1B0C6E34003F4415 /* AppOneInstallCell.m */; };
 		8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9621B0C6E7F003F4415 /* AppCollectionTableCell.m */; };
 		8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */; };
+		878CEC3B1B14228900FE0E21 /* NumberChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878CEC3A1B14228900FE0E21 /* NumberChooseViewController.m */; };
+		878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */; };
 		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
 		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
+		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
+		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
+		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
+		87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022281B133BB7005452C0 /* SAMenuDropDown.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
@@ -49,7 +56,6 @@
 		87DBE2031AFAFF0000AFB7BF /* TVForInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2021AFAFF0000AFB7BF /* TVForInstallerTests.m */; };
 		87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */; };
 		87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE2151AFB0A5E00AFB7BF /* ViewController.m */; };
-		87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE2171AFB0B5900AFB7BF /* storehouse.plist */; };
 		87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3A9E1B0A0C7D004AB8F7 /* SettingViewController.m */; };
 		87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */; };
 		87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EA3AA91B0A10AE004AB8F7 /* LoginViewController.m */; };
@@ -111,6 +117,8 @@
 		8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeTotalTableViewCell.m; sourceTree = "<group>"; };
 		8773380E1B11AB3F00C2DDC4 /* grade.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grade.plist; sourceTree = "<group>"; };
 		877338101B11B3D000C2DDC4 /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
+		877778E01B13FEC0003DB4AA /* OrderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailController.h; sourceTree = "<group>"; };
+		877778E11B13FEC0003DB4AA /* OrderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -124,12 +132,24 @@
 		8785E9621B0C6E7F003F4415 /* AppCollectionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCollectionTableCell.m; sourceTree = "<group>"; };
 		8785E9681B0C750E003F4415 /* APPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPCollectionViewCell.h; sourceTree = "<group>"; };
 		8785E9691B0C750E003F4415 /* APPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPCollectionViewCell.m; sourceTree = "<group>"; };
+		878CEC391B14228900FE0E21 /* NumberChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberChooseViewController.h; sourceTree = "<group>"; };
+		878CEC3A1B14228900FE0E21 /* NumberChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberChooseViewController.m; sourceTree = "<group>"; };
+		878CEC3C1B14460200FE0E21 /* ChildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildTableViewCell.h; sourceTree = "<group>"; };
+		878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildTableViewCell.m; sourceTree = "<group>"; };
 		878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChildrenViewController.h; sourceTree = "<group>"; };
 		878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChildrenViewController.m; sourceTree = "<group>"; };
 		878EE40B1B0EDDFF002E6B4E /* InvatationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvatationViewController.h; sourceTree = "<group>"; };
 		878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatationViewController.m; sourceTree = "<group>"; };
 		878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
+		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
+		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
+		87C022201B130C91005452C0 /* TVInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVInfoCell.m; sourceTree = "<group>"; };
+		87C022221B130CA6005452C0 /* PayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoCell.h; sourceTree = "<group>"; };
+		87C022231B130CA6005452C0 /* PayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoCell.m; sourceTree = "<group>"; };
+		87C022271B133BB7005452C0 /* SAMenuDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMenuDropDown.h; sourceTree = "<group>"; };
+		87C022281B133BB7005452C0 /* SAMenuDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMenuDropDown.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
@@ -282,6 +302,8 @@
 			children = (
 				878EE4081B0EDDF1002E6B4E /* MyChildrenViewController.h */,
 				878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */,
+				878CEC3C1B14460200FE0E21 /* ChildTableViewCell.h */,
+				878CEC3D1B14460200FE0E21 /* ChildTableViewCell.m */,
 			);
 			name = MyChildren;
 			sourceTree = "<group>";
@@ -302,6 +324,63 @@
 				878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */,
 			);
 			name = InstallHistory;
+			sourceTree = "<group>";
+		};
+		87C022161B12FC2A005452C0 /* unsubmit */ = {
+			isa = PBXGroup;
+			children = (
+				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
+				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
+				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
+				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
+				87C022181B12FCBB005452C0 /* Detail */,
+			);
+			name = unsubmit;
+			sourceTree = "<group>";
+		};
+		87C022171B12FC3C005452C0 /* complete */ = {
+			isa = PBXGroup;
+			children = (
+				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
+				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
+				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
+				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
+				87C022251B130E35005452C0 /* Detail */,
+			);
+			name = complete;
+			sourceTree = "<group>";
+		};
+		87C022181B12FCBB005452C0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				877778E01B13FEC0003DB4AA /* OrderDetailController.h */,
+				877778E11B13FEC0003DB4AA /* OrderDetailController.m */,
+				87C0221C1B130C7D005452C0 /* OrderDetailCell.h */,
+				87C0221D1B130C7D005452C0 /* OrderDetailCell.m */,
+				87C0221F1B130C91005452C0 /* TVInfoCell.h */,
+				87C022201B130C91005452C0 /* TVInfoCell.m */,
+				87C022221B130CA6005452C0 /* PayInfoCell.h */,
+				87C022231B130CA6005452C0 /* PayInfoCell.m */,
+				878CEC391B14228900FE0E21 /* NumberChooseViewController.h */,
+				878CEC3A1B14228900FE0E21 /* NumberChooseViewController.m */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		87C022251B130E35005452C0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		87C022261B133B9C005452C0 /* SAMenuDropDown */ = {
+			isa = PBXGroup;
+			children = (
+				87C022271B133BB7005452C0 /* SAMenuDropDown.h */,
+				87C022281B133BB7005452C0 /* SAMenuDropDown.m */,
+			);
+			name = SAMenuDropDown;
 			sourceTree = "<group>";
 		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
@@ -385,6 +464,7 @@
 		87DBE20C1AFB01F900AFB7BF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				87C022261B133B9C005452C0 /* SAMenuDropDown */,
 				87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */,
 				87DBE2171AFB0B5900AFB7BF /* storehouse.plist */,
 			);
@@ -435,14 +515,8 @@
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
 				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
-				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
-				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
-				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
-				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
-				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
-				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
-				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
-				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
+				87C022161B12FC2A005452C0 /* unsubmit */,
+				87C022171B12FC3C005452C0 /* complete */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -566,7 +640,6 @@
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				874753501B12C10C003BD8A3 /* Order.storyboard in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
-				87DBE2181AFB0B5900AFB7BF /* storehouse.plist in Resources */,
 				872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,12 +697,17 @@
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
+				878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
+				878CEC3B1B14228900FE0E21 /* NumberChooseViewController.m in Sources */,
+				87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
+				87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */,
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
@@ -647,7 +725,9 @@
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				8747534E1B12C093003BD8A3 /* CompletionOrderViewController.m in Sources */,
+				877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
+				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,

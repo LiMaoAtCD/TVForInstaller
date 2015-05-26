@@ -8,6 +8,8 @@
 
 #import "UnSubmitViewController.h"
 #import "UnSubmitCell.h"
+#import "OrderDetailController.h"
+
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -50,10 +52,26 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    OrderDetailController *detail =[sb instantiateViewControllerWithIdentifier:@"OrderDetailController"];
+    
+    detail.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController showViewController:detail sender:self];
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 165.0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
 }
 
 -(void)clickToCall:(UIButton*)btn{
