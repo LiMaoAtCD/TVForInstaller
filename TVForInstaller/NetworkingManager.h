@@ -104,6 +104,72 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchOrderwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+/**
+ *  失效订单
+ *
+ *  @param orderID           失效订单号
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)disableOrderByID:(NSString *)orderID withcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  撤销订单
+ *
+ *  @param orderID           需要撤销的订单号
+ *  @param tokenID           装机工订单
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)revokeOrderID:(NSString *)orderID ByTokenID:(NSString*)tokenID withcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  提交订单
+ *
+ *  @param order       订单
+ 
+ 
+ "order":{
+ "id":"8a8080f44d840b74014d840e4b320001",
+ "phone":"15525893698",
+ "paymodel":0,
+ "source":0,
+ "address":"高新区环球中心北4区1806",
+ "brand":"海信",
+ "engineer":"8a8080f44d800a71014d800c6fb20000",
+ "mac":null,
+ "hoster":"董小帅",
+ "size":"45寸",
+ "version":"LED-udDF485699DS5F"
+ },
+
+ *  @param bill        账单
+ 
+ "bill":{
+ "hostphone":"18284596155",
+ "zjservice":60,
+ "sczkfei":100,
+ "zhijia":0,
+ "hmdi":0,
+ "yiji":0
+ },
+ 
+ 
+ *  @param applist     app 列表 
+ 
+ [
+ {"appname":"ES文件浏览器"},
+ {"appname":"电视极客"},
+ {"appname":"优酷视频"},
+ {"appname":"欢乐斗地主"}
+ ]
+ 
+ *  @param source      来源 0 公司派单 1私人订单
+ *  @param handler
+ *  @param failHandler
+ */
++(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSDictionary*)applist source:(NSString*)source withcompletionHandler:(NetWorkHandler)handler failHandle:(NetWorkFailHandler)failHandler;
 
 
 @end
