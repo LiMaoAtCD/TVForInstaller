@@ -35,7 +35,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.localOrders = [@[] mutableCopy];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshList) name:@"kSavedOrderToLocal" object:nil];
+
     
     [self.tableView addLegendHeaderWithRefreshingBlock:^{
         
@@ -51,10 +52,21 @@
     if (!self.hasRefresh && [AccountManager isLogin]) {
         self.hasRefresh = YES;
         [self.tableView.header beginRefreshing];
+        
+       
+        
+        
+        
 
     }
 }
+-(void)needRefreshList{
+    self.hasRefresh = NO;
+}
+
 -(void)fetchOrder{
+    
+    
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"] integerValue] ==0) {
@@ -68,21 +80,25 @@
             if (data.count > 0) {
                 
                 self.orderList = [data mutableCopy];
+                NSMutableArray *toDelete = [NSMutableArray array];
+
                 
                 [self.localOrders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     NSDictionary *dictionary = obj;
                     
                     [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                        
-                        if ([data[idx][@"id"] isEqualToString:dictionary[@"id"]]) {
+                        if ([self.orderList[idx][@"id"] isEqualToString:dictionary[@"id"]]) {
                             NSLog(@"此订单已经保存");
                             
-                            [self.orderList removeObjectAtIndex:idx];
+                            [toDelete addObject:obj];
                             
                         }
                     }];
                     
                 }];
+                
+                [self.orderList removeObjectsInArray:toDelete];
                 
                 [self.tableView reloadData];
 
@@ -103,6 +119,9 @@
 }
 
 -(void)fetchLocalOrder{
+    
+    [self.localOrders removeAllObjects];
+    [self.orderList removeAllObjects];
 
     NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
     
@@ -196,7 +215,7 @@
         //        }
 
         
-            //TODO:坐式
+        
         NSInteger type = [self.orderList[indexPath.row][@"type"] integerValue];
         
         if (type == 0 ) {
@@ -227,7 +246,26 @@
     } else{
         
         SavedOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SavedOrderCell" forIndexPath:indexPath];
-   
+        NSInteger type = [self.localOrders[indexPath.row][@"type"] integerValue];
+        if (type == 0 ) {
+            cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
+            cell.tvTypeLabel.text = @"坐式";
+            cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+        } else{
+            cell.tvImageView.image = [UIImage imageNamed:@"temp"];
+            cell.tvTypeLabel.text = @"挂式";
+            cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+        }
+        
+        [cell.cellphoneButton setTitle:self.localOrders[indexPath.row][@"phone"] forState:UIControlStateNormal];
+        cell.nameLabel.text = self.localOrders[indexPath.row][@"hoster"];
+        cell.tvBrandLabel.text  =self.localOrders[indexPath.row][@"brand"];
+        cell.tvSizeLabel.text = self.localOrders[indexPath.row][@"size"];
+        cell.addressLabel.text =self.localOrders[indexPath.row][@"address"];
+        cell.dateLabel.text= self.localOrders[indexPath.row][@"createdate"];
+
+        
+        
         return cell;
     }
     
@@ -329,6 +367,10 @@
 
 -(void)clickRetreatOrder:(UIButton *)button{
     NSLog(@"retreat");
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

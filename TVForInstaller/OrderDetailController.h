@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface OrderDetailController : UITableViewController
 
 @property (nonatomic,strong) NSDictionary *orderInfo;
 
 @property (nonatomic,assign) BOOL isNewOrder;
+
 
 @end

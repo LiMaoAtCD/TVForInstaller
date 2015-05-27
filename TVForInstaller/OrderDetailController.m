@@ -23,6 +23,9 @@
 #import "Bill.h"
 
 
+#import <JGProgressHUD.h>
+
+
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate,UITextFieldDelegate>
 
 
@@ -111,7 +114,7 @@ typedef void(^alertBlock)(void);
         
         [button addTarget:self action:@selector(saveOrder:) forControlEvents:UIControlEventTouchUpInside];
         [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"保存" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0],NSFontAttributeName:[UIFont systemFontOfSize:14.0]}] forState:UIControlStateNormal];
-
+        button.tag  =0;
 
         [button setBackgroundImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
         button.frame = CGRectMake(0, 0, 40, 30);
@@ -123,7 +126,8 @@ typedef void(^alertBlock)(void);
         
         [button addTarget:self action:@selector(saveOrder:) forControlEvents:UIControlEventTouchUpInside];
         [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"删除" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0],NSFontAttributeName:[UIFont systemFontOfSize:14.0]}] forState:UIControlStateNormal];
-        
+        button.tag  =1;
+
         
         [button setBackgroundImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
         button.frame = CGRectMake(0, 0, 40, 30);
@@ -422,77 +426,129 @@ typedef void(^alertBlock)(void);
 
 
 /**
- *  保存订单到数据库
+ *  保存订单到数据库 或者删除
  *
  *  @param button
  */
 -(void)saveOrder:(UIButton *)button{
-    
-    if ([self.mac_address isEqualToString:@""]||
-        self.mac_address == nil
-        ) {
-        [self alertWithMessage:@"请先连接设备获取信息" withCompletionHandler:^{
+    if (button.tag == 0) {
+        //保存订单操作
+#warning mac address is fake
+        self.mac_address =@"11:11:11:11:11:11";
+        
+        if ([self.mac_address isEqualToString:@""]||
+            self.mac_address == nil
+            ) {
+            [self alertWithMessage:@"请先连接设备获取信息" withCompletionHandler:^{
+                
+            }];
+            return;
+        }
+        
+        
+        
+        //    @property (nonatomic, retain) NSString * orderID;
+        //    @property (nonatomic, retain) NSString * phone;
+        //    @property (nonatomic, retain) NSNumber * paymodel;
+        //    @property (nonatomic, retain) NSNumber * source;
+        //    @property (nonatomic, retain) NSString * address;
+        //    @property (nonatomic, retain) NSString * brand;
+        //    @property (nonatomic, retain) NSString * engineer;
+        //    @property (nonatomic, retain) NSString * mac;
+        //    @property (nonatomic, retain) NSString * size;
+        //    @property (nonatomic, retain) NSString * version;
+        //    @property (nonatomic, retain) NSString * hoster;
+        //    @property (nonatomic, retain) Bill *bill;
+        //    @property (nonatomic, retain) Applist *applist;
+        
+        
+        NSError *error;
+        NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        [request setEntity:[NSEntityDescription entityForName:@"Order" inManagedObjectContext:context]];
+        
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        if (error) {
+            return;
+        }else{
+            __block BOOL contain = NO;
             
-        }];
+            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Order *order = obj;
+                if ([order.orderID isEqualToString:self.orderInfo[@"id"]]) {
+                    contain = YES;
+                    [self alertWithMessage:@"该订单已保存" withCompletionHandler:^{
+                        
+                    }];
+                }
+            }];
+            
+            //保存至数据库
+            if (!contain) {
+                [self save];
+            }
+            
+        }
+        
+        
+        
+        
+
+        
+        
+    }else{
+//        删除订单
+        __block NSError *error;
+        NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        [request setEntity:[NSEntityDescription entityForName:@"Order" inManagedObjectContext:context]];
+        
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        if (error) {
+            return;
+        }else{
+            
+            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Order *order = obj;
+                if ([order.orderID isEqualToString:self.orderInfo[@"id"]]) {
+                    [context deleteObject:order];
+                    [context save:&error];
+                    
+                    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"已删除此订单";
+                    [hud showInView:self.tableView];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [hud dismiss];
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        
+                        
+                        
+                    });
+
+                    
+                    
+                }
+            }];
+            
+          
+            
+        }
+
+    
     }
     
     
     
-    //    @property (nonatomic, retain) NSString * orderID;
-//    @property (nonatomic, retain) NSString * phone;
-//    @property (nonatomic, retain) NSNumber * paymodel;
-//    @property (nonatomic, retain) NSNumber * source;
-//    @property (nonatomic, retain) NSString * address;
-//    @property (nonatomic, retain) NSString * brand;
-//    @property (nonatomic, retain) NSString * engineer;
-//    @property (nonatomic, retain) NSString * mac;
-//    @property (nonatomic, retain) NSString * size;
-//    @property (nonatomic, retain) NSString * version;
-//    @property (nonatomic, retain) NSString * hoster;
-//    @property (nonatomic, retain) Bill *bill;
-//    @property (nonatomic, retain) Applist *applist;
-    
-    NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
-    
-    Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
-    
-    order.orderID  =self.orderInfo[@"id"];
-    order.phone = self.orderInfo[@"phone"];
-    order.paymodel = @(self.payType);
-    order.source = self.orderInfo[@"source"];
-    order.address = self.orderInfo[@"address"];
-    order.brand = self.orderInfo[@"brand"];
-    order.engineer = self.orderInfo[@"engineer"];
-    order.mac = self.mac_address;
-    order.size = self.orderInfo[@"size"];
-    order.version = self.orderInfo[@"version"];
-    order.hoster  =self.orderInfo[@"hoster"];
-    
-    
-    
-//    @property (nonatomic, retain) NSString * hostphone;
-//    @property (nonatomic, retain) NSNumber * zjservice;
-//    @property (nonatomic, retain) NSNumber * yiji;
-//    @property (nonatomic, retain) NSNumber * hdmi;
-//    @property (nonatomic, retain) NSNumber * zhijia;
-//    @property (nonatomic, retain) NSNumber * sczkfei;
-    
-    
-    order.bill.hostphone =  self.hostPhone;
-    order.bill.zjservice = @(self.installServiceCost);
-    order.bill.yiji = @(self.machineMoveCost);
-    order.bill.hdmi = @(self.HDMILineCost);
-    order.bill.zhijia = @(self.trestleCost);
-    order.bill.sczkfei = @(self.punchingCost);
-    
-    order.applist.appname = @[@"xxxx",@"dsdsd"];
-    
-    NSError *error = nil;
-    
-    if ([context save:&error]) {
-        //TODO 提示保存成功
-        NSLog(@"保存成功");
-    }
     
     
 }
@@ -523,7 +579,67 @@ typedef void(^alertBlock)(void);
 }
 
 
-
+-(void)save{
+    
+    NSError *error;
+    NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
+    
+    Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
+    
+    order.orderID  =self.orderInfo[@"id"];
+    order.phone = self.orderInfo[@"phone"];
+    order.paymodel = @(self.payType);
+    order.source = self.orderInfo[@"source"];
+    order.address = self.orderInfo[@"address"];
+    order.brand = self.orderInfo[@"brand"];
+    order.engineer = self.orderInfo[@"engineer"];
+    order.mac = self.mac_address;
+    order.size = self.orderInfo[@"size"];
+    order.version = self.orderInfo[@"version"];
+    order.hoster  =self.orderInfo[@"hoster"];
+    order.type =  self.orderInfo[@"type"];
+    order.createdate = self.orderInfo[@"createdate"];
+    
+    
+    //    @property (nonatomic, retain) NSString * hostphone;
+    //    @property (nonatomic, retain) NSNumber * zjservice;
+    //    @property (nonatomic, retain) NSNumber * yiji;
+    //    @property (nonatomic, retain) NSNumber * hdmi;
+    //    @property (nonatomic, retain) NSNumber * zhijia;
+    //    @property (nonatomic, retain) NSNumber * sczkfei;
+    
+    
+    order.bill.hostphone =  self.hostPhone;
+    order.bill.zjservice = @(self.installServiceCost);
+    order.bill.yiji = @(self.machineMoveCost);
+    order.bill.hdmi = @(self.HDMILineCost);
+    order.bill.zhijia = @(self.trestleCost);
+    order.bill.sczkfei = @(self.punchingCost);
+    
+    order.applist.appname = @[@"优酷",@"土豆"];
+    
+    
+    if ([context save:&error]) {
+        //TODO 提示保存成功
+        NSLog(@"保存成功");
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.indicatorView = nil;
+        hud.textLabel.text = @"此订单保存成功,请在网络状态良好时提交至服务器";
+        [hud showInView:self.tableView];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [hud dismiss];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            
+            
+        });
+        
+    }
+}
 
 
 @end
