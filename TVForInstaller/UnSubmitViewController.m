@@ -16,6 +16,9 @@
 #import "AccountManager.h"
 #import <MJRefresh.h>
 
+#import "OrderDataManager.h"
+#import "Order.h"
+
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -36,7 +39,7 @@
         
         [self.tableView addLegendHeaderWithRefreshingBlock:^{
             [self fetchOrder];
-            
+            [self fetchLocalOrder];
         }];
     }
     
@@ -54,6 +57,10 @@
     }
 }
 -(void)fetchOrder{
+    
+    
+    
+    
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"] integerValue] ==0) {
@@ -82,6 +89,35 @@
 
 }
 
+-(void)fetchLocalOrder{
+
+    NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    request.entity = [NSEntityDescription entityForName:@"Order" inManagedObjectContext:context];
+    
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderID" ascending:NO];
+    
+    NSError *error =  nil;
+    
+    request.sortDescriptors = @[sorter];
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"error: %@",[error description]);
+    }else{
+        [results enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Order *order = obj;
+            NSLog(@"order: %@",order);
+        }];
+    }
+    
+    
+
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

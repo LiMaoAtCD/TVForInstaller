@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Applist" representedClassName="Applist" syncable="YES">
+        <attribute name="appname" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="applist" inverseEntity="Order" syncable="YES"/>
+    </entity>
+    <entity name="Bill" representedClassName="Bill" syncable="YES">
+        <attribute name="hdmi" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hostphone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sczkfei" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="yiji" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="zhijia" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="zjservice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="bill" inverseEntity="Order" syncable="YES"/>
+    </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="engineer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hoster" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mac" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymodel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="applist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Applist" inverseName="order" inverseEntity="Applist" syncable="YES"/>
+        <relationship name="bill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bill" inverseName="order" inverseEntity="Bill" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Order" positionX="-63" positionY="-9" width="128" height="238"/>
+        <element name="Applist" positionX="198" positionY="251" width="128" height="73"/>
+        <element name="Bill" positionX="144" positionY="-27" width="128" height="148"/>
+    </elements>
+</model>
