@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *orderList;
-
+@property (nonatomic,assign) BOOL hasRefresh;
 @end
 
 @implementation UnSubmitViewController
@@ -34,7 +34,7 @@
         
         [self.tableView addLegendHeaderWithRefreshingBlock:^{
             [self fetchOrder];
-
+            
         }];
     }
     
@@ -43,8 +43,13 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
+    
     [super viewDidAppear:animated];
-    [self.tableView.header beginRefreshing];
+    if (!self.hasRefresh) {
+        self.hasRefresh = YES;
+        [self.tableView.header beginRefreshing];
+
+    }
 }
 -(void)fetchOrder{
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -85,56 +90,112 @@
 
 
 #pragma mark -tableView delegate & dataSource
-
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.orderList.count;
+    
+    if (section == 0) {
+        return self.orderList.count;
+
+    } else{
+        return 2;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UnSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UnSubmitCell" forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        UnSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UnSubmitCell" forIndexPath:indexPath];
+        
+        [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cellphoneButton.tag = indexPath.row;
+        
+        //    //TODO:坐式
+        //    if (<#condition#>) {
+        //        <#statements#>
+        //    }
+        cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
+        cell.TVTypeLabel.text = @"坐式";
+        cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+        
+        //    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
+        //    cell.TVTypeLabel.text = @"挂式";
+        //    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+        
+        
+        [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
+        [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
+        cell.noUseButton.tag = indexPath.row;
+        [cell.retreatButton addTarget:self action:@selector(clickRetreatOrder:) forControlEvents:UIControlEventTouchUpInside];
+        cell.retreatButton.tag = indexPath.row;
+        
+        
+        cell.nameLabel.text = self.orderList[indexPath.row][@"hoster"];
+        cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
+        cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
+        cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
+        
+        
+        NSDate *date = [NSDate date];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        
+        NSString *dateString = [formatter stringFromDate:date];
+        cell.dateLabel.text= dateString;
+        
+        
+        
+        return cell;
+    } else{
+        
+        UnSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UnSubmitCell" forIndexPath:indexPath];
+        
+//        [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        cell.cellphoneButton.tag = indexPath.row;
+//        
+//        //    //TODO:坐式
+//        //    if (<#condition#>) {
+//        //        <#statements#>
+//        //    }
+//        cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
+//        cell.TVTypeLabel.text = @"坐式";
+//        cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+//        
+//        //    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
+//        //    cell.TVTypeLabel.text = @"挂式";
+//        //    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+//        
+//        
+//        [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
+//        [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
+//        cell.noUseButton.tag = indexPath.row;
+//        [cell.retreatButton addTarget:self action:@selector(clickRetreatOrder:) forControlEvents:UIControlEventTouchUpInside];
+//        cell.retreatButton.tag = indexPath.row;
+//        
+//        
+//        cell.nameLabel.text = self.orderList[indexPath.row][@"hoster"];
+//        cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
+//        cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
+//        cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
+//        
+//        
+//        NSDate *date = [NSDate date];
+//        
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"YYYY-MM-dd"];
+//        
+//        NSString *dateString = [formatter stringFromDate:date];
+//        cell.dateLabel.text= dateString;
+        
+        
+        
+        return cell;
+    }
     
-    [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
-    
-    cell.cellphoneButton.tag = indexPath.row;
-    
-//    //TODO:坐式
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
-    cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
-    cell.TVTypeLabel.text = @"坐式";
-    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
-    
-//    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
-//    cell.TVTypeLabel.text = @"挂式";
-//    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
-    
-    
-    [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
-    [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
-    cell.noUseButton.tag = indexPath.row;
-    [cell.retreatButton addTarget:self action:@selector(clickRetreatOrder:) forControlEvents:UIControlEventTouchUpInside];
-    cell.retreatButton.tag = indexPath.row;
-    
-    
-    cell.nameLabel.text = self.orderList[indexPath.row][@"hoster"];
-    cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
-    cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
-    cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
-    
-    
-    NSDate *date = [NSDate date];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd"];
-    
-    NSString *dateString = [formatter stringFromDate:date];
-    cell.dateLabel.text= dateString;
-    
-
-    
-    return cell;
 }
 
 
@@ -158,13 +219,36 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10;
+    return 20;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section ==0) {
+        return @"新的订单";
+    } else{
+        return @"已保存订单";
+    }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UILabel *label=  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 20)];
+    
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    label.font = [UIFont boldSystemFontOfSize:12.0];
+    
+    [view addSubview:label];
+    
+    return  view;
+    
+}
+
+#pragma mark - actions
 
 
 -(void)clickToCall:(UIButton*)btn{
@@ -172,10 +256,10 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         //TODO: 拨打电话
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
+        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.orderList[btn.tag][@"phone"]]]];
-
-
+        
+        
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -188,15 +272,6 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)clickNoUseOrder:(UIButton *)button{
     NSLog(@"nouse");
