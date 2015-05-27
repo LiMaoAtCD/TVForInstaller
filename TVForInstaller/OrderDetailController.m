@@ -349,7 +349,7 @@ typedef void(^alertBlock)(void);
         [cell.PaySegment addTarget:self action:@selector(didSelectedPayType:) forControlEvents:UIControlEventValueChanged];
         cell.PaySegment.selectedSegmentIndex = [self.orderInfo[@"paymodel"] integerValue];
        
-        cell.cellphoneTF.text = self.orderInfo[@"phone"];
+        cell.cellphoneTF.text = self.orderInfo[@"hostphone"];
         
         
         // 装机服务费 & 石材钻孔费

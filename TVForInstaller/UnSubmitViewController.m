@@ -19,6 +19,8 @@
 #import "OrderDataManager.h"
 #import "Order.h"
 
+#import <JGProgressHUD.h>
+
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -27,6 +29,7 @@
 @property (nonatomic,strong) NSMutableArray *orderList;
 @property (nonatomic,strong) NSMutableArray *localOrders;
 @property (nonatomic,assign) BOOL hasRefresh;
+
 @end
 
 @implementation UnSubmitViewController
@@ -363,10 +366,115 @@
 
 -(void)clickNoUseOrder:(UIButton *)button{
     NSLog(@"nouse");
+    
+
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"此订单无效？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"无效" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+       NSString *orderID =  self.orderList[button.tag][@"id"];
+    
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        
+        hud.textLabel.text = @"撤销订单中";
+        [hud showInView:self.tableView];
+        
+        [NetworkingManager disableOrderByID:orderID withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSLog(@"response:%@",responseObject);
+            if ([responseObject[@"success"] integerValue] == 0) {
+               
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"撤销失败";
+                    [hud dismissAfterDelay:1.0];
+                });
+            } else{
+               
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"撤销成功";
+                    [hud dismissAfterDelay:1.0];
+                    
+                    [self.orderList removeObjectAtIndex:button.tag];
+                    [self.tableView reloadData];
+                });
+
+            }
+            
+    
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [hud dismiss];
+        }];
+        
+        
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"有效" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    }];
+
+    
+    [controller addAction:action];
+    [controller addAction:cancel];
+
+    
+    [self presentViewController:controller animated:YES completion:nil];
+
 }
 
 -(void)clickRetreatOrder:(UIButton *)button{
     NSLog(@"retreat");
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"确定退掉此订单？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        NSString *orderID =  self.orderList[button.tag][@"id"];
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        
+        hud.textLabel.text = @"退单中";
+        [hud showInView:self.tableView];
+        
+        [NetworkingManager revokeOrderID:orderID ByTokenID:self.orderList[button.tag][@"engineer"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"success"] integerValue] == 0) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"退单失败";
+                    
+                    [hud dismissAfterDelay:1.0];
+                });
+            } else{
+                
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"退单成功";
+                    [hud dismissAfterDelay:1];
+                    
+                    [self.orderList removeObjectAtIndex:button.tag];
+                    [self.tableView reloadData];
+                });
+                
+            }
+            
+
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [hud dismiss];
+        }];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    }];
+    
+    
+    [controller addAction:action];
+    [controller addAction:cancel];
+    
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 -(void)dealloc{
