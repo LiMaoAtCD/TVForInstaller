@@ -11,6 +11,7 @@
 		8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */; };
 		8716C0F51B14A00200389EC7 /* CompleteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */; };
 		8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */; };
+		8716C0FC1B155D2000389EC7 /* SavedOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */; };
 		871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */; };
 		871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D61B0EC54300D6CF36 /* GradeViewController.m */; };
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
@@ -86,6 +87,8 @@
 		8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTableViewController.m; sourceTree = "<group>"; };
 		8716C0F71B15566B00389EC7 /* PersonalOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalOrderTableViewController.h; sourceTree = "<group>"; };
 		8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalOrderTableViewController.m; sourceTree = "<group>"; };
+		8716C0FA1B155D2000389EC7 /* SavedOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedOrderCell.h; sourceTree = "<group>"; };
+		8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedOrderCell.m; sourceTree = "<group>"; };
 		871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccoutViewController.h; sourceTree = "<group>"; };
 		871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccoutViewController.m; sourceTree = "<group>"; };
 		871973D51B0EC54300D6CF36 /* GradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeViewController.h; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 			children = (
 				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
 				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
+				8716C0FA1B155D2000389EC7 /* SavedOrderCell.h */,
+				8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */,
 				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
 				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
 				87C022181B12FCBB005452C0 /* Detail */,
@@ -745,6 +750,7 @@
 				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,
+				8716C0FC1B155D2000389EC7 /* SavedOrderCell.m in Sources */,
 				878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */,
 				8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,

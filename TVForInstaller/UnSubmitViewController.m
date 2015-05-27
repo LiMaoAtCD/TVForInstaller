@@ -8,6 +8,7 @@
 
 #import "UnSubmitViewController.h"
 #import "UnSubmitCell.h"
+#import "SavedOrderCell.h"
 #import "OrderDetailController.h"
 
 #import "NetworkingManager.h"
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *orderList;
+@property (nonatomic,strong) NSArray *localOrders;
 @property (nonatomic,assign) BOOL hasRefresh;
 @end
 
@@ -90,6 +92,7 @@
 
 
 #pragma mark -tableView delegate & dataSource
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
@@ -151,45 +154,8 @@
         return cell;
     } else{
         
-        UnSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UnSubmitCell" forIndexPath:indexPath];
+        SavedOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SavedOrderCell" forIndexPath:indexPath];
         
-//        [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        cell.cellphoneButton.tag = indexPath.row;
-//        
-//        //    //TODO:坐式
-//        //    if (<#condition#>) {
-//        //        <#statements#>
-//        //    }
-//        cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
-//        cell.TVTypeLabel.text = @"坐式";
-//        cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
-//        
-//        //    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
-//        //    cell.TVTypeLabel.text = @"挂式";
-//        //    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
-//        
-//        
-//        [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
-//        [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
-//        cell.noUseButton.tag = indexPath.row;
-//        [cell.retreatButton addTarget:self action:@selector(clickRetreatOrder:) forControlEvents:UIControlEventTouchUpInside];
-//        cell.retreatButton.tag = indexPath.row;
-//        
-//        
-//        cell.nameLabel.text = self.orderList[indexPath.row][@"hoster"];
-//        cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
-//        cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
-//        cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
-//        
-//        
-//        NSDate *date = [NSDate date];
-//        
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        [formatter setDateFormat:@"YYYY-MM-dd"];
-//        
-//        NSString *dateString = [formatter stringFromDate:date];
-//        cell.dateLabel.text= dateString;
         
         
         
@@ -203,19 +169,33 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    
     UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
     OrderDetailController *detail =[sb instantiateViewControllerWithIdentifier:@"OrderDetailController"];
     
     detail.hidesBottomBarWhenPushed = YES;
     
-    detail.orderInfo = self.orderList[indexPath.row];
+   
+
+    if (indexPath.section ==0) {
+        detail.orderInfo = self.orderList[indexPath.row];
+    }else{
+        detail.orderInfo = self.localOrders[indexPath.row];
+    }
+    
     
     [self.navigationController showViewController:detail sender:self];
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 182.0;
+    
+    if (indexPath.section ==0) {
+        return 182.0;
+    } else{
+        return 115.0;
+
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -227,7 +207,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section ==0) {
+    if (section == 0) {
         return @"新的订单";
     } else{
         return @"已保存订单";
