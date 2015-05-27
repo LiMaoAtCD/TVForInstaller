@@ -9,7 +9,7 @@
 #import "OrderViewController.h"
 #import "UnSubmitViewController.h"
 #import "CompleteTableViewController.h"
-
+#import "PersonalOrderTableViewController.h"
 
 #import "ComminUtility.h"
 
@@ -40,12 +40,35 @@ typedef enum : NSUInteger {
     [ComminUtility configureTitle:@"订单" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.navigationBar.translucent  = NO;
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
     [self selectIndex:OrderUnsubmit];
+    
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [btn addTarget:self action:@selector(clickToOpenPersonalOrder:) forControlEvents:UIControlEventTouchUpInside];
 
+    btn.frame = CGRectMake(0, 0, 40, 30);
+    [btn setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    
 }
 
+
+-(void)clickToOpenPersonalOrder:(UIButton*)button{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    
+    
+    PersonalOrderTableViewController *pOrder = [sb instantiateViewControllerWithIdentifier:@"PersonalOrderTableViewController"];
+    
+    pOrder.hidesBottomBarWhenPushed  = YES;
+    
+    [self.navigationController showViewController:pOrder  sender:self];
+    
+    
+    
+}
 
 - (IBAction)clickUnsubmit:(id)sender {
     [self selectIndex:OrderUnsubmit];

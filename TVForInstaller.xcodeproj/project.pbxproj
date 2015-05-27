@@ -10,6 +10,13 @@
 		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
 		8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */; };
 		8716C0F51B14A00200389EC7 /* CompleteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */; };
+		8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */; };
+		8716C0FC1B155D2000389EC7 /* SavedOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */; };
+		8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0FD1B15614F00389EC7 /* Order.xcdatamodeld */; };
+		8716C1021B1567D600389EC7 /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C1011B1567D600389EC7 /* Bill.m */; };
+		8716C1051B1567D700389EC7 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C1041B1567D700389EC7 /* Order.m */; };
+		8716C1081B1567D700389EC7 /* Applist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C1071B1567D700389EC7 /* Applist.m */; };
+		8716C1401B1568A800389EC7 /* OrderDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C13F1B1568A800389EC7 /* OrderDataManager.m */; };
 		871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */; };
 		871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D61B0EC54300D6CF36 /* GradeViewController.m */; };
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
@@ -83,6 +90,19 @@
 		8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexRGB.m"; sourceTree = "<group>"; };
 		8716C0F31B14A00200389EC7 /* CompleteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteTableViewController.h; sourceTree = "<group>"; };
 		8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTableViewController.m; sourceTree = "<group>"; };
+		8716C0F71B15566B00389EC7 /* PersonalOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalOrderTableViewController.h; sourceTree = "<group>"; };
+		8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalOrderTableViewController.m; sourceTree = "<group>"; };
+		8716C0FA1B155D2000389EC7 /* SavedOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedOrderCell.h; sourceTree = "<group>"; };
+		8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedOrderCell.m; sourceTree = "<group>"; };
+		8716C0FE1B15614F00389EC7 /* Order.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Order.xcdatamodel; sourceTree = "<group>"; };
+		8716C1001B1567D600389EC7 /* Bill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bill.h; path = ../Bill.h; sourceTree = "<group>"; };
+		8716C1011B1567D600389EC7 /* Bill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bill.m; path = ../Bill.m; sourceTree = "<group>"; };
+		8716C1031B1567D700389EC7 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Order.h; path = ../Order.h; sourceTree = "<group>"; };
+		8716C1041B1567D700389EC7 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Order.m; path = ../Order.m; sourceTree = "<group>"; };
+		8716C1061B1567D700389EC7 /* Applist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Applist.h; path = ../Applist.h; sourceTree = "<group>"; };
+		8716C1071B1567D700389EC7 /* Applist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Applist.m; path = ../Applist.m; sourceTree = "<group>"; };
+		8716C13E1B1568A800389EC7 /* OrderDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDataManager.h; sourceTree = "<group>"; };
+		8716C13F1B1568A800389EC7 /* OrderDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDataManager.m; sourceTree = "<group>"; };
 		871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccoutViewController.h; sourceTree = "<group>"; };
 		871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccoutViewController.m; sourceTree = "<group>"; };
 		871973D51B0EC54300D6CF36 /* GradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeViewController.h; sourceTree = "<group>"; };
@@ -234,6 +254,31 @@
 			name = HexToRGB;
 			sourceTree = "<group>";
 		};
+		8716C0F61B15564500389EC7 /* PersonalOrder */ = {
+			isa = PBXGroup;
+			children = (
+				8716C0F71B15566B00389EC7 /* PersonalOrderTableViewController.h */,
+				8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */,
+			);
+			name = PersonalOrder;
+			sourceTree = "<group>";
+		};
+		8716C1441B15721A00389EC7 /* OrderModel */ = {
+			isa = PBXGroup;
+			children = (
+				8716C0FD1B15614F00389EC7 /* Order.xcdatamodeld */,
+				8716C1061B1567D700389EC7 /* Applist.h */,
+				8716C1071B1567D700389EC7 /* Applist.m */,
+				8716C1031B1567D700389EC7 /* Order.h */,
+				8716C1041B1567D700389EC7 /* Order.m */,
+				8716C1001B1567D600389EC7 /* Bill.h */,
+				8716C1011B1567D600389EC7 /* Bill.m */,
+				8716C13E1B1568A800389EC7 /* OrderDataManager.h */,
+				8716C13F1B1568A800389EC7 /* OrderDataManager.m */,
+			);
+			name = OrderModel;
+			sourceTree = "<group>";
+		};
 		871973D01B0EC50D00D6CF36 /* MyAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +388,8 @@
 			children = (
 				874753491B12C086003BD8A3 /* UnSubmitViewController.h */,
 				8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */,
+				8716C0FA1B155D2000389EC7 /* SavedOrderCell.h */,
+				8716C0FB1B155D2000389EC7 /* SavedOrderCell.m */,
 				874753511B12D2C2003BD8A3 /* UnSubmitCell.h */,
 				874753521B12D2C2003BD8A3 /* UnSubmitCell.m */,
 				87C022181B12FCBB005452C0 /* Detail */,
@@ -433,8 +480,8 @@
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
 				87EA3AA71B0A1094004AB8F7 /* Login */,
-				87EA3AA61B0A105A004AB8F7 /* Applications */,
 				87EA3AA01B0A1016004AB8F7 /* Orders */,
+				87EA3AA61B0A105A004AB8F7 /* Applications */,
 				87EA3A9C1B0A0C2C004AB8F7 /* Settings */,
 				87DBE20D1AFB020800AFB7BF /* Util */,
 				87DBE20C1AFB01F900AFB7BF /* Vendor */,
@@ -525,9 +572,11 @@
 		87EA3AA01B0A1016004AB8F7 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				8716C1441B15721A00389EC7 /* OrderModel */,
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
 				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
+				8716C0F61B15564500389EC7 /* PersonalOrder */,
 				87C022161B12FC2A005452C0 /* unsubmit */,
 				87C022171B12FC3C005452C0 /* complete */,
 			);
@@ -708,6 +757,7 @@
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
+				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */,
@@ -718,6 +768,7 @@
 				8716C0F51B14A00200389EC7 /* CompleteTableViewController.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
+				8716C1081B1567D700389EC7 /* Applist.m in Sources */,
 				87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */,
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
 				8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */,
@@ -732,14 +783,19 @@
 				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,
+				8716C0FC1B155D2000389EC7 /* SavedOrderCell.m in Sources */,
 				878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */,
 				8785E96A1B0C750E003F4415 /* APPCollectionViewCell.m in Sources */,
 				87DBE2161AFB0A5E00AFB7BF /* ViewController.m in Sources */,
 				871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */,
+				8716C1051B1567D700389EC7 /* Order.m in Sources */,
 				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
+				8716C1021B1567D600389EC7 /* Bill.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */,
+				8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */,
+				8716C1401B1568A800389EC7 /* OrderDataManager.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
@@ -963,6 +1019,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8716C0FD1B15614F00389EC7 /* Order.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8716C0FE1B15614F00389EC7 /* Order.xcdatamodel */,
+			);
+			currentVersion = 8716C0FE1B15614F00389EC7 /* Order.xcdatamodel */;
+			path = Order.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 87DBE1DB1AFAFF0000AFB7BF /* Project object */;
 }
