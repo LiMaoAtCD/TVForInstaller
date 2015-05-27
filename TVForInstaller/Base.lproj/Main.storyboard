@@ -1517,12 +1517,12 @@
                                                             <mask key="constraints">
                                                                 <exclude reference="135-1C-dt4"/>
                                                                 <exclude reference="NYp-ev-sgO"/>
-                                                                <exclude reference="dcd-sL-PYq"/>
-                                                                <exclude reference="yvk-dw-vFh"/>
                                                                 <exclude reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <exclude reference="KiM-2W-7N6"/>
                                                                 <exclude reference="udE-Mw-GFz"/>
+                                                                <exclude reference="dcd-sL-PYq"/>
+                                                                <exclude reference="yvk-dw-vFh"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1533,12 +1533,12 @@
                                                             <mask key="constraints">
                                                                 <include reference="135-1C-dt4"/>
                                                                 <exclude reference="NYp-ev-sgO"/>
-                                                                <include reference="dcd-sL-PYq"/>
-                                                                <include reference="yvk-dw-vFh"/>
                                                                 <include reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <include reference="KiM-2W-7N6"/>
                                                                 <exclude reference="udE-Mw-GFz"/>
+                                                                <include reference="dcd-sL-PYq"/>
+                                                                <include reference="yvk-dw-vFh"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
