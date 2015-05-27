@@ -18,6 +18,12 @@
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate>
 
 
+@property (nonatomic,strong)NSArray *pickerItems;
+
+@property(nonatomic,strong) UIButton *zhijiaButton;
+@property(nonatomic,strong) UIButton *HDMIButton;
+@property(nonatomic,strong) UIButton *YijiButton;
+
 
 @end
 
@@ -26,17 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [ComminUtility configureTitle:@"详情" forViewController:self];
-    
-    
-    
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.pickerItems = @[@100,@200,@300];;
     
 }
 
@@ -46,6 +45,7 @@
 }
 
 -(void)pop{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -58,7 +58,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    
+    NSLog(@"%@",self.orderInfo);
 }
 
 #pragma mark - Table view data source
@@ -77,22 +77,44 @@
     
     if (indexPath.section == 0) {
         OrderDetailCell *cell =[tableView dequeueReusableCellWithIdentifier:@"OrderDetailCell" forIndexPath:indexPath];
+        cell.nameLabel.text = self.orderInfo[@"hoster"];
+        cell.tvSizeLabel.text = self.orderInfo[@"size"];
+        cell.tvBrandLabel.text = self.orderInfo[@"brand"];
+        cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
+        cell.cellphoneLabel.text = self.orderInfo[@"phone"];
+        cell.customerAddressLabel.text = self.orderInfo[@"address"];
+        
+        
+        NSDate *date = [NSDate date];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+        
+        NSString *dateString = [formatter stringFromDate:date];
+        cell.dateLabel.text= dateString;
         
         return cell;
+        
     } else if(indexPath.section ==1){
+        
+        
         TVInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TVInfoCell" forIndexPath:indexPath];
+        cell.tvspecificationLabel.text = self.orderInfo[@"version"];
+        
         return cell;
         
     } else{
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
         
         [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        self.zhijiaButton = cell.zhijiaButton;
         cell.tag = 0;
         [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         cell.tag = 1;
-
+        self.HDMIButton = cell.hdmiButton;
         [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         cell.tag = 2;
+        self.YijiButton = cell.moveTVButton;
 
         return cell;
         
@@ -104,23 +126,26 @@
 -(void)clickToShowDropDown:(UIButton*)button{
     
    //TODO::
-    
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
     NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
     self.modalTransitionStyle= UIModalPresentationCurrentContext;
     number.type = button.tag;
     number.delegate = self;
-    number.pickerItems =@[@100,@200,@300];
+    number.pickerItems = self.pickerItems;
     
     [self showDetailViewController:number sender:self];
     
 }
--(void)didPickerItems:(NSInteger)itemsIndex{
-    
-    NSLog(@"选择了第%ld个",itemsIndex);
+-(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type{
+    NSLog(@"选择了%@ 元",self.pickerItems[itemsIndex]);
+    if (type == CashNumberTypeZhiJia) {
+        [self.zhijiaButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    } else if (type == CashNumberTypeHDMI){
+        [self.HDMIButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    }else{
+        [self.YijiButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
+    }
 }
-
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -148,9 +173,9 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 2) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(10, 10, self.view.frame.size.width -20, 30);
+        button.frame = CGRectMake(10, 10, self.view.frame.size.width -20, 40);
         [button setBackgroundColor:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]];
-        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"提  交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickToPostOrder:) forControlEvents:UIControlEventTouchUpInside];
         UIView *view =[[UIView alloc] init];
         
@@ -164,7 +189,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     if (section == 2) {
-        return 50;
+        return 80;
         
     }
     return 0.1;

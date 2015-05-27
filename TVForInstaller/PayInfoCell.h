@@ -18,5 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *hdmiButton;
 @property (weak, nonatomic) IBOutlet UIButton *moveTVButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *PaySegment;
+
+
 
 @end

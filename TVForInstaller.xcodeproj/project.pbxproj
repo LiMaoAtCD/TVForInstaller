@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */; };
+		8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */; };
+		8716C0F51B14A00200389EC7 /* CompleteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */; };
 		871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */; };
 		871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871973D61B0EC54300D6CF36 /* GradeViewController.m */; };
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
@@ -23,7 +25,6 @@
 		8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDED1B0D8E0700E3685C /* InfoViewController.m */; };
 		8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */; };
 		8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */; };
-		8747534E1B12C093003BD8A3 /* CompletionOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */; };
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874753521B12D2C2003BD8A3 /* UnSubmitCell.m */; };
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
@@ -78,6 +79,10 @@
 /* Begin PBXFileReference section */
 		6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TVForInstaller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8119E28A07EA9C1ABB1CA06E /* Pods-TVForInstaller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVForInstaller.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVForInstaller/Pods-TVForInstaller.release.xcconfig"; sourceTree = "<group>"; };
+		8716C0F01B14561700389EC7 /* UIColor+HexRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexRGB.h"; sourceTree = "<group>"; };
+		8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexRGB.m"; sourceTree = "<group>"; };
+		8716C0F31B14A00200389EC7 /* CompleteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteTableViewController.h; sourceTree = "<group>"; };
+		8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTableViewController.m; sourceTree = "<group>"; };
 		871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccoutViewController.h; sourceTree = "<group>"; };
 		871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccoutViewController.m; sourceTree = "<group>"; };
 		871973D51B0EC54300D6CF36 /* GradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeViewController.h; sourceTree = "<group>"; };
@@ -106,8 +111,6 @@
 		8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		874753491B12C086003BD8A3 /* UnSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnSubmitViewController.h; sourceTree = "<group>"; };
 		8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnSubmitViewController.m; sourceTree = "<group>"; };
-		8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionOrderViewController.h; sourceTree = "<group>"; };
-		8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionOrderViewController.m; sourceTree = "<group>"; };
 		8747534F1B12C10C003BD8A3 /* Order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
 		874753511B12D2C2003BD8A3 /* UnSubmitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnSubmitCell.h; sourceTree = "<group>"; };
 		874753521B12D2C2003BD8A3 /* UnSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnSubmitCell.m; sourceTree = "<group>"; };
@@ -220,6 +223,15 @@
 				6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8716C0EF1B14560600389EC7 /* HexToRGB */ = {
+			isa = PBXGroup;
+			children = (
+				8716C0F01B14561700389EC7 /* UIColor+HexRGB.h */,
+				8716C0F11B14561700389EC7 /* UIColor+HexRGB.m */,
+			);
+			name = HexToRGB;
 			sourceTree = "<group>";
 		};
 		871973D01B0EC50D00D6CF36 /* MyAccount */ = {
@@ -341,8 +353,8 @@
 		87C022171B12FC3C005452C0 /* complete */ = {
 			isa = PBXGroup;
 			children = (
-				8747534C1B12C093003BD8A3 /* CompletionOrderViewController.h */,
-				8747534D1B12C093003BD8A3 /* CompletionOrderViewController.m */,
+				8716C0F31B14A00200389EC7 /* CompleteTableViewController.h */,
+				8716C0F41B14A00200389EC7 /* CompleteTableViewController.m */,
 				87F3B9F61B12F664004F55B2 /* CompleteCell.h */,
 				87F3B9F71B12F664004F55B2 /* CompleteCell.m */,
 				87C022251B130E35005452C0 /* Detail */,
@@ -464,6 +476,7 @@
 		87DBE20C1AFB01F900AFB7BF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8716C0EF1B14560600389EC7 /* HexToRGB */,
 				87C022261B133B9C005452C0 /* SAMenuDropDown */,
 				87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */,
 				87DBE2171AFB0B5900AFB7BF /* storehouse.plist */,
@@ -474,16 +487,16 @@
 		87DBE20D1AFB020800AFB7BF /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				8785E91C1B0C162A003F4415 /* NSString+Hashes.h */,
-				8785E91D1B0C162A003F4415 /* NSString+Hashes.m */,
-				8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */,
-				8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */,
 				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
 				87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */,
 				871A232F1B0ACA1C00B484CA /* AccountManager.h */,
 				871A23301B0ACA1C00B484CA /* AccountManager.m */,
 				8785E9031B0ADB90003F4415 /* ComminUtility.h */,
 				8785E9041B0ADB90003F4415 /* ComminUtility.m */,
+				8785E91C1B0C162A003F4415 /* NSString+Hashes.h */,
+				8785E91D1B0C162A003F4415 /* NSString+Hashes.m */,
+				8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */,
+				8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -702,10 +715,12 @@
 				871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */,
 				878CEC3B1B14228900FE0E21 /* NumberChooseViewController.m in Sources */,
 				87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */,
+				8716C0F51B14A00200389EC7 /* CompleteTableViewController.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
 				87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */,
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
+				8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
 				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
@@ -724,7 +739,6 @@
 				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
-				8747534E1B12C093003BD8A3 /* CompletionOrderViewController.m in Sources */,
 				877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,

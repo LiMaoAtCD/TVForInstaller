@@ -10,4 +10,6 @@
 
 @interface OrderDetailController : UITableViewController
 
+@property (nonatomic,strong) NSDictionary *orderInfo;
+
 @end

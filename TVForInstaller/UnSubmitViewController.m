@@ -10,6 +10,11 @@
 #import "UnSubmitCell.h"
 #import "OrderDetailController.h"
 
+#import "NetworkingManager.h"
+#import "UIColor+HexRGB.h"
+#import "AccountManager.h"
+#import <MJRefresh.h>
+
 @interface UnSubmitViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -24,8 +29,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.orderList = [@[@3] mutableCopy];
+    
+    if ([AccountManager isLogin]) {
+        
+        [self.tableView addLegendHeaderWithRefreshingBlock:^{
+            [self fetchOrder];
+
+        }];
+    }
+    
+    
 }
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tableView.header beginRefreshing];
+}
+-(void)fetchOrder{
+    [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject[@"success"] integerValue] ==0) {
+
+            
+        } else{
+            
+            NSArray *data = responseObject[@"obj"];
+            NSLog(@"received data: %@",data);
+            
+            if (data.count >0) {
+                
+                self.orderList = [data mutableCopy];
+                [self.tableView reloadData];
+            } else{
+            
+            }
+            
+            [self.tableView.header endRefreshing];
+        }
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.tableView.header endRefreshing];
+
+    }];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -34,16 +83,56 @@
 
 
 
+
+#pragma mark -tableView delegate & dataSource
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.orderList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UnSubmitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UnSubmitCell" forIndexPath:indexPath];
     
     [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.cellphoneButton.tag = indexPath.row;
+    
+//    //TODO:坐式
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+    cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
+    cell.TVTypeLabel.text = @"坐式";
+    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+    
+//    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
+//    cell.TVTypeLabel.text = @"挂式";
+//    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+    
+    
+    [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
+    [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
+    cell.noUseButton.tag = indexPath.row;
+    [cell.retreatButton addTarget:self action:@selector(clickRetreatOrder:) forControlEvents:UIControlEventTouchUpInside];
+    cell.retreatButton.tag = indexPath.row;
+    
+    
+    cell.nameLabel.text = self.orderList[indexPath.row][@"hoster"];
+    cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
+    cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
+    cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
+    
+    
+    NSDate *date = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSString *dateString = [formatter stringFromDate:date];
+    cell.dateLabel.text= dateString;
+    
+
     
     return cell;
 }
@@ -58,12 +147,14 @@
     
     detail.hidesBottomBarWhenPushed = YES;
     
+    detail.orderInfo = self.orderList[indexPath.row];
+    
     [self.navigationController showViewController:detail sender:self];
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 165.0;
+    return 182.0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -74,12 +165,16 @@
     return 0.01;
 }
 
+
+
 -(void)clickToCall:(UIButton*)btn{
-    UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"拨打电话" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.orderList[btn.tag][@"phone"] preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         //TODO: 拨打电话
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.orderList[btn.tag][@"phone"]]]];
+
 
     }];
     
@@ -102,5 +197,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)clickNoUseOrder:(UIButton *)button{
+    NSLog(@"nouse");
+}
+
+-(void)clickRetreatOrder:(UIButton *)button{
+    NSLog(@"retreat");
+}
 
 @end

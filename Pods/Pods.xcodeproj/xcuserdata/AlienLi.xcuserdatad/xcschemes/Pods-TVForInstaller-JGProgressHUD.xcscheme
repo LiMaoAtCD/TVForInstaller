@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C50AC0BC6CA6067B3CE1D9B9"
+               BlueprintIdentifier = "E1F8CC19D4F82EAF2796D0F3"
                BuildableName = "libPods-TVForInstaller-JGProgressHUD.a"
                BlueprintName = "Pods-TVForInstaller-JGProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C50AC0BC6CA6067B3CE1D9B9"
-            BuildableName = "libPods-TVForInstaller-JGProgressHUD.a"
-            BlueprintName = "Pods-TVForInstaller-JGProgressHUD"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

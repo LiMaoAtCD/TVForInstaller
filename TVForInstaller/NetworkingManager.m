@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-#define kServer @"http://10.0.0.116:8080/jeecg-framework/appengController.do?enterService"
+#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
 
 
 @implementation NetworkingManager
@@ -24,8 +24,17 @@
     
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     
-    hud.textLabel.text = @"网络出错啦";
+    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
     hud.indicatorView = nil;
+    
+    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
+        [hud dismiss];
+    };
+    
+    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
+        [hud dismiss];
+    };
+
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [hud showInView:delegate.window];
@@ -126,10 +135,65 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:@"http://10.0.0.116:8080/jeecg-framework/softController.do?getSoftService" parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:@"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService" parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 }
+
++(void)fetchOrderwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+     NSString * param = [@{@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+
+}
+
++(void)disableOrderByID:(NSString *)orderID withcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    NSString * param = [@{@"orderid":orderID} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer parameters:@{@"action":@"42",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+}
+
++(void)revokeOrderID:(NSString *)orderID ByTokenID:(NSString*)tokenID withcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    NSString * param = [@{@"orderid":orderID,@"id":tokenID} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer parameters:@{@"action":@"43",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+}
+
++(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSArray*)applist source:(NSString*)source withcompletionHandler:(NetWorkHandler)completionHandler failHandle:(NetWorkFailHandler)failHandler{
+
+    
+    NSString * param = [@{@"order":order,@"bill":bill,@"source":source,@"applist":applist} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer parameters:@{@"action":@"44",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+    
+}
+
+
 
 @end

@@ -8,7 +8,7 @@
 
 #import "OrderViewController.h"
 #import "UnSubmitViewController.h"
-#import "CompletionOrderViewController.h"
+#import "CompleteTableViewController.h"
 
 
 #import "ComminUtility.h"
@@ -23,7 +23,7 @@ typedef enum : NSUInteger {
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic,strong) UnSubmitViewController *unsubmitViewController;
-@property (nonatomic,strong) CompletionOrderViewController *completionOrderViewController;
+@property (nonatomic,strong) CompleteTableViewController *completeTableViewController;
 @property (weak, nonatomic) IBOutlet UIButton *unsumitButton;
 @property (weak, nonatomic) IBOutlet UIButton *completeButton;
 
@@ -39,7 +39,8 @@ typedef enum : NSUInteger {
 
     [ComminUtility configureTitle:@"订单" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationController.navigationBar.translucent  = NO;
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
     [self selectIndex:OrderUnsubmit];
 
@@ -73,44 +74,44 @@ typedef enum : NSUInteger {
         
         [self.unsubmitViewController didMoveToParentViewController:self];
         
-        if (self.completionOrderViewController) {
+        if (self.completeTableViewController) {
             
-            [self.completionOrderViewController removeFromParentViewController];
-            [self.completionOrderViewController.view removeFromSuperview];
+            [self.completeTableViewController removeFromParentViewController];
+            [self.completeTableViewController.view removeFromSuperview];
         }
         
         
         UIColor *color = [UIColor colorWithRed:19./255 green:82./255 blue:115./255 alpha:1.0];
 
-        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
+        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         
-        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo1"] forState:UIControlStateNormal];
+        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo"] forState:UIControlStateNormal];
         
         self.unsumitButton.userInteractionEnabled = NO;
         self.unsumitButton.showsTouchWhenHighlighted = NO;
         
         
-        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
         
-        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
+        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you1"] forState:UIControlStateNormal];
         
         self.completeButton.userInteractionEnabled = YES;
         
         
     } else{
         
-        if (!self.completionOrderViewController) {
+        if (!self.completeTableViewController) {
             
-            self.completionOrderViewController = [sb instantiateViewControllerWithIdentifier:@"CompletionOrderViewController"];
+            self.completeTableViewController = [sb instantiateViewControllerWithIdentifier:@"CompleteTableViewController"];
         }
         
-        [self addChildViewController:self.completionOrderViewController];
+        [self addChildViewController:self.completeTableViewController];
         
-        [self.completionOrderViewController willMoveToParentViewController:self];
+        [self.completeTableViewController willMoveToParentViewController:self];
         
-        [self.contentView addSubview:self.completionOrderViewController.view];
+        [self.contentView addSubview:self.completeTableViewController.view];
         
-        [self.completionOrderViewController didMoveToParentViewController:self];
+        [self.completeTableViewController didMoveToParentViewController:self];
         
         if (self.unsubmitViewController) {
             
@@ -119,16 +120,16 @@ typedef enum : NSUInteger {
         }
         
         UIColor *color = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
-        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+        [self.unsumitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"未提交" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
         
-        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo"] forState:UIControlStateNormal];
+        [self.unsumitButton setBackgroundImage:[UIImage imageNamed:@"zuo1"] forState:UIControlStateNormal];
         
         self.unsumitButton.userInteractionEnabled = YES;
         
         
-        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:color}] forState:UIControlStateNormal];
+        [self.completeButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"已完成" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
         
-        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you1"] forState:UIControlStateNormal];
+        [self.completeButton setBackgroundImage:[UIImage imageNamed:@"you"] forState:UIControlStateNormal];
         
         self.completeButton.userInteractionEnabled = NO;
 

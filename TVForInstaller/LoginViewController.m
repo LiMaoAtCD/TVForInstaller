@@ -86,6 +86,9 @@
     
     if ([self checkTextFieldCompletion]) {
         
+        [self.CellularTextField resignFirstResponder];
+        [self.passwordTextField resignFirstResponder];
+
         self.HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
         self.HUD.textLabel.text= @"登录中";
         [self.HUD showInView:self.view animated:YES];
