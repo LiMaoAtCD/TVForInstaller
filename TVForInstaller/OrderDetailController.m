@@ -42,45 +42,9 @@
 @property (nonatomic,assign) BOOL isPunchingChecked;
 
 
-
-
-
-
-@property (nonatomic,copy) NSString* mac_address;
-@property (nonatomic,copy) NSString* applist;
-
-
-
-
 @property (nonatomic,strong) UITextField *cellPhoneTF;
-@property (nonatomic,copy) NSString *hostPhone;
 
-/**
- *  装机服务费
- */
-@property (nonatomic,assign) NSInteger installServiceCost;
 
-/**
- *  钻孔费
- */
-@property (nonatomic,assign) NSInteger punchingCost;
-/**
- *  支架费
- */
-@property (nonatomic,assign) NSInteger trestleCost;
-/**
- *  HDMI 费用
- */
-@property (nonatomic,assign) NSInteger HDMILineCost;
-/**
- *  移机费
- */
-@property (nonatomic,assign) NSInteger machineMoveCost;
-
-/**
- *  支付方式：0 现金 1 微信
- */
-@property (nonatomic,assign) NSInteger payType;
 
 typedef void(^alertBlock)(void);
 
@@ -104,9 +68,26 @@ typedef void(^alertBlock)(void);
     self.pickerItems = @[@0,@100,@200,@300];
     
     
-    self.installServiceCost = 60;
-    self.punchingCost = 60;
     
+    
+
+
+    if (_isNewOrder) {
+        
+        self.orderInfo[@"mac"] = @"";
+        self.orderInfo[@"paymodel"] = @0;
+        self.orderInfo[@"appname"] = @"";
+        self.orderInfo[@"hostphone"] = self.orderInfo[@"phone"];
+        self.orderInfo[@"zjservice"] = @0;
+        self.orderInfo[@"sczkfei"] = @0;
+        self.orderInfo[@"zhijia"] = @0;
+        self.orderInfo[@"zhijia"] = @0;
+        self.orderInfo[@"hdmi"] = @0;
+        self.orderInfo[@"yiji"] = @0;
+
+    }else{
+        [self fetchLocalOrder];
+    }
     
     
     if (_isNewOrder) {
@@ -155,6 +136,71 @@ typedef void(^alertBlock)(void);
 
 }
 
+-(void)fetchLocalOrder{
+    
+    
+    
+    NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    request.entity = [NSEntityDescription entityForName:@"Order" inManagedObjectContext:context];
+    
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderID" ascending:NO];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"orderID == %@",self.orderInfo[@"id"]];
+    
+    NSError *error =  nil;
+    
+    request.sortDescriptors = @[sorter];
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"error: %@",[error description]);
+    }else{
+        [results enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Order *order = obj;
+            NSLog(@"%@",order.bill.zhijia);
+            self.orderInfo = [@{
+                                @"address":order.address,
+                                @"brand":order.brand,
+                                @"createdate":order.createdate,
+                                @"engineer":order.engineer,
+                                @"hoster":order.hoster,
+                                @"mac":order.mac,
+                                @"id":order.orderID,
+                                @"paymodel":order.paymodel,
+                                @"phone":order.phone,
+                                @"size":order.size,
+                                @"source":order.source,
+                                @"type":order.type,
+                                @"version":order.version,
+                                
+
+                                
+                                
+                                @"appname":(NSArray*)order.applist.appname,
+                                
+                                
+                                
+                                @"hostphone":order.bill.hostphone,
+                                @"zjservice":order.bill.zjservice,
+                                @"sczkfei":order.bill.sczkfei,
+                                @"zhijia":order.bill.zhijia,
+                                @"hdmi":order.bill.hdmi,
+                                @"yiji":order.bill.yiji
+                                
+                                  } mutableCopy];
+        }];
+    }
+    
+    
+    
+    
+    
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -197,7 +243,7 @@ typedef void(^alertBlock)(void);
         
         return cell;
         
-    } else if(indexPath.section ==1){
+    } else if(indexPath.section == 1){
         
         
         TVInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TVInfoCell" forIndexPath:indexPath];
@@ -221,47 +267,131 @@ typedef void(^alertBlock)(void);
         //用户手机号
         self.cellPhoneTF = cell.cellphoneTF;
         self.cellPhoneTF.delegate = self;
-        self.hostPhone = self.cellPhoneTF.text;
         
-        
-        [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
-        self.zhijiaButton = cell.zhijiaButton;
-        self.zhijiaButton.tag = 0;
-        [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
-    
-        
-        [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
-        self.HDMIButton = cell.hdmiButton;
-        [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
+        if (_isNewOrder) {
+            //支架
+            [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.zhijiaButton = cell.zhijiaButton;
+            self.zhijiaButton.tag = 0;
+            [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
+            
+            //HDMI
+            [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.HDMIButton = cell.hdmiButton;
+            [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
+            
+            self.HDMIButton.tag = 1;
+            
+            //移机
+            [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.YijiButton = cell.moveTVButton;
+            [self.YijiButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
+            
+            self.YijiButton.tag = 2;
 
-        self.HDMIButton.tag = 1;
+        } else{
+            
+           __block NSUInteger zhijiaIndex = 0;
+            
+            [self.pickerItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger cash = [obj integerValue];
+                
+                if (cash == [self.orderInfo[@"zhijia"] integerValue]) {
+                    zhijiaIndex = idx;
+                }
+                
+            }];
+            //支架
+            [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.zhijiaButton = cell.zhijiaButton;
+            self.zhijiaButton.tag = 0;
+            [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[zhijiaIndex]] forState:UIControlStateNormal];
+            
+            __block NSUInteger hdmiIndex = 0;
+            
+            [self.pickerItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger cash = [obj integerValue];
+                
+                if (cash == [self.orderInfo[@"hdmi"] integerValue]) {
+                    hdmiIndex = idx;
+                }
+                
+            }];
+            
+            //HDMI
+            [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.HDMIButton = cell.hdmiButton;
+            [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[hdmiIndex]] forState:UIControlStateNormal];
+            
+            self.HDMIButton.tag = 1;
+            
+            __block NSUInteger yijiIndex = 0;
+            
+            [self.pickerItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSInteger cash = [obj integerValue];
+                
+                if (cash == [self.orderInfo[@"yiji"] integerValue]) {
+                    yijiIndex = idx;
+                }
+                
+            }];
+            
+            //移机
+            [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+            self.YijiButton = cell.moveTVButton;
+            [self.YijiButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[yijiIndex]] forState:UIControlStateNormal];
+            
+            self.YijiButton.tag = 2;
 
-        [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
-        self.YijiButton = cell.moveTVButton;
-        [self.YijiButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
-
-        self.YijiButton.tag = 2;
-
+        }
+       
+        // 微信或现金
         [cell.PaySegment addTarget:self action:@selector(didSelectedPayType:) forControlEvents:UIControlEventValueChanged];
-        cell.PaySegment.selectedSegmentIndex = 0;
-        
-        self.payType = 0;
-        
+        cell.PaySegment.selectedSegmentIndex = [self.orderInfo[@"paymodel"] integerValue];
+       
         cell.cellphoneTF.text = self.orderInfo[@"phone"];
         
+        
+        // 装机服务费 & 石材钻孔费
         self.installServiceButton = cell.installServiceCheckButton;
-        [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-        [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
-        self.installServiceButton.tag = 0;
-        self.isInstallServiceChecked = YES;
-        
         self.punchingButton = cell.punchingCheckButton;
-        [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-        [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
-        self.punchingButton.tag = 1;
-        self.isPunchingChecked = YES;
-        
-        
+
+        if (_isNewOrder) {
+            [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            self.installServiceButton.tag = 0;
+            self.isInstallServiceChecked = YES;
+            
+            [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            self.punchingButton.tag = 1;
+            self.isPunchingChecked = YES;
+        } else{
+            
+            if ([self.orderInfo[@"zjservice"] integerValue] == 0) {
+                [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+                self.installServiceButton.tag = 0;
+                self.isInstallServiceChecked = YES;
+            }else{
+                [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+                self.installServiceButton.tag = 0;
+                self.isInstallServiceChecked = NO;
+            }
+            
+            if ([self.orderInfo[@"sczkfei"] integerValue] == 0) {
+                [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+                self.punchingButton.tag = 1;
+                self.isPunchingChecked = YES;
+            }else{
+                [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
+                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+                self.punchingButton.tag = 1;
+                self.isPunchingChecked = NO;
+            }
+        }
         return cell;
         
     }
@@ -274,14 +404,13 @@ typedef void(^alertBlock)(void);
         if (self.isInstallServiceChecked) {
             self.isInstallServiceChecked = NO;
             [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
-            self.installServiceCost = 0;
-
+            self.orderInfo[@"zjservice"] = @60;
             
             
         } else{
             self.isInstallServiceChecked = YES;
             [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
-            self.installServiceCost = 60;
+            self.orderInfo[@"zjservice"] = @0;
 
         }
     } else{
@@ -289,13 +418,12 @@ typedef void(^alertBlock)(void);
         if (self.isPunchingChecked) {
             self.isPunchingChecked = NO;
             [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
-            self.punchingCost = 0;
-
+            self.orderInfo[@"sczkfei"] = @100;
 
         } else{
             self.isPunchingChecked = YES;
             [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
-            self.punchingCost = 60;
+            self.orderInfo[@"sczkfei"] = @0;
 
 
         }
@@ -358,10 +486,9 @@ typedef void(^alertBlock)(void);
 
 
 -(void)didSelectedPayType:(UISegmentedControl*)segment{
-    self.payType = segment.selectedSegmentIndex;
-    if (self.payType == 0) {
-        NSLog(@"现金");
-    }
+    
+    
+    self.orderInfo[@"paymodel"]  = @(segment.selectedSegmentIndex);
 }
 
 -(void)clickToShowDropDown:(UIButton*)button{
@@ -383,14 +510,18 @@ typedef void(^alertBlock)(void);
     
     if (type == CashNumberTypeZhiJia) {
         [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
-        
+        self.orderInfo[@"zhijia"] = self.pickerItems[itemsIndex];
         
     } else if (type == CashNumberTypeHDMI){
         
         [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
+        self.orderInfo[@"hdmi"] = self.pickerItems[itemsIndex];
+
 
     }else{
         [self.YijiButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
+        self.orderInfo[@"yiji"] = self.pickerItems[itemsIndex];
+
     }
 }
 
@@ -434,10 +565,10 @@ typedef void(^alertBlock)(void);
     if (button.tag == 0) {
         //保存订单操作
 #warning mac address is fake
-        self.mac_address =@"11:11:11:11:11:11";
+        self.orderInfo[@"mac"] =@"11:11:11:11:11:11";
         
-        if ([self.mac_address isEqualToString:@""]||
-            self.mac_address == nil
+        if ([self.orderInfo[@"mac"] isEqualToString:@""]||
+            self.orderInfo[@"mac"] == nil
             ) {
             [self alertWithMessage:@"请先连接设备获取信息" withCompletionHandler:^{
                 
@@ -494,11 +625,6 @@ typedef void(^alertBlock)(void);
         }
         
         
-        
-        
-
-        
-        
     }else{
 //        删除订单
         __block NSError *error;
@@ -530,27 +656,13 @@ typedef void(^alertBlock)(void);
                         [hud dismiss];
                         
                         [self.navigationController popViewControllerAnimated:YES];
-                        
-                        
-                        
                     });
 
-                    
-                    
                 }
             }];
-            
-          
-            
-        }
 
-    
+        }
     }
-    
-    
-    
-    
-    
 }
 
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
@@ -571,29 +683,31 @@ typedef void(^alertBlock)(void);
         
         
         if ([string isEqualToString:@""]) {
-            self.hostPhone = [textField.text substringToIndex:[textField.text length] - 1];
+            self.orderInfo[@"hostphone"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else{
-            self.hostPhone = [textField.text stringByAppendingString:string];
+            self.orderInfo[@"hostphone"] = [textField.text stringByAppendingString:string];
         }
     }    return YES;
 }
 
 
 -(void)save{
-    
+    NSLog(@"要保存的数据：%@",self.orderInfo);
     NSError *error;
     NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
     
     Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
-    
+    Bill *bill = [NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
+    Applist *applist = [NSEntityDescription insertNewObjectForEntityForName:@"Applist" inManagedObjectContext:context];
+
     order.orderID  =self.orderInfo[@"id"];
     order.phone = self.orderInfo[@"phone"];
-    order.paymodel = @(self.payType);
+    order.paymodel = self.orderInfo[@"paymodel"];
     order.source = self.orderInfo[@"source"];
     order.address = self.orderInfo[@"address"];
     order.brand = self.orderInfo[@"brand"];
     order.engineer = self.orderInfo[@"engineer"];
-    order.mac = self.mac_address;
+    order.mac = self.orderInfo[@"mac"];
     order.size = self.orderInfo[@"size"];
     order.version = self.orderInfo[@"version"];
     order.hoster  =self.orderInfo[@"hoster"];
@@ -601,22 +715,17 @@ typedef void(^alertBlock)(void);
     order.createdate = self.orderInfo[@"createdate"];
     
     
-    //    @property (nonatomic, retain) NSString * hostphone;
-    //    @property (nonatomic, retain) NSNumber * zjservice;
-    //    @property (nonatomic, retain) NSNumber * yiji;
-    //    @property (nonatomic, retain) NSNumber * hdmi;
-    //    @property (nonatomic, retain) NSNumber * zhijia;
-    //    @property (nonatomic, retain) NSNumber * sczkfei;
     
+    bill.hostphone =  self.orderInfo[@"hostphone"];
+    bill.zjservice = self.orderInfo[@"zjservice"];
+    bill.yiji = self.orderInfo[@"yiji"];
+    bill.hdmi = self.orderInfo[@"hdmi"];
+    bill.zhijia = self.orderInfo[@"zhijia"];
+    bill.sczkfei = self.orderInfo[@"sczkfei"];
     
-    order.bill.hostphone =  self.hostPhone;
-    order.bill.zjservice = @(self.installServiceCost);
-    order.bill.yiji = @(self.machineMoveCost);
-    order.bill.hdmi = @(self.HDMILineCost);
-    order.bill.zhijia = @(self.trestleCost);
-    order.bill.sczkfei = @(self.punchingCost);
-    
-    order.applist.appname = @[@"优酷",@"土豆"];
+    order.bill = bill;
+    applist.appname = @[@"优酷",@"土豆"];
+    order.applist =applist;
     
     
     if ([context save:&error]) {

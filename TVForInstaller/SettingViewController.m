@@ -272,7 +272,12 @@
         
         [hud dismiss];
     };
+    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
+        
+        [hud dismiss];
+    };
     [hud showInRect:CGRectInset(self.view.frame, 50, 150) inView:self.view];
+    
 
     
     //
@@ -294,7 +299,8 @@
                 NSString *code = responseObject[@"obj"];
                 NSLog(@"%@",code);
 
-                hud.textLabel.text = [NSString stringWithFormat:@"邀请码:%@",code];
+                hud.textLabel.text = @"邀请码";
+                hud.detailTextLabel.text = [NSString stringWithFormat:@"%@",code];
                 hud.indicatorView = nil;
 
                 

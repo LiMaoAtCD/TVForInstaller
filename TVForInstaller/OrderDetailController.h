@@ -12,7 +12,7 @@
 
 @interface OrderDetailController : UITableViewController
 
-@property (nonatomic,strong) NSDictionary *orderInfo;
+@property (nonatomic,strong) NSMutableDictionary *orderInfo;
 
 @property (nonatomic,assign) BOOL isNewOrder;
 

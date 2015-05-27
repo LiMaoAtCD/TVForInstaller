@@ -285,7 +285,7 @@
    
 
     if (indexPath.section == 0) {
-        detail.orderInfo = self.orderList[indexPath.row];
+        detail.orderInfo = [self.orderList[indexPath.row] mutableCopy];
         detail.isNewOrder = YES;
     }else{
         detail.orderInfo = self.localOrders[indexPath.row];
