@@ -679,9 +679,9 @@
         <scene sceneID="I5T-wu-jih">
             <objects>
                 <tableViewController storyboardIdentifier="CompleteTableViewController" id="Q4S-rt-bP0" customClass="CompleteTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="22" sectionFooterHeight="22" id="AdS-vl-EDt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AdS-vl-EDt">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompleteCell" rowHeight="124" id="vil-5a-981" customClass="CompleteCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -853,7 +853,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-B8-3sj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-B8-3sj">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="zhO-Cc-qPy"/>
@@ -915,6 +915,9 @@
                                         <constraint firstItem="qis-As-5RQ" firstAttribute="leading" secondItem="BJf-iO-Afj" secondAttribute="trailing" constant="52" id="CZq-PE-Vr0">
                                             <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                         </constraint>
+                                        <constraint firstAttribute="bottomMargin" secondItem="er1-8e-TAi" secondAttribute="bottom" constant="-1" id="F4G-pU-Y9e">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
                                         <constraint firstAttribute="trailingMargin" secondItem="Orb-8K-RDF" secondAttribute="trailing" constant="33" id="NF0-if-eeT">
                                             <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                         </constraint>
@@ -963,6 +966,7 @@
                                             <exclude reference="1al-0x-P0N"/>
                                             <exclude reference="kw1-gO-PGM"/>
                                             <exclude reference="5rt-bc-uaO"/>
+                                            <exclude reference="F4G-pU-Y9e"/>
                                             <exclude reference="p7y-f1-pbA"/>
                                             <exclude reference="TDn-X8-aes"/>
                                             <exclude reference="UE4-pK-Swm"/>
@@ -999,6 +1003,7 @@
                                             <include reference="1al-0x-P0N"/>
                                             <include reference="kw1-gO-PGM"/>
                                             <include reference="5rt-bc-uaO"/>
+                                            <include reference="F4G-pU-Y9e"/>
                                             <include reference="p7y-f1-pbA"/>
                                             <include reference="TDn-X8-aes"/>
                                             <include reference="UE4-pK-Swm"/>

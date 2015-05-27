@@ -39,7 +39,8 @@ typedef enum : NSUInteger {
 
     [ComminUtility configureTitle:@"订单" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationController.navigationBar.translucent  = NO;
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
     [self selectIndex:OrderUnsubmit];
 

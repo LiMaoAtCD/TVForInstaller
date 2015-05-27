@@ -19,13 +19,12 @@
 
 #import <UIImageView+WebCache.h>
 
-#import <CBStoreHouseRefreshControl.h>
+#import <MJRefresh.h>
 
 @interface AppTableViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
 @property (nonatomic,strong) NSMutableArray *appLists;
-@property (nonatomic,strong) CBStoreHouseRefreshControl *storeHouseRefreshControl;
 
 
 @end
@@ -38,22 +37,18 @@
 
     [ComminUtility configureTitle:@"应用" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
+    self.navigationController.navigationBar.translucent = NO;
     
+    __weak AppTableViewController *weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf fetchApplicationList];
+
+    }];
     
-    
-    [self fetchApplicationList];
-    
-     self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView target:self refreshAction:@selector(refreshTriggered:) plist:@"storehouse" color:[UIColor whiteColor] lineWidth:1.5 dropHeight:80 scale:1 horizontalRandomness:150 reverseLoadingAnimation:YES internalAnimationFactor:0.5];
-    
+    [self.tableView.header beginRefreshing];
 }
 
 
-
--(void)refreshTriggered:(id)sender{
-    
-    [self fetchApplicationList];
-    
-}
 
 -(void)fetchApplicationList{
     
@@ -69,9 +64,7 @@
         if ([responseObject[@"success"] integerValue] == 0) {
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.indicatorView = nil;
-                hud.textLabel.text =@"列表获取失败";
-                [hud dismissAfterDelay:2.0];
+                [hud dismiss];
             });
             
             
@@ -79,22 +72,19 @@
             //获取成功
             
             
-            [hud dismissAfterDelay:1.0];
+            [hud dismiss];
             
             NSArray *temp = responseObject[@"obj"];
             [self dealResponseData:temp];
 
             
         }
-        
-        [self.storeHouseRefreshControl finishingLoading];
-        
-        
-        
+        [self.tableView.header endRefreshing];
+
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud dismiss];
-        [self.storeHouseRefreshControl finishingLoading];
+        [self.tableView.header endRefreshing];
 
     }];
 }
@@ -224,16 +214,6 @@
 
     NSLog(@"软件地址：%@",softwareAddress);
     
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.storeHouseRefreshControl scrollViewDidScroll];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [self.storeHouseRefreshControl scrollViewDidEndDragging];
 }
 
 /*

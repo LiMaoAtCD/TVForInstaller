@@ -24,8 +24,17 @@
     
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     
-    hud.textLabel.text = @"网络出错啦";
+    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
     hud.indicatorView = nil;
+    
+    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
+        [hud dismiss];
+    };
+    
+    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
+        [hud dismiss];
+    };
+
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [hud showInView:delegate.window];

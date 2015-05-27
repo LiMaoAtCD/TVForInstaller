@@ -14,19 +14,18 @@
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
-#import <CBStoreHouseRefreshControl.h>
+#import <MJRefresh.h>
 #import "AccountManager.h"
 
 
 
-@interface GradeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface GradeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *items;
 
-@property (nonatomic,strong) CBStoreHouseRefreshControl *storeHouseRefreshControl;
 
 @end
 
@@ -42,15 +41,16 @@
     
     self.items = [@[] mutableCopy];
     
+    __weak GradeViewController *weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf fetchGrade];
 
-    self.storeHouseRefreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView target:self refreshAction:@selector(refreshTriggered:) plist:@"storehouse" color:[UIColor whiteColor] lineWidth:1.5 dropHeight:80 scale:1 horizontalRandomness:150 reverseLoadingAnimation:YES internalAnimationFactor:0.5];
-}
-
-
--(void)refreshTriggered:(id)sender{
+    }];
     
-    [self fetchGrade];
+
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -58,18 +58,14 @@
     [self.view layoutIfNeeded];
     
 }
+
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
-    [self.tableView setContentOffset:CGPointMake(0, -150) animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.storeHouseRefreshControl scrollViewDidEndDragging];
-
-    });
-    
-    
-
-
+    [self.tableView.header beginRefreshing];
 }
+
+
 
 -(void)fetchGrade{
     
@@ -86,7 +82,6 @@
                 hud.textLabel.text = @"获取积分失败";
                 
                 [hud dismissAfterDelay:2.0];
-                [self.storeHouseRefreshControl finishingLoading];
             });
             
             
@@ -96,18 +91,20 @@
                 hud.textLabel.text = @"获取成功";
                 hud.indicatorView = nil;
                 [hud dismissAfterDelay:2.0];
-                [self.storeHouseRefreshControl finishingLoading];
                 [self dealResponse:(NSDictionary*)responseObject];
 
                 
                 
             });
+            
+            [self.tableView.header endRefreshing];
         }
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         [hud dismiss];
-        [self.storeHouseRefreshControl finishingLoading];
-        
+
+        [self.tableView.header endRefreshing];
+
     }];
     
 }
@@ -245,14 +242,5 @@
 }
 */
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.storeHouseRefreshControl scrollViewDidScroll];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [self.storeHouseRefreshControl scrollViewDidEndDragging];
-}
 
 @end

@@ -427,7 +427,9 @@
                                     <constraint firstAttribute="centerX" secondItem="ii6-fG-E95" secondAttribute="trailing" id="fRq-aX-WD3"/>
                                     <constraint firstAttribute="centerY" secondItem="ii6-fG-E95" secondAttribute="centerY" constant="-33" id="irf-17-BYg"/>
                                     <constraint firstAttribute="bottom" secondItem="rT0-us-VD1" secondAttribute="bottom" constant="8" id="jvU-sr-Z4I"/>
-                                    <constraint firstAttribute="height" constant="112" id="mrh-OV-qH9"/>
+                                    <constraint firstAttribute="height" constant="112" id="mrh-OV-qH9">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="48"/>
+                                    </constraint>
                                     <constraint firstItem="rT0-us-VD1" firstAttribute="leading" secondItem="ii6-fG-E95" secondAttribute="trailing" constant="8" id="xQ2-5g-75d">
                                         <variation key="heightClass=regular-widthClass=compact" constant="-1"/>
                                     </constraint>
@@ -692,11 +694,15 @@
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beijin" translatesAutoresizingMaskIntoConstraints="NO" id="ibg-B3-NHA">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zuanshi" translatesAutoresizingMaskIntoConstraints="NO" id="ibg-B3-NHA">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="M78-hB-nMF"/>
-                                                            <constraint firstAttribute="width" constant="30" id="TXC-mY-5qC"/>
+                                                            <constraint firstAttribute="height" constant="30" id="M78-hB-nMF">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="width" constant="30" id="TXC-mY-5qC">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                            </constraint>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
@@ -1997,6 +2003,7 @@
         <image name="xiugaimima" width="41" height="50"/>
         <image name="yaoqingma" width="50" height="50"/>
         <image name="you1" width="143" height="60"/>
+        <image name="zuanshi" width="32" height="29"/>
         <image name="zuo1" width="143" height="60"/>
     </resources>
 </document>

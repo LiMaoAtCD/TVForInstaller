@@ -41,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ComminUtility configureTitle:@"设置" forViewController:self];
+    self.navigationController.navigationBar.translucent = NO;
     UIButton *logout = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [logout setAttributedTitle:[[NSAttributedString alloc]initWithString:@"注销" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}] forState:UIControlStateNormal];
