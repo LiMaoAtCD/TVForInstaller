@@ -266,6 +266,7 @@
 		8716C1441B15721A00389EC7 /* OrderModel */ = {
 			isa = PBXGroup;
 			children = (
+				8716C0FD1B15614F00389EC7 /* Order.xcdatamodeld */,
 				8716C1061B1567D700389EC7 /* Applist.h */,
 				8716C1071B1567D700389EC7 /* Applist.m */,
 				8716C1031B1567D700389EC7 /* Order.h */,
@@ -575,7 +576,6 @@
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
 				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
-				8716C0FD1B15614F00389EC7 /* Order.xcdatamodeld */,
 				8716C0F61B15564500389EC7 /* PersonalOrder */,
 				87C022161B12FC2A005452C0 /* unsubmit */,
 				87C022171B12FC3C005452C0 /* complete */,

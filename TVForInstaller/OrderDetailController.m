@@ -13,7 +13,7 @@
 #import "PayInfoCell.h"
 
 #import "ComminUtility.h"
-
+#import "UIColor+HexRGB.h"
 #import "NumberChooseViewController.h"
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate>
 
@@ -25,9 +25,43 @@
 @property(nonatomic,strong) UIButton *YijiButton;
 
 
+
+/**
+ *  装机服务费
+ */
+@property (nonatomic,assign) NSInteger installServiceCost;
+
+/**
+ *  钻孔费
+ */
+@property (nonatomic,assign) NSInteger punchingCost;
+/**
+ *  支架费
+ */
+@property (nonatomic,assign) NSInteger trestleCost;
+/**
+ *  HDMI 费用
+ */
+@property (nonatomic,assign) NSInteger HDMILineCost;
+/**
+ *  移机费
+ */
+@property (nonatomic,assign) NSInteger machineMoveCost;
+
+/**
+ *  支付方式：0 现金 1 微信
+ */
+@property (nonatomic,assign) NSInteger payType;
+
+
+
+
 @end
 
 @implementation OrderDetailController
+
+
+#pragma mark - view cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,19 +73,9 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)pop{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     [self.view layoutIfNeeded];
     
 }
@@ -76,22 +100,28 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
+        
         OrderDetailCell *cell =[tableView dequeueReusableCellWithIdentifier:@"OrderDetailCell" forIndexPath:indexPath];
         cell.nameLabel.text = self.orderInfo[@"hoster"];
         cell.tvSizeLabel.text = self.orderInfo[@"size"];
         cell.tvBrandLabel.text = self.orderInfo[@"brand"];
-        cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
         cell.cellphoneLabel.text = self.orderInfo[@"phone"];
         cell.customerAddressLabel.text = self.orderInfo[@"address"];
+    
+        cell.dateLabel.text= self.orderInfo[@"createdate"];
         
+        NSInteger type = [self.orderInfo[@"type"] integerValue];
         
-        NSDate *date = [NSDate date];
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY-MM-dd"];
-        
-        NSString *dateString = [formatter stringFromDate:date];
-        cell.dateLabel.text= dateString;
+        if (type == 0) {
+            cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
+            cell.tvTypeLabel.text = @"坐式";
+            cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+        } else{
+            cell.tvImageView.image = [UIImage imageNamed:@"temp"];
+            cell.tvTypeLabel.text = @"挂式";
+            cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+        }
+
         
         return cell;
         
@@ -107,44 +137,27 @@
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
         
         [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        
         self.zhijiaButton = cell.zhijiaButton;
-        cell.tag = 0;
+        self.zhijiaButton.tag = 0;
+        
         [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
-        cell.tag = 1;
         self.HDMIButton = cell.hdmiButton;
-        [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
-        cell.tag = 2;
-        self.YijiButton = cell.moveTVButton;
+        self.HDMIButton.tag = 1;
 
+        [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
+        self.YijiButton = cell.moveTVButton;
+        self.YijiButton.tag = 2;
+
+        [cell.PaySegment addTarget:self action:@selector(didSelectedPayType:) forControlEvents:UIControlEventValueChanged];
+        cell.PaySegment.selectedSegmentIndex = 0;
+        self.payType =0;
+        
         return cell;
         
     }
     
     
-}
-
--(void)clickToShowDropDown:(UIButton*)button{
-    
-   //TODO::
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
-    NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
-    self.modalTransitionStyle= UIModalPresentationCurrentContext;
-    number.type = button.tag;
-    number.delegate = self;
-    number.pickerItems = self.pickerItems;
-    
-    [self showDetailViewController:number sender:self];
-    
-}
--(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type{
-    NSLog(@"选择了%@ 元",self.pickerItems[itemsIndex]);
-    if (type == CashNumberTypeZhiJia) {
-        [self.zhijiaButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
-    } else if (type == CashNumberTypeHDMI){
-        [self.HDMIButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
-    }else{
-        [self.YijiButton setTitle:self.pickerItems[itemsIndex] forState:UIControlStateNormal];
-    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -199,12 +212,58 @@
     return 20;
 }
 
--(void)clickToPostOrder:(UIButton *)button{
-    //TODO: 提交订单
+#pragma mark - actions
+
+
+-(void)didSelectedPayType:(UISegmentedControl*)segment{
+    self.payType = segment.selectedSegmentIndex;
+    if (self.payType == 0) {
+        NSLog(@"现金");
+    }
+}
+
+-(void)clickToShowDropDown:(UIButton*)button{
     
+   //TODO::
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
+    self.modalTransitionStyle= UIModalPresentationCurrentContext;
+    number.type = button.tag;
+    number.delegate = self;
+    number.pickerItems = self.pickerItems;
     
+    [self showDetailViewController:number sender:self];
     
 }
+
+-(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type{
+    
+    NSLog(@"选择了%@ 元,%ld ",self.pickerItems[itemsIndex],type);
+    
+    if (type == CashNumberTypeZhiJia) {
+        [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
+    } else if (type == CashNumberTypeHDMI){
+        
+        [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
+
+    }else{
+        [self.YijiButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
+    }
+}
+
+-(void)clickToPostOrder:(UIButton *)button{
+    //TODO: 提交订单
+}
+
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 
 

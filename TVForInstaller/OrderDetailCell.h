@@ -12,6 +12,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *tvImageView;
+@property (weak, nonatomic) IBOutlet UILabel *tvTypeLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tvBrandLabel;

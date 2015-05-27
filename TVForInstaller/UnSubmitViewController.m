@@ -57,19 +57,15 @@
     }
 }
 -(void)fetchOrder{
-    
-    
-    
-    
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"] integerValue] ==0) {
 
-            
         } else{
             
             NSArray *data = responseObject[@"obj"];
             NSLog(@"received data: %@",data);
+            
             
             if (data.count >0) {
                 
@@ -110,6 +106,7 @@
         [results enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             Order *order = obj;
             NSLog(@"order: %@",order);
+            
         }];
     }
     
@@ -151,18 +148,36 @@
         
         cell.cellphoneButton.tag = indexPath.row;
         
-        //    //TODO:坐式
-        //    if (<#condition#>) {
-        //        <#statements#>
-        //    }
-        cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
-        cell.TVTypeLabel.text = @"坐式";
-        cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         
-        //    cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
-        //    cell.TVTypeLabel.text = @"挂式";
-        //    cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+        //               {
+        //            address = "\U9ad8\U65b0\U533a\U73af\U7403\U4e2d\U5fc3W3";
+        //            brand = "\U521b\U7ef4";
+        //            createdate = "2015-05-27 14:18:16";
+        //            engineer = 8a8080f44d83d991014d83dee5d60004;
+        //            hoster = "\U674e\U4e8c\U725b";
+        //            id = 8a8080f44d8472bc014d848fb87a000d;
+        //            mac = "<null>";
+        //            paymodel = "<null>";
+        //            phone = 13678964561;
+        //            size = "49\U5bf8";
+        //            source = 0;
+        //            type = 0;
+        //            version = COOCAALDFJ;
+        //        }
+
         
+            //TODO:坐式
+        NSInteger type = [self.orderList[indexPath.row][@"type"] integerValue];
+        
+        if (type == 0 ) {
+            cell.TVImageView.image = [UIImage imageNamed:@"zuoshi"];
+            cell.TVTypeLabel.text = @"坐式";
+            cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+        } else{
+            cell.TVImageView.image = [UIImage imageNamed:@"temp"];
+            cell.TVTypeLabel.text = @"挂式";
+            cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+        }
         
         [cell.cellphoneButton setTitle:self.orderList[indexPath.row][@"phone"] forState:UIControlStateNormal];
         [cell.noUseButton addTarget:self action:@selector(clickNoUseOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -175,15 +190,7 @@
         cell.tvBrandLabel.text  =self.orderList[indexPath.row][@"brand"];
         cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
         cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
-        
-        
-        NSDate *date = [NSDate date];
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY-MM-dd"];
-        
-        NSString *dateString = [formatter stringFromDate:date];
-        cell.dateLabel.text= dateString;
+        cell.dateLabel.text= self.orderList[indexPath.row][@"createdate"];
         
         
         
@@ -191,10 +198,7 @@
     } else{
         
         SavedOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SavedOrderCell" forIndexPath:indexPath];
-        
-        
-        
-        
+
         return cell;
     }
     
