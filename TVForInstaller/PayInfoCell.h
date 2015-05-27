@@ -21,5 +21,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *PaySegment;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *installServiceCheckButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *punchingCheckButton;
+
+
 
 @end

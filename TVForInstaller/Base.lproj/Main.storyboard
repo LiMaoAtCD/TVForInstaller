@@ -475,12 +475,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DTT-b7-rQR" secondAttribute="trailing" id="ChK-Nf-bqe"/>
-                            <constraint firstItem="kvS-Xg-QKR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leadingMargin" constant="-16" id="IEg-S9-V5v"/>
+                            <constraint firstItem="kvS-Xg-QKR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leading" id="IEg-S9-V5v">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="kvS-Xg-QKR" firstAttribute="top" secondItem="BgC-eG-8Gw" secondAttribute="topMargin" id="Iah-Rj-Rwf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kvS-Xg-QKR" secondAttribute="trailing" constant="-16" id="KYt-uW-ORR"/>
+                            <constraint firstAttribute="trailing" secondItem="kvS-Xg-QKR" secondAttribute="trailing" id="KYt-uW-ORR"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="bottom" secondItem="BgC-eG-8Gw" secondAttribute="bottomMargin" id="jVB-Zl-Mm5"/>
                             <constraint firstItem="DTT-b7-rQR" firstAttribute="leading" secondItem="BgC-eG-8Gw" secondAttribute="leading" id="kU6-6G-2jB"/>
-                            <constraint firstItem="DTT-b7-rQR" firstAttribute="top" secondItem="kvS-Xg-QKR" secondAttribute="bottom" constant="1" id="zOM-QQ-dSv">
+                            <constraint firstItem="DTT-b7-rQR" firstAttribute="top" secondItem="kvS-Xg-QKR" secondAttribute="bottom" id="zOM-QQ-dSv">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                         </constraints>
@@ -1517,12 +1519,12 @@
                                                             <mask key="constraints">
                                                                 <exclude reference="135-1C-dt4"/>
                                                                 <exclude reference="NYp-ev-sgO"/>
-                                                                <exclude reference="dcd-sL-PYq"/>
-                                                                <exclude reference="yvk-dw-vFh"/>
                                                                 <exclude reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <exclude reference="KiM-2W-7N6"/>
                                                                 <exclude reference="udE-Mw-GFz"/>
+                                                                <exclude reference="dcd-sL-PYq"/>
+                                                                <exclude reference="yvk-dw-vFh"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
@@ -1533,12 +1535,12 @@
                                                             <mask key="constraints">
                                                                 <include reference="135-1C-dt4"/>
                                                                 <exclude reference="NYp-ev-sgO"/>
-                                                                <include reference="dcd-sL-PYq"/>
-                                                                <include reference="yvk-dw-vFh"/>
                                                                 <include reference="0c6-Vg-kiU"/>
                                                                 <exclude reference="Kbu-qE-QoU"/>
                                                                 <include reference="KiM-2W-7N6"/>
                                                                 <exclude reference="udE-Mw-GFz"/>
+                                                                <include reference="dcd-sL-PYq"/>
+                                                                <include reference="yvk-dw-vFh"/>
                                                             </mask>
                                                         </variation>
                                                     </view>

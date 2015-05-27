@@ -191,14 +191,13 @@
         cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
         cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
         cell.dateLabel.text= self.orderList[indexPath.row][@"createdate"];
-        
-        
+ 
         
         return cell;
     } else{
         
         SavedOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SavedOrderCell" forIndexPath:indexPath];
-
+   
         return cell;
     }
     
@@ -217,8 +216,9 @@
     
    
 
-    if (indexPath.section ==0) {
+    if (indexPath.section == 0) {
         detail.orderInfo = self.orderList[indexPath.row];
+        detail.isNewOrder = YES;
     }else{
         detail.orderInfo = self.localOrders[indexPath.row];
     }

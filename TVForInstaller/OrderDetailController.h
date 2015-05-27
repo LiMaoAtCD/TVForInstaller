@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong) NSDictionary *orderInfo;
 
+@property (nonatomic,assign) BOOL isNewOrder;
+
 @end
