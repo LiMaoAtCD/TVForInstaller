@@ -16,6 +16,7 @@
     <entity name="Order" representedClassName="Order" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="engineer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hoster" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mac" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,13 +25,14 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="applist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Applist" inverseName="order" inverseEntity="Applist" syncable="YES"/>
         <relationship name="bill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bill" inverseName="order" inverseEntity="Bill" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Order" positionX="-63" positionY="-9" width="128" height="238"/>
         <element name="Applist" positionX="198" positionY="251" width="128" height="73"/>
         <element name="Bill" positionX="144" positionY="-27" width="128" height="148"/>
+        <element name="Order" positionX="-63" positionY="-9" width="128" height="268"/>
     </elements>
 </model>

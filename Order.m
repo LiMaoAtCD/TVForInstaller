@@ -13,18 +13,20 @@
 
 @implementation Order
 
-@dynamic orderID;
-@dynamic phone;
-@dynamic paymodel;
-@dynamic source;
 @dynamic address;
 @dynamic brand;
 @dynamic engineer;
-@dynamic mac;
-@dynamic size;
-@dynamic version;
 @dynamic hoster;
-@dynamic bill;
+@dynamic mac;
+@dynamic orderID;
+@dynamic paymodel;
+@dynamic phone;
+@dynamic size;
+@dynamic source;
+@dynamic version;
+@dynamic type;
+@dynamic createdate;
 @dynamic applist;
+@dynamic bill;
 
 @end

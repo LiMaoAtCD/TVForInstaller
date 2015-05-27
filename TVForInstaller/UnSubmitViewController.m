@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *orderList;
-@property (nonatomic,strong) NSArray *localOrders;
+@property (nonatomic,strong) NSMutableArray *localOrders;
 @property (nonatomic,assign) BOOL hasRefresh;
 @end
 
@@ -34,23 +34,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.localOrders = [@[] mutableCopy];
     
-    if ([AccountManager isLogin]) {
+    
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
         
-        [self.tableView addLegendHeaderWithRefreshingBlock:^{
-            [self fetchOrder];
-            [self fetchLocalOrder];
-        }];
-    }
-    
-    
+        [self fetchLocalOrder];
+        [self fetchOrder];
+    }];
 }
 
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    if (!self.hasRefresh) {
+    if (!self.hasRefresh && [AccountManager isLogin]) {
         self.hasRefresh = YES;
         [self.tableView.header beginRefreshing];
 
@@ -67,10 +65,29 @@
             NSLog(@"received data: %@",data);
             
             
-            if (data.count >0) {
+            if (data.count > 0) {
                 
                 self.orderList = [data mutableCopy];
+                
+                [self.localOrders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    NSDictionary *dictionary = obj;
+                    
+                    [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                       
+                        if ([data[idx][@"id"] isEqualToString:dictionary[@"id"]]) {
+                            NSLog(@"此订单已经保存");
+                            
+                            [self.orderList removeObjectAtIndex:idx];
+                            
+                        }
+                    }];
+                    
+                }];
+                
                 [self.tableView reloadData];
+
+                
+                
             } else{
             
             }
@@ -107,6 +124,19 @@
             Order *order = obj;
             NSLog(@"order: %@",order);
             
+            NSDictionary *dic = @{@"address":order.address,
+                                  @"brand":order.brand,
+                                  @"createdate":order.createdate,
+                                  @"hoster":order.hoster,
+                                  @"type":order.type,
+                                  @"phone":order.phone,
+                                  @"size":order.size,
+                                  @"id":order.orderID
+                                  };
+            
+            [self.localOrders addObject:dic];
+            
+            
         }];
     }
     
@@ -135,7 +165,7 @@
         return self.orderList.count;
 
     } else{
-        return 2;
+        return self.localOrders.count;
     }
 }
 

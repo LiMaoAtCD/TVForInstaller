@@ -2336,7 +2336,7 @@
                                                 <constraint firstAttribute="height" constant="22" id="IuU-gT-evS"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title="100">
+                                            <state key="normal" title="0元">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
@@ -2360,7 +2360,7 @@
                                                 <constraint firstAttribute="width" constant="74" id="fDu-0l-RSb"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title="100元">
+                                            <state key="normal" title="0元">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
@@ -2384,7 +2384,7 @@
                                                 <constraint firstAttribute="width" constant="74" id="Rid-yc-Ouj"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title="100">
+                                            <state key="normal" title="0元">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">

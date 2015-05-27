@@ -23,7 +23,7 @@
 #import "Bill.h"
 
 
-@interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate>
+@interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate,UITextFieldDelegate>
 
 
 @property (nonatomic,strong)NSArray *pickerItems;
@@ -49,6 +49,8 @@
 
 
 
+@property (nonatomic,strong) UITextField *cellPhoneTF;
+@property (nonatomic,copy) NSString *hostPhone;
 
 /**
  *  装机服务费
@@ -77,6 +79,7 @@
  */
 @property (nonatomic,assign) NSInteger payType;
 
+typedef void(^alertBlock)(void);
 
 @end
 
@@ -205,26 +208,40 @@
         
     } else{
         
+        
+        //支付信息Cell
+        
+        
         PayInfoCell *cell =[tableView dequeueReusableCellWithIdentifier:@"PayInfoCell" forIndexPath:indexPath];
+        
+        //用户手机号
+        self.cellPhoneTF = cell.cellphoneTF;
+        self.cellPhoneTF.delegate = self;
+        self.hostPhone = self.cellPhoneTF.text;
+        
         
         [cell.zhijiaButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         self.zhijiaButton = cell.zhijiaButton;
         self.zhijiaButton.tag = 0;
+        [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
+    
         
         [cell.hdmiButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         self.HDMIButton = cell.hdmiButton;
+        [self.HDMIButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
 
         self.HDMIButton.tag = 1;
 
         [cell.moveTVButton addTarget:self action:@selector(clickToShowDropDown:) forControlEvents:UIControlEventTouchUpInside];
         self.YijiButton = cell.moveTVButton;
+        [self.YijiButton setTitle:[NSString stringWithFormat:@"%@ 元",self.pickerItems[0]] forState:UIControlStateNormal];
 
         self.YijiButton.tag = 2;
 
         [cell.PaySegment addTarget:self action:@selector(didSelectedPayType:) forControlEvents:UIControlEventValueChanged];
         cell.PaySegment.selectedSegmentIndex = 0;
         
-        self.payType =0;
+        self.payType = 0;
         
         cell.cellphoneTF.text = self.orderInfo[@"phone"];
         
@@ -253,12 +270,14 @@
         if (self.isInstallServiceChecked) {
             self.isInstallServiceChecked = NO;
             [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+            self.installServiceCost = 0;
 
             
             
         } else{
             self.isInstallServiceChecked = YES;
             [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            self.installServiceCost = 60;
 
         }
     } else{
@@ -266,10 +285,14 @@
         if (self.isPunchingChecked) {
             self.isPunchingChecked = NO;
             [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+            self.punchingCost = 0;
+
 
         } else{
             self.isPunchingChecked = YES;
             [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            self.punchingCost = 60;
+
 
         }
     }
@@ -408,7 +431,9 @@
     if ([self.mac_address isEqualToString:@""]||
         self.mac_address == nil
         ) {
-        
+        [self alertWithMessage:@"请先连接设备获取信息" withCompletionHandler:^{
+            
+        }];
     }
     
     
@@ -453,7 +478,7 @@
 //    @property (nonatomic, retain) NSNumber * sczkfei;
     
     
-    order.bill.hostphone =  self.orderInfo[@"phone"];
+    order.bill.hostphone =  self.hostPhone;
     order.bill.zjservice = @(self.installServiceCost);
     order.bill.yiji = @(self.machineMoveCost);
     order.bill.hdmi = @(self.HDMILineCost);
@@ -466,10 +491,37 @@
     
     if ([context save:&error]) {
         //TODO 提示保存成功
+        NSLog(@"保存成功");
     }
     
     
 }
+
+-(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        handler();
+    }];
+    
+    [controller addAction:action];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.cellPhoneTF) {
+        
+        
+        if ([string isEqualToString:@""]) {
+            self.hostPhone = [textField.text substringToIndex:[textField.text length] - 1];
+        }else{
+            self.hostPhone = [textField.text stringByAppendingString:string];
+        }
+    }    return YES;
+}
+
 
 
 
