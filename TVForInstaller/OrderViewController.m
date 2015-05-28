@@ -93,6 +93,7 @@ typedef enum : NSUInteger {
     
         [self.unsubmitViewController willMoveToParentViewController:self];
         
+        self.unsubmitViewController.view.frame = self.contentView.bounds;
         [self.contentView addSubview:self.unsubmitViewController.view];
         
         [self.unsubmitViewController didMoveToParentViewController:self];
@@ -132,6 +133,8 @@ typedef enum : NSUInteger {
         
         [self.completeTableViewController willMoveToParentViewController:self];
         
+        self.completeTableViewController.view.frame = self.contentView.bounds;
+
         [self.contentView addSubview:self.completeTableViewController.view];
         
         [self.completeTableViewController didMoveToParentViewController:self];
