@@ -52,6 +52,10 @@
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
 		87B400BB1B16ACDE00CC1C95 /* AddOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400BA1B16ACDE00CC1C95 /* AddOrderTableViewCell.m */; };
 		87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400BD1B16ADD100CC1C95 /* ZhijiaTableViewCell.m */; };
+		87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C31B16C14400CC1C95 /* DLNAManager.mm */; };
+		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
+		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
+		87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */; };
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
 		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
 		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
@@ -171,6 +175,13 @@
 		87B400BA1B16ACDE00CC1C95 /* AddOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrderTableViewCell.m; sourceTree = "<group>"; };
 		87B400BC1B16ADD100CC1C95 /* ZhijiaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhijiaTableViewCell.h; sourceTree = "<group>"; };
 		87B400BD1B16ADD100CC1C95 /* ZhijiaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhijiaTableViewCell.m; sourceTree = "<group>"; };
+		87B400C21B16C14400CC1C95 /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
+		87B400C31B16C14400CC1C95 /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
+		87B400C41B16C14400CC1C95 /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
+		87B400C51B16C14400CC1C95 /* PltMicroMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PltMicroMediaController.h; sourceTree = "<group>"; };
+		87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PltMicroMediaController.mm; sourceTree = "<group>"; };
+		87B400CA1B16C17B00CC1C95 /* DLNADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNADataManager.h; sourceTree = "<group>"; };
+		87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNADataManager.mm; sourceTree = "<group>"; };
 		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
 		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
 		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
@@ -220,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */,
 				847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +405,20 @@
 			name = InstallHistory;
 			sourceTree = "<group>";
 		};
+		87B400C11B16C14400CC1C95 /* PlatinumKit */ = {
+			isa = PBXGroup;
+			children = (
+				87B400CA1B16C17B00CC1C95 /* DLNADataManager.h */,
+				87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */,
+				87B400C21B16C14400CC1C95 /* DLNAManager.h */,
+				87B400C31B16C14400CC1C95 /* DLNAManager.mm */,
+				87B400C41B16C14400CC1C95 /* Platinum.framework */,
+				87B400C51B16C14400CC1C95 /* PltMicroMediaController.h */,
+				87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */,
+			);
+			path = PlatinumKit;
+			sourceTree = SOURCE_ROOT;
+		};
 		87C022161B12FC2A005452C0 /* unsubmit */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +570,7 @@
 		87DBE20D1AFB020800AFB7BF /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				87B400C11B16C14400CC1C95 /* PlatinumKit */,
 				87DBE20E1AFB025800AFB7BF /* NetworkingManager.h */,
 				87DBE20F1AFB025800AFB7BF /* NetworkingManager.m */,
 				871A232F1B0ACA1C00B484CA /* AccountManager.h */,
@@ -783,7 +810,10 @@
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
 				8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */,
 				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */,
+				87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */,
 				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
+				87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
@@ -946,6 +976,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/PlatinumKit",
+				);
 				INFOPLIST_FILE = TVForInstaller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -959,6 +994,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/PlatinumKit",
+				);
 				INFOPLIST_FILE = TVForInstaller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
