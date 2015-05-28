@@ -56,6 +56,7 @@
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
 		87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */; };
+		87B400CF1B16C30700CC1C95 /* SuspensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */; };
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
 		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
 		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
@@ -182,6 +183,8 @@
 		87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PltMicroMediaController.mm; sourceTree = "<group>"; };
 		87B400CA1B16C17B00CC1C95 /* DLNADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNADataManager.h; sourceTree = "<group>"; };
 		87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNADataManager.mm; sourceTree = "<group>"; };
+		87B400CD1B16C30700CC1C95 /* SuspensionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspensionViewController.h; sourceTree = "<group>"; };
+		87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuspensionViewController.m; sourceTree = "<group>"; };
 		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
 		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
 		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
@@ -515,6 +518,8 @@
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
+				87B400CD1B16C30700CC1C95 /* SuspensionViewController.h */,
+				87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */,
 				87EA3AA71B0A1094004AB8F7 /* Login */,
 				87EA3AA01B0A1016004AB8F7 /* Orders */,
 				87EA3AA61B0A105A004AB8F7 /* Applications */,
@@ -841,6 +846,7 @@
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
+				87B400CF1B16C30700CC1C95 /* SuspensionViewController.m in Sources */,
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,

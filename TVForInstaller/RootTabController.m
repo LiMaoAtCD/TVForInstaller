@@ -10,8 +10,10 @@
 #import "AccountManager.h"
 
 #import "LoginNavigationController.h"
-
+#import "SuspensionViewController.h"
 @interface RootTabController ()
+
+@property(nonatomic,strong) UIView * suspensionView;
 
 @end
 
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
    
 }
 
@@ -28,7 +32,10 @@
     
     [self manageLogState];
    
-
+    
+    [self suspensionWindow];
+    
+    
 }
 
 -(void)manageLogState{
@@ -45,6 +52,56 @@
         
     }
 
+}
+
+-(void)suspensionWindow{
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SuspensionViewController *suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
+    suspension.view.backgroundColor = [UIColor clearColor];
+    self.suspensionView = suspension.view;
+    self.suspensionView.layer.cornerRadius = 10;
+    self.suspensionView.layer.masksToBounds = YES;
+    [self addChildViewController:suspension];
+    
+    
+    [suspension willMoveToParentViewController:self];
+    
+    [self.view addSubview:suspension.view];
+    suspension.view.frame = CGRectMake(0, 0, 100, 50);
+    suspension.view.center = self.view.center;
+    [suspension didMoveToParentViewController:self];
+    
+}
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    
+    
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        //取得一个触摸对象（对于多点触摸可能有多个对象）
+        UITouch *touch = obj;
+        //NSLog(@"%@",touch);
+        
+        //取得当前位置
+        CGPoint current=[touch locationInView:self.view];
+        //取得前一个位置
+        CGPoint previous=[touch previousLocationInView:self.view];
+        
+        //移动前的中点位置
+        CGPoint center=self.suspensionView.center;
+        //移动偏移量
+        CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
+        
+        //重新设置新位置
+        self.suspensionView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
