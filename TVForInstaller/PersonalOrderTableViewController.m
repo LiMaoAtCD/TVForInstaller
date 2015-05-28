@@ -87,7 +87,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"提交" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"denglu"] forState:UIControlStateNormal];
 
     button.frame = CGRectInset(view.frame, 10, 5);
     

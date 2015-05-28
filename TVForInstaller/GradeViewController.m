@@ -13,7 +13,6 @@
 #import "gradeDetailTableViewCell.h"
 
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
 #import <MJRefresh.h>
 #import "AccountManager.h"
 
@@ -69,40 +68,24 @@
 
 -(void)fetchGrade{
     
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"获取积分中";
-    [hud showInView:self.view animated:YES];
-//
+   //
     [NetworkingManager fetchGradeByTokenID:[AccountManager getTokenID] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.indicatorView = nil;
-                hud.textLabel.text = @"获取积分失败";
-                
-                [hud dismissAfterDelay:2.0];
-            });
+        
             
             
         } else{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text = @"获取成功";
-                hud.indicatorView = nil;
-                [hud dismissAfterDelay:2.0];
+               
                 [self dealResponse:(NSDictionary*)responseObject];
-
-                
-                
             });
             
             [self.tableView.header endRefreshing];
         }
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [hud dismiss];
-
         [self.tableView.header endRefreshing];
 
     }];
@@ -112,7 +95,11 @@
 -(void)dealResponse:(NSDictionary*)response{
     self.items = response[@"obj"];
     if (self.items.count > 0) {
+        
+ 
         [self.tableView reloadData];
+        
+        
     } else{
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20) ];
@@ -123,8 +110,6 @@
         
         self.tableView.tableFooterView = label;
     }
-    
-    
 }
 
 -(void)pop{
