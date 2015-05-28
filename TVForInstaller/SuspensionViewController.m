@@ -21,10 +21,16 @@
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popDeviceWindow:)];
-    tap.numberOfTapsRequired = 2;
+    tap.numberOfTapsRequired = 1;
     
-    [self.view addGestureRecognizer:tap];
+//    [self.view addGestureRecognizer:tap];
+    
+    self.contentView.layer.cornerRadius = 5.0;
+    self.contentView.layer.masksToBounds = YES;
+    
+    
 }
+
 
 
 

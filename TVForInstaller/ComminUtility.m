@@ -94,4 +94,12 @@
     return isMatch;
     
 }
+
++(NSString*)kSuspensionWindowShowNotification{
+    return @"kSuspensionWindowShowNotification";
+}
++(NSString*)kSuspensionWindowHideNotification{
+    return @"kSuspensionWindowHideNotification";
+}
+
 @end

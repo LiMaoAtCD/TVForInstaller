@@ -119,21 +119,24 @@ typedef void(^alertBlock)(void);
 }
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"%@",self.orderInfo);
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowHideNotification] object:nil];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
     
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    NSLog(@"%@",self.orderInfo);
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
-
 }
 
 -(void)fetchLocalOrder{

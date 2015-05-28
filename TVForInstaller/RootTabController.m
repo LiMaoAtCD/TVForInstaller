@@ -11,9 +11,11 @@
 
 #import "LoginNavigationController.h"
 #import "SuspensionViewController.h"
+#import "ComminUtility.h"
 @interface RootTabController ()
 
 @property(nonatomic,strong) UIView * suspensionView;
+@property (nonatomic,strong) SuspensionViewController *suspension;
 
 @end
 
@@ -23,19 +25,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSuspensionView) name:[ComminUtility kSuspensionWindowHideNotification] object:nil];
     
    
+}
+
+-(void)hideSuspensionView{
+    [self suspensionWindow:NO];
+
+}
+-(void)showSuspensionView{
+    [self suspensionWindow:YES];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self manageLogState];
-   
     
-    [self suspensionWindow];
-    
-    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //    [self suspensionWindow:NO];
+
 }
 
 -(void)manageLogState{
@@ -54,32 +69,47 @@
 
 }
 
--(void)suspensionWindow{
+-(void)suspensionWindow:(BOOL)Issuspension{
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SuspensionViewController *suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
-    suspension.view.backgroundColor = [UIColor clearColor];
-    self.suspensionView = suspension.view;
-    self.suspensionView.layer.cornerRadius = 10;
-    self.suspensionView.layer.masksToBounds = YES;
-    [self addChildViewController:suspension];
+    if (Issuspension) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
+        self.suspension.view.backgroundColor = [UIColor clearColor];
+       
+        [self addChildViewController:self.suspension];
+        
+        
+        [self.suspension willMoveToParentViewController:self];
+        
+        self.suspension.view.frame = CGRectMake(self.view.frame.size.width - 100, self.view.frame.size.height - 100, 100, 50);
+        
+        self.suspensionView = self.suspension.view;
+//        self.suspensionView.layer.cornerRadius = 10;
+//        self.suspensionView.layer.masksToBounds = YES;
+        
+        self.suspension.view.alpha = 0.0;
+        [self.view addSubview:self.suspension.view];
+
+
+        [self.suspension didMoveToParentViewController:self];
+        
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            self.suspension.view.alpha =1.0;
+        }];
+    } else{
+        [UIView animateWithDuration:1.0 animations:^{
+            
+        }];
+        [self.suspensionView removeFromSuperview];
+        [self.suspension removeFromParentViewController];
+        
+    }
     
-    
-    [suspension willMoveToParentViewController:self];
-    
-    [self.view addSubview:suspension.view];
-    suspension.view.frame = CGRectMake(0, 0, 100, 50);
-    suspension.view.center = self.view.center;
-    [suspension didMoveToParentViewController:self];
+   
     
 }
 
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    
-    
-}
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
@@ -119,6 +149,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end

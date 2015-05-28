@@ -46,4 +46,8 @@
  *  @return nil
  */
 + (BOOL)checkPassword:(NSString *) password;
+
+
++(NSString*)kSuspensionWindowShowNotification;
++(NSString*)kSuspensionWindowHideNotification;
 @end

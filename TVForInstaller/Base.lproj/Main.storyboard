@@ -1947,28 +1947,80 @@
                         <viewControllerLayoutGuide type="bottom" id="hIf-1o-V1r"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cXU-Zq-AVM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Na-oU-dvP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未连接" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Su-Kg-sB3">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="2Su-Kg-sB3" secondAttribute="centerY" constant="0.5" id="K5c-oT-cB7"/>
+                                    <constraint firstItem="2Su-Kg-sB3" firstAttribute="leading" secondItem="4Na-oU-dvP" secondAttribute="leading" constant="29" id="fE8-X6-vC7"/>
+                                    <constraint firstAttribute="width" constant="100" id="khz-EZ-a5y"/>
+                                    <constraint firstAttribute="height" constant="50" id="pBD-ZN-R5T"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Su-Kg-sB3" secondAttribute="trailing" constant="29" id="xeg-2y-tnG"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="2Su-Kg-sB3"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="khz-EZ-a5y"/>
+                                        <exclude reference="pBD-ZN-R5T"/>
+                                        <exclude reference="K5c-oT-cB7"/>
+                                        <exclude reference="fE8-X6-vC7"/>
+                                        <exclude reference="xeg-2y-tnG"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="2Su-Kg-sB3"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="khz-EZ-a5y"/>
+                                        <include reference="pBD-ZN-R5T"/>
+                                        <include reference="K5c-oT-cB7"/>
+                                        <include reference="fE8-X6-vC7"/>
+                                        <include reference="xeg-2y-tnG"/>
+                                    </mask>
                                 </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Na-oU-dvP" firstAttribute="top" secondItem="cXU-Zq-AVM" secondAttribute="topMargin" id="uSp-jv-JfS"/>
+                            <constraint firstItem="4Na-oU-dvP" firstAttribute="leading" secondItem="cXU-Zq-AVM" secondAttribute="leadingMargin" constant="-16" id="xG9-lJ-gvF"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="4Na-oU-dvP"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="uSp-jv-JfS"/>
+                                <exclude reference="xG9-lJ-gvF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="4Na-oU-dvP"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="uSp-jv-JfS"/>
+                                <include reference="xG9-lJ-gvF"/>
+                            </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="4Na-oU-dvP" id="vlR-vq-6bA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hpu-bi-8RX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
