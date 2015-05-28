@@ -50,6 +50,8 @@
 		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
 		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
+		87B400BB1B16ACDE00CC1C95 /* AddOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400BA1B16ACDE00CC1C95 /* AddOrderTableViewCell.m */; };
+		87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400BD1B16ADD100CC1C95 /* ZhijiaTableViewCell.m */; };
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
 		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
 		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
@@ -165,6 +167,10 @@
 		878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatationViewController.m; sourceTree = "<group>"; };
 		878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		87B400B91B16ACDE00CC1C95 /* AddOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOrderTableViewCell.h; sourceTree = "<group>"; };
+		87B400BA1B16ACDE00CC1C95 /* AddOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrderTableViewCell.m; sourceTree = "<group>"; };
+		87B400BC1B16ADD100CC1C95 /* ZhijiaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhijiaTableViewCell.h; sourceTree = "<group>"; };
+		87B400BD1B16ADD100CC1C95 /* ZhijiaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhijiaTableViewCell.m; sourceTree = "<group>"; };
 		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
 		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
 		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
@@ -259,6 +265,10 @@
 			children = (
 				8716C0F71B15566B00389EC7 /* PersonalOrderTableViewController.h */,
 				8716C0F81B15566B00389EC7 /* PersonalOrderTableViewController.m */,
+				87B400B91B16ACDE00CC1C95 /* AddOrderTableViewCell.h */,
+				87B400BA1B16ACDE00CC1C95 /* AddOrderTableViewCell.m */,
+				87B400BC1B16ADD100CC1C95 /* ZhijiaTableViewCell.h */,
+				87B400BD1B16ADD100CC1C95 /* ZhijiaTableViewCell.m */,
 			);
 			name = PersonalOrder;
 			sourceTree = "<group>";
@@ -779,6 +789,7 @@
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
+				87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
@@ -792,6 +803,7 @@
 				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				8716C1021B1567D600389EC7 /* Bill.m in Sources */,
+				87B400BB1B16ACDE00CC1C95 /* AddOrderTableViewCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */,
 				8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */,
