@@ -37,7 +37,7 @@
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:recognizer];
     
-    [ComminUtility configureTitle:@"电视管家" forViewController:self];
+    [ComminUtility configureTitle:@"电视极客" forViewController:self];
     
     self.navigationItem.leftBarButtonItem = nil;
     

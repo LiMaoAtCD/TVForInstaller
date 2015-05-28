@@ -25,6 +25,7 @@
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
+#import <SDImageCache.h>
 
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
@@ -59,8 +60,15 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToChangeAvator)];
     [self.avatarImageView addGestureRecognizer:tap];
     
+
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:@"kLocalAvatarImage"];
     
-   
+    if (image) {
+        self.avatarImageView.image  = image;
+
+    }else{
+        self.avatarImageView.image = [UIImage imageNamed:@"temp"];
+    }
     
     
 }
@@ -257,6 +265,12 @@
         
         //TODO: deal image;
         self.avatarImageView.image = image;
+        
+        [[SDImageCache sharedImageCache] storeImage:image forKey:@"kLocalAvatarImage" toDisk:YES];
+        
+        
+        
+        
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
