@@ -141,6 +141,9 @@
 -(NSString *)getCurrentSpecifiedRenderer{
     NSString *temp = [[NSString alloc] initWithCString:self->mediaController->getCurrentDMR() encoding:NSUTF8StringEncoding];
     
+    if ([temp isEqualToString:@"none"]) {
+        temp = @"无";
+    }
     return temp;
 }
 

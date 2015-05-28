@@ -500,7 +500,7 @@ const char * PLT_MicroMediaController::getCurrentDMR(){
         return (const char *)device->GetFriendlyName();
     } else {
         // this output is taken care of by the GetCurMediaRenderer call
-        return "None";
+        return "none";
     }
 }
 

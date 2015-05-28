@@ -21,7 +21,7 @@
 #import "InstallHistoryViewController.h"
 
 #import "AccountManager.h"
-#import "LoginViewController.h"
+#import "LoginNavigationController.h"
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
@@ -67,7 +67,7 @@
         self.avatarImageView.image  = image;
 
     }else{
-        self.avatarImageView.image = [UIImage imageNamed:@"temp"];
+        self.avatarImageView.image = [UIImage imageNamed:@"tou"];
     }
     
     
@@ -79,7 +79,7 @@
     [AccountManager setLogin:NO];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    LoginViewController *login = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    LoginNavigationController *login = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
     
     [self showDetailViewController:login sender:nil];
 

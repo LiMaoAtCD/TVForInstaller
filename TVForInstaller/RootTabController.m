@@ -72,22 +72,30 @@
 -(void)suspensionWindow:(BOOL)Issuspension{
     
     if (Issuspension) {
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        self.suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
-        self.suspension.view.backgroundColor = [UIColor clearColor];
+        
+        if (!self.suspension) {
+            
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            self.suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
+            self.suspension.view.backgroundColor = [UIColor clearColor];
+        }
+      
        
         [self addChildViewController:self.suspension];
         
         
         [self.suspension willMoveToParentViewController:self];
         
-        self.suspension.view.frame = CGRectMake(self.view.frame.size.width - 100, self.view.frame.size.height - 100, 100, 50);
+        
+        self.suspension.view.frame = CGRectMake(0, 0, 80, 50);
         
         self.suspensionView = self.suspension.view;
+        
 //        self.suspensionView.layer.cornerRadius = 10;
 //        self.suspensionView.layer.masksToBounds = YES;
         
         self.suspension.view.alpha = 0.0;
+        self.suspension.view.center = self.view.center;
         [self.view addSubview:self.suspension.view];
 
 
@@ -98,9 +106,7 @@
             self.suspension.view.alpha =1.0;
         }];
     } else{
-        [UIView animateWithDuration:1.0 animations:^{
-            
-        }];
+        
         [self.suspensionView removeFromSuperview];
         [self.suspension removeFromParentViewController];
         

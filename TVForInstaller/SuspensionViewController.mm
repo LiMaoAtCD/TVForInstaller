@@ -11,6 +11,7 @@
 #import "Animator.h"
 #import "DeviceSuspensionController.h"
 #import "DLNAManager.h"
+#import "ComminUtility.h"
 
 @interface SuspensionViewController ()<UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *deviceList;
@@ -32,19 +33,38 @@
     
     self.contentView.layer.cornerRadius = 5.0;
     self.contentView.layer.masksToBounds = YES;
+    [self showSuspensionView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+
+}
+
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    
+//    NSString *renderer = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
+//    
+//    if ([renderer isEqualToString:@"None"]||
+//        renderer == nil) {
+//        self.deviceNameLabel.text = @"未连接";
+//        
+//    }else{
+//        self.deviceNameLabel.text = renderer;
+//        
+//    }
+//}
+
+-(void)showSuspensionView{
     
     NSString *renderer = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
-    
-    if ([renderer isEqualToString:@""]||
-        renderer == nil) {
+
+    if ([renderer isEqualToString:@"无"]) {
         self.deviceNameLabel.text = @"未连接";
 
     }else{
-        self.deviceNameLabel.text = renderer;
+        self.deviceNameLabel.text = @"已连接";
 
     }
 }
-
 
 
 

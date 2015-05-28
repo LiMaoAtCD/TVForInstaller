@@ -22,7 +22,7 @@
 		871A23311B0ACA1C00B484CA /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23301B0ACA1C00B484CA /* AccountManager.m */; };
 		871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23331B0ACF7200B484CA /* RegisterViewController.m */; };
 		871A23371B0ACF8300B484CA /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871A23361B0ACF8300B484CA /* ForgetViewController.m */; };
-		871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B77491B0C9BBB00810EE3 /* DeviceViewController.m */; };
+		871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 871B77491B0C9BBB00810EE3 /* DeviceViewController.mm */; };
 		871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */; };
 		871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774F1B0CA54C00810EE3 /* DeviceContainer.m */; };
 		872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8C21B0C839500C680B5 /* AppTableViewController.m */; };
@@ -125,7 +125,7 @@
 		871A23351B0ACF8300B484CA /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
 		871A23361B0ACF8300B484CA /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		871B77481B0C9BBB00810EE3 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
-		871B77491B0C9BBB00810EE3 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		871B77491B0C9BBB00810EE3 /* DeviceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DeviceViewController.mm; sourceTree = "<group>"; };
 		871B774B1B0CA41700810EE3 /* DeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTableViewCell.h; sourceTree = "<group>"; };
 		871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
 		871B774E1B0CA54C00810EE3 /* DeviceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceContainer.h; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				871B77481B0C9BBB00810EE3 /* DeviceViewController.h */,
-				871B77491B0C9BBB00810EE3 /* DeviceViewController.m */,
+				871B77491B0C9BBB00810EE3 /* DeviceViewController.mm */,
 				871B774B1B0CA41700810EE3 /* DeviceTableViewCell.h */,
 				871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */,
 				871B774E1B0CA54C00810EE3 /* DeviceContainer.h */,
@@ -824,7 +824,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */,
-				871B774A1B0C9BBB00810EE3 /* DeviceViewController.m in Sources */,
+				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,
