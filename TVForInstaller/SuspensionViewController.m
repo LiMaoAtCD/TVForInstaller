@@ -8,8 +8,11 @@
 
 #import "SuspensionViewController.h"
 #import "DeviceViewController.h"
-@interface SuspensionViewController ()
+#import "Animator.h"
+#import "DeviceSuspensionController.h"
+@interface SuspensionViewController ()<UIViewControllerTransitioningDelegate,DeviceSelectionDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *deviceList;
+@property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
 
 @end
 
@@ -23,7 +26,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popDeviceWindow:)];
     tap.numberOfTapsRequired = 1;
     
-//    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.contentView.layer.cornerRadius = 5.0;
     self.contentView.layer.masksToBounds = YES;
@@ -35,11 +38,13 @@
 
 
 -(void)popDeviceWindow:(UIButton*)button{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    DeviceViewController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceViewController"];
+    DeviceSuspensionController *device = [sb instantiateViewControllerWithIdentifier:@"DeviceSuspensionController"];
     
-    self.modalPresentationStyle =UIModalPresentationOverCurrentContext;
+    device.transitioningDelegate = self;
+    
+    
     
     [self showDetailViewController:device sender:self];
 }
@@ -58,5 +63,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    return [[Animator alloc] init];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return [[Animator alloc] init];
+
+}
+
+-(void)didChosenDeviceName:(NSString *)deviceName{
+    self.deviceNameLabel.text = deviceName;
+}
+
+
 
 @end

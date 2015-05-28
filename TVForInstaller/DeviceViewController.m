@@ -81,10 +81,10 @@
     customLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     return customLabel;
 }
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
-    return  20.;
-}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
