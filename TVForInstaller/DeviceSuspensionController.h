@@ -8,15 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DeviceSelectionDelegate <NSObject>
-
--(void)didChosenDeviceName:(NSString*)deviceName;
-
-@end
 
 @interface DeviceSuspensionController : UIViewController
 
-@property (nonatomic,strong) id<DeviceSelectionDelegate> delegate;
 
 
 @end

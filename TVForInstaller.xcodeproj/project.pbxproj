@@ -56,9 +56,9 @@
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
 		87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */; };
-		87B400CF1B16C30700CC1C95 /* SuspensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */; };
+		87B400CF1B16C30700CC1C95 /* SuspensionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CE1B16C30700CC1C95 /* SuspensionViewController.mm */; };
 		87B400D21B16EE9700CC1C95 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D11B16EE9700CC1C95 /* Animator.m */; };
-		87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.m */; };
+		87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.mm */; };
 		87B400DA1B16F7EA00CC1C95 /* DeviceSuspensioner.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D91B16F7EA00CC1C95 /* DeviceSuspensioner.m */; };
 		87B400DD1B16F8E900CC1C95 /* SuspensionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400DC1B16F8E900CC1C95 /* SuspensionCell.m */; };
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
@@ -68,7 +68,7 @@
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
-		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */; };
+		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.mm */; };
 		87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */; };
 		87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */; };
 		87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE1F51AFAFF0000AFB7BF /* LaunchScreen.xib */; };
@@ -188,11 +188,11 @@
 		87B400CA1B16C17B00CC1C95 /* DLNADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNADataManager.h; sourceTree = "<group>"; };
 		87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNADataManager.mm; sourceTree = "<group>"; };
 		87B400CD1B16C30700CC1C95 /* SuspensionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspensionViewController.h; sourceTree = "<group>"; };
-		87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuspensionViewController.m; sourceTree = "<group>"; };
+		87B400CE1B16C30700CC1C95 /* SuspensionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SuspensionViewController.mm; sourceTree = "<group>"; };
 		87B400D01B16EE9700CC1C95 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		87B400D11B16EE9700CC1C95 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
 		87B400D51B16F1E600CC1C95 /* DeviceSuspensionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSuspensionController.h; sourceTree = "<group>"; };
-		87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSuspensionController.m; sourceTree = "<group>"; };
+		87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DeviceSuspensionController.mm; sourceTree = "<group>"; };
 		87B400D81B16F7EA00CC1C95 /* DeviceSuspensioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSuspensioner.h; sourceTree = "<group>"; };
 		87B400D91B16F7EA00CC1C95 /* DeviceSuspensioner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSuspensioner.m; sourceTree = "<group>"; };
 		87B400DB1B16F8E900CC1C95 /* SuspensionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspensionCell.h; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 		87DBE1E71AFAFF0000AFB7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87DBE1E81AFAFF0000AFB7BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		87DBE1F11AFAFF0000AFB7BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87DBE1F31AFAFF0000AFB7BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		87DBE1F61AFAFF0000AFB7BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -438,11 +438,11 @@
 			isa = PBXGroup;
 			children = (
 				87B400CD1B16C30700CC1C95 /* SuspensionViewController.h */,
-				87B400CE1B16C30700CC1C95 /* SuspensionViewController.m */,
+				87B400CE1B16C30700CC1C95 /* SuspensionViewController.mm */,
 				87B400D01B16EE9700CC1C95 /* Animator.h */,
 				87B400D11B16EE9700CC1C95 /* Animator.m */,
 				87B400D51B16F1E600CC1C95 /* DeviceSuspensionController.h */,
-				87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.m */,
+				87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.mm */,
 				87B400DB1B16F8E900CC1C95 /* SuspensionCell.h */,
 				87B400DC1B16F8E900CC1C95 /* SuspensionCell.m */,
 				87B400D81B16F7EA00CC1C95 /* DeviceSuspensioner.h */,
@@ -544,7 +544,7 @@
 			children = (
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
-				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.m */,
+				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.mm */,
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
 				87B400DE1B16F93700CC1C95 /* suspension */,
@@ -839,11 +839,11 @@
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
 				8716C1081B1567D700389EC7 /* Applist.m in Sources */,
-				87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.m in Sources */,
+				87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.mm in Sources */,
 				87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */,
 				8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */,
 				8716C0F21B14561700389EC7 /* UIColor+HexRGB.m in Sources */,
-				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.m in Sources */,
+				87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.mm in Sources */,
 				87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */,
 				87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */,
 				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
@@ -877,7 +877,7 @@
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
-				87B400CF1B16C30700CC1C95 /* SuspensionViewController.m in Sources */,
+				87B400CF1B16C30700CC1C95 /* SuspensionViewController.mm in Sources */,
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,

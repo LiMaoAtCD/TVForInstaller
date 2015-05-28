@@ -24,7 +24,7 @@
         
         sharedSingleton = [[DLNAManager alloc] init];
         
-        [sharedSingleton transferDeviceToBeServerAndControlPoint];
+//        [sharedSingleton transferDeviceToBeServerAndControlPoint];
         
         sharedSingleton->RendererArray = [[NSMutableArray alloc] init];
 
@@ -33,6 +33,22 @@
 }
 
 
+
+-(void)createControlPoint{
+    
+    NPT_LogManager::GetDefault().Configure("plist:.level=FINE;.handlers=ConsoleHandler;.ConsoleHandler.colors=off;.ConsoleHandler.filter=42");
+    PLT_Constants::GetInstance().SetDefaultDeviceLease(NPT_TimeInterval(60.));
+    // Create control point
+    upnpC = new PLT_UPnP();
+    
+    PLT_CtrlPointReference ctrlPoint(new PLT_CtrlPoint());
+    mediaController = new PLT_MicroMediaController(ctrlPoint);
+    //    mediaController->setiPhoneName(deviceName);
+    //    const char* name = mediaController->getiPhoneName();
+    upnpC->AddCtrlPoint(ctrlPoint);
+    upnpC->Start();
+
+}
 
 -(void)transferDeviceToBeServerAndControlPoint{
     
@@ -103,6 +119,11 @@
 {
     upnpS->Stop();
     upnpC->Stop();
+}
+
+-(void)stopService{
+    upnpC->Stop();
+
 }
 
 -(void)getServerResources {

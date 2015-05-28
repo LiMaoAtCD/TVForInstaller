@@ -40,13 +40,38 @@ typedef enum : NSUInteger {
 //将设备指定成DMS和DMC
 -(void)transferDeviceToBeServerAndControlPoint;
 
+
+/**
+ *  创建控制点
+ */
+-(void)createControlPoint;
+
+/**
+ *  停止服务
+ */
+-(void)stopService;
 -(void)startServer;
 -(void)stoprServer;
 -(void)getServerResources;
+
+
+/**
+ *  获取renderer设备列表
+ *
+ *  @return
+ */
 -(NSArray*)getRendererResources;
+
+/**
+ *  获取当前指定renderer 名字
+ *
+ *  @return
+ */
 -(NSString *)getCurrentSpecifiedRenderer;
 
 -(void)specifyRendererName:(NSString *) renderName;
+
+
 -(void)specifyFileInDMSName:(NSString *)name;
 -(void)specifyFileToSend:(NSString *)name;
 -(void)specifyURL:(NSURL*)url;
@@ -56,6 +81,7 @@ typedef enum : NSUInteger {
 
 
 -(NSArray*)fetchLocalFilesfromDMS;
+
 -(NSArray*)fetchLocalFilesfromServer:(ResourceType)resourceType;
 
 

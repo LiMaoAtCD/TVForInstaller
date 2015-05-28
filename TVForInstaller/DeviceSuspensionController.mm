@@ -9,6 +9,7 @@
 #import "DeviceSuspensionController.h"
 #import "SuspensionCell.h"
 #import "DeviceSuspensioner.h"
+#import "DLNAManager.h"
 @interface DeviceSuspensionController ()<UITableViewDataSource,UITableViewDelegate,DeviceSuspensionerDelegate>
 
 
@@ -28,7 +29,8 @@
     self.containerView.layer.cornerRadius = 5.0;
     _containerView.layer.masksToBounds = YES;
     
-    self.devices = @[@"小米盒子"];
+    self.devices = [[DLNAManager DefaultManager] getRendererResources];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,11 +73,6 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if ([self.delegate respondsToSelector:@selector(didChosenDeviceName:)]) {
-        [self.delegate didChosenDeviceName:self.devices[indexPath.row]];
-    }
-    
     [self closeSuspension];
     
 }

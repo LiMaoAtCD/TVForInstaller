@@ -10,7 +10,9 @@
 #import "DeviceViewController.h"
 #import "Animator.h"
 #import "DeviceSuspensionController.h"
-@interface SuspensionViewController ()<UIViewControllerTransitioningDelegate,DeviceSelectionDelegate>
+#import "DLNAManager.h"
+
+@interface SuspensionViewController ()<UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *deviceList;
 @property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
 
@@ -31,7 +33,16 @@
     self.contentView.layer.cornerRadius = 5.0;
     self.contentView.layer.masksToBounds = YES;
     
+    NSString *renderer = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
     
+    if ([renderer isEqualToString:@""]||
+        renderer == nil) {
+        self.deviceNameLabel.text = @"未连接";
+
+    }else{
+        self.deviceNameLabel.text = renderer;
+
+    }
 }
 
 
@@ -71,10 +82,6 @@
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     return [[Animator alloc] init];
 
-}
-
--(void)didChosenDeviceName:(NSString *)deviceName{
-    self.deviceNameLabel.text = deviceName;
 }
 
 
