@@ -149,9 +149,9 @@ typedef void(^alertBlock)(void);
     
     request.entity = [NSEntityDescription entityForName:@"Order" inManagedObjectContext:context];
     
-    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderID" ascending:NO];
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderid" ascending:NO];
     
-    request.predicate = [NSPredicate predicateWithFormat:@"orderID == %@",self.orderInfo[@"id"]];
+    request.predicate = [NSPredicate predicateWithFormat:@"orderid == %@",self.orderInfo[@"orderid"]];
     
     NSError *error =  nil;
     
@@ -163,29 +163,21 @@ typedef void(^alertBlock)(void);
     }else{
         [results enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             Order *order = obj;
-            NSLog(@"%@",order.bill.zhijia);
+
+        
+            
             self.orderInfo = [@{
                                 @"address":order.address,
                                 @"brand":order.brand,
                                 @"createdate":order.createdate,
                                 @"engineer":order.engineer,
                                 @"hoster":order.hoster,
-                                @"mac":order.mac,
-                                @"id":order.orderID,
-                                @"paymodel":order.paymodel,
+                                @"orderid":order.orderid,
                                 @"phone":order.phone,
                                 @"size":order.size,
                                 @"source":order.source,
                                 @"type":order.type,
-                                @"version":order.version,
-                                
 
-                                
-                                
-                                @"appname":(NSArray*)order.applist.appname,
-                                
-                                
-                                
                                 @"hostphone":order.bill.hostphone,
                                 @"zjservice":order.bill.zjservice,
                                 @"sczkfei":order.bill.sczkfei,
@@ -194,6 +186,27 @@ typedef void(^alertBlock)(void);
                                 @"yiji":order.bill.yiji
                                 
                                   } mutableCopy];
+            
+            
+            if (order.mac) {
+                self.orderInfo[@"mac"] = order.mac;
+            }
+            if (order.version) {
+                self.orderInfo[@"version"] = order.version;
+            }
+            if (order.paymodel) {
+                self.orderInfo[@"paymodel"] = order.paymodel;
+            }else{
+                self.orderInfo[@"paymodel"] = @0;
+            }
+            if (order.version) {
+                self.orderInfo[@"version"] = order.version;
+            }
+            
+            if (order.applist.appname) {
+                self.orderInfo[@"appname"] = (NSArray*)order.applist.appname;
+            }
+
         }];
     }
     
@@ -581,7 +594,7 @@ typedef void(^alertBlock)(void);
         
         
         
-        //    @property (nonatomic, retain) NSString * orderID;
+        //    @property (nonatomic, retain) NSString * orderid;
         //    @property (nonatomic, retain) NSString * phone;
         //    @property (nonatomic, retain) NSNumber * paymodel;
         //    @property (nonatomic, retain) NSNumber * source;
@@ -612,7 +625,7 @@ typedef void(^alertBlock)(void);
             
             [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 Order *order = obj;
-                if ([order.orderID isEqualToString:self.orderInfo[@"id"]]) {
+                if ([order.orderid isEqualToString:self.orderInfo[@"id"]]) {
                     contain = YES;
                     [self alertWithMessage:@"该订单已保存" withCompletionHandler:^{
                         
@@ -645,7 +658,7 @@ typedef void(^alertBlock)(void);
             
             [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 Order *order = obj;
-                if ([order.orderID isEqualToString:self.orderInfo[@"id"]]) {
+                if ([order.orderid isEqualToString:self.orderInfo[@"id"]]) {
                     [context deleteObject:order];
                     [context save:&error];
                     
@@ -707,7 +720,7 @@ typedef void(^alertBlock)(void);
     Bill *bill = [NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
     Applist *applist = [NSEntityDescription insertNewObjectForEntityForName:@"Applist" inManagedObjectContext:context];
 
-    order.orderID  =self.orderInfo[@"id"];
+    order.orderid  =self.orderInfo[@"orderid"];
     order.phone = self.orderInfo[@"phone"];
     order.paymodel = self.orderInfo[@"paymodel"];
     order.source = self.orderInfo[@"source"];

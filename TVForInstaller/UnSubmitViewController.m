@@ -91,7 +91,7 @@
                     
                     [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                        
-                        if ([self.orderList[idx][@"id"] isEqualToString:dictionary[@"id"]]) {
+                        if ([self.orderList[idx][@"orderid"] isEqualToString:dictionary[@"orderid"]]) {
                             NSLog(@"此订单已经保存");
                             
                             [toDelete addObject:obj];
@@ -132,7 +132,7 @@
     
     request.entity = [NSEntityDescription entityForName:@"Order" inManagedObjectContext:context];
     
-    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderID" ascending:NO];
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderid" ascending:NO];
     
     NSError *error =  nil;
     
@@ -153,7 +153,7 @@
                                   @"type":order.type,
                                   @"phone":order.phone,
                                   @"size":order.size,
-                                  @"id":order.orderID
+                                  @"orderid":order.orderid
                                   };
             
             [self.localOrders addObject:dic];
@@ -373,14 +373,14 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"无效" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-       NSString *orderID =  self.orderList[button.tag][@"id"];
+       NSString *orderid =  self.orderList[button.tag][@"orderid"];
     
         JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
         
         hud.textLabel.text = @"撤销订单中";
         [hud showInView:self.tableView];
         
-        [NetworkingManager disableOrderByID:orderID withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager disableOrderByID:orderid withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSLog(@"response:%@",responseObject);
             if ([responseObject[@"success"] integerValue] == 0) {
@@ -431,14 +431,14 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        NSString *orderID =  self.orderList[button.tag][@"id"];
+        NSString *orderid =  self.orderList[button.tag][@"orderid"];
         
         JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
         
         hud.textLabel.text = @"退单中";
         [hud showInView:self.tableView];
-        
-        [NetworkingManager revokeOrderID:orderID ByTokenID:self.orderList[button.tag][@"engineer"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+   
+        [NetworkingManager revokeOrderID:orderid ByTokenID:self.orderList[button.tag][@"engineer"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"success"] integerValue] == 0) {
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
