@@ -22,7 +22,7 @@
 #import "Applist.h"
 #import "Bill.h"
 
-
+#import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 
 
@@ -549,6 +549,9 @@ typedef void(^alertBlock)(void);
  */
 -(void)clickToPostOrder:(UIButton *)button{
     //TODO: 提交订单
+    
+    
+    
 }
 
 /**

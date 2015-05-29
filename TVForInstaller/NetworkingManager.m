@@ -222,4 +222,40 @@
 
 
 
++(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    
+    dic[@"id"] = @" ";
+    dic[@"orderid"] =orderID;
+    dic[@"phone"] = phone;
+    dic[@"paymodel"] = paymodel;
+    dic[@"source"] = source;
+    dic[@"address"] = address;
+    dic[@"brand"] = brand;
+    dic[@"engineer"] = engineer;
+    dic[@"mac"] = mac;
+    dic[@"hoster"] = hoster;
+    dic[@"size"] = size;
+    dic[@"version"] = version;
+    
+    return dic;
+};
++(NSDictionary*)createBillbyHostphone:(NSString*)hostphone zjservice:(NSNumber*)zjservice sczkfei:(NSNumber*)sczkfei zhijia:(NSNumber*)zhijia hdmi:(NSNumber*)hdmi yiji:(NSNumber*)yiji{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    
+    dic[@"hostphone"] =hostphone;
+    dic[@"zjservice"] =zjservice;
+    dic[@"sczkfei"] = sczkfei;
+    dic[@"zhijia"] = zhijia;
+    dic[@"hdmi"] = hdmi;
+    dic[@"yiji"] = yiji;
+    
+    
+    return dic;
+
+}
+
+
+
+
 @end
