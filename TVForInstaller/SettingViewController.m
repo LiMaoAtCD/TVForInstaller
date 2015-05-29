@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import "ComminUtility.h"
 
-#import "InfoViewController.h"
+#import "InfoTableViewController.h"
 #import "AboutViewController.h"
 #import "DeviceViewController.h"
 #import "ModifyPasswordViewController.h"
@@ -164,7 +164,7 @@
             break;
         case 5:
         {
-            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+            InfoTableViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoTableViewController"];
             info.hidesBottomBarWhenPushed = YES;
             [self.navigationController showViewController:info sender:self];
         }
@@ -197,7 +197,6 @@
     
     
     AvatorDetailViewController *avatar = [sb instantiateViewControllerWithIdentifier:@"AvatorDetailViewController"];
-    self.view.backgroundColor = [UIColor clearColor];
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     avatar.delegate = self;
     [self showDetailViewController:avatar sender:self];

@@ -1947,6 +1947,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zmI-lt-Nmn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qxM-vf-5PD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3mN-X2-mZU">
@@ -2094,16 +2095,16 @@
                                 <exclude reference="6Rt-TQ-CUo"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="9Oi-x6-dhu"/>
-                                <exclude reference="WFY-gW-Y00"/>
-                                <exclude reference="uaz-GH-LiQ"/>
                                 <exclude reference="1XL-LN-4MA"/>
                                 <exclude reference="hQT-h5-fYN"/>
+                                <exclude reference="kQe-pk-et8"/>
+                                <exclude reference="qGR-Js-yfh"/>
                                 <exclude reference="NMR-Tq-mdJ"/>
                                 <exclude reference="PE1-Dz-jnm"/>
                                 <exclude reference="ccw-oD-DoV"/>
-                                <exclude reference="kQe-pk-et8"/>
-                                <exclude reference="qGR-Js-yfh"/>
+                                <exclude reference="9Oi-x6-dhu"/>
+                                <exclude reference="WFY-gW-Y00"/>
+                                <exclude reference="uaz-GH-LiQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2113,16 +2114,16 @@
                                 <include reference="6Rt-TQ-CUo"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9Oi-x6-dhu"/>
-                                <include reference="WFY-gW-Y00"/>
-                                <include reference="uaz-GH-LiQ"/>
                                 <include reference="1XL-LN-4MA"/>
                                 <include reference="hQT-h5-fYN"/>
+                                <exclude reference="kQe-pk-et8"/>
+                                <include reference="qGR-Js-yfh"/>
                                 <exclude reference="NMR-Tq-mdJ"/>
                                 <include reference="PE1-Dz-jnm"/>
                                 <include reference="ccw-oD-DoV"/>
-                                <exclude reference="kQe-pk-et8"/>
-                                <include reference="qGR-Js-yfh"/>
+                                <include reference="9Oi-x6-dhu"/>
+                                <include reference="WFY-gW-Y00"/>
+                                <include reference="uaz-GH-LiQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -2292,6 +2293,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5pf-hP-hmb"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WYk-Bx-Ibl">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsV-Jh-MoJ">
@@ -2344,12 +2346,12 @@
                                 <exclude reference="mRC-A3-ALV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="dor-kN-B52"/>
                                 <exclude reference="VH6-vs-pue"/>
                                 <exclude reference="a8c-4b-8AM"/>
                                 <exclude reference="idd-cm-m9T"/>
                                 <exclude reference="s7w-IJ-Gq5"/>
                                 <exclude reference="yjb-0x-S1k"/>
-                                <exclude reference="dor-kN-B52"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2358,12 +2360,12 @@
                                 <include reference="mRC-A3-ALV"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="dor-kN-B52"/>
                                 <include reference="VH6-vs-pue"/>
                                 <include reference="a8c-4b-8AM"/>
                                 <include reference="idd-cm-m9T"/>
                                 <include reference="s7w-IJ-Gq5"/>
                                 <include reference="yjb-0x-S1k"/>
-                                <include reference="dor-kN-B52"/>
                             </mask>
                         </variation>
                     </view>

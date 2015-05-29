@@ -39,6 +39,12 @@
 +(NSString*)getTokenID;
 +(void)setTokenID:(NSString*)token;
 
++(void)setgender:(NSInteger)gender;
++(NSInteger)getGender;
+
++(NSString*)getAddress;
++(void)setAddress:(NSString*)address;
+
 
 
 

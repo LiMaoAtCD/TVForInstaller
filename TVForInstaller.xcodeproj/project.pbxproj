@@ -29,8 +29,6 @@
 		872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872DA8C41B0C883F00C680B5 /* Setting.storyboard */; };
 		872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8CF1B0C94E100C680B5 /* AboutViewController.m */; };
 		8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */; };
-		8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDED1B0D8E0700E3685C /* InfoViewController.m */; };
-		8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */; };
 		8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */; };
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874753521B12D2C2003BD8A3 /* UnSubmitCell.m */; };
@@ -61,6 +59,8 @@
 		87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D61B16F1E600CC1C95 /* DeviceSuspensionController.mm */; };
 		87B400DA1B16F7EA00CC1C95 /* DeviceSuspensioner.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400D91B16F7EA00CC1C95 /* DeviceSuspensioner.m */; };
 		87B400DD1B16F8E900CC1C95 /* SuspensionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400DC1B16F8E900CC1C95 /* SuspensionCell.m */; };
+		87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */; };
+		87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E51B18145400CC1C95 /* GenderViewController.m */; };
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
 		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
 		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
@@ -136,10 +136,6 @@
 		872DA8CF1B0C94E100C680B5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		8736FDE91B0D808900E3685C /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
 		8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
-		8736FDEC1B0D8E0700E3685C /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		8736FDED1B0D8E0700E3685C /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		8736FDEF1B0DA63D00E3685C /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
-		8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		874753491B12C086003BD8A3 /* UnSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnSubmitViewController.h; sourceTree = "<group>"; };
 		8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnSubmitViewController.m; sourceTree = "<group>"; };
 		8747534F1B12C10C003BD8A3 /* Order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
@@ -197,6 +193,10 @@
 		87B400D91B16F7EA00CC1C95 /* DeviceSuspensioner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSuspensioner.m; sourceTree = "<group>"; };
 		87B400DB1B16F8E900CC1C95 /* SuspensionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspensionCell.h; sourceTree = "<group>"; };
 		87B400DC1B16F8E900CC1C95 /* SuspensionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuspensionCell.m; sourceTree = "<group>"; };
+		87B400E11B17FAF500CC1C95 /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
+		87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
+		87B400E41B18145400CC1C95 /* GenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderViewController.h; sourceTree = "<group>"; };
+		87B400E51B18145400CC1C95 /* GenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderViewController.m; sourceTree = "<group>"; };
 		87C0221C1B130C7D005452C0 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
 		87C0221D1B130C7D005452C0 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
 		87C0221F1B130C91005452C0 /* TVInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVInfoCell.h; sourceTree = "<group>"; };
@@ -356,10 +356,10 @@
 		872DA8C91B0C893800C680B5 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				8736FDEC1B0D8E0700E3685C /* InfoViewController.h */,
-				8736FDED1B0D8E0700E3685C /* InfoViewController.m */,
-				8736FDEF1B0DA63D00E3685C /* InfoTableViewCell.h */,
-				8736FDF01B0DA63D00E3685C /* InfoTableViewCell.m */,
+				87B400E11B17FAF500CC1C95 /* InfoTableViewController.h */,
+				87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */,
+				87B400E41B18145400CC1C95 /* GenderViewController.h */,
+				87B400E51B18145400CC1C95 /* GenderViewController.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -823,10 +823,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */,
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
+				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
 				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
@@ -855,7 +857,6 @@
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
 				87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
-				8736FDEE1B0D8E0700E3685C /* InfoViewController.m in Sources */,
 				87B400DA1B16F7EA00CC1C95 /* DeviceSuspensioner.m in Sources */,
 				87B400DD1B16F8E900CC1C95 /* SuspensionCell.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
@@ -886,7 +887,6 @@
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 				87B400D21B16EE9700CC1C95 /* Animator.m in Sources */,
-				8736FDF11B0DA63D00E3685C /* InfoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

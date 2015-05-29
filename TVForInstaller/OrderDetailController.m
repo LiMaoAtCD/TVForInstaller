@@ -687,6 +687,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"hostphone"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"hostphone"]= textField.text;
+            
         }else{
             self.orderInfo[@"hostphone"] = [textField.text stringByAppendingString:string];
         }

@@ -133,6 +133,10 @@
         
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"name"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"name"]= textField.text;
+            
         }else{
             self.orderInfo[@"name"] = [textField.text stringByAppendingString:string];
         }
@@ -143,6 +147,10 @@
         
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"cellphone"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"cellphone"]= textField.text;
+            
         }else{
             self.orderInfo[@"cellphone"] = [textField.text stringByAppendingString:string];
         }
@@ -152,6 +160,10 @@
         //品牌
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"brand"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"brand"]= textField.text;
+            
         }else{
             self.orderInfo[@"brand"] = [textField.text stringByAppendingString:string];
         }
@@ -159,6 +171,10 @@
         //尺寸
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"size"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"size"]= textField.text;
+            
         }else{
             self.orderInfo[@"size"] = [textField.text stringByAppendingString:string];
         }
@@ -166,9 +182,13 @@
         //支架
       
     }else if(textField.tag == 5){
-        //品牌
+        //dizhi
         if ([string isEqualToString:@""]) {
             self.orderInfo[@"address"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"address"]= textField.text;
+            
         }else{
             self.orderInfo[@"address"] = [textField.text stringByAppendingString:string];
         }

@@ -245,6 +245,9 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.password = textField.text;
+
         }else{
             self.password = [textField.text stringByAppendingString:string];
         }
@@ -252,6 +255,9 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.verifyCode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.verifyCode = textField.text;
+            
         }else{
             self.verifyCode = [textField.text stringByAppendingString:string];
             
@@ -260,6 +266,9 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.cellphone = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.cellphone = textField.text;
+            
         }else{
             self.cellphone = [textField.text stringByAppendingString:string];
             
