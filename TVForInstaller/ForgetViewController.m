@@ -75,8 +75,7 @@ typedef void(^alertBlock)(void);
     [hud showInView:self.view animated:YES];
     
     
-    
-    [NetworkingManager fetchVerifyCode:self.cellphone withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetworkingManager fetchForgetPasswordVerifyCode:self.cellphone withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
             
@@ -97,11 +96,11 @@ typedef void(^alertBlock)(void);
             });
             
         }
-        
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud dismiss];
-    }];
 
+    }];
+   
 }
 
 - (IBAction)submit:(id)sender {

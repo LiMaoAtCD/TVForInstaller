@@ -208,7 +208,7 @@ typedef void(^alertBlock)(void);
     if (self.cellphoneNumber != nil||
         ![self.cellphoneNumber isEqualToString:@""]) {
         
-        [NetworkingManager fetchVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             self.hud.textLabel.text = @"验证码获取成功";
             self.hud.indicatorView = nil;
             [self.hud dismissAfterDelay:2.0];

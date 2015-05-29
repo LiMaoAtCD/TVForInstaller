@@ -38,13 +38,13 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
 +(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 /**
- *  获取验证码
+ *  注册获取验证码
  *
  *  @param cellphoneNumber   手机号码
  *  @param completionHandler 成功回调
  *  @param failHandler       失败回调
  */
-+(void)fetchVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
++(void)fetchRegisterVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 /**
@@ -170,6 +170,16 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param failHandler
  */
 +(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSDictionary*)applist source:(NSString*)source withcompletionHandler:(NetWorkHandler)handler failHandle:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  忘记密码短信验证码接口
+ *
+ *  @param cellphoneNumber   手机号码
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchForgetPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 @end

@@ -107,7 +107,7 @@ typedef void(^alertBlock)(void);
     
     
     
-    [NetworkingManager fetchVerifyCode:[AccountManager getCellphoneNumber] withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetworkingManager fetchRegisterVerifyCode:[AccountManager getCellphoneNumber] withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
             
