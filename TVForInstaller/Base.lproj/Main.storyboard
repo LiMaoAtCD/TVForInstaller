@@ -332,7 +332,7 @@
         <scene sceneID="C4T-3X-Uff">
             <objects>
                 <navigationController id="URF-Rn-MXf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="订单" id="cD0-SN-oQN"/>
+                    <tabBarItem key="tabBarItem" title="订单" image="ding" id="cD0-SN-oQN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qow-3p-g2K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -532,7 +532,7 @@
         <scene sceneID="qYO-f2-YdX">
             <objects>
                 <navigationController id="Llt-jl-Aai" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" id="zQ2-b5-8BI"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="she" id="zQ2-b5-8BI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kgV-TQ-PAd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2237,7 +2237,7 @@
         <scene sceneID="VHH-Hk-I2W">
             <objects>
                 <navigationController id="kkA-Om-Lbh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="应用" id="zu0-uJ-Ezt"/>
+                    <tabBarItem key="tabBarItem" title="应用" image="ying" id="zu0-uJ-Ezt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MXD-7N-WsZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2383,16 +2383,19 @@
     </scenes>
     <resources>
         <image name="beijin" width="720" height="251"/>
+        <image name="ding" width="41" height="40"/>
         <image name="gerenxinxi" width="50" height="53"/>
         <image name="guan" width="50" height="50"/>
         <image name="guanyu" width="50" height="50"/>
         <image name="jifenchaxun" width="50" height="50"/>
         <image name="lan" width="720" height="62"/>
+        <image name="she" width="41" height="41"/>
         <image name="temp" width="968" height="976"/>
         <image name="wodexiaji" width="50" height="46"/>
         <image name="wodezhanghu" width="50" height="40"/>
         <image name="xiugaimima" width="41" height="50"/>
         <image name="yaoqingma" width="50" height="50"/>
+        <image name="ying" width="41" height="41"/>
         <image name="you1" width="143" height="60"/>
         <image name="zuanshi" width="32" height="29"/>
         <image name="zuo1" width="143" height="60"/>

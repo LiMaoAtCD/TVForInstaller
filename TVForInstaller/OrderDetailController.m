@@ -250,7 +250,7 @@ typedef void(^alertBlock)(void);
             cell.tvTypeLabel.text = @"坐式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         } else{
-            cell.tvImageView.image = [UIImage imageNamed:@"temp"];
+            cell.tvImageView.image = [UIImage imageNamed:@"guashi"];
             cell.tvTypeLabel.text = @"挂式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
         }
@@ -580,17 +580,7 @@ typedef void(^alertBlock)(void);
 -(void)saveOrder:(UIButton *)button{
     if (button.tag == 0) {
         //保存订单操作
-#warning mac address is fake
-        self.orderInfo[@"mac"] =@"11:11:11:11:11:11";
         
-        if ([self.orderInfo[@"mac"] isEqualToString:@""]||
-            self.orderInfo[@"mac"] == nil
-            ) {
-            [self alertWithMessage:@"请先连接设备获取信息" withCompletionHandler:^{
-                
-            }];
-            return;
-        }
         
         
         
@@ -658,7 +648,7 @@ typedef void(^alertBlock)(void);
             
             [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 Order *order = obj;
-                if ([order.orderid isEqualToString:self.orderInfo[@"id"]]) {
+                if ([order.orderid isEqualToString:self.orderInfo[@"orderid"]]) {
                     [context deleteObject:order];
                     [context save:&error];
                     
@@ -744,7 +734,7 @@ typedef void(^alertBlock)(void);
     bill.sczkfei = self.orderInfo[@"sczkfei"];
     
     order.bill = bill;
-    applist.appname = @[@"优酷",@"土豆"];
+//    applist.appname = @[@"优酷",@"土豆"];
     order.applist =applist;
     
     

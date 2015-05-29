@@ -226,7 +226,7 @@
             cell.TVTypeLabel.text = @"坐式";
             cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         } else{
-            cell.TVImageView.image = [UIImage imageNamed:@"temp"];
+            cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
             cell.TVTypeLabel.text = @"挂式";
             cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
         }
@@ -255,7 +255,7 @@
             cell.tvTypeLabel.text = @"坐式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         } else{
-            cell.tvImageView.image = [UIImage imageNamed:@"temp"];
+            cell.tvImageView.image = [UIImage imageNamed:@"guashi"];
             cell.tvTypeLabel.text = @"挂式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
         }
