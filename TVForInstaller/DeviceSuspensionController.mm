@@ -44,7 +44,7 @@
     self.devices = [[DLNAManager DefaultManager] getRendererResources];
   
     
-    [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         _containerView.alpha = 1.0;
         
     } completion:^(BOOL finished) {
@@ -85,6 +85,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SuspensionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SuspensionCell" forIndexPath:indexPath];
     
+    if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     
     cell.deviceNameLabel.text = self.devices[indexPath.row];
     
@@ -93,14 +96,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
     
+    [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
     [[NSNotificationCenter defaultCenter]  postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
         [self dismissViewControllerAnimated:NO completion:nil];
-    });
+//    });
     
 }
 

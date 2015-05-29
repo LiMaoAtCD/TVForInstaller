@@ -45,6 +45,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "DLNADataManager.h"
+#import "ComminUtility.h"
 
 //NPT_SET_LOCAL_LOGGER("platinum.tests.micromediacontroller")
 
@@ -324,6 +325,8 @@ PLT_MicroMediaController::OnMRAdded(PLT_DeviceDataReference& device)
         if([redername isEqualToString:temp])
         {
             m_CurMediaRenderer = device;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+            
         }
     }
     

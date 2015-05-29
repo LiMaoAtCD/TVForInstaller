@@ -1987,7 +1987,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="JpS-tp-Fur" secondAttribute="centerY" constant="0.5" id="acQ-Sh-NWP"/>
-                                                <constraint firstItem="JpS-tp-Fur" firstAttribute="leading" secondItem="sEV-5m-5g3" secondAttribute="leadingMargin" constant="17" id="nOe-cI-RJc"/>
+                                                <constraint firstItem="JpS-tp-Fur" firstAttribute="leading" secondItem="sEV-5m-5g3" secondAttribute="leadingMargin" constant="17" id="nOe-cI-RJc">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                </constraint>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -2370,6 +2372,9 @@
                         </variation>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="backView" destination="RsV-Jh-MoJ" id="oKT-c3-b3i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOM-H7-niT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

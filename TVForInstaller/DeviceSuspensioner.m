@@ -9,6 +9,7 @@
 #import "DeviceSuspensioner.h"
 
 @interface DeviceSuspensioner ()
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
@@ -17,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
