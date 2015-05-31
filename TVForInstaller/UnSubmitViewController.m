@@ -38,6 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.localOrders = [@[] mutableCopy];
+    self.tableView.allowsMultipleSelection = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshList) name:@"kSavedOrderToLocal" object:nil];
 
     
@@ -360,6 +361,60 @@
     return  view;
     
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    if (indexPath.section ==1) {
+        return YES;
+        
+    }
+    return NO;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (UITableViewCellEditingStyleDelete == editingStyle && indexPath.section ==1) {
+        
+        //        删除订单
+        __block NSError *error;
+        NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        [request setEntity:[NSEntityDescription entityForName:@"Order" inManagedObjectContext:context]];
+        
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        if (error) {
+            return;
+        }else{
+            
+            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Order *order = obj;
+                if ([order.orderid isEqualToString:self.localOrders[indexPath.row][@"orderid"]]) {
+                    [context deleteObject:order];
+                    [context save:&error];
+                    
+                    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"已删除此订单";
+                    [hud showInView:self.tableView];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [hud dismiss];
+                        [self fetchLocalOrder];
+                    });
+                    
+                }
+            }];
+            
+        }
+        
+    }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
 
 #pragma mark - actions
 

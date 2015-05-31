@@ -258,12 +258,20 @@
 
 +(void)getMacAddressFromTV:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString *IP = [IPAddress stringByAppendingString:@":7766/getEmpinfo"];
+    NSString *IP = [NSString stringWithFormat:@"http://%@:7766/getEmpinfo",IPAddress];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:IP parameters:nil success:completionHandler failure:failHandler];
  
+}
+
++(void)getTVApplist:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    NSString *IP = [NSString stringWithFormat:@"http://%@:7766/getappinfo",IPAddress];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:IP parameters:nil success:completionHandler failure:failHandler];
 }
 
 

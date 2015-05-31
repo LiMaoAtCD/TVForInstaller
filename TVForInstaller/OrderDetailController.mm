@@ -77,7 +77,6 @@ typedef void(^alertBlock)(void);
         
         self.orderInfo[@"mac"] = @"";
         self.orderInfo[@"paymodel"] = @0;
-        self.orderInfo[@"appname"] = @"";
         self.orderInfo[@"hostphone"] = self.orderInfo[@"phone"];
         self.orderInfo[@"zjservice"] = @0;
         self.orderInfo[@"sczkfei"] = @0;
@@ -91,7 +90,7 @@ typedef void(^alertBlock)(void);
     }
     
     
-    if (_isNewOrder) {
+//    if (_isNewOrder) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
         [button addTarget:self action:@selector(saveOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -103,19 +102,19 @@ typedef void(^alertBlock)(void);
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
         
-    }else{
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        [button addTarget:self action:@selector(saveOrder:) forControlEvents:UIControlEventTouchUpInside];
-        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"删除" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0],NSFontAttributeName:[UIFont systemFontOfSize:14.0]}] forState:UIControlStateNormal];
-        button.tag  =1;
-
-        
-        [button setBackgroundImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, 0, 40, 30);
-        
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    }
+//    }else{
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        
+//        [button addTarget:self action:@selector(saveOrder:) forControlEvents:UIControlEventTouchUpInside];
+//        [button setAttributedTitle:[[NSAttributedString alloc]initWithString:@"删除" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0],NSFontAttributeName:[UIFont systemFontOfSize:14.0]}] forState:UIControlStateNormal];
+//        button.tag  =1;
+//
+//        
+//        [button setBackgroundImage:[UIImage imageNamed:@"baocun"] forState:UIControlStateNormal];
+//        button.frame = CGRectMake(0, 0, 40, 30);
+//        
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+//    }
     
 }
 
@@ -266,7 +265,21 @@ typedef void(^alertBlock)(void);
         
         [cell.getInfoFromTVButton addTarget:self action:@selector(getInfoFromTVButton:) forControlEvents:UIControlEventTouchUpInside];
         
+        cell.macAddressLabel.text = self.orderInfo[@"mac"];
         
+        NSArray *appnames = self.orderInfo[@"appname"];
+        
+        __block NSString *apps = @"";
+        
+        if (appnames != nil) {
+            [appnames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                apps = [apps stringByAppendingString:[NSString stringWithFormat:@" %@",obj]];
+            }];
+        }
+        
+      
+    
+        cell.installedAppLabel.text = apps;
         
         
         return cell;
@@ -562,15 +575,71 @@ typedef void(^alertBlock)(void);
     
     NSString *ipAddress = [[DLNAManager DefaultManager] getCurRenderIpAddress];
     
-    [NetworkingManager getMacAddressFromTV:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject: %@",responseObject);
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+    if ([ipAddress isEqualToString:@""]||
+        ipAddress == nil) {
+        //TODO::
+       [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
+    } else{
         
-        NSLog(@"error: %@",error);
-    }];
-
-    
-    
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        
+        hud.textLabel.text = @"正在获取Mac地址和软件列表";
+        [hud showInView:self.view];
+        
+        [NetworkingManager getMacAddressFromTV:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSString *macResult = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSArray *separator = [macResult componentsSeparatedByString:@","];
+            self.orderInfo[@"mac"] = separator[1];
+            
+            if (self.orderInfo[@"mac"]) {
+                
+                [NetworkingManager getTVApplist:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSMutableArray* Array = [[NSMutableArray alloc] init];
+                    NSMutableArray *testFeeds = [NSJSONSerialization JSONObjectWithData: responseObject options:NSJSONReadingMutableContainers error:nil];
+                    [Array addObjectsFromArray:testFeeds];
+                    
+                    NSMutableArray *appname = [NSMutableArray array];
+                
+                    if (Array.count > 0) {
+                        [Array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                            NSDictionary *appdic = obj;
+                            [appname addObject:appdic[@"appname"]];
+                            
+                        }];
+                    }
+                    
+                    self.orderInfo[@"appname"] = [appname copy];
+                    
+                    [hud dismissAfterDelay:1.0];
+                    [self.tableView beginUpdates];
+                    
+                    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+                    [self.tableView endUpdates];
+                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"%@",error);
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        hud.textLabel.text = @"获取失败，请稍后再试";
+                        hud.indicatorView = nil;
+                        [hud dismissAfterDelay:1];
+                    });
+                }];
+                
+            }
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"error: %@",error);
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.textLabel.text = @"获取失败，请稍后再试";
+                hud.indicatorView = nil;
+                [hud dismissAfterDelay:1];
+            });
+           
+            
+        }];
+    }
     
 }
 
@@ -592,7 +661,6 @@ typedef void(^alertBlock)(void);
  *  @param button
  */
 -(void)saveOrder:(UIButton *)button{
-    if (button.tag == 0) {
         //保存订单操作
         
         
@@ -641,48 +709,8 @@ typedef void(^alertBlock)(void);
             if (!contain) {
                 [self save];
             }
-            
         }
-        
-        
-    }else{
-//        删除订单
-        __block NSError *error;
-        NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
-        
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        
-        [request setEntity:[NSEntityDescription entityForName:@"Order" inManagedObjectContext:context]];
-        
-        NSArray *result = [context executeFetchRequest:request error:&error];
-        
-        if (error) {
-            return;
-        }else{
-            
-            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                Order *order = obj;
-                if ([order.orderid isEqualToString:self.orderInfo[@"orderid"]]) {
-                    [context deleteObject:order];
-                    [context save:&error];
-                    
-                    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-                    hud.indicatorView = nil;
-                    hud.textLabel.text = @"已删除此订单";
-                    [hud showInView:self.tableView];
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [hud dismiss];
-                        
-                        [self.navigationController popViewControllerAnimated:YES];
-                    });
 
-                }
-            }];
-
-        }
-    }
 }
 
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
@@ -748,7 +776,7 @@ typedef void(^alertBlock)(void);
     bill.sczkfei = self.orderInfo[@"sczkfei"];
     
     order.bill = bill;
-//    applist.appname = @[@"优酷",@"土豆"];
+    applist.appname = self.orderInfo[@"appname"];
     order.applist = applist;
     
     
@@ -773,6 +801,8 @@ typedef void(^alertBlock)(void);
         
     }
 }
+
+
 
 
 @end
