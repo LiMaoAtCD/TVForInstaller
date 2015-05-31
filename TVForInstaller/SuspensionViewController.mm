@@ -99,11 +99,11 @@
     return [[Animator alloc] init];
 }
 
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    return [[Animator alloc] init];
-
-}
-
+//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+//    return [[Animator alloc] init];
+//
+//}
+//
 
 
 @end

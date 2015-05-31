@@ -11,6 +11,8 @@
 #import "DeviceSuspensioner.h"
 #import "DLNAManager.h"
 #import "ComminUtility.h"
+#import <MJRefresh.h>
+
 @interface DeviceSuspensionController ()<UITableViewDataSource,UITableViewDelegate,DeviceSuspensionerDelegate>
 
 
@@ -32,7 +34,35 @@
     _containerView.alpha = 0.0;
     
     
+    __weak DeviceSuspensionController *weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        
+        [weakSelf updateDevices];
+    }];
+    
+    
 }
+
+-(void)updateDevices{
+    
+    dispatch_queue_t queue = dispatch_queue_create("com.tv.updateDevice", NULL);
+    
+    dispatch_async(queue, ^{
+        
+        self.devices = [[DLNAManager DefaultManager] getRendererResources];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.tableView.header endRefreshing];
+
+        });
+        
+
+    });
+    
+}
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -87,6 +117,8 @@
     
     if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     cell.deviceNameLabel.text = self.devices[indexPath.row];
@@ -100,10 +132,12 @@
     [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
     [[NSNotificationCenter defaultCenter]  postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self.tableView reloadData];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-        [self dismissViewControllerAnimated:NO completion:nil];
-//    });
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
     
 }
 
@@ -115,33 +149,38 @@
     return @"已搜到的设备";
 }
 
+- (IBAction)close:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
 
 -(void)closeSuspension{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        //取得一个触摸对象（对于多点触摸可能有多个对象）
-        UITouch *touch = obj;
-        //NSLog(@"%@",touch);
-        
-        //取得当前位置
-        CGPoint current=[touch locationInView:self.view];
-        //取得前一个位置
-        CGPoint previous=[touch previousLocationInView:self.view];
-        
-        //移动前的中点位置
-        CGPoint center=self.containerView.center;
-        //移动偏移量
-        CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
-        
-        //重新设置新位置
-        self.containerView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
-        
-    }];
-}
+//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+//    
+//    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+//        //取得一个触摸对象（对于多点触摸可能有多个对象）
+//        UITouch *touch = obj;
+//        //NSLog(@"%@",touch);
+//        
+//        //取得当前位置
+//        CGPoint current=[touch locationInView:self.view];
+//        //取得前一个位置
+//        CGPoint previous=[touch previousLocationInView:self.view];
+//        
+//        //移动前的中点位置
+//        CGPoint center=self.containerView.center;
+//        //移动偏移量
+//        CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
+//        
+//        //重新设置新位置
+//        self.containerView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
+//        
+//    }];
+//}
 
 
 @end

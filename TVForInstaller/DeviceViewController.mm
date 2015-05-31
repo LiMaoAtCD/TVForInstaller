@@ -35,6 +35,7 @@
     
     
     self.devices = [[[DLNAManager DefaultManager] getRendererResources] mutableCopy];
+    
     UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
     footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
@@ -70,6 +71,15 @@
     
     DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCell" forIndexPath:indexPath];
     cell.deviceTitle.text = self.devices[indexPath.row];
+    
+    if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
+    }
+    
+    
     return cell;
 }
 
@@ -79,6 +89,8 @@
     
     
     [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
+    
+    [self.tableView reloadData];
     
     
 }

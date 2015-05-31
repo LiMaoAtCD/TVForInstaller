@@ -87,7 +87,7 @@
         [self.suspension willMoveToParentViewController:self];
         
         
-        self.suspension.view.frame = CGRectMake(0, 0, 80, 50);
+        self.suspension.view.frame = CGRectMake(0, 0, 80, 40);
         
         self.suspensionView = self.suspension.view;
         
