@@ -9,7 +9,7 @@
 #import "SettingViewController.h"
 #import "ComminUtility.h"
 
-#import "InfoViewController.h"
+#import "InfoTableViewController.h"
 #import "AboutViewController.h"
 #import "DeviceViewController.h"
 #import "ModifyPasswordViewController.h"
@@ -21,7 +21,7 @@
 #import "InstallHistoryViewController.h"
 
 #import "AccountManager.h"
-#import "LoginViewController.h"
+#import "LoginNavigationController.h"
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
@@ -67,7 +67,7 @@
         self.avatarImageView.image  = image;
 
     }else{
-        self.avatarImageView.image = [UIImage imageNamed:@"temp"];
+        self.avatarImageView.image = [UIImage imageNamed:@"tou"];
     }
     
     
@@ -79,7 +79,7 @@
     [AccountManager setLogin:NO];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    LoginViewController *login = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    LoginNavigationController *login = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
     
     [self showDetailViewController:login sender:nil];
 
@@ -164,7 +164,7 @@
             break;
         case 5:
         {
-            InfoViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoViewController"];
+            InfoTableViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoTableViewController"];
             info.hidesBottomBarWhenPushed = YES;
             [self.navigationController showViewController:info sender:self];
         }
@@ -197,7 +197,6 @@
     
     
     AvatorDetailViewController *avatar = [sb instantiateViewControllerWithIdentifier:@"AvatorDetailViewController"];
-    self.view.backgroundColor = [UIColor clearColor];
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     avatar.delegate = self;
     [self showDetailViewController:avatar sender:self];

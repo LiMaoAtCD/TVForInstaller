@@ -94,4 +94,26 @@
     return isMatch;
     
 }
+
+//+(NSString*)kSuspensionWindowShowNotification{
+//    return @"kSuspensionWindowShowNotification";
+//}
+//+(NSString*)kSuspensionWindowHideNotification{
+//    return @"kSuspensionWindowHideNotification";
+//}
+
++(NSString*)kSuspensionWindowNotification{
+    return @"kSuspensionWindowNotification";
+}
+
+
++(void)setSwitchKit:(BOOL)on{
+    [[NSUserDefaults standardUserDefaults] setBool:on forKey:@"k_switch_Kit"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(BOOL)isSwitchKitOn{
+    
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:@"k_switch_Kit"];
+}
+
 @end

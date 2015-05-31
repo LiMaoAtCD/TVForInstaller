@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AppOneInstallCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *OneInstall;
 
 @end

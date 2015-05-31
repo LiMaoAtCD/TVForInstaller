@@ -65,6 +65,9 @@
         
         if ([string isEqualToString:@""]) {
             self.Account = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.Account = textField.text;
+            
         }else{
             self.Account = [textField.text stringByAppendingString:string];
         }
@@ -72,6 +75,9 @@
         
         if ([string isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.password = textField.text;
+            
         }else{
             self.password = [textField.text stringByAppendingString:string];
             
@@ -155,6 +161,13 @@
     }
     if (![data[@"id"] isKindOfClass:[NSNull class]]) {
         [AccountManager setTokenID:data[@"id"]];
+    }
+    if (![data[@"address"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setAddress:data[@"address"]];
+    }
+    
+    if (![data[@"gender"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setgender:[data[@"gender"] integerValue]];
     }
     
     [AccountManager setPassword:self.password];

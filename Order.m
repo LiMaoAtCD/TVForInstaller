@@ -2,7 +2,7 @@
 //  Order.m
 //  TVForInstaller
 //
-//  Created by AlienLi on 15/5/27.
+//  Created by AlienLi on 15/5/29.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
@@ -15,17 +15,17 @@
 
 @dynamic address;
 @dynamic brand;
+@dynamic createdate;
 @dynamic engineer;
 @dynamic hoster;
 @dynamic mac;
-@dynamic orderID;
+@dynamic orderid;
 @dynamic paymodel;
 @dynamic phone;
 @dynamic size;
 @dynamic source;
-@dynamic version;
 @dynamic type;
-@dynamic createdate;
+@dynamic version;
 @dynamic applist;
 @dynamic bill;
 

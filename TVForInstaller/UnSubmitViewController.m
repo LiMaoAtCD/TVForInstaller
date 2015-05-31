@@ -38,6 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.localOrders = [@[] mutableCopy];
+    self.tableView.allowsMultipleSelection = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshList) name:@"kSavedOrderToLocal" object:nil];
 
     
@@ -55,16 +56,13 @@
     if (!self.hasRefresh && [AccountManager isLogin]) {
         self.hasRefresh = YES;
         [self.tableView.header beginRefreshing];
-        
-       
-        
-        
-        
 
     }
 }
 -(void)needRefreshList{
-    self.hasRefresh = NO;
+    
+    [self fetchLocalOrder];
+
 }
 
 -(void)fetchOrder{
@@ -91,7 +89,7 @@
                     
                     [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                        
-                        if ([self.orderList[idx][@"id"] isEqualToString:dictionary[@"id"]]) {
+                        if ([self.orderList[idx][@"orderid"] isEqualToString:dictionary[@"orderid"]]) {
                             NSLog(@"此订单已经保存");
                             
                             [toDelete addObject:obj];
@@ -124,7 +122,6 @@
 -(void)fetchLocalOrder{
     
     [self.localOrders removeAllObjects];
-    [self.orderList removeAllObjects];
 
     NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
     
@@ -132,7 +129,7 @@
     
     request.entity = [NSEntityDescription entityForName:@"Order" inManagedObjectContext:context];
     
-    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderID" ascending:NO];
+    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"orderid" ascending:NO];
     
     NSError *error =  nil;
     
@@ -153,13 +150,36 @@
                                   @"type":order.type,
                                   @"phone":order.phone,
                                   @"size":order.size,
-                                  @"id":order.orderID
+                                  @"orderid":order.orderid
                                   };
             
             [self.localOrders addObject:dic];
             
             
         }];
+        
+        //删除新订单里面包含这个的数据
+        NSMutableArray *toDelete = [NSMutableArray array];
+        
+        
+        [self.localOrders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *dictionary = obj;
+            
+            [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                
+                if ([self.orderList[idx][@"orderid"] isEqualToString:dictionary[@"orderid"]]) {
+                    NSLog(@"此订单已经保存");
+                    
+                    [toDelete addObject:obj];
+                    
+                }
+            }];
+            
+        }];
+        
+        [self.orderList removeObjectsInArray:toDelete];
+        
+        [self.tableView reloadData];
     }
     
     
@@ -226,7 +246,7 @@
             cell.TVTypeLabel.text = @"坐式";
             cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         } else{
-            cell.TVImageView.image = [UIImage imageNamed:@"temp"];
+            cell.TVImageView.image = [UIImage imageNamed:@"guashi"];
             cell.TVTypeLabel.text = @"挂式";
             cell.TVTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
         }
@@ -243,7 +263,10 @@
         cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
         cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
         cell.dateLabel.text= self.orderList[indexPath.row][@"createdate"];
- 
+        
+        if (indexPath.row %2 == 0) {
+            cell.backgroundColor = [UIColor colorWithHex:@"00c3d4" alpha:0.3];
+        }
         
         return cell;
     } else{
@@ -255,7 +278,7 @@
             cell.tvTypeLabel.text = @"坐式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
         } else{
-            cell.tvImageView.image = [UIImage imageNamed:@"temp"];
+            cell.tvImageView.image = [UIImage imageNamed:@"guashi"];
             cell.tvTypeLabel.text = @"挂式";
             cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
         }
@@ -267,7 +290,7 @@
         cell.addressLabel.text =self.localOrders[indexPath.row][@"address"];
         cell.dateLabel.text= self.localOrders[indexPath.row][@"createdate"];
 
-        
+       
         
         return cell;
     }
@@ -339,6 +362,60 @@
     
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    if (indexPath.section ==1) {
+        return YES;
+        
+    }
+    return NO;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (UITableViewCellEditingStyleDelete == editingStyle && indexPath.section ==1) {
+        
+        //        删除订单
+        __block NSError *error;
+        NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        [request setEntity:[NSEntityDescription entityForName:@"Order" inManagedObjectContext:context]];
+        
+        NSArray *result = [context executeFetchRequest:request error:&error];
+        
+        if (error) {
+            return;
+        }else{
+            
+            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Order *order = obj;
+                if ([order.orderid isEqualToString:self.localOrders[indexPath.row][@"orderid"]]) {
+                    [context deleteObject:order];
+                    [context save:&error];
+                    
+                    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"已删除此订单";
+                    [hud showInView:self.tableView];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [hud dismiss];
+                        [self fetchLocalOrder];
+                    });
+                    
+                }
+            }];
+            
+        }
+        
+    }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+
 #pragma mark - actions
 
 
@@ -373,14 +450,14 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"无效" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-       NSString *orderID =  self.orderList[button.tag][@"id"];
+       NSString *orderid =  self.orderList[button.tag][@"orderid"];
     
         JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
         
         hud.textLabel.text = @"撤销订单中";
         [hud showInView:self.tableView];
         
-        [NetworkingManager disableOrderByID:orderID withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager disableOrderByID:orderid withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSLog(@"response:%@",responseObject);
             if ([responseObject[@"success"] integerValue] == 0) {
@@ -431,14 +508,14 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        NSString *orderID =  self.orderList[button.tag][@"id"];
+        NSString *orderid =  self.orderList[button.tag][@"orderid"];
         
         JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
         
         hud.textLabel.text = @"退单中";
         [hud showInView:self.tableView];
-        
-        [NetworkingManager revokeOrderID:orderID ByTokenID:self.orderList[button.tag][@"engineer"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+   
+        [NetworkingManager revokeOrderID:orderid ByTokenID:self.orderList[button.tag][@"engineer"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"success"] integerValue] == 0) {
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

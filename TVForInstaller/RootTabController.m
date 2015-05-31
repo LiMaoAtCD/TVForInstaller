@@ -10,8 +10,12 @@
 #import "AccountManager.h"
 
 #import "LoginNavigationController.h"
-
+#import "SuspensionViewController.h"
+#import "ComminUtility.h"
 @interface RootTabController ()
+
+@property(nonatomic,strong) UIView * suspensionView;
+@property (nonatomic,strong) SuspensionViewController *suspension;
 
 @end
 
@@ -20,15 +24,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowNotification] object:nil];
+
+    
    
+}
+
+-(void)showSuspensionView{
+    
+    if ([ComminUtility isSwitchKitOn]) {
+        [self suspensionWindow:YES];
+        
+    } else{
+        [self suspensionWindow:NO];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self manageLogState];
-   
     
+    if ([ComminUtility isSwitchKitOn]) {
+        
+        //启动时延时获取设备renderer以免崩溃；
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self suspensionWindow:YES];
+
+        });
+
+    } else{
+        [self suspensionWindow:NO];
+    }
+
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //    [self suspensionWindow:NO];
+
 }
 
 -(void)manageLogState{
@@ -47,6 +83,76 @@
 
 }
 
+-(void)suspensionWindow:(BOOL)Issuspension{
+    
+    if (Issuspension) {
+        
+        if (!self.suspension) {
+            
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            self.suspension = [sb instantiateViewControllerWithIdentifier:@"SuspensionViewController"];
+            self.suspension.view.backgroundColor = [UIColor clearColor];
+        }
+      
+       
+        [self addChildViewController:self.suspension];
+        
+        
+        [self.suspension willMoveToParentViewController:self];
+        
+        
+        self.suspension.view.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 60 - 40, 80, 40);
+        
+        self.suspensionView = self.suspension.view;
+        
+//        self.suspensionView.layer.cornerRadius = 10;
+//        self.suspensionView.layer.masksToBounds = YES;
+        
+        self.suspension.view.alpha = 0.0;
+        [self.view addSubview:self.suspension.view];
+
+
+        [self.suspension didMoveToParentViewController:self];
+        
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            self.suspension.view.alpha =1.0;
+        }];
+    } else{
+        
+        [self.suspensionView removeFromSuperview];
+        [self.suspension removeFromParentViewController];
+        
+    }
+    
+   
+    
+}
+
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        //取得一个触摸对象（对于多点触摸可能有多个对象）
+        UITouch *touch = obj;
+        //NSLog(@"%@",touch);
+        
+        //取得当前位置
+        CGPoint current=[touch locationInView:self.view];
+        //取得前一个位置
+        CGPoint previous=[touch previousLocationInView:self.view];
+        
+        //移动前的中点位置
+        CGPoint center=self.suspensionView.center;
+        //移动偏移量
+        CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
+        
+        //重新设置新位置
+        self.suspensionView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
+        
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -62,6 +168,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end

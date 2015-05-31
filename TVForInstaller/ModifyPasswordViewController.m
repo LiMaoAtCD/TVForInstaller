@@ -107,7 +107,7 @@ typedef void(^alertBlock)(void);
     
     
     
-    [NetworkingManager fetchVerifyCode:[AccountManager getCellphoneNumber] withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetworkingManager fetchRegisterVerifyCode:[AccountManager getCellphoneNumber] withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
             
@@ -230,6 +230,9 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.password = textField.text;
+            
         }else{
             self.password = [textField.text stringByAppendingString:string];
         }
@@ -237,6 +240,9 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.verifyCode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            self.verifyCode = textField.text;
+            
         }else{
             self.verifyCode = [textField.text stringByAppendingString:string];
             

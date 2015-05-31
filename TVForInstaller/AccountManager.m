@@ -124,5 +124,27 @@
     
 }
 
++(void)setgender:(NSInteger)gender{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:gender forKey:@"ud_gender"];
+    [ud synchronize];
+
+}
++(NSInteger)getGender{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud integerForKey:@"ud_gender"];
+
+}
++(NSString*)getAddress{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return  [ud objectForKey:@"account_address"];
+}
++(void)setAddress:(NSString*)address{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:address forKey:@"account_address"];
+    [ud synchronize];
+    
+
+}
 
 @end

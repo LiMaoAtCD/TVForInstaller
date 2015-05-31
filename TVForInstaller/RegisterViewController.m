@@ -114,6 +114,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.cellphoneNumber = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.cellphoneNumber= textField.text;
+            
         }else{
             self.cellphoneNumber = [textField.text stringByAppendingString:string];
         }
@@ -121,6 +125,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.password= textField.text;
+            
         }else{
             self.password = [textField.text stringByAppendingString:string];
             
@@ -129,6 +137,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.inviteCode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.inviteCode= textField.text;
+            
         }else{
             self.inviteCode = [textField.text stringByAppendingString:string];
             
@@ -137,6 +149,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.chinaID = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.chinaID= textField.text;
+            
         }else{
             self.chinaID = [textField.text stringByAppendingString:string];
             
@@ -145,6 +161,10 @@ typedef void(^alertBlock)(void);
         
         if ([string isEqualToString:@""]) {
             self.verifycode = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.verifycode= textField.text;
+            
         }else{
             self.verifycode = [textField.text stringByAppendingString:string];
             
@@ -153,6 +173,7 @@ typedef void(^alertBlock)(void);
 
     return YES;
 }
+
 
 
 
@@ -208,7 +229,7 @@ typedef void(^alertBlock)(void);
     if (self.cellphoneNumber != nil||
         ![self.cellphoneNumber isEqualToString:@""]) {
         
-        [NetworkingManager fetchVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             self.hud.textLabel.text = @"验证码获取成功";
             self.hud.indicatorView = nil;
             [self.hud dismissAfterDelay:2.0];
@@ -375,6 +396,13 @@ typedef void(^alertBlock)(void);
     
     if (![data[@"id"] isKindOfClass:[NSNull class]]) {
         [AccountManager setTokenID:data[@"id"]];
+    }
+    if (![data[@"address"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setAddress:data[@"address"]];
+    }
+    
+    if (![data[@"gender"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setgender:[data[@"gender"] integerValue]];
     }
     
     [AccountManager setPassword:self.password];

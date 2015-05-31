@@ -38,13 +38,13 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
 +(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 /**
- *  获取验证码
+ *  注册获取验证码
  *
  *  @param cellphoneNumber   手机号码
  *  @param completionHandler 成功回调
  *  @param failHandler       失败回调
  */
-+(void)fetchVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
++(void)fetchRegisterVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 /**
@@ -169,7 +169,77 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param handler
  *  @param failHandler
  */
-+(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSDictionary*)applist source:(NSString*)source withcompletionHandler:(NetWorkHandler)handler failHandle:(NetWorkFailHandler)failHandler;
++(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSArray*)applist source:(NSNumber*)source withcompletionHandler:(NetWorkHandler)handler failHandle:(NetWorkFailHandler)failHandler;
 
++(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version;
++(NSDictionary*)createBillbyHostphone:(NSString*)hostphone zjservice:(NSNumber*)zjservice sczkfei:(NSNumber*)sczkfei zhijia:(NSNumber*)zhijia hdmi:(NSNumber*)hdmi yiji:(NSNumber*)yiji;
+
+/**
+ *  忘记密码短信验证码接口
+ *
+ *  @param cellphoneNumber   手机号码
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchForgetPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  修改密码短信接口
+ *
+ *  @param cellphoneNumber
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchModifyPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  修改个人信息
+ *
+ *  @param gender            性别
+ *  @param name              名字
+ *  @param address           地址
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)modifyInfowithGender:(NSInteger)gender name:(NSString *)name address:(NSString *)address withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  获取mac地址
+ *
+ *  @param IPAddress         电视IP地址
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)getMacAddressFromTV:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  获取app列表
+ *
+ *  @param IPAddress         ip地址
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)getTVApplist:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  一件装机
+ *
+ *  @param IPAddress         ip
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)OneKeyInstall:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  定制装机
+ *
+ *  @param apkurl            APK地址
+ *  @param IP                ip 地址
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)selectAppToInstall:(NSString*)apkurl ipaddress:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 @end
