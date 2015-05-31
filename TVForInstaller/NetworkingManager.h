@@ -183,6 +183,16 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchForgetPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+/**
+ *  修改密码短信接口
+ *
+ *  @param cellphoneNumber
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchModifyPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 /**
  *  修改个人信息
  *
@@ -212,4 +222,24 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param failHandler
  */
 +(void)getTVApplist:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  一件装机
+ *
+ *  @param IPAddress         ip
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)OneKeyInstall:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  定制装机
+ *
+ *  @param apkurl            APK地址
+ *  @param IP                ip 地址
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)selectAppToInstall:(NSString*)apkurl ipaddress:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 @end

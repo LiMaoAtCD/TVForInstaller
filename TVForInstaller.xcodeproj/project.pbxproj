@@ -25,7 +25,7 @@
 		871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 871B77491B0C9BBB00810EE3 /* DeviceViewController.mm */; };
 		871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */; };
 		871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774F1B0CA54C00810EE3 /* DeviceContainer.m */; };
-		872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8C21B0C839500C680B5 /* AppTableViewController.m */; };
+		872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8C21B0C839500C680B5 /* AppTableViewController.mm */; };
 		872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872DA8C41B0C883F00C680B5 /* Setting.storyboard */; };
 		872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872DA8CF1B0C94E100C680B5 /* AboutViewController.m */; };
 		8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */; };
@@ -131,7 +131,7 @@
 		871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
 		871B774E1B0CA54C00810EE3 /* DeviceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceContainer.h; sourceTree = "<group>"; };
 		871B774F1B0CA54C00810EE3 /* DeviceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceContainer.m; sourceTree = "<group>"; };
-		872DA8C21B0C839500C680B5 /* AppTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableViewController.m; sourceTree = "<group>"; };
+		872DA8C21B0C839500C680B5 /* AppTableViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppTableViewController.mm; sourceTree = "<group>"; };
 		872DA8C41B0C883F00C680B5 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		872DA8CE1B0C94E100C680B5 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		872DA8CF1B0C94E100C680B5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -663,7 +663,7 @@
 			children = (
 				8785E9641B0C73E0003F4415 /* AppCollection */,
 				8785E91F1B0C25E0003F4415 /* AppTableViewController.h */,
-				872DA8C21B0C839500C680B5 /* AppTableViewController.m */,
+				872DA8C21B0C839500C680B5 /* AppTableViewController.mm */,
 				8785E95E1B0C6E34003F4415 /* AppOneInstallCell.h */,
 				8785E95F1B0C6E34003F4415 /* AppOneInstallCell.m */,
 				8785E9611B0C6E7F003F4415 /* AppCollectionTableCell.h */,
@@ -831,7 +831,7 @@
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */,
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
-				872DA8C31B0C839500C680B5 /* AppTableViewController.m in Sources */,
+				872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
 				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,

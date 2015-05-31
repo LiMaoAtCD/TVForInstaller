@@ -20,6 +20,10 @@
 #import <UIImageView+WebCache.h>
 
 #import <MJRefresh.h>
+#import "DLNAManager.h"
+
+typedef void(^alertBlock)(void);
+
 
 @interface AppTableViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -134,7 +138,7 @@
     
     if (indexPath.section == 0) {
         AppOneInstallCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppOneInstallCell" forIndexPath:indexPath];
-        
+        [cell.OneInstall addTarget:self action:@selector(onekeyInstall) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else{
         AppCollectionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppCollectionTableCell" forIndexPath:indexPath];
@@ -220,9 +224,80 @@
     
     NSString *softwareAddress = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softaddr"];
 
-    NSLog(@"软件地址：%@",softwareAddress);
+    NSString *ipAddress = [[DLNAManager DefaultManager] getCurRenderIpAddress];
     
+    if ([ipAddress isEqualToString:@""]||
+        ipAddress == nil) {
+        //TODO::
+        [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
+    }else{
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text = [NSString stringWithFormat:@"%@ 即将安装", _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"]];
+        hud.indicatorView=  nil;
+        [hud showInView:self.view];
+        
+        [NetworkingManager selectAppToInstall:softwareAddress ipaddress:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+           
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [hud dismissAfterDelay:2];
+            });
+
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.textLabel.text = @"安装请求失败～";
+                [hud dismissAfterDelay:2];
+            });
+        }];
+    }
 }
+
+-(void)onekeyInstall{
+    
+    NSString *ipAddress = [[DLNAManager DefaultManager] getCurRenderIpAddress];
+    
+    if ([ipAddress isEqualToString:@""]||
+        ipAddress == nil) {
+        //TODO::
+        [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
+    }else{
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text = @"即将安装";
+        hud.indicatorView =  nil;
+        [hud showInView:self.view];
+        [NetworkingManager OneKeyInstall:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [hud dismissAfterDelay:2];
+            });
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                hud.textLabel.text = @"安装请求失败～";
+                [hud dismissAfterDelay:2];
+            });
+        }];
+    }
+}
+
+
+-(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        handler();
+    }];
+    
+    [controller addAction:action];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+
+
 
 
 
