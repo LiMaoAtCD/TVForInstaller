@@ -37,7 +37,7 @@
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
 		8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8773380E1B11AB3F00C2DDC4 /* grade.plist */; };
 		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
-		877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877778E11B13FEC0003DB4AA /* OrderDetailController.m */; };
+		877778E21B13FEC0003DB4AA /* OrderDetailController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 877778E11B13FEC0003DB4AA /* OrderDetailController.mm */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -151,7 +151,7 @@
 		8773380E1B11AB3F00C2DDC4 /* grade.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grade.plist; sourceTree = "<group>"; };
 		877338101B11B3D000C2DDC4 /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
 		877778E01B13FEC0003DB4AA /* OrderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailController.h; sourceTree = "<group>"; };
-		877778E11B13FEC0003DB4AA /* OrderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailController.m; sourceTree = "<group>"; };
+		877778E11B13FEC0003DB4AA /* OrderDetailController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OrderDetailController.mm; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -486,7 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				877778E01B13FEC0003DB4AA /* OrderDetailController.h */,
-				877778E11B13FEC0003DB4AA /* OrderDetailController.m */,
+				877778E11B13FEC0003DB4AA /* OrderDetailController.mm */,
 				87C0221C1B130C7D005452C0 /* OrderDetailCell.h */,
 				87C0221D1B130C7D005452C0 /* OrderDetailCell.m */,
 				87C0221F1B130C91005452C0 /* TVInfoCell.h */,
@@ -878,7 +878,7 @@
 				8716C1021B1567D600389EC7 /* Bill.m in Sources */,
 				87B400BB1B16ACDE00CC1C95 /* AddOrderTableViewCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
-				877778E21B13FEC0003DB4AA /* OrderDetailController.m in Sources */,
+				877778E21B13FEC0003DB4AA /* OrderDetailController.mm in Sources */,
 				8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */,
 				8716C1401B1568A800389EC7 /* OrderDataManager.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,

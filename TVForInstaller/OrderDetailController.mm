@@ -24,6 +24,7 @@
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
+#import "DLNAManager.h"
 
 
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate,UITextFieldDelegate>
@@ -509,8 +510,8 @@ typedef void(^alertBlock)(void);
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
     NumberChooseViewController *number = [sb instantiateViewControllerWithIdentifier:@"NumberChooseViewController"];
-    self.modalTransitionStyle= UIModalPresentationCurrentContext;
-    number.type = button.tag;
+//    self.UIModalPresentationCurrentContext = UIModalPresentationCurrentContext;
+    number.type = (CashNumberType)button.tag;
     number.delegate = self;
     number.pickerItems = self.pickerItems;
     
@@ -520,7 +521,7 @@ typedef void(^alertBlock)(void);
 
 -(void)didPickerItems:(NSInteger)itemsIndex onType:(CashNumberType)type{
     
-    NSLog(@"选择了%@ 元,%ld ",self.pickerItems[itemsIndex],type);
+    NSLog(@"选择了%@ 元,%ld ",self.pickerItems[itemsIndex],(unsigned long)type);
     
     if (type == CashNumberTypeZhiJia) {
         [self.zhijiaButton setTitle:[NSString stringWithFormat:@"%@元",self.pickerItems[itemsIndex]] forState:UIControlStateNormal];
@@ -558,6 +559,18 @@ typedef void(^alertBlock)(void);
  *  @param btn
  */
 -(void)getInfoFromTVButton:(UIButton*)btn{
+    
+    NSString *ipAddress = [[DLNAManager DefaultManager] getCurRenderIpAddress];
+    
+    [NetworkingManager getMacAddressFromTV:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"responseObject: %@",responseObject);
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"error: %@",error);
+    }];
+
+    
+    
     
 }
 
@@ -736,7 +749,7 @@ typedef void(^alertBlock)(void);
     
     order.bill = bill;
 //    applist.appname = @[@"优酷",@"土豆"];
-    order.applist =applist;
+    order.applist = applist;
     
     
     if ([context save:&error]) {

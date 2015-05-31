@@ -55,16 +55,13 @@
     if (!self.hasRefresh && [AccountManager isLogin]) {
         self.hasRefresh = YES;
         [self.tableView.header beginRefreshing];
-        
-       
-        
-        
-        
 
     }
 }
 -(void)needRefreshList{
-    self.hasRefresh = NO;
+    
+    [self fetchLocalOrder];
+
 }
 
 -(void)fetchOrder{
@@ -124,7 +121,6 @@
 -(void)fetchLocalOrder{
     
     [self.localOrders removeAllObjects];
-    [self.orderList removeAllObjects];
 
     NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
     
@@ -160,6 +156,29 @@
             
             
         }];
+        
+        //删除新订单里面包含这个的数据
+        NSMutableArray *toDelete = [NSMutableArray array];
+        
+        
+        [self.localOrders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *dictionary = obj;
+            
+            [self.orderList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                
+                if ([self.orderList[idx][@"orderid"] isEqualToString:dictionary[@"orderid"]]) {
+                    NSLog(@"此订单已经保存");
+                    
+                    [toDelete addObject:obj];
+                    
+                }
+            }];
+            
+        }];
+        
+        [self.orderList removeObjectsInArray:toDelete];
+        
+        [self.tableView reloadData];
     }
     
     
@@ -243,7 +262,10 @@
         cell.tvSizeLabel.text = self.orderList[indexPath.row][@"size"];
         cell.customerAddress.text =self.orderList[indexPath.row][@"address"];
         cell.dateLabel.text= self.orderList[indexPath.row][@"createdate"];
- 
+        
+        if (indexPath.row %2 == 0) {
+            cell.backgroundColor = [UIColor colorWithHex:@"00c3d4" alpha:0.3];
+        }
         
         return cell;
     } else{
@@ -267,7 +289,7 @@
         cell.addressLabel.text =self.localOrders[indexPath.row][@"address"];
         cell.dateLabel.text= self.localOrders[indexPath.row][@"createdate"];
 
-        
+       
         
         return cell;
     }

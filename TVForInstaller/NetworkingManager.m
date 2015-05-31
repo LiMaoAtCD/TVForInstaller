@@ -256,6 +256,17 @@
 }
 
 
++(void)getMacAddressFromTV:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+    NSString *IP = [IPAddress stringByAppendingString:@":7766/getEmpinfo"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:IP parameters:nil success:completionHandler failure:failHandler];
+ 
+}
+
+
 
 
 @end

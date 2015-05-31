@@ -40,7 +40,7 @@
     
     UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
-    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
+    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",(unsigned long)self.devices.count];
     footerView.font = [UIFont boldSystemFontOfSize:12.0];
     footerView.textColor = [UIColor blackColor];
     footerView.textAlignment = NSTextAlignmentCenter;
@@ -59,7 +59,8 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    self.container.currentDevice.text = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
+//    self.container.currentDevice.text = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
+    
 
 }
 

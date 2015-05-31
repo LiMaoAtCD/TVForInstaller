@@ -10,7 +10,7 @@
 
 
 
-typedef enum : NSUInteger {
+typedef enum : NSInteger {
     CashNumberTypeZhiJia,
     CashNumberTypeHDMI,
     CashNumberTypeYIJI,
