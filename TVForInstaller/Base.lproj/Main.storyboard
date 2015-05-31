@@ -2105,7 +2105,9 @@
                             <constraint firstItem="6Rt-TQ-CUo" firstAttribute="centerY" secondItem="3mN-X2-mZU" secondAttribute="centerY" constant="298" id="PE1-Dz-jnm">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="UCZ-go-Maw" secondAttribute="trailing" constant="6" id="QhN-y6-V8m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UCZ-go-Maw" secondAttribute="trailing" constant="6" id="QhN-y6-V8m">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="3mN-X2-mZU" firstAttribute="top" secondItem="qxM-vf-5PD" secondAttribute="topMargin" id="WFY-gW-Y00">
                                 <variation key="heightClass=regular-widthClass=compact" constant="64"/>
                             </constraint>
@@ -2127,18 +2129,18 @@
                                 <exclude reference="UCZ-go-Maw"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="9Oi-x6-dhu"/>
-                                <exclude reference="WFY-gW-Y00"/>
-                                <exclude reference="uaz-GH-LiQ"/>
                                 <exclude reference="1XL-LN-4MA"/>
                                 <exclude reference="hQT-h5-fYN"/>
+                                <exclude reference="kQe-pk-et8"/>
+                                <exclude reference="qGR-Js-yfh"/>
                                 <exclude reference="6wS-Qr-fVH"/>
                                 <exclude reference="QhN-y6-V8m"/>
                                 <exclude reference="NMR-Tq-mdJ"/>
                                 <exclude reference="PE1-Dz-jnm"/>
                                 <exclude reference="ccw-oD-DoV"/>
-                                <exclude reference="kQe-pk-et8"/>
-                                <exclude reference="qGR-Js-yfh"/>
+                                <exclude reference="9Oi-x6-dhu"/>
+                                <exclude reference="WFY-gW-Y00"/>
+                                <exclude reference="uaz-GH-LiQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2149,18 +2151,18 @@
                                 <include reference="UCZ-go-Maw"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9Oi-x6-dhu"/>
-                                <include reference="WFY-gW-Y00"/>
-                                <include reference="uaz-GH-LiQ"/>
                                 <include reference="1XL-LN-4MA"/>
                                 <include reference="hQT-h5-fYN"/>
+                                <exclude reference="kQe-pk-et8"/>
+                                <include reference="qGR-Js-yfh"/>
                                 <include reference="6wS-Qr-fVH"/>
                                 <include reference="QhN-y6-V8m"/>
                                 <exclude reference="NMR-Tq-mdJ"/>
                                 <include reference="PE1-Dz-jnm"/>
                                 <include reference="ccw-oD-DoV"/>
-                                <exclude reference="kQe-pk-et8"/>
-                                <include reference="qGR-Js-yfh"/>
+                                <include reference="9Oi-x6-dhu"/>
+                                <include reference="WFY-gW-Y00"/>
+                                <include reference="uaz-GH-LiQ"/>
                             </mask>
                         </variation>
                     </view>

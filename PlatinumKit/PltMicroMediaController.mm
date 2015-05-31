@@ -325,7 +325,7 @@ PLT_MicroMediaController::OnMRAdded(PLT_DeviceDataReference& device)
         if([redername isEqualToString:temp])
         {
             m_CurMediaRenderer = device;
-            [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowNotification] object:nil];
             
         }
     }

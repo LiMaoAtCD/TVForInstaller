@@ -130,7 +130,7 @@
     
     
     [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
-    [[NSNotificationCenter defaultCenter]  postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+    [[NSNotificationCenter defaultCenter]  postNotificationName:[ComminUtility kSuspensionWindowNotification] object:nil];
     
     [self.tableView reloadData];
     

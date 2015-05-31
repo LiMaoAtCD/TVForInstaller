@@ -12,6 +12,8 @@
 #import "DeviceTableViewCell.h"
 #import "DeviceContainer.h"
 #import "DLNAManager.h"
+#import "DeviceManageCell.h"
+
 @interface DeviceViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 
@@ -62,25 +64,64 @@
 }
 
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.devices.count;
+    if (section == 1) {
+        return self.devices.count;
+
+    } else
+        return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCell" forIndexPath:indexPath];
-    cell.deviceTitle.text = self.devices[indexPath.row];
-    
-    if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
+    if (indexPath.section == 1) {
+        
+        DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCell" forIndexPath:indexPath];
+        cell.deviceTitle.text = self.devices[indexPath.row];
+        
+        if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+        }
+        
+        
+        return cell;
+    } else{
+        
+        DeviceManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceManageCell" forIndexPath:indexPath];
+        cell.titleLabel.text = @"是否开启浮窗模式";
+        
+        if ([ComminUtility isSwitchKitOn]) {
+            
+            cell.switchKit.on = YES;
+        }else{
+            cell.switchKit.on = NO;
+        }
+        
+        [cell.switchKit addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
+        
+        
+        return cell;
     }
+   
+}
+
+-(void)changeSwitchState:(UISwitch*)kit{
     
-    
-    return cell;
+    if (kit.isOn) {
+        [ComminUtility setSwitchKit:NO];
+
+    }else{
+        [ComminUtility setSwitchKit:YES];
+        }
+    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowNotification] object:nil];
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

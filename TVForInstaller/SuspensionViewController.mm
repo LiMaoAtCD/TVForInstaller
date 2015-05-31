@@ -34,7 +34,7 @@
     self.contentView.layer.cornerRadius = 5.0;
     self.contentView.layer.masksToBounds = YES;
     [self showSuspensionView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowShowNotification] object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowNotification] object:nil];
 
 }
 
@@ -54,6 +54,7 @@
 //}
 
 -(void)showSuspensionView{
+    
     
     NSString *renderer = [[DLNAManager DefaultManager] getCurrentSpecifiedRenderer];
 

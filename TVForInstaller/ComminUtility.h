@@ -48,6 +48,9 @@
 + (BOOL)checkPassword:(NSString *) password;
 
 
-+(NSString*)kSuspensionWindowShowNotification;
-+(NSString*)kSuspensionWindowHideNotification;
++(NSString*)kSuspensionWindowNotification;
+
++(void)setSwitchKit:(BOOL)on;
++(BOOL)isSwitchKitOn;
+
 @end

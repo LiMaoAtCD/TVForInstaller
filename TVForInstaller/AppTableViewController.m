@@ -51,12 +51,10 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowShowNotification] object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowHideNotification] object:nil];
 }
 
 

@@ -25,25 +25,39 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowShowNotification] object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSuspensionView) name:[ComminUtility kSuspensionWindowHideNotification] object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowNotification] object:nil];
+
     
    
 }
 
--(void)hideSuspensionView{
-    [self suspensionWindow:NO];
-
-}
 -(void)showSuspensionView{
-    [self suspensionWindow:YES];
-
+    
+    if ([ComminUtility isSwitchKitOn]) {
+        [self suspensionWindow:YES];
+        
+    } else{
+        [self suspensionWindow:NO];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self manageLogState];
+    
+    if ([ComminUtility isSwitchKitOn]) {
+        
+        //启动时延时获取设备renderer以免崩溃；
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self suspensionWindow:YES];
+
+        });
+
+    } else{
+        [self suspensionWindow:NO];
+    }
+
     
 }
 
@@ -87,7 +101,7 @@
         [self.suspension willMoveToParentViewController:self];
         
         
-        self.suspension.view.frame = CGRectMake(0, 0, 80, 40);
+        self.suspension.view.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 60 - 40, 80, 40);
         
         self.suspensionView = self.suspension.view;
         
@@ -95,7 +109,6 @@
 //        self.suspensionView.layer.masksToBounds = YES;
         
         self.suspension.view.alpha = 0.0;
-        self.suspension.view.center = self.view.center;
         [self.view addSubview:self.suspension.view];
 
 
