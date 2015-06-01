@@ -226,7 +226,7 @@ typedef void(^alertBlock)(void);
 //    });
 //
     
-    if (self.cellphoneNumber != nil||
+    if (self.cellphoneNumber != nil&&
         ![self.cellphoneNumber isEqualToString:@""]) {
         
         [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
