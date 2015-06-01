@@ -61,6 +61,8 @@
     
     cell.tvSizeLabel.text = @"50寸";
     cell.tvBrandLabel.text = @"康佳";
+    cell.payStatus.text =@"已完成";
+    cell.paymodelLabel.text = @"现金";
     
     
     return cell;

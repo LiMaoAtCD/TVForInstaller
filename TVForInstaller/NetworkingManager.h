@@ -206,6 +206,19 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
 
 
 /**
+ *  获取已完成列表
+ *
+ *  @param row               row
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchCompletedOrderListByRow:(NSInteger)row withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+#pragma mark - 获取电视信息接口
+
+
+/**
  *  获取mac地址
  *
  *  @param IPAddress         电视IP地址
