@@ -107,7 +107,7 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     self.HUD.indicatorView = nil;
-                    self.HUD.textLabel.text =@"用户名或密码错误";
+                    self.HUD.textLabel.text =responseObject[@"msg"];
                     
                     [self.HUD dismissAfterDelay:2.0];
                 });
@@ -184,6 +184,7 @@
         ) {
         [self alertWithMessage:@"手机号不能为空" withCompletionHandler:^{
             self.CellularTextField.text = nil;
+            self.Account = @"";
             [self.CellularTextField becomeFirstResponder];
 
         }];
@@ -195,6 +196,7 @@
         ) {
         [self alertWithMessage:@"手机号不合法" withCompletionHandler:^{
             self.CellularTextField.text = nil;
+            self.Account = @"";
             [self.CellularTextField becomeFirstResponder];
             
         }];
@@ -206,6 +208,7 @@
 
         [self alertWithMessage:@"密码不能为空" withCompletionHandler:^{
             self.passwordTextField.text = nil;
+            self.password = @"";
             [self.passwordTextField becomeFirstResponder];
             
         }];

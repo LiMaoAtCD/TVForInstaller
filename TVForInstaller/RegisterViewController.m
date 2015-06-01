@@ -179,12 +179,12 @@ typedef void(^alertBlock)(void);
 
 -(void)configureTextFields{
     
-    self.cellphoneTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"手机号" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"密码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.confirmPassword.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.inviteTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"邀请码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.ChinaIdentifyTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"身份证" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.identityCodeTextFIeld.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.cellphoneTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"手机号" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"密码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    self.confirmPassword.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    self.inviteTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"邀请码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    self.ChinaIdentifyTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"身份证" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    self.identityCodeTextFIeld.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
 }
 
@@ -352,7 +352,7 @@ typedef void(^alertBlock)(void);
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.hud.textLabel.text =@"注册失败";
+                    self.hud.textLabel.text =responseObject[@"msg"];
                     self.hud.indicatorView = nil;
                     
                     [self.hud dismissAfterDelay:2.0];
