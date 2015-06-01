@@ -288,7 +288,9 @@ typedef void(^alertBlock)(void);
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
+        if (handler) {
+            handler();
+        }
     }];
     
     [controller addAction:action];

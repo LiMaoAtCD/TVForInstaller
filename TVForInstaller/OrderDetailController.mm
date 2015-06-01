@@ -26,6 +26,7 @@
 #import <JGProgressHUD.h>
 #import "DLNAManager.h"
 
+typedef void(^alertBlock)(void);
 
 @interface OrderDetailController ()<UITableViewDelegate,UITableViewDataSource,PickerDelegate,UITextFieldDelegate>
 
@@ -46,8 +47,6 @@
 @property (nonatomic,strong) UITextField *cellPhoneTF;
 
 
-
-typedef void(^alertBlock)(void);
 
 @end
 
@@ -560,10 +559,77 @@ typedef void(^alertBlock)(void);
  *  @param button
  */
 -(void)clickToPostOrder:(UIButton *)button{
-    //TODO: 提交订单
     
     
     
+    self.orderInfo[@"mac"] =@"xxx";
+    if (!self.orderInfo[@"mac"]) {
+        [self alertWithMessage:@"Mac 地址不能为空" withCompletionHandler:^{
+            
+        }];
+        return;
+    }
+    
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.textLabel.text = @"订单提交中";
+    [hud showInView:self.tableView animated:YES];
+    
+    
+    NSDictionary * order = [NetworkingManager createOrderDictionaryByOrderID:self.orderInfo[@"orderid"] phone:self.orderInfo[@"phone"] paymodel:self.orderInfo[@"paymodel"] source:self.orderInfo[@"source"] address:self.orderInfo[@"address"] brand:self.orderInfo[@"brand"] engineer:self.orderInfo[@"engineer"] mac:self.orderInfo[@"mac"] hoster:self.orderInfo[@"hoster"] size:self.orderInfo[@"size"] version:self.orderInfo[@"version"] type:self.orderInfo[@"type"] createdate:self.orderInfo[@"createdate"]];
+    
+    NSLog(@"order: %@",order);
+    
+    NSDictionary * bill = [NetworkingManager createBillbyHostphone:self.orderInfo[@"hostphone"] zjservice:self.orderInfo[@"zjservice"] sczkfei:self.orderInfo[@"sczkfei"] zhijia:self.orderInfo[@"zhijia"] hdmi:self.orderInfo[@"hdmi"] yiji:self.orderInfo[@"yiji"]];
+    NSLog(@"bill: %@",bill);
+    
+    
+    NSArray *arr = self.orderInfo[@"appname"];
+    NSMutableArray *updateArray = [NSMutableArray array];
+    
+    if (arr != nil && arr.count >0) {
+ 
+        [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [updateArray addObject:@{@"appname":obj}];
+        }];
+    }else{
+        updateArray = [@[@{@"appname":@"李敏煞笔"}] mutableCopy];
+
+    }
+    NSLog(@"%@",updateArray);
+
+    [NetworkingManager submitOrderDictionary:order bill:bill applist:updateArray source:self.orderInfo[@"source"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"response %@",responseObject);
+        
+        if ([responseObject[@"success"] integerValue] ==0) {
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                hud.textLabel
+//            });
+        } else{
+        
+        }
+       
+    } failHandle:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error %@",error);
+
+    }];
+    
+    
+    
+}
+
+-(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if (handler) {
+            handler();
+        }
+    }];
+    
+    [controller addAction:action];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 /**
@@ -713,24 +779,14 @@ typedef void(^alertBlock)(void);
 
 }
 
--(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
-    }];
-    
-    [controller addAction:action];
-    
-    [self presentViewController:controller animated:YES completion:nil];
-}
+
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if (textField == self.cellPhoneTF) {
         
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"hostphone"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             

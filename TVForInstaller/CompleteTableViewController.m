@@ -70,15 +70,25 @@
             if (array.count > 0) {
                 self.data = [array mutableCopy];
                 [self.tableView reloadData];
+            }else{
+                JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                hud.textLabel.text = @"没有数据";
+                hud.indicatorView = nil;
+                [hud showInView:self.tableView];
+                
+                [hud dismissAfterDelay:1];
             }
-            
             
         }
         
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error %@",error);
         
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
     }];
     
     
@@ -86,34 +96,39 @@
 
 -(void)fetchMoreCompletionOrder{
     if (_currentRow == 0) {
-        return;
+        [self fetchCompletionOrder];
+    } else{
+        [NetworkingManager fetchCompletedOrderListByRow:_currentRow withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                
+                JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                hud.textLabel.text = @"获取失败";
+                hud.indicatorView = nil;
+                [hud showInView:self.tableView];
+                
+                [hud dismissAfterDelay:1];
+                
+            } else{
+                NSArray *array = responseObject[@"obj"];
+                _currentRow = [responseObject[@"attributes"][@"row"] integerValue];
+                if (array.count > 0) {
+                    [self.data addObjectsFromArray:array];
+                    [self.tableView reloadData];
+                }
+                
+                
+            }
+            [self.tableView.header endRefreshing];
+            [self.tableView.footer endRefreshing];
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.tableView.header endRefreshing];
+            [self.tableView.footer endRefreshing];
+        }];
+
     }
     
-    [NetworkingManager fetchCompletedOrderListByRow:_currentRow withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if ([responseObject[@"success"] integerValue] == 0) {
-            
-            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-            hud.textLabel.text = @"获取失败";
-            hud.indicatorView = nil;
-            [hud showInView:self.tableView];
-            
-            [hud dismissAfterDelay:1];
-            
-        } else{
-            NSArray *array = responseObject[@"obj"];
-            _currentRow = [responseObject[@"attributes"][@"row"] integerValue];
-            if (array.count > 0) {
-                [self.data addObjectsFromArray:array];
-                [self.tableView reloadData];
-            }
-            
-            
-        }
-
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
 }
 
 - (void)didReceiveMemoryWarning {

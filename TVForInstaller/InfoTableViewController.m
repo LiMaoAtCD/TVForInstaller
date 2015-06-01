@@ -207,7 +207,7 @@ typedef void(^alertBlock)(void);
     if (textField == self.nameTextField) {
         //姓名
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.name = [textField.text substringToIndex:[textField.text length] - 1];
         }else{
             self.name = [textField.text stringByAppendingString:string];
@@ -221,7 +221,7 @@ typedef void(^alertBlock)(void);
     } else if(textField == self.addressTextField){
         //地址
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.address = [textField.text substringToIndex:[textField.text length] - 1];
         }else{
             self.address = [textField.text stringByAppendingString:string];
@@ -262,17 +262,19 @@ typedef void(^alertBlock)(void);
 }
 
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
+        if (handler) {
+            handler();
+        }
     }];
     
     [controller addAction:action];
     
     [self presentViewController:controller animated:YES completion:nil];
 }
-
 
 
 @end

@@ -34,6 +34,7 @@
 
 
 
+
 -(void)createControlPoint{
     
     NPT_LogManager::GetDefault().Configure("plist:.level=FINE;.handlers=ConsoleHandler;.ConsoleHandler.colors=off;.ConsoleHandler.filter=42");

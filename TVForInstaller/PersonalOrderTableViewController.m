@@ -34,6 +34,9 @@ typedef void(^alertBlock)(void);
 @property(nonatomic ,strong) UITextField *sizeTF;
 
 @property(nonatomic ,strong) UITextField *addressTF;
+
+@property(nonatomic ,strong) UITextField *versionTF;
+
 @property(nonatomic ,strong) UITextField *activeField;
 
 
@@ -51,8 +54,8 @@ typedef void(^alertBlock)(void);
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [ComminUtility configureTitle:@"订单添加" forViewController:self];
-    self.items = @[@"姓名",@"电话",@"品牌",@"尺寸",@"支架",@"地址"];
-    self.placeholders = @[@"请输入姓名",@"请输入电话",@"请输入品牌",@"请输入尺寸",@"支架",@"请输入地址"];
+    self.items = @[@"姓名",@"电话",@"品牌",@"尺寸",@"型号",@"支架",@"地址"];
+    self.placeholders = @[@"请输入姓名",@"请输入电话",@"请输入品牌",@"请输入尺寸",@"请输入电视型号",@"支架",@"请输入地址"];
     self.orderInfo = [NSMutableDictionary new];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -126,12 +129,12 @@ typedef void(^alertBlock)(void);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 7;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row ==4) {
+    if (indexPath.row ==5) {
         ZhijiaTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZhijiaTableViewCell" forIndexPath:indexPath];
         [cell.segment addTarget:self action:@selector(chooseZhijia:) forControlEvents:UIControlEventValueChanged];
         cell.segment.selectedSegmentIndex = 0;
@@ -160,7 +163,10 @@ typedef void(^alertBlock)(void);
                 cell.textField.keyboardType = UIKeyboardTypeNumberPad;
                 self.sizeTF = cell.textField;
                 break;
-            case 5:
+            case 4:
+                self.versionTF = cell.textField;
+                break;
+            case 6:
                 self.addressTF = cell.textField;
                 break;
             default:
@@ -181,7 +187,7 @@ typedef void(^alertBlock)(void);
     if (textField.tag == 0) {
         //姓名
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"name"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -195,7 +201,7 @@ typedef void(^alertBlock)(void);
     } else if(textField.tag == 1){
         //手机号
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"cellphone"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -208,7 +214,7 @@ typedef void(^alertBlock)(void);
         
     } else if(textField.tag == 2){
         //品牌
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"brand"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -219,7 +225,7 @@ typedef void(^alertBlock)(void);
         }
     }else if(textField.tag == 3){
         //尺寸
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"size"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -229,11 +235,20 @@ typedef void(^alertBlock)(void);
             self.orderInfo[@"size"] = [textField.text stringByAppendingString:string];
         }
     }else if(textField.tag == 4){
-        //支架
-      
-    }else if(textField.tag == 5){
+        //型号
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+            self.orderInfo[@"version"] = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.orderInfo[@"version"]= textField.text;
+            
+        }else{
+            self.orderInfo[@"version"] = [textField.text stringByAppendingString:string];
+        }
+
+    }else if(textField.tag == 6){
         //dizhi
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.orderInfo[@"address"] = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -296,6 +311,7 @@ typedef void(^alertBlock)(void);
         order.size = self.orderInfo[@"size"];
         order.type = self.orderInfo[@"zhijia"];
         order.address = self.orderInfo[@"address"];
+        order.version = self.orderInfo[@"version"];
         order.source = @1;
         
         order.bill = bill;
@@ -371,7 +387,14 @@ typedef void(^alertBlock)(void);
         self.orderInfo[@"size"] = [size stringByAppendingString:@"寸"];
         
     }
-    
+    if ([self.orderInfo[@"version"] isEqualToString:@""]||
+        self.orderInfo[@"version"] == nil
+        ) {
+        [self alertWithMessage:@"型号不能为空" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
     
 
     if ([self.orderInfo[@"address"] isEqualToString:@""]||
@@ -408,7 +431,10 @@ typedef void(^alertBlock)(void);
         self.orderInfo[@"size"] = textField.text;
     }else if(textField == self.addressTF){
         self.orderInfo[@"address"] = textField.text;
+    }else if(textField == self.versionTF){
+        self.orderInfo[@"version"] = textField.text;
     }
+
 }
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -486,15 +512,20 @@ typedef void(^alertBlock)(void);
     [self.sizeTF resignFirstResponder];
     
     [self.addressTF resignFirstResponder];
+    [self.versionTF resignFirstResponder];
+
 
 }
 
 
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
+        if (handler) {
+            handler();
+        }
     }];
     
     [controller addAction:action];

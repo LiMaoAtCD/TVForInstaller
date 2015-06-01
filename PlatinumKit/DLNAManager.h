@@ -35,11 +35,58 @@ typedef enum : NSUInteger {
 //初始化
 +(instancetype)DefaultManager;
 
+
 - (PLT_MicroMediaController *)getMediaController;
 
 //将设备指定成DMS和DMC
 -(void)transferDeviceToBeServerAndControlPoint;
 
+
+
+
+
+
+
+-(void)startServer;
+-(void)stoprServer;
+-(void)getServerResources;
+
+
+
+
+
+
+
+
+-(void)specifyFileInDMSName:(NSString *)name;
+-(void)specifyFileToSend:(NSString *)name;
+-(void)specifyURL:(NSURL*)url;
+
+-(void)specifyRenderer:(NSInteger) index;
+-(void)specifyFileInDMS:(NSInteger) index;
+
+
+-(NSArray*)fetchLocalFilesfromDMS;
+
+-(NSArray*)fetchLocalFilesfromServer:(ResourceType)resourceType;
+
+
+
+
+-(BOOL)didSetDMRenderer;
+-(BOOL)didSetDMServer;
+
+- (void)play;
+- (void)stop;
+- (void)pause;
+- (void)getvolume;
+- (void)setvolume:(int)volume;
+- (void)getmediainfo;
+- (void)getpositoninfo;
+- (void)seek:(NSString *)time;
+
+
+#pragma mark - 渠道版功能列表
 
 /**
  *  创建控制点
@@ -50,9 +97,6 @@ typedef enum : NSUInteger {
  *  停止服务
  */
 -(void)stopService;
--(void)startServer;
--(void)stoprServer;
--(void)getServerResources;
 
 
 /**
@@ -69,34 +113,18 @@ typedef enum : NSUInteger {
  */
 -(NSString *)getCurrentSpecifiedRenderer;
 
+/**
+ *   指定电视设备
+ *
+ *  @param renderName
+ */
 -(void)specifyRendererName:(NSString *) renderName;
 
 
--(void)specifyFileInDMSName:(NSString *)name;
--(void)specifyFileToSend:(NSString *)name;
--(void)specifyURL:(NSURL*)url;
-
--(void)specifyRenderer:(NSInteger) index;
--(void)specifyFileInDMS:(NSInteger) index;
-
-
--(NSArray*)fetchLocalFilesfromDMS;
-
--(NSArray*)fetchLocalFilesfromServer:(ResourceType)resourceType;
-
-
+/**
+ *  获取电视IP地址
+ *
+ *  @return
+ */
 -(NSString *)getCurRenderIpAddress;
-
--(BOOL)didSetDMRenderer;
--(BOOL)didSetDMServer;
-
-- (void)play;
-- (void)stop;
-- (void)pause;
-- (void)getvolume;
-- (void)setvolume:(int)volume;
-- (void)getmediainfo;
-- (void)getpositoninfo;
-- (void)seek:(NSString *)time;
-
 @end

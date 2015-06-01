@@ -112,7 +112,7 @@ typedef void(^alertBlock)(void);
     if (textField == self.cellphoneTextfield) {
         
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.cellphoneNumber = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -123,7 +123,7 @@ typedef void(^alertBlock)(void);
         }
     } else if (textField == self.confirmPassword){
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -135,7 +135,7 @@ typedef void(^alertBlock)(void);
         }
     }else if (textField == self.inviteTextField){
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.inviteCode = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -147,7 +147,7 @@ typedef void(^alertBlock)(void);
         }
     }else if (textField == self.ChinaIdentifyTextfield){
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.chinaID = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -159,7 +159,7 @@ typedef void(^alertBlock)(void);
         }
     }else if (textField == self.identityCodeTextFIeld){
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.verifycode = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             
@@ -278,7 +278,7 @@ typedef void(^alertBlock)(void);
     }
 
     if (![ComminUtility checkPassword:self.password]) {
-        [self alertWithMessage:@"密码为6～18为数字字母组合" withCompletionHandler:^{
+        [self alertWithMessage:@"密码为4~16为数字字母组合" withCompletionHandler:^{
             
         }];
         return NO;
@@ -295,7 +295,7 @@ typedef void(^alertBlock)(void);
     
     if ([self.inviteCode isEqualToString:@""]||
         self.inviteCode == nil) {
-        [self alertWithMessage:@"邀请码不能为空" withCompletionHandler:nil];
+        [self alertWithMessage:@"邀请码不能为空" withCompletionHandler:^(){}];
         return NO;
 
     }
@@ -320,11 +320,15 @@ typedef void(^alertBlock)(void);
     return YES;
 }
 
+
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
+        if (handler) {
+            handler();
+        }
     }];
     
     [controller addAction:action];

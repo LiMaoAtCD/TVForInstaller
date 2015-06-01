@@ -193,7 +193,7 @@ typedef void(^alertBlock)(void);
     
     if (![ComminUtility checkPassword:self.password]) {
         
-        [self alertWithMessage:@"密码为6～18位字母数字组合" withCompletionHandler:^{
+        [self alertWithMessage:@"密码为4~16位字母数字组合" withCompletionHandler:^{
             
         }];
         return NO;
@@ -228,7 +228,7 @@ typedef void(^alertBlock)(void);
     if (textField == self.passwordTextField) {
         
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.password = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             self.password = textField.text;
@@ -238,7 +238,7 @@ typedef void(^alertBlock)(void);
         }
     } else if(textField == self.IdentityTF){
         
-        if ([string isEqualToString:@""]) {
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
             self.verifyCode = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             self.verifyCode = textField.text;
@@ -252,16 +252,18 @@ typedef void(^alertBlock)(void);
 }
 
 -(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        handler();
+        if (handler) {
+            handler();
+        }
     }];
     
     [controller addAction:action];
     
     [self presentViewController:controller animated:YES completion:nil];
 }
-
 
 @end

@@ -204,7 +204,7 @@
     }];
 }
 
-+(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSArray*)applist source:(NSString*)source withcompletionHandler:(NetWorkHandler)completionHandler failHandle:(NetWorkFailHandler)failHandler{
++(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSArray*)applist source:(NSNumber*)source withcompletionHandler:(NetWorkHandler)completionHandler failHandle:(NetWorkFailHandler)failHandler{
 
     
     NSString * param = [@{@"order":order,@"bill":bill,@"source":source,@"applist":applist} bv_jsonStringWithPrettyPrint:YES];
@@ -247,7 +247,7 @@
 
 
 
-+(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version{
++(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version type:(NSNumber *)type createdate:(NSString *)createdate{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
     dic[@"id"] = @" ";
@@ -262,6 +262,11 @@
     dic[@"hoster"] = hoster;
     dic[@"size"] = size;
     dic[@"version"] = version;
+    dic[@"type"] = type;
+    dic[@"createdate"] = createdate;
+    dic[@"status"] = @1;
+
+
     
     return dic;
 };
@@ -272,7 +277,7 @@
     dic[@"zjservice"] =zjservice;
     dic[@"sczkfei"] = sczkfei;
     dic[@"zhijia"] = zhijia;
-    dic[@"hdmi"] = hdmi;
+    dic[@"hmdi"] = hdmi;
     dic[@"yiji"] = yiji;
     
     

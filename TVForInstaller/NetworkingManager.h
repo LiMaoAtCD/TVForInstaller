@@ -171,7 +171,37 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)submitOrderDictionary:(NSDictionary*)order bill:(NSDictionary*)bill applist:(NSArray*)applist source:(NSNumber*)source withcompletionHandler:(NetWorkHandler)handler failHandle:(NetWorkFailHandler)failHandler;
 
-+(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version;
+/**
+ *  创建订单
+ *
+ *  @param orderID  订单ID
+ *  @param phone    电话
+ *  @param paymodel 支付方式
+ *  @param source   派单方式
+ *  @param address  地址
+ *  @param brand    品牌
+ *  @param engineer 工程师ID
+ *  @param mac      mac地址
+ *  @param hoster   户主名字
+ *  @param size     尺寸
+ *  @param version  版本
+ *
+ *  @return 字典
+ */
++(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version type:(NSNumber *)type createdate:(NSString *)createdate;
+
+/**
+ *  订单
+ *
+ *  @param hostphone 电话号码
+ *  @param zjservice 装机服务费
+ *  @param sczkfei   钻孔费
+ *  @param zhijia    支架
+ *  @param hdmi      hdmi线
+ *  @param yiji      移机费
+ *
+ *  @return 
+ */
 +(NSDictionary*)createBillbyHostphone:(NSString*)hostphone zjservice:(NSNumber*)zjservice sczkfei:(NSNumber*)sczkfei zhijia:(NSNumber*)zhijia hdmi:(NSNumber*)hdmi yiji:(NSNumber*)yiji;
 
 /**

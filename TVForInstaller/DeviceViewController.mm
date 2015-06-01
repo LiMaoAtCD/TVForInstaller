@@ -138,7 +138,11 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"已找到的设备";
+    if (section == 1) {
+        return @"已找到的设备";
+    } else{
+        return @"模式设定";
+    }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
