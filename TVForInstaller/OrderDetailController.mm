@@ -745,61 +745,130 @@ typedef void(^alertBlock)(void);
 
 -(void)save{
     NSLog(@"要保存的数据：%@",self.orderInfo);
+    
+    
+    
+    
     NSError *error;
     NSManagedObjectContext *context =  [[OrderDataManager sharedManager] managedObjectContext];
     
-    Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
-    Bill *bill = [NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
-    Applist *applist = [NSEntityDescription insertNewObjectForEntityForName:@"Applist" inManagedObjectContext:context];
+    NSFetchRequest *request =[[NSFetchRequest alloc] initWithEntityName:@"Order"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orderid == %@",self.orderInfo[@"orderid"]];
+    
+    [request setPredicate:predicate];
+    
+    NSArray * result = [context executeFetchRequest:request error:&error];
+    
+    if (!error) {
+        if (result.count > 0) {
+            [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                
+                
+                Order *order = obj;
+                
+                order.phone = self.orderInfo[@"phone"];
+                order.paymodel = self.orderInfo[@"paymodel"];
+                order.source = self.orderInfo[@"source"];
+                order.address = self.orderInfo[@"address"];
+                order.brand = self.orderInfo[@"brand"];
+                order.engineer = self.orderInfo[@"engineer"];
+                order.mac = self.orderInfo[@"mac"];
+                order.size = self.orderInfo[@"size"];
+                order.version = self.orderInfo[@"version"];
+                order.hoster  =self.orderInfo[@"hoster"];
+                order.type =  self.orderInfo[@"type"];
+                order.createdate = self.orderInfo[@"createdate"];
+                
+                
+                
+                order.bill.hostphone =  self.orderInfo[@"hostphone"];
+                order.bill.zjservice = self.orderInfo[@"zjservice"];
+                order.bill.yiji = self.orderInfo[@"yiji"];
+                order.bill.hdmi = self.orderInfo[@"hdmi"];
+                order.bill.zhijia = self.orderInfo[@"zhijia"];
+                order.bill.sczkfei = self.orderInfo[@"sczkfei"];
+                
+                order.applist.appname = self.orderInfo[@"appname"];
+                NSError *err;
+                if ([context save:&err]) {
+                    NSLog(@"保存成功");
+                    
+                    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = @"此订单保存成功,请在网络状态良好时提交至服务器";
+                    [hud showInView:self.tableView];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [hud dismiss];
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        
+                        
+                        
+                    });
 
-    order.orderid  =self.orderInfo[@"orderid"];
-    order.phone = self.orderInfo[@"phone"];
-    order.paymodel = self.orderInfo[@"paymodel"];
-    order.source = self.orderInfo[@"source"];
-    order.address = self.orderInfo[@"address"];
-    order.brand = self.orderInfo[@"brand"];
-    order.engineer = self.orderInfo[@"engineer"];
-    order.mac = self.orderInfo[@"mac"];
-    order.size = self.orderInfo[@"size"];
-    order.version = self.orderInfo[@"version"];
-    order.hoster  =self.orderInfo[@"hoster"];
-    order.type =  self.orderInfo[@"type"];
-    order.createdate = self.orderInfo[@"createdate"];
-    
-    
-    
-    bill.hostphone =  self.orderInfo[@"hostphone"];
-    bill.zjservice = self.orderInfo[@"zjservice"];
-    bill.yiji = self.orderInfo[@"yiji"];
-    bill.hdmi = self.orderInfo[@"hdmi"];
-    bill.zhijia = self.orderInfo[@"zhijia"];
-    bill.sczkfei = self.orderInfo[@"sczkfei"];
-    
-    order.bill = bill;
-    applist.appname = self.orderInfo[@"appname"];
-    order.applist = applist;
-    
-    
-    if ([context save:&error]) {
-        //TODO 提示保存成功
-        NSLog(@"保存成功");
-        
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.indicatorView = nil;
-        hud.textLabel.text = @"此订单保存成功,请在网络状态良好时提交至服务器";
-        [hud showInView:self.tableView];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [hud dismiss];
+                }
+            }];
+        } else{
             
-            [self.navigationController popViewControllerAnimated:YES];
+            Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
+            Bill *bill = [NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
+            Applist *applist = [NSEntityDescription insertNewObjectForEntityForName:@"Applist" inManagedObjectContext:context];
+            
+            order.orderid  =self.orderInfo[@"orderid"];
+            order.phone = self.orderInfo[@"phone"];
+            order.paymodel = self.orderInfo[@"paymodel"];
+            order.source = self.orderInfo[@"source"];
+            order.address = self.orderInfo[@"address"];
+            order.brand = self.orderInfo[@"brand"];
+            order.engineer = self.orderInfo[@"engineer"];
+            order.mac = self.orderInfo[@"mac"];
+            order.size = self.orderInfo[@"size"];
+            order.version = self.orderInfo[@"version"];
+            order.hoster  =self.orderInfo[@"hoster"];
+            order.type =  self.orderInfo[@"type"];
+            order.createdate = self.orderInfo[@"createdate"];
             
             
             
-        });
-        
+            bill.hostphone =  self.orderInfo[@"hostphone"];
+            bill.zjservice = self.orderInfo[@"zjservice"];
+            bill.yiji = self.orderInfo[@"yiji"];
+            bill.hdmi = self.orderInfo[@"hdmi"];
+            bill.zhijia = self.orderInfo[@"zhijia"];
+            bill.sczkfei = self.orderInfo[@"sczkfei"];
+            
+            order.bill = bill;
+            applist.appname = self.orderInfo[@"appname"];
+            order.applist = applist;
+            
+            
+            if ([context save:&error]) {
+                //TODO 提示保存成功
+                NSLog(@"保存成功");
+                
+                JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                hud.indicatorView = nil;
+                hud.textLabel.text = @"此订单保存成功,请在网络状态良好时提交至服务器";
+                [hud showInView:self.tableView];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kSavedOrderToLocal" object:nil];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [hud dismiss];
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                    
+                    
+                });
+                
+            }
+
+        }
     }
+    
 }
 
 

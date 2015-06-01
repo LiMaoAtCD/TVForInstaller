@@ -157,6 +157,7 @@ typedef void(^alertBlock)(void);
                 self.brandTF = cell.textField;
                 break;
             case 3:
+                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
                 self.sizeTF = cell.textField;
                 break;
             case 5:
@@ -336,6 +337,15 @@ typedef void(^alertBlock)(void);
         }];
         return NO;
     }
+    
+    if (![ComminUtility checkTel: self.orderInfo[@"cellphone"]]
+        ) {
+        
+        [self alertWithMessage:@"手机号码不合法" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
 
     if ([self.orderInfo[@"brand"] isEqualToString:@""]||
         self.orderInfo[@"brand"] == nil
@@ -354,6 +364,15 @@ typedef void(^alertBlock)(void);
         }];
         return NO;
     }
+    
+    NSString *size = self.orderInfo[@"size"];
+    
+    if (![size hasSuffix:@"寸"]) {
+        self.orderInfo[@"size"] = [size stringByAppendingString:@"寸"];
+        
+    }
+    
+    
 
     if ([self.orderInfo[@"address"] isEqualToString:@""]||
         self.orderInfo[@"address"] == nil
@@ -364,6 +383,17 @@ typedef void(^alertBlock)(void);
         return NO;
     }
     return YES;
+}
+-(BOOL)isNumber:(NSString*)string{
+    NSString *regx = @"[0-9]*[1-9][0-9]*";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regx];
+    
+    if (![pred evaluateWithObject:string]) {
+        return NO;
+    }else{
+        return YES;
+    }
+
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
