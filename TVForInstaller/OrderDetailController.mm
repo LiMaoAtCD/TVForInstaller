@@ -561,8 +561,9 @@ typedef void(^alertBlock)(void);
 -(void)clickToPostOrder:(UIButton *)button{
     
     
-    
+    //Mac地址处理
     self.orderInfo[@"mac"] =@"xxx";
+    
     if (!self.orderInfo[@"mac"]) {
         [self alertWithMessage:@"Mac 地址不能为空" withCompletionHandler:^{
             
@@ -570,14 +571,17 @@ typedef void(^alertBlock)(void);
         return;
     }
     
+    //提示信息
     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     hud.textLabel.text = @"订单提交中";
     [hud showInView:self.tableView animated:YES];
     
     
+    //生成订单
     NSDictionary * order = [NetworkingManager createOrderDictionaryByOrderID:self.orderInfo[@"orderid"] phone:self.orderInfo[@"phone"] paymodel:self.orderInfo[@"paymodel"] source:self.orderInfo[@"source"] address:self.orderInfo[@"address"] brand:self.orderInfo[@"brand"] engineer:self.orderInfo[@"engineer"] mac:self.orderInfo[@"mac"] hoster:self.orderInfo[@"hoster"] size:self.orderInfo[@"size"] version:self.orderInfo[@"version"] type:self.orderInfo[@"type"] createdate:self.orderInfo[@"createdate"]];
     
     NSLog(@"order: %@",order);
+    
     
     NSDictionary * bill = [NetworkingManager createBillbyHostphone:self.orderInfo[@"hostphone"] zjservice:self.orderInfo[@"zjservice"] sczkfei:self.orderInfo[@"sczkfei"] zhijia:self.orderInfo[@"zhijia"] hdmi:self.orderInfo[@"hdmi"] yiji:self.orderInfo[@"yiji"]];
     NSLog(@"bill: %@",bill);
@@ -592,11 +596,12 @@ typedef void(^alertBlock)(void);
             [updateArray addObject:@{@"appname":obj}];
         }];
     }else{
-        updateArray = [@[@{@"appname":@"李敏煞笔"}] mutableCopy];
+//        updateArray = [@[@{@"appname":@"李敏煞笔"}] mutableCopy];
 
     }
-    NSLog(@"%@",updateArray);
-
+    
+    //提交订单
+    
     [NetworkingManager submitOrderDictionary:order bill:bill applist:updateArray source:self.orderInfo[@"source"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         if ([responseObject[@"success"] integerValue] ==0) {
@@ -607,20 +612,20 @@ typedef void(^alertBlock)(void);
             });
         } else{
             
-            //TODO 订单提交成功删除本地订单
-            [self deleteLocalOrder];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 hud.textLabel.text = responseObject[@"msg"];
                 hud.indicatorView=  nil;
                 [hud dismissAfterDelay:1.0];
+                //TODO 订单提交成功删除本地订单
+                [self deleteLocalOrder];
+
             });
             
             
         }
        
     } failHandle:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error %@",error);
         [hud dismiss];
     }];
     

@@ -277,12 +277,20 @@ typedef void(^alertBlock)(void);
         return NO;
     }
 
-    if (![ComminUtility checkPassword:self.password]) {
+    if (![ComminUtility checkPassword:self.passwordTextField.text]) {
         [self alertWithMessage:@"密码为4~16为数字字母组合" withCompletionHandler:^{
             
         }];
         return NO;
     }
+    
+    if (![ComminUtility checkPassword:self.confirmPassword.text]) {
+        [self alertWithMessage:@"确认密码为4~16为数字字母组合" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
+
     
     if (![self.confirmPassword.text isEqualToString:self.password]||
         self.password == nil) {
@@ -292,7 +300,6 @@ typedef void(^alertBlock)(void);
         return NO;
         
     }
-    
     if ([self.inviteCode isEqualToString:@""]||
         self.inviteCode == nil) {
         [self alertWithMessage:@"邀请码不能为空" withCompletionHandler:^(){}];
