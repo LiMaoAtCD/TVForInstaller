@@ -39,7 +39,9 @@
     // Do any additional setup after loading the view.
     self.localOrders = [@[] mutableCopy];
     self.tableView.allowsMultipleSelection = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshList) name:@"kSavedOrderToLocal" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshLocalOrder) name:@"kSavedOrderToLocal" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needRefreshList) name:@"kNeedrefreshOrder" object:nil];
+
 
     
     [self.tableView addLegendHeaderWithRefreshingBlock:^{
@@ -59,10 +61,11 @@
 
     }
 }
--(void)needRefreshList{
-    
+-(void)needRefreshLocalOrder{
     [self fetchLocalOrder];
-
+}
+-(void)needRefreshList{
+    [self.tableView.header beginRefreshing];
 }
 
 -(void)fetchOrder{

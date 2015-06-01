@@ -250,7 +250,7 @@
 +(NSDictionary *)createOrderDictionaryByOrderID:(NSString *)orderID phone:(NSString*)phone paymodel:(NSNumber*)paymodel source:(NSNumber*)source address:(NSString*)address brand:(NSString*)brand engineer:(NSString*)engineer mac:(NSString*)mac hoster:(NSString*)hoster size:(NSString*)size version:(NSString *)version type:(NSNumber *)type createdate:(NSString *)createdate{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    dic[@"id"] = @" ";
+    dic[@"id"] = @1;
     dic[@"orderid"] =orderID;
     dic[@"phone"] = phone;
     dic[@"paymodel"] = paymodel;

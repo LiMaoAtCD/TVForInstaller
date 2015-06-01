@@ -91,7 +91,7 @@ typedef void(^alertBlock)(void);
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 30)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    imageView.image = [UIImage imageNamed:@"temp"];
+    imageView.image = [UIImage imageNamed:@"sidan"];
     
     [view addSubview:imageView];
     imageView.center = view.center;

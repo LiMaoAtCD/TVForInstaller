@@ -48,8 +48,8 @@ typedef enum : NSUInteger {
     
     [btn addTarget:self action:@selector(clickToOpenPersonalOrder:) forControlEvents:UIControlEventTouchUpInside];
 
-    btn.frame = CGRectMake(0, 0, 40, 30);
-    [btn setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 20, 20);
+    [btn setBackgroundImage:[UIImage imageNamed:@"tianjia"] forState:UIControlStateNormal];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     

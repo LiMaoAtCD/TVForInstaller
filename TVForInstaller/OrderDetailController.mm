@@ -598,19 +598,30 @@ typedef void(^alertBlock)(void);
     NSLog(@"%@",updateArray);
 
     [NetworkingManager submitOrderDictionary:order bill:bill applist:updateArray source:self.orderInfo[@"source"] withcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"response %@",responseObject);
-        
+
         if ([responseObject[@"success"] integerValue] ==0) {
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                hud.textLabel
-//            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.textLabel.text = responseObject[@"msg"];
+                hud.indicatorView=  nil;
+                [hud dismissAfterDelay:1.0];
+            });
         } else{
-        
+            
+            //TODO 订单提交成功删除本地订单
+            [self deleteLocalOrder];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                hud.textLabel.text = responseObject[@"msg"];
+                hud.indicatorView=  nil;
+                [hud dismissAfterDelay:1.0];
+            });
+            
+            
         }
        
     } failHandle:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error %@",error);
-
+        [hud dismiss];
     }];
     
     
@@ -927,6 +938,54 @@ typedef void(^alertBlock)(void);
     
 }
 
+
+-(void)deleteLocalOrder{
+    
+    __block NSError *error;
+    
+    NSManagedObjectContext *context = [[OrderDataManager sharedManager] managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Order"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orderid == %@",self.orderInfo[@"orderid"]];
+    [request setPredicate:predicate];
+    
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    
+    if (result.count > 0) {
+        
+        [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Order *order = obj;
+            [context deleteObject:order];
+            
+            if ([context save:&error]) {
+                //删除订单成功
+                
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kNeedrefreshOrder" object:nil];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+
+                
+            }
+        }];
+        
+    }else{
+    //没有保存数据库的，直接删除本地订单
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kNeedrefreshOrder" object:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+    }
+    
+    
+    
+}
 
 
 
