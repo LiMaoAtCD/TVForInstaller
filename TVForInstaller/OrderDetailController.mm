@@ -385,36 +385,36 @@ typedef void(^alertBlock)(void);
 
         if (_isNewOrder) {
             [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
             self.installServiceButton.tag = 0;
             self.isInstallServiceChecked = YES;
             
             [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
             self.punchingButton.tag = 1;
             self.isPunchingChecked = YES;
         } else{
             
             if ([self.orderInfo[@"zjservice"] integerValue] == 0) {
                 [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
                 self.installServiceButton.tag = 0;
                 self.isInstallServiceChecked = YES;
             }else{
                 [self.installServiceButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+                [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
                 self.installServiceButton.tag = 0;
                 self.isInstallServiceChecked = NO;
             }
             
             if ([self.orderInfo[@"sczkfei"] integerValue] == 0) {
                 [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
                 self.punchingButton.tag = 1;
                 self.isPunchingChecked = YES;
             }else{
                 [self.punchingButton addTarget:self action:@selector(clickChooseOrNot:) forControlEvents:UIControlEventTouchUpInside];
-                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+                [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
                 self.punchingButton.tag = 1;
                 self.isPunchingChecked = NO;
             }
@@ -430,13 +430,13 @@ typedef void(^alertBlock)(void);
     if (button.tag == 0) {
         if (self.isInstallServiceChecked) {
             self.isInstallServiceChecked = NO;
-            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
             self.orderInfo[@"zjservice"] = @60;
             
             
         } else{
             self.isInstallServiceChecked = YES;
-            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            [self.installServiceButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
             self.orderInfo[@"zjservice"] = @0;
 
         }
@@ -444,12 +444,12 @@ typedef void(^alertBlock)(void);
         
         if (self.isPunchingChecked) {
             self.isPunchingChecked = NO;
-            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp1"] forState:UIControlStateNormal];
+            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
             self.orderInfo[@"sczkfei"] = @100;
 
         } else{
             self.isPunchingChecked = YES;
-            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"temp"] forState:UIControlStateNormal];
+            [self.punchingButton setBackgroundImage:[UIImage imageNamed:@"checkNot"] forState:UIControlStateNormal];
             self.orderInfo[@"sczkfei"] = @0;
 
 

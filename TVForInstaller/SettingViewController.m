@@ -289,7 +289,8 @@
         
         [hud dismiss];
     };
-    [hud showInRect:CGRectInset(self.view.frame, 50, 150) inView:self.view];
+    [hud showInRect:CGRectMake(0, 0, 200, 200) inView:self.view];
+    hud.center = self.view.center;
     
 
     
@@ -297,10 +298,11 @@
     [NetworkingManager fetchInviteByTokenID:[AccountManager getTokenID] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
-            
+            [hud dismiss];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
                 hud.indicatorView = nil;
-                hud.textLabel.text = @"获取失败";
+                hud.textLabel.text = responseObject[@"msg"];
                 
                 [hud dismissAfterDelay:2.0];
             });
@@ -311,11 +313,10 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSString *code = responseObject[@"obj"];
                 NSLog(@"%@",code);
+                [hud dismiss];
 
-                hud.textLabel.text = @"邀请码";
-                hud.detailTextLabel.text = [NSString stringWithFormat:@"%@",code];
-                hud.indicatorView = nil;
-
+                [self showInviteCode:code];
+               
                 
                 
             });
@@ -328,6 +329,62 @@
 
 
     
+}
+
+-(void)showInviteCode:(NSString*)code{
+    
+    @autoreleasepool {
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        view.alpha = 0.0;
+        view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
+        contentView.center = view.center;
+        contentView.backgroundColor =[UIColor whiteColor];
+        contentView.layer.cornerRadius = 10.0;
+        contentView.layer.masksToBounds = YES;
+        
+        
+        
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, contentView.frame.size.width, 30)];
+        title.text = @"邀请码";
+        title.textAlignment = NSTextAlignmentCenter;
+        
+        [contentView addSubview:title];
+        
+        UILabel *codeView = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, contentView.frame.size.width, 30)];
+        codeView.text = code;
+        codeView.textAlignment = NSTextAlignmentCenter;
+        [contentView addSubview:codeView];
+        
+        [view addSubview:contentView];
+        
+        [self.view addSubview:view];
+        
+        UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToDismissInviteView:)];
+        [view addGestureRecognizer:tap];
+        
+        
+        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            view.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            
+        }];
+
+    }
+
+}
+
+-(void)tapToDismissInviteView:(UITapGestureRecognizer*)ges{
+    
+    UIView *view = ges.view;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
 
 @end
