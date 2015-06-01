@@ -10,6 +10,7 @@
 
 @interface GenderViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
 @end
 
 @implementation GenderViewController
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.backView.alpha = 0.3;
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

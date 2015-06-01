@@ -1020,7 +1020,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1030,7 +1030,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb84bc81-03f4-418c-8fd2-9a52e0e3c258";
+				PROVISIONING_PROFILE = "71ddcbb8-8f51-4f2d-ac3c-1751c69cbbc2";
 			};
 			name = Debug;
 		};
@@ -1040,7 +1040,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1050,7 +1050,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb84bc81-03f4-418c-8fd2-9a52e0e3c258";
+				PROVISIONING_PROFILE = "71ddcbb8-8f51-4f2d-ac3c-1751c69cbbc2";
 			};
 			name = Release;
 		};
