@@ -230,9 +230,27 @@ typedef void(^alertBlock)(void);
         ![self.cellphoneNumber isEqualToString:@""]) {
         
         [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            self.hud.textLabel.text = @"验证码获取成功";
-            self.hud.indicatorView = nil;
-            [self.hud dismissAfterDelay:2.0];
+            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                   
+                    self.hud.textLabel.text =responseObject[@"msg"];
+                    self.hud.indicatorView = nil;
+                    [self.hud dismissAfterDelay:2.0];
+                });
+               
+            }else{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.hud.textLabel.text = @"验证码获取成功";
+                    self.hud.indicatorView = nil;
+                    [self.hud dismissAfterDelay:2.0];
+
+                });
+                
+            }
+            
             
             
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {

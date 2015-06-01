@@ -41,8 +41,19 @@ typedef void(^alertBlock)(void);
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ComminUtility configureTitle:@"忘记密码" forViewController:self];
-    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:recognizer];
     [self configuretextfields];
+}
+
+-(void)dismissKeyboard:(id)sender{
+    
+    [self.cellphoneTF resignFirstResponder];
+    [self.passwordTF resignFirstResponder];
+    [self.confirmTF resignFirstResponder];
+
+    [self.verifyTF resignFirstResponder];
+
 }
 
 -(void)pop{
@@ -81,7 +92,7 @@ typedef void(^alertBlock)(void);
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 hud.indicatorView = nil;
-                hud.textLabel.text =@"验证码获取失败";
+                hud.textLabel.text = responseObject[@"msg"];
                 
                 [hud dismissAfterDelay:2.0];
             });
@@ -118,7 +129,7 @@ typedef void(^alertBlock)(void);
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     hud.indicatorView = nil;
-                    hud.textLabel.text =@"重置失败";
+                    hud.textLabel.text =responseObject[@"msg"];
                     
                     [hud dismissAfterDelay:2.0];
                 });

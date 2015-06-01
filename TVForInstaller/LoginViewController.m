@@ -79,6 +79,7 @@
             self.password = textField.text;
             
         }else{
+            
             self.password = [textField.text stringByAppendingString:string];
             
         }
@@ -110,6 +111,9 @@
                     self.HUD.textLabel.text =responseObject[@"msg"];
                     
                     [self.HUD dismissAfterDelay:2.0];
+                    
+                    self.passwordTextField.text = @"";
+                    self.password = @"";
                 });
                
                 
@@ -208,7 +212,6 @@
 
         [self alertWithMessage:@"密码不能为空" withCompletionHandler:^{
             self.passwordTextField.text = nil;
-            self.password = @"";
             [self.passwordTextField becomeFirstResponder];
             
         }];

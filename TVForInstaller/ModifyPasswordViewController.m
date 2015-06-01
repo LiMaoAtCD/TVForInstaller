@@ -113,7 +113,7 @@ typedef void(^alertBlock)(void);
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 hud.indicatorView = nil;
-                hud.textLabel.text =@"验证码获取失败";
+                hud.textLabel.text =responseObject[@"msg"];
                 
                 [hud dismissAfterDelay:2.0];
             });
