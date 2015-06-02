@@ -109,7 +109,9 @@
                 
                 
             } else{
-            
+                
+                //没有订单
+                self.orderList = nil;
             }
             
             [self.tableView.header endRefreshing];
