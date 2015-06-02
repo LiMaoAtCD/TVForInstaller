@@ -297,7 +297,9 @@ typedef void(^alertBlock)(void);
         Order *order =[NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:context];
         
         Bill *bill = [NSEntityDescription insertNewObjectForEntityForName:@"Bill" inManagedObjectContext:context];
+        Applist *applist =[NSEntityDescription insertNewObjectForEntityForName:@"Applist" inManagedObjectContext:context];
         
+        applist.appname = @[];
         bill.zhijia =@0;
         bill.zjservice =@0;
         bill.hostphone = self.orderInfo[@"cellphone"];
@@ -318,6 +320,7 @@ typedef void(^alertBlock)(void);
         order.source = @1;
         
         order.bill = bill;
+        order.applist = applist;
         
         
         

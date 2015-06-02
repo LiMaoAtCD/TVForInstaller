@@ -240,6 +240,20 @@ typedef void(^alertBlock)(void);
         [NetworkingManager selectAppToInstall:softwareAddress ipaddress:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+//                id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments|NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers error:&error];
+                NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                
+                NSLog(@"response: %@",result);
+                
+                if ([result isEqualToString:@"success"]) {
+                    hud.textLabel.text = @"安装请求成功";
+                    hud.indicatorView = nil;
+                } else if([result isEqualToString:@"busy"]){
+                    hud.textLabel.text = @"电视正忙，请稍后再试";
+                    hud.indicatorView = nil;
+                }
+                
                 [hud dismissAfterDelay:2];
             });
 
@@ -270,6 +284,19 @@ typedef void(^alertBlock)(void);
         [hud showInView:self.view];
         [NetworkingManager OneKeyInstall:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                 NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                if ([result isEqualToString:@"success"]) {
+                    hud.textLabel.text = @"安装请求成功";
+                    hud.indicatorView = nil;
+                } else if([result isEqualToString:@"busy"]){
+                    hud.textLabel.text = @"电视正忙，请稍后再试";
+                    hud.indicatorView = nil;
+                }
+
+
+                
+                
                 [hud dismissAfterDelay:2];
             });
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
