@@ -157,9 +157,13 @@
     if ([self.data[indexPath.row][@"type"] integerValue] == 0) {
         cell.tvImageView.image = [UIImage imageNamed:@"zuoshi"];
         cell.tvTypeLabel.text = @"坐式";
+        cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"00c3d4"];
+
     } else{
         cell.tvImageView.image = [UIImage imageNamed:@"guashi"];
         cell.tvTypeLabel.text = @"挂式";
+        cell.tvTypeLabel.textColor = [UIColor colorWithHex:@"cd7ff5"];
+
     }
     
 

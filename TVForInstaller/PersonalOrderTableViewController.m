@@ -60,6 +60,7 @@ typedef void(^alertBlock)(void);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard)];
     [self.view addGestureRecognizer:tap];
 
+    [self configureTextFieldNotification];
     
     
 }
@@ -115,9 +116,10 @@ typedef void(^alertBlock)(void);
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"保存" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"denglu"] forState:UIControlStateNormal];
+//    [button setBackgroundImage:[UIImage imageNamed:@"denglu"] forState:UIControlStateNormal];
+    button.backgroundColor =[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
     [button addTarget:self action:@selector(saveOrder) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(5, 5, self.view.frame.size.width - 10, 45);
+    button.frame = CGRectMake(5, 5, self.view.frame.size.width - 10, 40);
     
     [view addSubview:button];
     
@@ -155,6 +157,7 @@ typedef void(^alertBlock)(void);
                 break;
             case 1:
                 self.cellphoneTF = cell.textField;
+                cell.textField.keyboardType = UIKeyboardTypePhonePad;
                 break;
             case 2:
                 self.brandTF = cell.textField;
@@ -532,5 +535,77 @@ typedef void(^alertBlock)(void);
     
     [self presentViewController:controller animated:YES completion:nil];
 }
+
+
+-(void)configureTextFieldNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldEditChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+    
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldEditChanged:) name:UITextFieldTextDidChangeNotification object:self.nameTextField];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldEditChanged:) name:UITextFieldTextDidChangeNotification object:self.addressTextField];
+    
+}
+
+
+-(void)textFieldEditChanged:(NSNotification*)notofication{
+    
+    
+    NSInteger kMaxLength = 0;
+    UITextField *textField = notofication.object;
+    
+    if (textField == self.nameTF) {
+        kMaxLength = 5;
+    }else if (textField ==self.cellphoneTF){
+        kMaxLength = 11;
+        
+    }else if (textField ==self.brandTF){
+        kMaxLength = 5;
+
+    }else if (textField ==self.sizeTF){
+        kMaxLength = 2;
+
+    }else if (textField ==self.versionTF){
+        kMaxLength = 20;
+
+    }else if (textField ==self.addressTF){
+        kMaxLength = 50;
+    }
+    
+    NSString *toBeString = textField.text;
+    
+    NSArray *current = [UITextInputMode activeInputModes];
+    UITextInputMode *inputMode = [current firstObject];
+    
+    NSString *lang = [inputMode primaryLanguage];
+    
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if (toBeString.length > kMaxLength) {
+                textField.text = [toBeString substringToIndex:kMaxLength];
+                
+                
+            }
+        }
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
+        else{
+            
+        }
+    }
+    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+    else{
+        if (toBeString.length > kMaxLength) {
+            textField.text = [toBeString substringToIndex:kMaxLength];
+        }
+    }
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

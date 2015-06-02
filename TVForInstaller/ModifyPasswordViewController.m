@@ -57,6 +57,9 @@ typedef void(^alertBlock)(void);
     self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.confirmPasswordTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.IdentityTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:recognizer];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,7 +152,7 @@ typedef void(^alertBlock)(void);
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     hud.indicatorView = nil;
-                    hud.textLabel.text =@"修改失败";
+                    hud.textLabel.text = responseObject[@"msg"];
                     
                     [hud dismissAfterDelay:2.0];
                 });
@@ -264,6 +267,13 @@ typedef void(^alertBlock)(void);
     [controller addAction:action];
     
     [self presentViewController:controller animated:YES completion:nil];
+}
+
+-(void)dismissKeyboard:(id)sender{
+    
+    [self.confirmPasswordTF resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.IdentityTF resignFirstResponder];
 }
 
 @end

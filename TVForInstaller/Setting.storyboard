@@ -1395,12 +1395,12 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-u1-ZQs">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。(此活动与苹果公司无关)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-u1-ZQs">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="J9S-qv-Uir"/>
                                                     <constraint firstAttribute="height" constant="111" id="SdA-uz-GAc">
-                                                        <variation key="heightClass=regular-widthClass=compact" constant="90"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="110"/>
                                                     </constraint>
                                                     <constraint firstAttribute="width" constant="384" id="dV8-K8-A6L"/>
                                                 </constraints>
@@ -1466,10 +1466,12 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyJ-W5-ukK">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="90" id="Tvv-i5-e3F"/>
+                                                    <constraint firstAttribute="height" constant="90" id="Tvv-i5-e3F">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="130"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="VRp-8L-ZNO"/>
                                                 </constraints>
-                                                <string key="text">    推广期间（5-6月）推荐新会员，新会员必须是之前未注册用户，并于注册后14天（2周）内完成1000积分的任务量算是推荐成功，每推荐成功一个新会员得100积分。7月后推荐新会员，新会员必须是之前未注册用户，并于注册后5天内完成200积分任务量算是推荐成功，每推荐成功一个新会员得10积分。</string>
+                                                <string key="text">    推广期间（5-6月）推荐新会员，新会员必须是之前未注册用户，并于注册后14天（2周）内完成1000积分的任务量算是推荐成功，每推荐成功一个新会员得100积分。7月后推荐新会员，新会员必须是之前未注册用户，并于注册后5天内完成200积分任务量算是推荐成功，每推荐成功一个新会员得10积分。(此活动与苹果公司无关)</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -1527,11 +1529,13 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gga-QX-fbC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。(此活动与苹果公司无关)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gga-QX-fbC">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="Kil-cu-FSv"/>
-                                                    <constraint firstAttribute="height" constant="90" id="suW-st-Xam"/>
+                                                    <constraint firstAttribute="height" constant="90" id="suW-st-Xam">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="110"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1590,11 +1594,13 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xn-RC-vge">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    在客户的电视机或者盒子上安装电视管家APP，通过一键安装可以一次性安装绑定好的10个应用。安装成功之后，客户下载、安装我们手机版的电视管家，每激活通过我们安装的一个应用即可获得一个积分，每台设备最多10个积分。(此活动与苹果公司无关)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xn-RC-vge">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="111" id="J21-tk-H1L"/>
-                                                    <constraint firstAttribute="height" constant="90" id="Yfa-KM-61K"/>
+                                                    <constraint firstAttribute="height" constant="90" id="Yfa-KM-61K">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="110"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
