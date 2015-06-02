@@ -206,11 +206,43 @@
     return cell;
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section ==0) {
+        return 182.0;
+    } else{
+        return 115.0;
+        
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 20;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+   return @"已完成订单";
+}
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UILabel *label=  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 20)];
+    
+    label.text = [[self tableView:tableView titleForHeaderInSection:section] stringByAppendingString:[NSString stringWithFormat:@"(%ld)",self.data.count]];
+    
+    label.font = [UIFont boldSystemFontOfSize:12.0];
+    
+    [view addSubview:label];
+    
+    return  view;
+    
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
