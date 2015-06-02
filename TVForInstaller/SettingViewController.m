@@ -344,11 +344,13 @@
         contentView.backgroundColor =[UIColor whiteColor];
         contentView.layer.cornerRadius = 10.0;
         contentView.layer.masksToBounds = YES;
-        
+        contentView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
         
         
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, contentView.frame.size.width, 30)];
         title.text = @"邀请码";
+        title.font = [UIFont boldSystemFontOfSize:14.0];
+        title.textColor =[UIColor whiteColor];
         title.textAlignment = NSTextAlignmentCenter;
         
         [contentView addSubview:title];
@@ -356,6 +358,8 @@
         UILabel *codeView = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, contentView.frame.size.width, 30)];
         codeView.text = code;
         codeView.textAlignment = NSTextAlignmentCenter;
+        codeView.textColor =[UIColor whiteColor];
+
         [contentView addSubview:codeView];
         
         [view addSubview:contentView];
@@ -365,9 +369,13 @@
         UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToDismissInviteView:)];
         [view addGestureRecognizer:tap];
         
-        
+        contentView.frame = CGRectMake(0, 0, 1, 1);
+        contentView.center = view.center;
         [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             view.alpha = 1.0;
+            contentView.frame = CGRectMake(0, 0, 200, 150);
+
+            contentView.center = view.center;
         } completion:^(BOOL finished) {
             
         }];
