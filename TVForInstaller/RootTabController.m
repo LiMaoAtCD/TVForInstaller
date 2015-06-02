@@ -142,13 +142,19 @@
         //取得前一个位置
         CGPoint previous=[touch previousLocationInView:self.view];
         
-        //移动前的中点位置
-        CGPoint center=self.suspensionView.center;
-        //移动偏移量
-        CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
+        CGRect newFrame = CGRectMake(self.suspensionView.frame.origin.x-20, self.suspensionView.frame.origin.y -20, self.suspensionView.frame.size.width + 40, self.suspensionView.frame.size.height + 40);
+        if (CGRectContainsPoint(newFrame, current)) {
+            
+            //移动前的中点位置
+            CGPoint center=self.suspensionView.center;
+            //移动偏移量
+            CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
+            
+            //重新设置新位置
+            self.suspensionView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
+        }
         
-        //重新设置新位置
-        self.suspensionView.center=CGPointMake(center.x+offset.x, center.y+offset.y);
+      
         
     }];
 }
