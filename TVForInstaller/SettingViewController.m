@@ -34,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *gradeLabel;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *DetailViews;
 
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *rankImageView;
+
+
 @end
 
 @implementation SettingViewController
@@ -105,6 +109,25 @@
     
     self.nameLabel.text = [AccountManager getName];
     self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
+    
+    NSInteger level =  [AccountManager getRank];
+    if (level == 0) {
+        
+      
+        self.rankLabel.text = @"银卡";
+        self.rankImageView.image = [UIImage imageNamed:@"yinka"];
+
+    } else if (level ==1){
+        self.rankLabel.text = @"金卡";
+        self.rankImageView.image = [UIImage imageNamed:@"jinka"];
+
+    } else{
+        self.rankLabel.text = @"钻石";
+        self.rankImageView.image = [UIImage imageNamed:@"zuanshi"];
+
+    }
+    
+   
     
     
     

@@ -41,6 +41,9 @@ typedef void(^alertBlock)(void);
 @property (nonatomic, assign) NSInteger gender;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *rankImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 
 
 @end
@@ -161,7 +164,23 @@ typedef void(^alertBlock)(void);
     self.levelLabel.text = @"钻石级";
     
     self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
-
+    
+    NSInteger level =  [AccountManager getRank];
+    if (level == 0) {
+        
+        
+        self.rankLabel.text = @"银卡";
+        self.rankImageView.image = [UIImage imageNamed:@"yinka"];
+        
+    } else if (level ==1){
+        self.rankLabel.text = @"金卡";
+        self.rankImageView.image = [UIImage imageNamed:@"jinka"];
+        
+    } else{
+        self.rankLabel.text = @"钻石";
+        self.rankImageView.image = [UIImage imageNamed:@"zuanshi"];
+        
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

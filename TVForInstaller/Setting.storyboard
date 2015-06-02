@@ -701,6 +701,8 @@
                         <outlet property="levelImageView" destination="cT8-P0-xdp" id="hoe-Qy-0aP"/>
                         <outlet property="levelLabel" destination="dHW-WZ-V4t" id="R07-a2-Ggh"/>
                         <outlet property="nameTextField" destination="jhb-t9-cqO" id="MBv-Wu-Skg"/>
+                        <outlet property="rankImageView" destination="cT8-P0-xdp" id="hwJ-FR-FZi"/>
+                        <outlet property="rankLabel" destination="dHW-WZ-V4t" id="OKT-1U-xxU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5W-1U-jRn" userLabel="First Responder" sceneMemberID="firstResponder"/>

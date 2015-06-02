@@ -109,7 +109,9 @@
                 
                 
             } else{
-            
+                
+                //没有订单
+                self.orderList = nil;
             }
             
             [self.tableView.header endRefreshing];
@@ -287,6 +289,11 @@
         }
         
         [cell.cellphoneButton setTitle:self.localOrders[indexPath.row][@"phone"] forState:UIControlStateNormal];
+        
+        [cell.cellphoneButton addTarget:self action:@selector(clickToCall:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cellphoneButton.tag = indexPath.row + 1000;
+
         cell.nameLabel.text = self.localOrders[indexPath.row][@"hoster"];
         cell.tvBrandLabel.text  =self.localOrders[indexPath.row][@"brand"];
         cell.tvSizeLabel.text = self.localOrders[indexPath.row][@"size"];
@@ -350,12 +357,21 @@
         return @"已保存订单";
     }
 }
+
+
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     
     UILabel *label=  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 20)];
     
-    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    if (section == 0 ) {
+        label.text = [[self tableView:tableView titleForHeaderInSection:section] stringByAppendingString:[NSString stringWithFormat:@"(%ld)",self.orderList.count]];
+
+    } else{
+        label.text = [[self tableView:tableView titleForHeaderInSection:section] stringByAppendingString:[NSString stringWithFormat:@"(%ld)",self.localOrders.count]];
+
+    }
     
     label.font = [UIFont boldSystemFontOfSize:12.0];
     
@@ -398,7 +414,7 @@
                     
                     JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
                     hud.indicatorView = nil;
-                    hud.textLabel.text = @"已删除此订单";
+                    hud.textLabel.text = @"正在删除此订单,请等候";
                     [hud showInView:self.tableView];
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -423,24 +439,48 @@
 
 
 -(void)clickToCall:(UIButton*)btn{
-    UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.orderList[btn.tag][@"phone"] preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //TODO: 拨打电话
-        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.orderList[btn.tag][@"phone"]]]];
+    if (btn.tag >= 1000) {
+        NSInteger index = btn.tag - 1000;
+        UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.localOrders[index][@"phone"] preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            //TODO: 拨打电话
+            //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.localOrders[index][@"phone"]]]];
+            
+            
+        }];
         
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
         
-    }];
+        [alert addAction:action];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else{
+        UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.orderList[btn.tag][@"phone"] preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            //TODO: 拨打电话
+            //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.orderList[btn.tag][@"phone"]]]];
+            
+            
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
+        
+        [alert addAction:action];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
-    [alert addAction:action];
-    [alert addAction:cancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+   
     
 }
 

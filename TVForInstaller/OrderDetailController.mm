@@ -562,7 +562,6 @@ typedef void(^alertBlock)(void);
     
     
     //Mac地址处理
-    self.orderInfo[@"mac"] =@"xxx";
     
     if (!self.orderInfo[@"mac"]) {
         [self alertWithMessage:@"Mac 地址不能为空" withCompletionHandler:^{
@@ -833,6 +832,7 @@ typedef void(^alertBlock)(void);
     NSArray * result = [context executeFetchRequest:request error:&error];
     
     if (!error) {
+        
         if (result.count > 0) {
             [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 

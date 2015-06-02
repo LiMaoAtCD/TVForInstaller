@@ -12,8 +12,11 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
+//#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
+#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
+#define kServer2 @"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService"
+
 
 @implementation NetworkingManager
 
@@ -319,7 +322,9 @@
 
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     [manager POST:IP parameters:@{@"apkurl":apkurl} success:completionHandler failure:failHandler];
 }

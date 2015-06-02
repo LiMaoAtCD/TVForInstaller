@@ -434,6 +434,11 @@ typedef void(^alertBlock)(void);
         [AccountManager setgender:[data[@"gender"] integerValue]];
     }
     
+    if (![data[@"rank"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setRank:[data[@"rank"] integerValue]];
+    }
+
+    
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];
     
