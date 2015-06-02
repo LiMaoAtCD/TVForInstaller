@@ -132,7 +132,7 @@ typedef void(^alertBlock)(void);
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.view layoutIfNeeded];
+//    [self.view layoutIfNeeded];
     
 }
 
