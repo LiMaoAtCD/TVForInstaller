@@ -147,4 +147,16 @@
 
 }
 
++(void)setRank:(NSInteger)rank{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:rank forKey:@"ud_rank"];
+    [ud synchronize];
+}
+
++(NSInteger)getRank{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud integerForKey:@"ud_rank"];
+}
+
+
 @end

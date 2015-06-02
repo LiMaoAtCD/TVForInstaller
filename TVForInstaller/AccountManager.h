@@ -45,6 +45,9 @@
 +(NSString*)getAddress;
 +(void)setAddress:(NSString*)address;
 
++(void)setRank:(NSInteger)rank;
++(NSInteger)getRank;
+
 
 
 

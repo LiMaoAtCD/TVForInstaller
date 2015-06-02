@@ -173,6 +173,9 @@
     if (![data[@"gender"] isKindOfClass:[NSNull class]]) {
         [AccountManager setgender:[data[@"gender"] integerValue]];
     }
+    if (![data[@"rank"] isKindOfClass:[NSNull class]]) {
+        [AccountManager setRank:[data[@"rank"] integerValue]];
+    }
     
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];

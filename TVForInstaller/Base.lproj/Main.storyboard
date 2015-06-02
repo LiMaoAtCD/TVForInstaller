@@ -1927,6 +1927,8 @@
                         <outlet property="avatarImageView" destination="1Up-L3-9Ha" id="Tqr-Lg-jv0"/>
                         <outlet property="gradeLabel" destination="J0C-Nf-UkF" id="J1V-fi-1Wz"/>
                         <outlet property="nameLabel" destination="eBt-OU-lsH" id="i7N-Z3-ixO"/>
+                        <outlet property="rankImageView" destination="ibg-B3-NHA" id="pqo-pM-hGy"/>
+                        <outlet property="rankLabel" destination="qe8-1w-Mwl" id="gaQ-fe-hMp"/>
                         <outletCollection property="DetailViews" destination="UrA-vu-Few" id="PPR-7x-m4Z"/>
                         <outletCollection property="DetailViews" destination="R7r-iw-zBO" id="Zit-65-nvy"/>
                         <outletCollection property="DetailViews" destination="Fae-4u-uMO" id="VoB-Ux-b2g"/>
