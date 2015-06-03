@@ -44,6 +44,13 @@
     return img;
 }
 
+/**
+ *    身份证号合法性
+ *
+ *  @param identityCard
+ *
+ *  @return
+ */
 +(BOOL)validateIdentityCard: (NSString *)identityCard
 {
     BOOL flag;
@@ -56,6 +63,19 @@
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
 
+
++(BOOL)validateName: (NSString *)name
+{
+    BOOL flag;
+    if (name.length <= 0) {
+        flag = NO;
+        return flag;
+    }
+    NSString *regex2 = @"[^\\u4E00\\-\\u9FA5]{2,4}";
+    NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
+    BOOL valid = [identityCardPredicate evaluateWithObject:name];
+    return valid;
+}
 
 /**
  *  检查手机号合法性

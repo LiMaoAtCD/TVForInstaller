@@ -89,6 +89,16 @@ typedef void(^alertBlock)(void);
         }];
         return;
     }
+    
+    if (![ComminUtility validateName:self.name]) {
+        
+        //        self alertWithMessage:@"地址信息不能为空" withCompletionHandler
+        [self alertWithMessage:@"姓名为2～4个汉字" withCompletionHandler:^{
+            
+        }];
+        return;
+    }
+
 
     if ([self.address isEqualToString:@""]|| self.address == nil) {
         

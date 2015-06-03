@@ -48,6 +48,15 @@
 + (BOOL)checkPassword:(NSString *) password;
 
 
+/**
+ *  验证名字
+ *
+ *  @param name
+ *
+ *  @return 
+ */
++(BOOL)validateName: (NSString *)name;
+
 +(NSString*)kSuspensionWindowNotification;
 
 +(void)setSwitchKit:(BOOL)on;
