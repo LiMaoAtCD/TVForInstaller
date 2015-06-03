@@ -65,7 +65,6 @@
 		87C0221E1B130C7D005452C0 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0221D1B130C7D005452C0 /* OrderDetailCell.m */; };
 		87C022211B130C91005452C0 /* TVInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022201B130C91005452C0 /* TVInfoCell.m */; };
 		87C022241B130CA6005452C0 /* PayInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022231B130CA6005452C0 /* PayInfoCell.m */; };
-		87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C022281B133BB7005452C0 /* SAMenuDropDown.m */; };
 		87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
@@ -206,8 +205,6 @@
 		87C022201B130C91005452C0 /* TVInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVInfoCell.m; sourceTree = "<group>"; };
 		87C022221B130CA6005452C0 /* PayInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoCell.h; sourceTree = "<group>"; };
 		87C022231B130CA6005452C0 /* PayInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoCell.m; sourceTree = "<group>"; };
-		87C022271B133BB7005452C0 /* SAMenuDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMenuDropDown.h; sourceTree = "<group>"; };
-		87C022281B133BB7005452C0 /* SAMenuDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMenuDropDown.m; sourceTree = "<group>"; };
 		87D2747E1B09DE7200189C33 /* RKSwipeBetweenViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKSwipeBetweenViewControllers.h; sourceTree = "<group>"; };
 		87D2747F1B09DE7200189C33 /* RKSwipeBetweenViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKSwipeBetweenViewControllers.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
@@ -506,15 +503,6 @@
 			name = Detail;
 			sourceTree = "<group>";
 		};
-		87C022261B133B9C005452C0 /* SAMenuDropDown */ = {
-			isa = PBXGroup;
-			children = (
-				87C022271B133BB7005452C0 /* SAMenuDropDown.h */,
-				87C022281B133BB7005452C0 /* SAMenuDropDown.m */,
-			);
-			name = SAMenuDropDown;
-			sourceTree = "<group>";
-		};
 		87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,7 +586,6 @@
 			isa = PBXGroup;
 			children = (
 				8716C0EF1B14560600389EC7 /* HexToRGB */,
-				87C022261B133B9C005452C0 /* SAMenuDropDown */,
 				87D2747D1B09DE4E00189C33 /* RKSwipeBetweenViewController */,
 				87DBE2171AFB0B5900AFB7BF /* storehouse.plist */,
 			);
@@ -882,7 +869,6 @@
 				8716C0F91B15566B00389EC7 /* PersonalOrderTableViewController.m in Sources */,
 				8716C1401B1568A800389EC7 /* OrderDataManager.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
-				87C022291B133BB7005452C0 /* SAMenuDropDown.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				87B400CF1B16C30700CC1C95 /* SuspensionViewController.mm in Sources */,
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
@@ -1020,7 +1006,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1030,7 +1016,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71ddcbb8-8f51-4f2d-ac3c-1751c69cbbc2";
+				PROVISIONING_PROFILE = "cb84bc81-03f4-418c-8fd2-9a52e0e3c258";
 			};
 			name = Debug;
 		};
@@ -1040,7 +1026,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1050,7 +1036,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71ddcbb8-8f51-4f2d-ac3c-1751c69cbbc2";
+				PROVISIONING_PROFILE = "cb84bc81-03f4-418c-8fd2-9a52e0e3c258";
 			};
 			name = Release;
 		};
