@@ -73,8 +73,15 @@
     
     [NetworkingManager fetchOrderwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if ([responseObject[@"success"] integerValue] ==0) {
-
+        if ([responseObject[@"success"] integerValue] == 0) {
+            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+            hud.textLabel.text = responseObject[@"msg"];
+            hud.indicatorView = nil;
+            
+            [hud showInView:self.tableView animated:YES];
+            
+            [hud dismissAfterDelay:1.0];
+            
         } else{
             
             NSArray *data = responseObject[@"obj"];
@@ -114,8 +121,9 @@
                 self.orderList = nil;
             }
             
-            [self.tableView.header endRefreshing];
         }
+        [self.tableView.header endRefreshing];
+
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.tableView.header endRefreshing];
