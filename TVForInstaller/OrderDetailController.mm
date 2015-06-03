@@ -58,6 +58,8 @@ typedef void(^alertBlock)(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     [ComminUtility configureTitle:@"详情" forViewController:self];
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
