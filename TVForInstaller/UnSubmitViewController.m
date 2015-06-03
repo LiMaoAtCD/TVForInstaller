@@ -61,6 +61,8 @@
 
     }
 }
+
+
 -(void)needRefreshLocalOrder{
     [self fetchLocalOrder];
 }
@@ -279,6 +281,8 @@
         
         if (indexPath.row %2 == 0) {
             cell.backgroundColor = [UIColor colorWithHex:@"00c3d4" alpha:0.3];
+        } else{
+            cell.backgroundColor = [UIColor colorWithHex:@"FFFFFF"];
         }
         
         return cell;
