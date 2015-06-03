@@ -244,6 +244,13 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)fetchCompletedOrderListByRow:(NSInteger)row withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+/**
+ *  我的下级
+ *
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchMyChildrenListwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 #pragma mark - 获取电视信息接口
 

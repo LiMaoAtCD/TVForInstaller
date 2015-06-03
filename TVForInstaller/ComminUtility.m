@@ -51,7 +51,7 @@
         flag = NO;
         return flag;
     }
-    NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSString *regex2 = @"(^[0-9]{15}$)|([0-9]{17}([0-9]|X)$)";
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
@@ -75,7 +75,7 @@
     
     //    NSString *regex = @"[0-9]{11}";
     
-    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|17[678]|(18[0-9]|14[57]))\\d{8}$";
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     

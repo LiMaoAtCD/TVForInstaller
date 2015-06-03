@@ -11,6 +11,7 @@
 #import "ChildTableViewCell.h"
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
+#import <MJRefresh.h>
 
 @interface MyChildrenViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -29,8 +30,56 @@
     
     [ComminUtility configureTitle:@"我的下级" forViewController:self];
  
+    __weak MyChildrenViewController * weakSelf =self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf fetchMyChildrenList];
+    }];
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
+-(void)fetchMyChildrenList{
+    [NetworkingManager fetchMyChildrenListwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject[@"success"] integerValue] == 0) {
+            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+            hud.textLabel.text = responseObject[@"msg"];
+            hud.indicatorView = nil;
+            [hud showInView:self.tableView animated:YES];
+            
+            [hud dismissAfterDelay:1.0];
+            
+        } else{
+            self.items = responseObject[@"obj"];
+            if (self.items.count > 0) {
+                [self.tableView reloadData];
+            }else{
+                JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                hud.textLabel.text = @"您还没有下级";
+                hud.indicatorView = nil;
+                [hud showInView:self.tableView animated:YES];
+                
+                [hud dismissAfterDelay:1.0];
+
+            }
+            
+            
+        }
+        
+        [self.tableView.header endRefreshing];
+
+        
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self.tableView.header endRefreshing];
+    }];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self.tableView.header beginRefreshing];
+}
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -70,7 +119,7 @@
 
     
     UILabel *toushuLabel =[[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 3 / 4, 0, self.view.frame.size.width / 4, 30)];
-    toushuLabel.text =@"投诉数";
+    toushuLabel.text =@"星级";
     toushuLabel.font = [UIFont boldSystemFontOfSize:12.0];
 
     toushuLabel.textAlignment = NSTextAlignmentCenter;
@@ -90,6 +139,13 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ChildTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChildTableViewCell" forIndexPath:indexPath];
+    
+    cell.nameLabel.text = self.items[indexPath.row][@"engineername"];
+    cell.InstallNumberLabel.text = self.items[indexPath.row][@"orderamount"];
+    cell.gradeLabel.text = self.items[indexPath.row][@"totalscore"];
+    cell.toushuLabel.text = self.items[indexPath.row][@"stars"];
+    
+    
     return cell;
 }
 
