@@ -48,7 +48,7 @@
     self.segmentedControl.selectionIndicatorHeight = 4.0;
     
     self.segmentedControl.verticalDividerEnabled = YES;
-    self.segmentedControl.verticalDividerColor = [UIColor colorWithHex:@"d8006c"];
+    self.segmentedControl.verticalDividerColor = [UIColor colorWithHex:@"fe7676"];
     self.segmentedControl.verticalDividerWidth = 2.0;
 //    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithHex:@"d8006c"]};
 //    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};

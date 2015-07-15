@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DLNAManager.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import "UIColor+HexRGB.h"
 @interface AppDelegate ()
 
 
@@ -67,12 +68,12 @@
 //    [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 49) withCornerRadius:0]];
     
     // set the text color for selected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHex:@"fe7676"]} forState:UIControlStateSelected];
     // set the text color for unselected state
     
 //    [UITabBarItem appearance] 
 //    // set the selected icon color
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0]];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithHex:@"fe7676"]];
     [[UITextField appearance] setTintColor:[UIColor whiteColor]];
 
 ////    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
