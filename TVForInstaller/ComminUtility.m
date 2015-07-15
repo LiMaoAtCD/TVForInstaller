@@ -8,7 +8,7 @@
 
 #import "ComminUtility.h"
 #import <UIKit/UIKit.h>
-
+#import "UIColor+HexRGB.h"
 @implementation ComminUtility
 
 +(void)configureTitle:(NSString*)title forViewController:(UIViewController*)viewController{
@@ -33,7 +33,7 @@
 
 +(UIImage *)imageWithView:(UIView *)view
 {
-    view.backgroundColor= [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
+    view.backgroundColor= [UIColor colorWithHex:@"d8006c"];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     

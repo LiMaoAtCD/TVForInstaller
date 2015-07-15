@@ -38,6 +38,15 @@
 		8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8773380E1B11AB3F00C2DDC4 /* grade.plist */; };
 		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
 		877778E21B13FEC0003DB4AA /* OrderDetailController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 877778E11B13FEC0003DB4AA /* OrderDetailController.mm */; };
+		877870511B563F4A0046650C /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870501B563F4A0046650C /* BaiduMapAPI.framework */; };
+		877870531B563F640046650C /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 877870521B563F640046650C /* mapapi.bundle */; };
+		877870551B563F750046650C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870541B563F750046650C /* Security.framework */; };
+		877870571B563F7F0046650C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870561B563F7F0046650C /* CoreGraphics.framework */; };
+		877870591B563F880046650C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870581B563F880046650C /* SystemConfiguration.framework */; };
+		8778705B1B563F900046650C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705A1B563F900046650C /* OpenGLES.framework */; };
+		8778705D1B563F970046650C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705C1B563F970046650C /* QuartzCore.framework */; };
+		8778705F1B563F9F0046650C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705E1B563F9F0046650C /* CoreLocation.framework */; };
+		877870631B56452A0046650C /* OrderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870621B56452A0046650C /* OrderContainer.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -151,6 +160,16 @@
 		877338101B11B3D000C2DDC4 /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
 		877778E01B13FEC0003DB4AA /* OrderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailController.h; sourceTree = "<group>"; };
 		877778E11B13FEC0003DB4AA /* OrderDetailController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OrderDetailController.mm; sourceTree = "<group>"; };
+		877870501B563F4A0046650C /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		877870521B563F640046650C /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		877870541B563F750046650C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		877870561B563F7F0046650C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		877870581B563F880046650C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8778705A1B563F900046650C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8778705C1B563F970046650C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8778705E1B563F9F0046650C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		877870611B56452A0046650C /* OrderContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderContainer.h; sourceTree = "<group>"; };
+		877870621B56452A0046650C /* OrderContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderContainer.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -246,6 +265,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8778705F1B563F9F0046650C /* CoreLocation.framework in Frameworks */,
+				8778705D1B563F970046650C /* QuartzCore.framework in Frameworks */,
+				8778705B1B563F900046650C /* OpenGLES.framework in Frameworks */,
+				877870591B563F880046650C /* SystemConfiguration.framework in Frameworks */,
+				877870571B563F7F0046650C /* CoreGraphics.framework in Frameworks */,
+				877870551B563F750046650C /* Security.framework in Frameworks */,
+				877870511B563F4A0046650C /* BaiduMapAPI.framework in Frameworks */,
 				87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */,
 				847CF564A23C26653969DF8F /* libPods-TVForInstaller.a in Frameworks */,
 			);
@@ -273,6 +299,13 @@
 		488D5A3FC8DCC7161CFF28C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8778705E1B563F9F0046650C /* CoreLocation.framework */,
+				8778705C1B563F970046650C /* QuartzCore.framework */,
+				8778705A1B563F900046650C /* OpenGLES.framework */,
+				877870581B563F880046650C /* SystemConfiguration.framework */,
+				877870561B563F7F0046650C /* CoreGraphics.framework */,
+				877870541B563F750046650C /* Security.framework */,
+				877870501B563F4A0046650C /* BaiduMapAPI.framework */,
 				6C44C3D71D410020F7C92B66 /* libPods-TVForInstaller.a */,
 			);
 			name = Frameworks;
@@ -382,6 +415,13 @@
 				8736FDEA1B0D808900E3685C /* ModifyPasswordViewController.m */,
 			);
 			name = modifyPassword;
+			sourceTree = "<group>";
+		};
+		877870601B5642650046650C /* FetchOngoing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FetchOngoing;
 			sourceTree = "<group>";
 		};
 		8785E9641B0C73E0003F4415 /* AppCollection */ = {
@@ -515,6 +555,7 @@
 		87DBE1DA1AFAFF0000AFB7BF = {
 			isa = PBXGroup;
 			children = (
+				877870521B563F640046650C /* mapapi.bundle */,
 				87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */,
 				87DBE1FF1AFAFF0000AFB7BF /* TVForInstallerTests */,
 				87DBE1E41AFAFF0000AFB7BF /* Products */,
@@ -636,9 +677,12 @@
 			children = (
 				8716C1441B15721A00389EC7 /* OrderModel */,
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
+				877870611B56452A0046650C /* OrderContainer.h */,
+				877870621B56452A0046650C /* OrderContainer.m */,
 				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
 				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
 				8716C0F61B15564500389EC7 /* PersonalOrder */,
+				877870601B5642650046650C /* FetchOngoing */,
 				87C022161B12FC2A005452C0 /* unsubmit */,
 				87C022171B12FC3C005452C0 /* complete */,
 			);
@@ -760,6 +804,7 @@
 				8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */,
 				87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */,
 				877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */,
+				877870531B563F640046650C /* mapapi.bundle in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				874753501B12C10C003BD8A3 /* Order.storyboard in Resources */,
@@ -863,6 +908,7 @@
 				8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */,
 				8785E9601B0C6E34003F4415 /* AppOneInstallCell.m in Sources */,
 				8716C1021B1567D600389EC7 /* Bill.m in Sources */,
+				877870631B56452A0046650C /* OrderContainer.m in Sources */,
 				87B400BB1B16ACDE00CC1C95 /* AddOrderTableViewCell.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
 				877778E21B13FEC0003DB4AA /* OrderDetailController.mm in Sources */,
@@ -1016,7 +1062,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ef3e45fc-5b4d-4a94-8ce0-68ac4e6285e6";
+				PROVISIONING_PROFILE = "a3e65a96-f690-41fb-b826-dc58706eb243";
 			};
 			name = Debug;
 		};
@@ -1036,7 +1082,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ef3e45fc-5b4d-4a94-8ce0-68ac4e6285e6";
+				PROVISIONING_PROFILE = "a3e65a96-f690-41fb-b826-dc58706eb243";
 			};
 			name = Release;
 		};
