@@ -48,6 +48,7 @@
 		8778705F1B563F9F0046650C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705E1B563F9F0046650C /* CoreLocation.framework */; };
 		877870631B56452A0046650C /* OrderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870621B56452A0046650C /* OrderContainer.m */; };
 		877870661B56521F0046650C /* OrderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870651B56521F0046650C /* OrderMapViewController.m */; };
+		8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870691B56536E0046650C /* MyOrderViewController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -173,6 +174,8 @@
 		877870621B56452A0046650C /* OrderContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderContainer.m; sourceTree = "<group>"; };
 		877870641B56521F0046650C /* OrderMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMapViewController.h; sourceTree = "<group>"; };
 		877870651B56521F0046650C /* OrderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMapViewController.m; sourceTree = "<group>"; };
+		877870681B56536E0046650C /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
+		877870691B56536E0046650C /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -429,6 +432,15 @@
 			name = FetchOngoing;
 			sourceTree = "<group>";
 		};
+		877870671B5652BD0046650C /* MyOrder */ = {
+			isa = PBXGroup;
+			children = (
+				877870681B56536E0046650C /* MyOrderViewController.h */,
+				877870691B56536E0046650C /* MyOrderViewController.m */,
+			);
+			name = MyOrder;
+			sourceTree = "<group>";
+		};
 		8785E9641B0C73E0003F4415 /* AppCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,16 +692,17 @@
 		87EA3AA01B0A1016004AB8F7 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
+				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
+				8716C0F61B15564500389EC7 /* PersonalOrder */,
+				87C022161B12FC2A005452C0 /* unsubmit */,
+				87C022171B12FC3C005452C0 /* complete */,
 				8716C1441B15721A00389EC7 /* OrderModel */,
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				877870611B56452A0046650C /* OrderContainer.h */,
 				877870621B56452A0046650C /* OrderContainer.m */,
-				87EA3AA11B0A1055004AB8F7 /* OrderViewController.h */,
-				87EA3AA21B0A1055004AB8F7 /* OrderViewController.m */,
-				8716C0F61B15564500389EC7 /* PersonalOrder */,
 				877870601B5642650046650C /* FetchOngoing */,
-				87C022161B12FC2A005452C0 /* unsubmit */,
-				87C022171B12FC3C005452C0 /* complete */,
+				877870671B5652BD0046650C /* MyOrder */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -926,6 +939,7 @@
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
+				8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				87F3B9F81B12F664004F55B2 /* CompleteCell.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,

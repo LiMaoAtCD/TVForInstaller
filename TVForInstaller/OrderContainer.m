@@ -10,11 +10,18 @@
 #import <HMSegmentedControl.h>
 #import "ComminUtility.h"
 #import "UIColor+HexRGB.h"
+
+#import "OrderMapViewController.h"
+#import "MyOrderViewController.h"
+
 @interface OrderContainer ()
 
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (nonatomic, strong) MyOrderViewController *myOrderViewController;
+@property (nonatomic, strong) OrderMapViewController *orderMapViewController;
+
 @end
 
 @implementation OrderContainer
@@ -50,10 +57,89 @@
     
     
     [self.view addSubview:self.segmentedControl];
+    
+    
+    
+    
+    
+    if (!self.orderMapViewController) {
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+
+        self.orderMapViewController = [sb instantiateViewControllerWithIdentifier:@"OrderMapViewController"];
+    }
+    
+    [self addChildViewController:self.orderMapViewController];
+    
+    [self.orderMapViewController willMoveToParentViewController:self];
+    
+    self.orderMapViewController.view.frame = self.contentView.bounds;
+    [self.contentView addSubview:self.orderMapViewController.view];
+    
+    [self.orderMapViewController didMoveToParentViewController:self];
+    
+    if (self.myOrderViewController) {
+        
+        [self.myOrderViewController removeFromParentViewController];
+        [self.myOrderViewController.view removeFromSuperview];
+    }
+
 }
 
+
 -(void)segmentedControlChangedValue:(id)sender{
+    HMSegmentedControl *control = (HMSegmentedControl*)sender;
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    
+    if (control.selectedSegmentIndex == 0) {
+        //抢单
+        
+        if (!self.orderMapViewController) {
+            
+            self.orderMapViewController = [sb instantiateViewControllerWithIdentifier:@"OrderMapViewController"];
+        }
+        
+        [self addChildViewController:self.orderMapViewController];
+        
+        [self.orderMapViewController willMoveToParentViewController:self];
+        
+        self.orderMapViewController.view.frame = self.contentView.bounds;
+        [self.contentView addSubview:self.orderMapViewController.view];
+        
+        [self.orderMapViewController didMoveToParentViewController:self];
+        
+        if (self.myOrderViewController) {
+            
+            [self.myOrderViewController removeFromParentViewController];
+            [self.myOrderViewController.view removeFromSuperview];
+        }
+
+    } else{
+        //我的订单
+        
+        if (!self.myOrderViewController) {
+            
+            self.myOrderViewController = [sb instantiateViewControllerWithIdentifier:@"MyOrderViewController"];
+        }
+        
+        [self addChildViewController:self.myOrderViewController];
+        
+        [self.myOrderViewController willMoveToParentViewController:self];
+        
+        self.myOrderViewController.view.frame = self.contentView.bounds;
+        [self.contentView addSubview:self.myOrderViewController.view];
+        
+        [self.orderMapViewController didMoveToParentViewController:self];
+        
+        if (self.orderMapViewController) {
+            
+            [self.orderMapViewController removeFromParentViewController];
+            [self.orderMapViewController.view removeFromSuperview];
+
+        }
+
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,24 +1,22 @@
 //
-//  OrderMapViewController.m
+//  MyOrderViewController.m
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/7/15.
 //  Copyright (c) 2015年 AlienLi. All rights reserved.
 //
 
-#import "OrderMapViewController.h"
+#import "MyOrderViewController.h"
 
-@interface OrderMapViewController ()
+@interface MyOrderViewController ()
 
 @end
 
-@implementation OrderMapViewController
+@implementation MyOrderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
