@@ -19,6 +19,7 @@
     //    viewController.navigationController.navigationBar.opaque = YES;
     
     [viewController.navigationController.navigationBar setBackgroundImage:[self imageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]] forBarMetrics:UIBarMetricsDefault];
+    [viewController.navigationController.navigationBar setShadowImage:[self shadeImageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]]];
     [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *image = [UIImage imageNamed:@"Navi_back"];
@@ -34,6 +35,18 @@
 +(UIImage *)imageWithView:(UIView *)view
 {
     view.backgroundColor= [UIColor colorWithHex:@"d8006c"];
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
++(UIImage *)shadeImageWithView:(UIView *)view
+{
+    view.backgroundColor= [UIColor lightGrayColor];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     

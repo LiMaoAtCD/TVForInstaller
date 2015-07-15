@@ -541,9 +541,48 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EG9-MI-JjD">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-He-V1Y">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="tPl-He-V1Y" secondAttribute="trailing" constant="-16" id="Syi-Yy-cnu"/>
+                            <constraint firstItem="Rtt-OW-nft" firstAttribute="top" secondItem="tPl-He-V1Y" secondAttribute="bottom" id="Wet-pO-hye"/>
+                            <constraint firstItem="tPl-He-V1Y" firstAttribute="top" secondItem="C3A-Y6-1oh" secondAttribute="bottom" constant="45" id="asQ-J3-PAM">
+                                <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                            </constraint>
+                            <constraint firstItem="tPl-He-V1Y" firstAttribute="leading" secondItem="EG9-MI-JjD" secondAttribute="leadingMargin" constant="-16" id="eb4-x2-cxO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="tPl-He-V1Y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Syi-Yy-cnu"/>
+                                <exclude reference="asQ-J3-PAM"/>
+                                <exclude reference="eb4-x2-cxO"/>
+                                <exclude reference="Wet-pO-hye"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="tPl-He-V1Y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Syi-Yy-cnu"/>
+                                <include reference="asQ-J3-PAM"/>
+                                <include reference="eb4-x2-cxO"/>
+                                <include reference="Wet-pO-hye"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ZAI-Uh-gLE"/>
+                    <connections>
+                        <outlet property="contentView" destination="tPl-He-V1Y" id="gp4-tM-TdP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7Y-cC-QqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

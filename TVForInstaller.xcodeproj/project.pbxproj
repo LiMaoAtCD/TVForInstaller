@@ -47,6 +47,7 @@
 		8778705D1B563F970046650C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705C1B563F970046650C /* QuartzCore.framework */; };
 		8778705F1B563F9F0046650C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8778705E1B563F9F0046650C /* CoreLocation.framework */; };
 		877870631B56452A0046650C /* OrderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870621B56452A0046650C /* OrderContainer.m */; };
+		877870661B56521F0046650C /* OrderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870651B56521F0046650C /* OrderMapViewController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -170,6 +171,8 @@
 		8778705E1B563F9F0046650C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		877870611B56452A0046650C /* OrderContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderContainer.h; sourceTree = "<group>"; };
 		877870621B56452A0046650C /* OrderContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderContainer.m; sourceTree = "<group>"; };
+		877870641B56521F0046650C /* OrderMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderMapViewController.h; sourceTree = "<group>"; };
+		877870651B56521F0046650C /* OrderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMapViewController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 		877870601B5642650046650C /* FetchOngoing */ = {
 			isa = PBXGroup;
 			children = (
+				877870641B56521F0046650C /* OrderMapViewController.h */,
+				877870651B56521F0046650C /* OrderMapViewController.m */,
 			);
 			name = FetchOngoing;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
 				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
+				877870661B56521F0046650C /* OrderMapViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
 				875BE5401B1AA6170063056F /* DeviceManageCell.m in Sources */,
 				878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */,

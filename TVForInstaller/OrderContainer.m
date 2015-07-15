@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @end
 
 @implementation OrderContainer
