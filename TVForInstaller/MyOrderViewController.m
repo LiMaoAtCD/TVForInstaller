@@ -7,8 +7,28 @@
 //
 
 #import "MyOrderViewController.h"
+#import "CompletedTableViewCell.h"
 
-@interface MyOrderViewController ()
+@interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property (weak, nonatomic) IBOutlet UIView *OngoingView;
+@property (weak, nonatomic) IBOutlet UIImageView *ongoingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *telphoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *runningLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+
+
+@property (weak, nonatomic) IBOutlet UIView *completedView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewLayout;
+
+@property (nonatomic, strong) NSMutableArray *orders;
 
 @end
 
@@ -17,6 +37,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.view layoutIfNeeded];
+
+    BOOL isOnGoing = NO;
+    if (!isOnGoing) {
+        self.OngoingView.hidden = YES;
+        
+        [self.completedView removeConstraint:self.tableViewLayout];
+        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+        [self.view addConstraint:self.tableViewLayout];
+        
+    } else{
+        
+        self.OngoingView.hidden = NO;
+        [self.completedView removeConstraint:self.tableViewLayout];
+
+        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:132];
+        [self.view addConstraint:self.tableViewLayout];
+
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +70,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -tableView delegate & dataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
-*/
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return self.orders.count;
+    return 5;
+
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CompletedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedTableViewCell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+
 
 @end

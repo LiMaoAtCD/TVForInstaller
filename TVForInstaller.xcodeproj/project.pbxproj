@@ -33,6 +33,7 @@
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874753521B12D2C2003BD8A3 /* UnSubmitCell.m */; };
 		87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED11B57465500E9F840 /* CustomPointAnnotation.m */; };
+		87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED71B57851900E9F840 /* CompletedTableViewCell.m */; };
 		875BE5401B1AA6170063056F /* DeviceManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875BE53F1B1AA6170063056F /* DeviceManageCell.m */; };
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
@@ -156,6 +157,8 @@
 		874753521B12D2C2003BD8A3 /* UnSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnSubmitCell.m; sourceTree = "<group>"; };
 		87493ED01B57465500E9F840 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
 		87493ED11B57465500E9F840 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
+		87493ED61B57851900E9F840 /* CompletedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedTableViewCell.h; sourceTree = "<group>"; };
+		87493ED71B57851900E9F840 /* CompletedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTableViewCell.m; sourceTree = "<group>"; };
 		875BE53E1B1AA6170063056F /* DeviceManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManageCell.h; sourceTree = "<group>"; };
 		875BE53F1B1AA6170063056F /* DeviceManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManageCell.m; sourceTree = "<group>"; };
 		877338081B11A44A00C2DDC4 /* gradeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gradeDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -447,6 +450,8 @@
 			children = (
 				877870681B56536E0046650C /* MyOrderViewController.h */,
 				877870691B56536E0046650C /* MyOrderViewController.m */,
+				87493ED61B57851900E9F840 /* CompletedTableViewCell.h */,
+				87493ED71B57851900E9F840 /* CompletedTableViewCell.m */,
 			);
 			name = MyOrder;
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
+				87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */,
 				874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */,
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */,

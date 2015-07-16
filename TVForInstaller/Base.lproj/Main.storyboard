@@ -2163,7 +2163,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Nd1-MJ-TCr" firstAttribute="top" secondItem="OGc-Ys-ec7" secondAttribute="bottom" id="1XL-LN-4MA">
                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
@@ -2359,42 +2359,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4g-G3-9PH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887" y="357"/>
-        </scene>
-        <!--装机-->
-        <scene sceneID="RLc-9q-ABN">
-            <objects>
-                <navigationController id="oFp-qB-aOm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="装机" id="NG6-2V-Hs7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JMk-Ka-l0b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Kob-Aa-X60" kind="relationship" relationship="rootViewController" id="b5H-2g-ecJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sqb-DI-Qu7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="969" y="-414"/>
-        </scene>
-        <!--装机-->
-        <scene sceneID="3yr-4U-eF3">
-            <objects>
-                <viewController storyboardIdentifier="InstallViewController" id="Kob-Aa-X60" customClass="InstallViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pfT-Gf-PPv"/>
-                        <viewControllerLayoutGuide type="bottom" id="5tc-Zs-Saw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="imw-ie-9xF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="装机" id="8N3-4V-nBb"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hXg-sD-dNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1729.5" y="-414"/>
         </scene>
         <!--Device Suspensioner-->
         <scene sceneID="lLB-qE-iN2">
