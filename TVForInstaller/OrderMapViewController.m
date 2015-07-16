@@ -79,52 +79,14 @@ typedef enum ServiceType: NSUInteger {
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+    CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
+    //    BOOL locationAllowed = [CLLocationManager locationServicesEnabled];
+//    
+//    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+//        
+//    }
     
     
-    BOOL locationAllowed = [CLLocationManager locationServicesEnabled];
-    
-    if (!locationAllowed) {
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"没有打开访问地图权限,请在设置-隐私里切换应用位置访问权限" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-        }];
-        [alert addAction:action];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    } else{
-    
-        //配置mapView
-        _mapView.zoomLevel = 14.f;
-        _mapView.showMapScaleBar = YES;
-        _mapView.mapScaleBarPosition = CGPointMake(_mapView.frame.size.width - 70, _mapView.frame.size.height - 40);
-        //定位到当前地址
-        [_locService startUserLocationService];
-        
-        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
-        _mapView.showsUserLocation = YES;//显示定位图层
-        _mapView.isSelectedAnnotationViewFront = NO;
-        
-        
-        //添加标注
-//        [self addPointAnnotation];
-        
-        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
-                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
-                          
-                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1},
-                          
-                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
-                          
-                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1}
-                          
-                          ] mutableCopy];
-        
-        [self addPointAnnotations];
-
-    }
     
 }
 -(void)getCurrentCityByLatitude:(CGFloat)latitude Longitude:(CGFloat)longitude{
@@ -233,34 +195,7 @@ typedef enum ServiceType: NSUInteger {
     }
 }
 
-//添加标注
-- (void)addPointAnnotation
-{
-    
-    NSMutableArray *addresses = [ @[@"环球中心",@"世纪城"] mutableCopy];
-    
-    
-    
-    [addresses enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-       
-        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
-        annotation.tag = idx;
-        CLLocationCoordinate2D coor;
-        if (idx == 0) {
-            coor.latitude = 30.577 ;
-            coor.longitude = 104.069;
-        } else{
-            coor.latitude = 30.777 ;
-            coor.longitude = 104.069;
 
-        }
-        annotation.coordinate = coor;
-        //        _pointAnnotation.title = @"test";
-        //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
-        [_mapView addAnnotation:annotation];
-        
-    }];
-}
 
 //添加标注s
 -(void)addPointAnnotations{
@@ -411,6 +346,16 @@ typedef enum ServiceType: NSUInteger {
 }
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{
+   
+//    if (mapView.zoomIn ||mapView.zoomOut) {
+//        //定位到当前地址
+//        [_locService startUserLocationService];
+//        
+//        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
+//        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+//        _mapView.showsUserLocation = YES;//显示定位图层
+//
+//    }
     
     if (mapView.zoomLevel < 12) {
         [mapView removeAnnotations:mapView.annotations];
@@ -419,6 +364,57 @@ typedef enum ServiceType: NSUInteger {
             [mapView addAnnotations:self.pointAnnotations];
         }
     }
+}
+
+
+
+-(void)mapViewDidFinishLoading:(BMKMapView *)mapView{
+   CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
+//    BOOL locationAllowed = [CLLocationManager locationServicesEnabled];
+    
+    if (status == kCLAuthorizationStatusDenied) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"请在设置-隐私-定位里打开极客快服访问权限" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }];
+        [alert addAction:action];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    } else{
+        
+        //配置mapView
+        _mapView.zoomLevel = 14.f;
+        _mapView.showMapScaleBar = YES;
+        _mapView.mapScaleBarPosition = CGPointMake(_mapView.frame.size.width - 70, _mapView.frame.size.height - 40);
+        //定位到当前地址
+        [_locService startUserLocationService];
+        
+        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
+        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+        _mapView.showsUserLocation = YES;//显示定位图层
+        _mapView.isSelectedAnnotationViewFront = NO;
+        
+        
+        //添加标注
+        //        [self addPointAnnotation];
+        
+        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          
+                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1},
+                          
+                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          
+                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1}
+                          
+                          ] mutableCopy];
+        
+        [self addPointAnnotations];
+        
+    }
+
 }
 
 - (void)dealloc {
