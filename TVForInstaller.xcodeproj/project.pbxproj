@@ -32,6 +32,7 @@
 		8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8747534A1B12C086003BD8A3 /* UnSubmitViewController.m */; };
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874753521B12D2C2003BD8A3 /* UnSubmitCell.m */; };
+		87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED11B57465500E9F840 /* CustomPointAnnotation.m */; };
 		875BE5401B1AA6170063056F /* DeviceManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875BE53F1B1AA6170063056F /* DeviceManageCell.m */; };
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
@@ -49,6 +50,8 @@
 		877870631B56452A0046650C /* OrderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870621B56452A0046650C /* OrderContainer.m */; };
 		877870661B56521F0046650C /* OrderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870651B56521F0046650C /* OrderMapViewController.m */; };
 		8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870691B56536E0046650C /* MyOrderViewController.m */; };
+		8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8778706C1B565D2A0046650C /* CustomAnnotationView.m */; };
+		877870711B5666460046650C /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 877870701B5666460046650C /* View.xib */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -152,6 +155,8 @@
 		8747534F1B12C10C003BD8A3 /* Order.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
 		874753511B12D2C2003BD8A3 /* UnSubmitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnSubmitCell.h; sourceTree = "<group>"; };
 		874753521B12D2C2003BD8A3 /* UnSubmitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnSubmitCell.m; sourceTree = "<group>"; };
+		87493ED01B57465500E9F840 /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPointAnnotation.h; sourceTree = "<group>"; };
+		87493ED11B57465500E9F840 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
 		875BE53E1B1AA6170063056F /* DeviceManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManageCell.h; sourceTree = "<group>"; };
 		875BE53F1B1AA6170063056F /* DeviceManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManageCell.m; sourceTree = "<group>"; };
 		877338081B11A44A00C2DDC4 /* gradeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gradeDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -176,6 +181,9 @@
 		877870651B56521F0046650C /* OrderMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderMapViewController.m; sourceTree = "<group>"; };
 		877870681B56536E0046650C /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
 		877870691B56536E0046650C /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
+		8778706B1B565D2A0046650C /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		8778706C1B565D2A0046650C /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		877870701B5666460046650C /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -426,8 +434,13 @@
 		877870601B5642650046650C /* FetchOngoing */ = {
 			isa = PBXGroup;
 			children = (
+				8778706B1B565D2A0046650C /* CustomAnnotationView.h */,
+				8778706C1B565D2A0046650C /* CustomAnnotationView.m */,
 				877870641B56521F0046650C /* OrderMapViewController.h */,
 				877870651B56521F0046650C /* OrderMapViewController.m */,
+				877870701B5666460046650C /* View.xib */,
+				87493ED01B57465500E9F840 /* CustomPointAnnotation.h */,
+				87493ED11B57465500E9F840 /* CustomPointAnnotation.m */,
 			);
 			name = FetchOngoing;
 			sourceTree = "<group>";
@@ -825,6 +838,7 @@
 				877870531B563F640046650C /* mapapi.bundle in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
+				877870711B5666460046650C /* View.xib in Resources */,
 				874753501B12C10C003BD8A3 /* Order.storyboard in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
 				872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */,
@@ -884,6 +898,7 @@
 				872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
+				8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */,
 				8716C0FF1B15614F00389EC7 /* Order.xcdatamodeld in Sources */,
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				877870661B56521F0046650C /* OrderMapViewController.m in Sources */,
@@ -915,6 +930,7 @@
 				87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				87B400DA1B16F7EA00CC1C95 /* DeviceSuspensioner.m in Sources */,
+				87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */,
 				87B400DD1B16F8E900CC1C95 /* SuspensionCell.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,

@@ -61,15 +61,21 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpz-VF-Mhh">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <color key="backgroundColor" red="0.074509803920000006" green="0.31764705879999999" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.99607843137254903" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="e6k-29-KiF"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                            <state key="normal" title="一键装机">
+                                            <state key="normal" title="一 键 装 机">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="e6k-29-KiF"/>
@@ -540,6 +546,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Rtt-OW-nft"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EG9-MI-JjD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-He-V1Y">
@@ -561,10 +568,10 @@
                                 <exclude reference="tPl-He-V1Y"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Wet-pO-hye"/>
                                 <exclude reference="Syi-Yy-cnu"/>
                                 <exclude reference="asQ-J3-PAM"/>
                                 <exclude reference="eb4-x2-cxO"/>
-                                <exclude reference="Wet-pO-hye"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -572,10 +579,10 @@
                                 <include reference="tPl-He-V1Y"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Wet-pO-hye"/>
                                 <include reference="Syi-Yy-cnu"/>
                                 <include reference="asQ-J3-PAM"/>
                                 <include reference="eb4-x2-cxO"/>
-                                <include reference="Wet-pO-hye"/>
                             </mask>
                         </variation>
                     </view>
