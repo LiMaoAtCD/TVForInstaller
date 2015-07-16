@@ -10,7 +10,7 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import "CustomAnnotationView.h"
 #import "CustomPointAnnotation.h"
-
+#import "OrderDetailViewController.h"
 typedef enum ServiceType: NSUInteger {
     TV,
     BROADBAND
@@ -105,13 +105,13 @@ typedef enum ServiceType: NSUInteger {
         _mapView.showsUserLocation = NO;//先关闭显示的定位图层
         _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
         _mapView.showsUserLocation = YES;//显示定位图层
-        
+        _mapView.isSelectedAnnotationViewFront = NO;
         
         
         //添加标注
 //        [self addPointAnnotation];
         
-        self.Orders = [ @[@{@"latitude":@30.577,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
                           @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
                           
                           @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1},
@@ -266,7 +266,7 @@ typedef enum ServiceType: NSUInteger {
 -(void)addPointAnnotations{
     
   
-    
+    self.pointAnnotations = [NSMutableArray array];
     [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         NSDictionary *temp = obj;
@@ -282,8 +282,13 @@ typedef enum ServiceType: NSUInteger {
         annotation.coordinate = coor;
         //        _pointAnnotation.title = @"test";
         //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
-        [_mapView addAnnotation:annotation];
+        [self.pointAnnotations addObject:annotation];
+        
     }];
+    
+    [_mapView addAnnotations:self.pointAnnotations];
+
+    
 //
 }
 
@@ -397,10 +402,24 @@ typedef enum ServiceType: NSUInteger {
 {
     NSLog(@"%ld",(long)view.tag);
     
+    UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
     
+    OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+    detail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detail animated:YES];
     
 }
 
+-(void)mapStatusDidChanged:(BMKMapView *)mapView{
+    
+    if (mapView.zoomLevel < 12) {
+        [mapView removeAnnotations:mapView.annotations];
+    } else{
+        if (mapView.annotations.count == 0) {
+            [mapView addAnnotations:self.pointAnnotations];
+        }
+    }
+}
 
 - (void)dealloc {
     if (_geocodesearch != nil) {

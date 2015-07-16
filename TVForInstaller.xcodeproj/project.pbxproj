@@ -53,6 +53,7 @@
 		8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870691B56536E0046650C /* MyOrderViewController.m */; };
 		8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8778706C1B565D2A0046650C /* CustomAnnotationView.m */; };
 		87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FEE1B57969A0028022D /* OngoingDetailViewController.m */; };
+		87815FF21B57B4F80028022D /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FF11B57B4F80028022D /* OrderDetailViewController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -188,6 +189,8 @@
 		8778706C1B565D2A0046650C /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		87815FED1B57969A0028022D /* OngoingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingDetailViewController.h; sourceTree = "<group>"; };
 		87815FEE1B57969A0028022D /* OngoingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingDetailViewController.m; sourceTree = "<group>"; };
+		87815FF01B57B4F80028022D /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		87815FF11B57B4F80028022D /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -438,12 +441,14 @@
 		877870601B5642650046650C /* FetchOngoing */ = {
 			isa = PBXGroup;
 			children = (
+				87493ED01B57465500E9F840 /* CustomPointAnnotation.h */,
+				87493ED11B57465500E9F840 /* CustomPointAnnotation.m */,
 				8778706B1B565D2A0046650C /* CustomAnnotationView.h */,
 				8778706C1B565D2A0046650C /* CustomAnnotationView.m */,
 				877870641B56521F0046650C /* OrderMapViewController.h */,
 				877870651B56521F0046650C /* OrderMapViewController.m */,
-				87493ED01B57465500E9F840 /* CustomPointAnnotation.h */,
-				87493ED11B57465500E9F840 /* CustomPointAnnotation.m */,
+				87815FF01B57B4F80028022D /* OrderDetailViewController.h */,
+				87815FF11B57B4F80028022D /* OrderDetailViewController.m */,
 			);
 			name = FetchOngoing;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */,
 				877870661B56521F0046650C /* OrderMapViewController.m in Sources */,
 				87DBE2101AFB025800AFB7BF /* NetworkingManager.m in Sources */,
+				87815FF21B57B4F80028022D /* OrderDetailViewController.m in Sources */,
 				875BE5401B1AA6170063056F /* DeviceManageCell.m in Sources */,
 				878CEC3E1B14460200FE0E21 /* ChildTableViewCell.m in Sources */,
 				87EA3AA41B0A1055004AB8F7 /* OrderViewController.m in Sources */,
