@@ -23,7 +23,6 @@ typedef enum ServiceType: NSUInteger {
 @property (nonatomic, strong) BMKLocationService *locService;
 @property (nonatomic, strong) BMKMapView *mapView;
 
-//@property (nonatomic, strong) BMKPointAnnotation *pointAnnotation;
 @property (nonatomic, strong) CustomPointAnnotation *pointAnnotation;
 
 @property (nonatomic, strong) NSMutableArray *pointAnnotations;
@@ -31,6 +30,9 @@ typedef enum ServiceType: NSUInteger {
 
 
 @property (nonatomic, copy) NSString *cityName;
+
+
+@property (nonatomic, strong) NSMutableArray *Orders;
 
 
 @end
@@ -107,7 +109,20 @@ typedef enum ServiceType: NSUInteger {
         
         
         //添加标注
-        [self addPointAnnotation];
+//        [self addPointAnnotation];
+        
+        self.Orders = [ @[@{@"latitude":@30.577,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          
+                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1},
+                          
+                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          
+                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1}
+                          
+                          ] mutableCopy];
+        
+        [self addPointAnnotations];
 
     }
     
@@ -245,19 +260,32 @@ typedef enum ServiceType: NSUInteger {
         [_mapView addAnnotation:annotation];
         
     }];
-    
-//    if (_pointAnnotation == nil) {
-//        _pointAnnotation = [[BMKPointAnnotation alloc]init];
-//        CLLocationCoordinate2D coor;
-//        coor.latitude = 30.577;
-//        coor.longitude = 104.069;
-//        _pointAnnotation.coordinate = coor;
-//        _pointAnnotation.title = @"test";
-//        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
-//    }
-//    [_mapView addAnnotation:_pointAnnotation];
 }
 
+//添加标注s
+-(void)addPointAnnotations{
+    
+  
+    
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        NSDictionary *temp = obj;
+        
+        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
+        annotation.tag = idx;
+        CLLocationCoordinate2D coor;
+//        double latitude = [temp[@"latitude"] doubleValue];
+//        double longitude = [temp[@"long"]]
+        coor.latitude = [temp[@"latitude"] doubleValue];
+        coor.longitude =  [temp[@"longitude"] doubleValue];
+       
+        annotation.coordinate = coor;
+        //        _pointAnnotation.title = @"test";
+        //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
+        [_mapView addAnnotation:annotation];
+    }];
+//
+}
 
 #pragma mark -
 #pragma mark implement BMKMapViewDelegate
@@ -265,15 +293,34 @@ typedef enum ServiceType: NSUInteger {
 // 根据anntation生成对应的View
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
-        NSString *AnnotationViewID = @"ImageAnnotation";
-        CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    CustomPointAnnotation *temp_annotation = (CustomPointAnnotation *)annotation;
+    
+    NSDictionary *data = self.Orders[temp_annotation.tag];
+    NSString *name = data[@"name"];
+    NSString *address = data[@"address"];
+    NSString *subscribe = data[@"subscribe"];
+    ServiceType type = [data[@"type"] integerValue];
+    
+    NSString *AnnotationViewID = @"ImageAnnotation";
+    CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    if (type == TV) {
+        annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_tv_button"];
+
+    } else{
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_broadband_button"];
-    annotationView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:@"李敏" address:@"高新区环球中心地下三层" subscribeDate:@"01-01 09:00 - 10:10" orderType:TV]];
-        
-        
-        return annotationView;
+
+    }
+
     
     
+    BMKActionPaopaoView *paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:name address:address subscribeDate:subscribe orderType:type]];
+    annotationView.paopaoView = paopaoView;
+    
+    annotationView.tag = temp_annotation.tag;
+
+    
+    return annotationView;
+
 }
 
 -(UIView *)paopaoView:(NSString *)name address:(NSString *)address subscribeDate:(NSString *)date orderType:(ServiceType)type{
@@ -348,7 +395,10 @@ typedef enum ServiceType: NSUInteger {
 // 当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
 {
-    NSLog(@"paopaoclick");
+    NSLog(@"%ld",(long)view.tag);
+    
+    
+    
 }
 
 
