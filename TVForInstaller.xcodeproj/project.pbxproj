@@ -52,6 +52,7 @@
 		877870661B56521F0046650C /* OrderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870651B56521F0046650C /* OrderMapViewController.m */; };
 		8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870691B56536E0046650C /* MyOrderViewController.m */; };
 		8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8778706C1B565D2A0046650C /* CustomAnnotationView.m */; };
+		87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FEE1B57969A0028022D /* OngoingDetailViewController.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -185,6 +186,8 @@
 		877870691B56536E0046650C /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		8778706B1B565D2A0046650C /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
 		8778706C1B565D2A0046650C /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		87815FED1B57969A0028022D /* OngoingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingDetailViewController.h; sourceTree = "<group>"; };
+		87815FEE1B57969A0028022D /* OngoingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingDetailViewController.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -448,10 +451,12 @@
 		877870671B5652BD0046650C /* MyOrder */ = {
 			isa = PBXGroup;
 			children = (
-				877870681B56536E0046650C /* MyOrderViewController.h */,
-				877870691B56536E0046650C /* MyOrderViewController.m */,
 				87493ED61B57851900E9F840 /* CompletedTableViewCell.h */,
 				87493ED71B57851900E9F840 /* CompletedTableViewCell.m */,
+				877870681B56536E0046650C /* MyOrderViewController.h */,
+				877870691B56536E0046650C /* MyOrderViewController.m */,
+				87815FED1B57969A0028022D /* OngoingDetailViewController.h */,
+				87815FEE1B57969A0028022D /* OngoingDetailViewController.m */,
 			);
 			name = MyOrder;
 			sourceTree = "<group>";
@@ -923,6 +928,7 @@
 				87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */,
 				87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */,
 				87C022211B130C91005452C0 /* TVInfoCell.m in Sources */,
+				87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */,
 				87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,

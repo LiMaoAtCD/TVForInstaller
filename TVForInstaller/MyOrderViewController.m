@@ -8,6 +8,7 @@
 
 #import "MyOrderViewController.h"
 #import "CompletedTableViewCell.h"
+#import "OngoingDetailViewController.h"
 
 @interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -37,7 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.tableFooterView = [UIView new];
     
+//    self.OngoingView
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnGoingView:)];
+    [self.OngoingView addGestureRecognizer:gesture];
     
 }
 
@@ -45,7 +50,7 @@
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
 
-    BOOL isOnGoing = NO;
+    BOOL isOnGoing = YES;
     if (!isOnGoing) {
         self.OngoingView.hidden = YES;
         
@@ -89,6 +94,16 @@
     return cell;
 }
 
+#pragma mark - action target
+
+-(void)clickOnGoingView:(UITapGestureRecognizer *)gesture{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+    
+    OngoingDetailViewController *ongoing =[sb instantiateViewControllerWithIdentifier:@"OngoingDetailViewController"];
+    ongoing.hidesBottomBarWhenPushed = YES;
+    [self.navigationController showViewController:ongoing sender:self];
+
+}
 
 
 @end
