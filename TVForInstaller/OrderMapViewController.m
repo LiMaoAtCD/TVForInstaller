@@ -11,10 +11,6 @@
 #import "CustomAnnotationView.h"
 #import "CustomPointAnnotation.h"
 #import "OrderDetailViewController.h"
-typedef enum ServiceType: NSUInteger {
-    TV,
-    BROADBAND
-} ServiceType;
 
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
@@ -33,6 +29,8 @@ typedef enum ServiceType: NSUInteger {
 
 
 @property (nonatomic, strong) NSMutableArray *Orders;
+
+@property (nonatomic ,assign) BOOL isStopLocatingUser;
 
 
 @end
@@ -79,13 +77,15 @@ typedef enum ServiceType: NSUInteger {
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
-    //    BOOL locationAllowed = [CLLocationManager locationServicesEnabled];
-//    
-//    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-//        
-//    }
-    
+    if (self.isStopLocatingUser) {
+        //定位到当前地址
+        [_locService startUserLocationService];
+        
+        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
+        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+        _mapView.showsUserLocation = YES;//显示定位图层
+        self.isStopLocatingUser = NO;
+    }
     
     
 }
@@ -340,6 +340,20 @@ typedef enum ServiceType: NSUInteger {
     UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
     
     OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+    NSDictionary *detailInfo = self.Orders[view.tag];
+    
+    if ([detailInfo[@"type"] integerValue] == 0) {
+        detail.type = TV;
+    } else{
+        detail.type = BROADBAND;
+    }
+    
+    detail.name = detailInfo[@"name"];
+    detail.telphone = detailInfo[@"telephone"];
+    detail.address = detailInfo[@"address"];
+    detail.runningNumber = detailInfo[@"running"];
+    detail.date = detailInfo[@"subscribe"];
+    
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
     
@@ -400,14 +414,14 @@ typedef enum ServiceType: NSUInteger {
         //添加标注
         //        [self addPointAnnotation];
         
-        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
-                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
+                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
                           
-                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1},
+                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
                           
-                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0},
+                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
                           
-                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1}
+                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
                           
                           ] mutableCopy];
         
@@ -429,6 +443,11 @@ typedef enum ServiceType: NSUInteger {
         _locService = nil;
     }
     
+}
+
+- (void)didStopLocatingUser{
+    NSLog(@"didStopLocatingUser");
+    self.isStopLocatingUser = YES;
 }
 
 

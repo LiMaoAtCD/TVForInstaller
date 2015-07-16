@@ -7,9 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum ServiceType: NSUInteger {
+    TV,
+    BROADBAND
+} ServiceType;
+
 
 @interface OrderDetailViewController : UIViewController
 
-//@property (nonatomic,strong) 
+//@property (nonatomic,strong)
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *address;
+
+@property (nonatomic, copy) NSString *telphone;
+@property (nonatomic, copy) NSString *runningNumber;
+@property (nonatomic, copy) NSString *date;
+@property (nonatomic, assign) ServiceType type;
 
 @end
