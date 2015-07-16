@@ -10,10 +10,16 @@
 #import "DLNAManager.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import "UIColor+HexRGB.h"
+#import "RootTabController.h"
+#import "LoginNavigationController.h"
+
 @interface AppDelegate ()
 
 
 @property (nonatomic, strong) BMKMapManager *mapManager;
+
+@property (nonatomic, strong) RootTabController *tabBarController;
+@property (nonatomic,strong) LoginNavigationController *loginController;
 
 @end
 
@@ -26,7 +32,33 @@
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
     
+    
+    
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.tabBarController = [sb instantiateViewControllerWithIdentifier:@"RootTabController"];
+    
+    if (!isFirstLaunch) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        self.loginController = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        self.window.rootViewController = self.loginController;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess:) name:@"LoginSuccess" object:nil];
+        [self.window makeKeyAndVisible];
+
+    } else{
+        self.window.rootViewController = self.tabBarController;
+        [self.window makeKeyAndVisible];
+    }
+    
+    
     return YES;
+}
+
+-(void)loginSuccess:(id)sender{
+    self.window.rootViewController = self.tabBarController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

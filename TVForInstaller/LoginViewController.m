@@ -182,6 +182,7 @@
     
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
 }
 
 
