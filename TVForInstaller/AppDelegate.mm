@@ -32,7 +32,8 @@
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
     
-    
+    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithHex:@"fe7676"]];
+
     
     BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
     
