@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *killOrderButton;
+
 
 @property (weak, nonatomic) IBOutlet UIView *completedView;
 
@@ -44,6 +46,8 @@
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnGoingView:)];
     [self.OngoingView addGestureRecognizer:gesture];
     
+    [self.killOrderButton addTarget:self action:@selector(clickForKillingOrder:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -63,7 +67,7 @@
         self.OngoingView.hidden = NO;
         [self.completedView removeConstraint:self.tableViewLayout];
 
-        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:132];
+        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:140];
         [self.view addConstraint:self.tableViewLayout];
 
     }
@@ -103,6 +107,23 @@
     ongoing.hidesBottomBarWhenPushed = YES;
     [self.navigationController showViewController:ongoing sender:self];
 
+}
+
+-(void)clickForKillingOrder:(UIButton *)button{
+    
+    self.OngoingView.hidden = YES;
+    
+    [self.completedView removeConstraint:self.tableViewLayout];
+    self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+    [self.view addConstraint:self.tableViewLayout];
+
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.view layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 

@@ -69,8 +69,6 @@
 - (IBAction)confirmOrder:(id)sender {
     
 }
-- (IBAction)cancelOrder:(id)sender {
-}
 
 -(void)configOrderContent{
     if (self.type == TV) {
