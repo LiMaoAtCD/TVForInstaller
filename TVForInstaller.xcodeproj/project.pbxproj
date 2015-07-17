@@ -54,6 +54,8 @@
 		8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8778706C1B565D2A0046650C /* CustomAnnotationView.m */; };
 		87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FEE1B57969A0028022D /* OngoingDetailViewController.m */; };
 		87815FF21B57B4F80028022D /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FF11B57B4F80028022D /* OrderDetailViewController.m */; };
+		8781607F1B58DA590028022D /* TotalPropertyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8781607E1B58DA590028022D /* TotalPropertyCell.m */; };
+		878160821B58DABC0028022D /* RunningOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 878160811B58DABC0028022D /* RunningOrderCell.m */; };
 		8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E9041B0ADB90003F4415 /* ComminUtility.m */; };
 		8785E90B1B0AE6A5003F4415 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E90A1B0AE6A5003F4415 /* NSDictionary+JSONString.m */; };
 		8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8785E91D1B0C162A003F4415 /* NSString+Hashes.m */; };
@@ -191,6 +193,10 @@
 		87815FEE1B57969A0028022D /* OngoingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingDetailViewController.m; sourceTree = "<group>"; };
 		87815FF01B57B4F80028022D /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		87815FF11B57B4F80028022D /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		8781607D1B58DA590028022D /* TotalPropertyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalPropertyCell.h; sourceTree = "<group>"; };
+		8781607E1B58DA590028022D /* TotalPropertyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalPropertyCell.m; sourceTree = "<group>"; };
+		878160801B58DABC0028022D /* RunningOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningOrderCell.h; sourceTree = "<group>"; };
+		878160811B58DABC0028022D /* RunningOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningOrderCell.m; sourceTree = "<group>"; };
 		8785E9031B0ADB90003F4415 /* ComminUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComminUtility.h; sourceTree = "<group>"; };
 		8785E9041B0ADB90003F4415 /* ComminUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComminUtility.m; sourceTree = "<group>"; };
 		8785E9091B0AE6A5003F4415 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
@@ -375,6 +381,10 @@
 			children = (
 				871973D21B0EC53B00D6CF36 /* MyAccoutViewController.h */,
 				871973D31B0EC53B00D6CF36 /* MyAccoutViewController.m */,
+				8781607D1B58DA590028022D /* TotalPropertyCell.h */,
+				8781607E1B58DA590028022D /* TotalPropertyCell.m */,
+				878160801B58DABC0028022D /* RunningOrderCell.h */,
+				878160811B58DABC0028022D /* RunningOrderCell.m */,
 			);
 			name = MyAccount;
 			sourceTree = "<group>";
@@ -903,6 +913,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				878160821B58DABC0028022D /* RunningOrderCell.m in Sources */,
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */,
 				874753531B12D2C2003BD8A3 /* UnSubmitCell.m in Sources */,
@@ -966,6 +977,7 @@
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				87B400CF1B16C30700CC1C95 /* SuspensionViewController.mm in Sources */,
+				8781607F1B58DA590028022D /* TotalPropertyCell.m in Sources */,
 				8747534B1B12C086003BD8A3 /* UnSubmitViewController.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,

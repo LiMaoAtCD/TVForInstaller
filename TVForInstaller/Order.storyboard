@@ -1206,7 +1206,8 @@
                                                 <exclude reference="sYn-pa-pPh"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="178" y="85" width="108" height="15"/>
                                             <mask key="constraints">
                                                 <include reference="sYn-pa-pPh"/>
                                             </mask>
@@ -2359,7 +2360,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="76" y="69" width="236" height="43.5"/>
+                                                        <rect key="frame" x="76" y="69" width="236" height="44"/>
                                                         <mask key="constraints">
                                                             <exclude reference="1yc-Oc-NhK"/>
                                                         </mask>
@@ -2967,7 +2968,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="76" y="69" width="236" height="14.5"/>
+                                                        <rect key="frame" x="76" y="69" width="236" height="15"/>
                                                         <mask key="constraints">
                                                             <exclude reference="5Ff-25-2Ei"/>
                                                         </mask>
@@ -5193,9 +5194,9 @@
         <image name="dianhua" width="32" height="32"/>
         <image name="dropdown" width="158" height="53"/>
         <image name="tuidan" width="41" height="37"/>
-        <image name="ui01_Broadband" width="116" height="116"/>
+        <image name="ui01_Broadband" width="38" height="38"/>
         <image name="ui01_arrows" width="8" height="14"/>
-        <image name="ui01_long-string" width="1" height="224"/>
+        <image name="ui01_long-string" width="1" height="1"/>
         <image name="ui02_affirm_button" width="81" height="34"/>
         <image name="ui02_cancel_button" width="81" height="34"/>
         <image name="ui02_phone_button" width="44" height="44"/>
