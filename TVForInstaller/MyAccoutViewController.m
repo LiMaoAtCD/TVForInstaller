@@ -11,9 +11,11 @@
 #import "NetworkingManager.h"
 #import "TotalPropertyCell.h"
 #import "RunningOrderCell.h"
+#import <MJRefresh.h>
 
 @interface MyAccoutViewController ()<UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *runningOrderItems;
 @end
 
@@ -25,7 +27,14 @@
     [ComminUtility configureTitle:@"我的账户" forViewController:self];
     
     self.runningOrderItems =[@[@""] mutableCopy];
-
+    
+    __weak typeof (self) weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf refreshProperty];
+    }];
+}
+-(void)refreshProperty{
+    [self.tableView.header endRefreshing];
 }
 
 -(void)pop{
