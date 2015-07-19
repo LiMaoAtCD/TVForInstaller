@@ -753,6 +753,10 @@
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="fPq-B2-jYf"/>
+                                                        <exclude reference="NnD-pb-UVn"/>
+                                                        <exclude reference="1Kw-KR-m7p"/>
+                                                        <exclude reference="iMW-mZ-ZI2"/>
+                                                        <exclude reference="wNq-mf-jrG"/>
                                                         <exclude reference="8Hb-3c-9dD"/>
                                                         <exclude reference="S6j-aw-s48"/>
                                                         <exclude reference="WNi-jC-W8k"/>
@@ -760,10 +764,6 @@
                                                         <exclude reference="sm4-QQ-W82"/>
                                                         <exclude reference="HDc-yY-ysv"/>
                                                         <exclude reference="T23-f3-3TH"/>
-                                                        <exclude reference="1Kw-KR-m7p"/>
-                                                        <exclude reference="iMW-mZ-ZI2"/>
-                                                        <exclude reference="wNq-mf-jrG"/>
-                                                        <exclude reference="NnD-pb-UVn"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
@@ -775,6 +775,10 @@
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="fPq-B2-jYf"/>
+                                                        <include reference="NnD-pb-UVn"/>
+                                                        <include reference="1Kw-KR-m7p"/>
+                                                        <include reference="iMW-mZ-ZI2"/>
+                                                        <include reference="wNq-mf-jrG"/>
                                                         <include reference="8Hb-3c-9dD"/>
                                                         <include reference="S6j-aw-s48"/>
                                                         <include reference="WNi-jC-W8k"/>
@@ -782,10 +786,6 @@
                                                         <include reference="sm4-QQ-W82"/>
                                                         <exclude reference="HDc-yY-ysv"/>
                                                         <include reference="T23-f3-3TH"/>
-                                                        <include reference="1Kw-KR-m7p"/>
-                                                        <include reference="iMW-mZ-ZI2"/>
-                                                        <include reference="wNq-mf-jrG"/>
-                                                        <include reference="NnD-pb-UVn"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -2349,16 +2349,16 @@
         <image name="ding" width="20" height="20"/>
         <image name="she" width="20" height="20"/>
         <image name="temp" width="968" height="976"/>
-        <image name="ui04_Invitation-code_button" width="45" height="45"/>
-        <image name="ui04_about_button" width="45" height="45"/>
-        <image name="ui04_associated-apparatus_button" width="45" height="45"/>
+        <image name="ui04_Invitation-code_button" width="46" height="46"/>
+        <image name="ui04_about_button" width="46" height="46"/>
+        <image name="ui04_associated-apparatus_button" width="46" height="46"/>
         <image name="ui04_bg" width="360" height="225"/>
         <image name="ui04_head-portrait" width="68" height="68"/>
-        <image name="ui04_integral_button" width="45" height="45"/>
-        <image name="ui04_password_button" width="45" height="45"/>
-        <image name="ui04_personage_button" width="45" height="45"/>
-        <image name="ui04_subordinate_button" width="45" height="45"/>
-        <image name="ui04_wallet_button" width="45" height="45"/>
+        <image name="ui04_integral_button" width="46" height="46"/>
+        <image name="ui04_password_button" width="46" height="46"/>
+        <image name="ui04_personage_button" width="46" height="46"/>
+        <image name="ui04_subordinate_button" width="46" height="46"/>
+        <image name="ui04_wallet_button" width="46" height="46"/>
         <image name="ying" width="20" height="20"/>
         <image name="you1" width="143" height="60"/>
         <image name="zuo1" width="143" height="60"/>

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DLNAManager.h"
 #import <BaiduMapAPI/BMapKit.h>
-#import "UIColor+HexRGB.h"
 #import "RootTabController.h"
 #import "LoginNavigationController.h"
 
@@ -32,7 +31,7 @@
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
     
-    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithHex:@"fe7676"]];
+    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]];
 
     
     BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
@@ -101,13 +100,13 @@
 //    [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 49) withCornerRadius:0]];
     
     // set the text color for selected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHex:@"fe7676"]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]} forState:UIControlStateSelected];
     // set the text color for unselected state
     
 //    [UITabBarItem appearance] 
 //    // set the selected icon color
-    [[UITabBar appearance] setTintColor:[UIColor colorWithHex:@"fe7676"]];
-    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+//    UIColor *hexColor = [UIColor colorWithHex:@"fe7676"];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]];
 
 ////    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
 //    // remove the shadow

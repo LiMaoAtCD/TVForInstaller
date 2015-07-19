@@ -26,7 +26,6 @@
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 #import <SDImageCache.h>
-#import "UIColor+HexRGB.h"
 
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
@@ -93,7 +92,7 @@
 -(void)logout{
     //TODO: 注销
     UIAlertController *alert  = [UIAlertController alertControllerWithTitle:@"" message:@"确认注销" preferredStyle:UIAlertControllerStyleAlert];
-    alert.view.tintColor = [UIColor colorWithHex:@"fe7676"];
+    alert.view.tintColor = [UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0];
     UIAlertAction *action  = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dealLogout];
@@ -369,7 +368,7 @@
         contentView.layer.cornerRadius = 10.0;
         contentView.layer.masksToBounds = YES;
 //        contentView.backgroundColor = [UIColor colorWithRed:19./255 green:81./255 blue:115./255 alpha:1.0];
-        contentView.backgroundColor = [UIColor colorWithHex:@"fe7676"];
+        contentView.backgroundColor = [UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0];
         
         
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, contentView.frame.size.width, 30)];

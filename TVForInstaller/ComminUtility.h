@@ -62,4 +62,6 @@
 +(void)setSwitchKit:(BOOL)on;
 +(BOOL)isSwitchKitOn;
 
+
+
 @end

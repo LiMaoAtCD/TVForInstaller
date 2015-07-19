@@ -9,7 +9,6 @@
 #import "OrderContainer.h"
 #import <HMSegmentedControl.h>
 #import "ComminUtility.h"
-#import "UIColor+HexRGB.h"
 
 #import "OrderMapViewController.h"
 #import "MyOrderViewController.h"
@@ -48,7 +47,7 @@
     self.segmentedControl.selectionIndicatorHeight = 4.0;
     
     self.segmentedControl.verticalDividerEnabled = YES;
-    self.segmentedControl.verticalDividerColor = [UIColor colorWithHex:@"fe7676"];
+    self.segmentedControl.verticalDividerColor = [UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0];
     self.segmentedControl.verticalDividerWidth = 2.0;
 //    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithHex:@"d8006c"]};
 //    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
