@@ -38,7 +38,6 @@
 		872A61B61B5B519900D62439 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 872A61981B5B519900D62439 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		872A61B71B5B519900D62439 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 872A619A1B5B519900D62439 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		872A61B81B5B519900D62439 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 872A619C1B5B519900D62439 /* CSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		872A61B91B5B519900D62439 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 872A61A71B5B519900D62439 /* libbaiduNaviSDK.a */; };
 		872A61BA1B5B519900D62439 /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 872A61A81B5B519900D62439 /* updatelog.txt */; };
 		872A61BC1B5B51E300D62439 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872A61BB1B5B51E300D62439 /* AudioToolbox.framework */; };
 		872A61BE1B5B51EA00D62439 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872A61BD1B5B51EA00D62439 /* CoreMotion.framework */; };
@@ -196,7 +195,6 @@
 		872A61A41B5B519900D62439 /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
 		872A61A51B5B519900D62439 /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
 		872A61A61B5B519900D62439 /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
-		872A61A71B5B519900D62439 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
 		872A61A81B5B519900D62439 /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
 		872A61BB1B5B51E300D62439 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		872A61BD1B5B51EA00D62439 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -346,7 +344,6 @@
 				8778705B1B563F900046650C /* OpenGLES.framework in Frameworks */,
 				877870591B563F880046650C /* SystemConfiguration.framework in Frameworks */,
 				877870571B563F7F0046650C /* CoreGraphics.framework in Frameworks */,
-				872A61B91B5B519900D62439 /* libbaiduNaviSDK.a in Frameworks */,
 				877870551B563F750046650C /* Security.framework in Frameworks */,
 				877870511B563F4A0046650C /* BaiduMapAPI.framework in Frameworks */,
 				87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */,
@@ -473,7 +470,6 @@
 				872A61791B5B519900D62439 /* baiduNaviSDK.bundle */,
 				872A617A1B5B519900D62439 /* BaiduStatistics */,
 				872A619E1B5B519900D62439 /* inc */,
-				872A61A71B5B519900D62439 /* libbaiduNaviSDK.a */,
 				872A61A81B5B519900D62439 /* updatelog.txt */,
 			);
 			path = BaiduNaviSDK;
