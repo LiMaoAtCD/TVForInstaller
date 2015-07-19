@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNCoreServices.h"
+
+
 typedef enum ServiceType: NSUInteger {
     TV,
     BROADBAND
@@ -24,5 +27,7 @@ typedef enum ServiceType: NSUInteger {
 @property (nonatomic, copy) NSString *runningNumber;
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, assign) ServiceType type;
+@property (nonatomic, strong) BNPosition *originalPostion;
+@property (nonatomic, strong) BNPosition *destinationPosition;
 
 @end

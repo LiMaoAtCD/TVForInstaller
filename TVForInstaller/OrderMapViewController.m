@@ -11,6 +11,7 @@
 #import "CustomAnnotationView.h"
 #import "CustomPointAnnotation.h"
 #import "OrderDetailViewController.h"
+#import "AccountManager.h"
 
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
@@ -23,14 +24,36 @@
 
 @property (nonatomic, strong) NSMutableArray *pointAnnotations;
 
-
-
-@property (nonatomic, copy) NSString *cityName;
-
-
+/**
+ *  订单数据集合
+ */
 @property (nonatomic, strong) NSMutableArray *Orders;
 
+/**
+ *  百度地图停止了定位
+ */
 @property (nonatomic ,assign) BOOL isStopLocatingUser;
+
+/**
+ *  当前用户位置
+ */
+@property (nonatomic,strong) BMKUserLocation * currentUserLocation;
+
+/**
+ *  当前城市名
+ */
+@property (nonatomic, copy) NSString *cityName;
+
+/**
+ *  是否有订单进行中
+ */
+@property (nonatomic, assign) BOOL isOrderGoing;
+
+
+/**
+ *  订单进行中-提示
+ */
+@property (nonatomic, strong) UIView *orderGoingNoteView;
 
 
 @end
@@ -50,7 +73,9 @@
     
     _mapView =[[BMKMapView alloc] initWithFrame:self.view.bounds];
     
-    self.view = _mapView;
+//    self.view = _mapView;
+    [self.view addSubview:_mapView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +112,32 @@
         self.isStopLocatingUser = NO;
     }
     
+    //获取数据
     
+    self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
+                      @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
+                      
+                      @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
+                      
+                      @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
+                      
+                      @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"},
+                      @{@"latitude":@30.590,@"longitude":@104.071,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
+                      
+                      ] mutableCopy];
+    
+    //如果有订单还未完成
+    self.isOrderGoing = [AccountManager existOngoingOrder];
+    if (!self.isOrderGoing) {
+        [self addPointAnnotations];
+        [self noteOngoingOrderView:NO];
+
+    } else {
+        [self removeAnnotions];
+        [self noteOngoingOrderView:YES];
+    }
+
+
 }
 -(void)getCurrentCityByLatitude:(CGFloat)latitude Longitude:(CGFloat)longitude{
     
@@ -121,6 +171,39 @@
     _geocodesearch.delegate = nil;
 }
 
+#pragma mark - 添加标注
+
+-(void)addPointAnnotations{
+
+    self.pointAnnotations = [NSMutableArray array];
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        NSDictionary *temp = obj;
+        
+        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
+        annotation.tag = idx;
+        CLLocationCoordinate2D coor;
+        //        double latitude = [temp[@"latitude"] doubleValue];
+        //        double longitude = [temp[@"long"]]
+        coor.latitude = [temp[@"latitude"] doubleValue];
+        coor.longitude =  [temp[@"longitude"] doubleValue];
+        
+        annotation.coordinate = coor;
+        //        _pointAnnotation.title = @"test";
+        //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
+        [self.pointAnnotations addObject:annotation];
+        
+    }];
+    
+    [_mapView addAnnotations:self.pointAnnotations];
+    
+    
+    //
+}
+-(void)removeAnnotions{
+    NSArray *annotations= self.mapView.annotations;
+    [self.mapView removeAnnotations:annotations];
+}
 
 #pragma mark - BMKLocationServiceDelegate
 //实现相关delegate 处理位置信息更新
@@ -134,15 +217,10 @@
 {
     [_mapView updateLocationData:userLocation];
     
-//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-
     if (!self.cityName || [self.cityName isEqualToString: @""]) {
         [self getCurrentCityByLatitude:userLocation.location.coordinate.latitude Longitude:userLocation.location.coordinate.longitude];
-        
     }
-   
-    
-    
+    self.currentUserLocation = userLocation;
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
@@ -193,38 +271,6 @@
 
         
     }
-}
-
-
-
-//添加标注s
--(void)addPointAnnotations{
-    
-  
-    self.pointAnnotations = [NSMutableArray array];
-    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        NSDictionary *temp = obj;
-        
-        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
-        annotation.tag = idx;
-        CLLocationCoordinate2D coor;
-//        double latitude = [temp[@"latitude"] doubleValue];
-//        double longitude = [temp[@"long"]]
-        coor.latitude = [temp[@"latitude"] doubleValue];
-        coor.longitude =  [temp[@"longitude"] doubleValue];
-       
-        annotation.coordinate = coor;
-        //        _pointAnnotation.title = @"test";
-        //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
-        [self.pointAnnotations addObject:annotation];
-        
-    }];
-    
-    [_mapView addAnnotations:self.pointAnnotations];
-
-    
-//
 }
 
 #pragma mark -
@@ -353,6 +399,19 @@
     detail.address = detailInfo[@"address"];
     detail.runningNumber = detailInfo[@"running"];
     detail.date = detailInfo[@"subscribe"];
+//    detail.originalPostion = detailInfo[@"la"]
+    BNPosition *originPostion = [[BNPosition alloc] init];
+    originPostion.x = self.currentUserLocation.location.coordinate.longitude;
+    originPostion.y = self.currentUserLocation.location.coordinate.latitude;
+
+    detail.originalPostion = originPostion;
+    
+    BNPosition *destinationPostion = [[BNPosition alloc] init];
+    destinationPostion.x = [detailInfo[@"longitude"] doubleValue];
+    destinationPostion.y = [detailInfo[@"latitude"] doubleValue];
+    
+    detail.destinationPosition = destinationPostion;
+
     
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
@@ -402,6 +461,9 @@
         _mapView.zoomLevel = 14.f;
         _mapView.showMapScaleBar = YES;
         _mapView.mapScaleBarPosition = CGPointMake(_mapView.frame.size.width - 70, _mapView.frame.size.height - 40);
+        
+        
+        
         //定位到当前地址
         [_locService startUserLocationService];
         
@@ -411,21 +473,7 @@
         _mapView.isSelectedAnnotationViewFront = NO;
         
         
-        //添加标注
-        //        [self addPointAnnotation];
-        
-        self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
-                          @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
-                          
-                          @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
-                          
-                          @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
-                          
-                          @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
-                          
-                          ] mutableCopy];
-        
-        [self addPointAnnotations];
+        [self noteOngoingOrderView:YES];
         
     }
 
@@ -448,6 +496,37 @@
 - (void)didStopLocatingUser{
     NSLog(@"didStopLocatingUser");
     self.isStopLocatingUser = YES;
+}
+
+-(void)noteOngoingOrderView:(BOOL)show{
+    
+    if (show) {
+        
+        [self.orderGoingNoteView removeFromSuperview];
+
+        self.orderGoingNoteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+        self.orderGoingNoteView.backgroundColor = [UIColor whiteColor];
+        self.orderGoingNoteView.layer.cornerRadius = 5.0;
+        self.orderGoingNoteView.layer.masksToBounds = YES;
+        UILabel *label = [[UILabel alloc] initWithFrame:self.orderGoingNoteView.bounds];
+        
+        label.text = @"订单正在进行中";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor colorWithRed:254./255 green:118.0/255 blue:118./255 alpha:1.0];
+        
+        [self.orderGoingNoteView addSubview:label];
+        
+        [self.view addSubview:self.orderGoingNoteView];
+        self.orderGoingNoteView.center = self.view.center;
+            
+        
+
+    } else{
+        [self.orderGoingNoteView removeFromSuperview];
+    }
+    
+    
+    
 }
 
 

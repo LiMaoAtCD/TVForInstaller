@@ -12,6 +12,9 @@
 #import "RootTabController.h"
 #import "LoginNavigationController.h"
 
+#import "BNCoreServices.h"
+
+
 @interface AppDelegate ()
 
 
@@ -150,10 +153,18 @@
 -(void)configureBaiduMapSetting{
     _mapManager = [[BMKMapManager alloc] init];
     
-    BOOL ret = [_mapManager start:@"lWYSArzP3Db30UcfabFNjEA2" generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"8Nep3BNORZ9DaTyU0Cp5GUnn" generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed");
     }
+    [BNCoreServices_Instance initServices:@"8Nep3BNORZ9DaTyU0Cp5GUnn"];
+    [BNCoreServices_Instance startServicesAsyn:^{
+        NSLog(@"success");
+    } fail:^{
+        NSLog(@"fail");
+
+    }];
+
 
 }
 

@@ -9,6 +9,7 @@
 #import "MyOrderViewController.h"
 #import "CompletedTableViewCell.h"
 #import "OngoingDetailViewController.h"
+#import "AccountManager.h"
 
 @interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,24 +55,34 @@
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
 
-    BOOL isOnGoing = YES;
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    BOOL isOnGoing = [AccountManager existOngoingOrder];
     if (!isOnGoing) {
         self.OngoingView.hidden = YES;
         
-        [self.completedView removeConstraint:self.tableViewLayout];
+        [self.view removeConstraint:self.tableViewLayout];
         self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
         [self.view addConstraint:self.tableViewLayout];
         
     } else{
-        
         self.OngoingView.hidden = NO;
-        [self.completedView removeConstraint:self.tableViewLayout];
-
+        
+        [self.view removeConstraint:self.tableViewLayout];
+        
         self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:140];
         [self.view addConstraint:self.tableViewLayout];
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            [self.view layoutIfNeeded];
 
+        }];
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +111,11 @@
 
 #pragma mark - action target
 
+/**
+ *  点击正在执行订单
+ *
+ *  @param gesture
+ */
 -(void)clickOnGoingView:(UITapGestureRecognizer *)gesture{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
     
@@ -109,11 +125,16 @@
 
 }
 
+/**
+ *  点击取消订单
+ *
+ *  @param button
+ */
 -(void)clickForKillingOrder:(UIButton *)button{
     
     self.OngoingView.hidden = YES;
     
-    [self.completedView removeConstraint:self.tableViewLayout];
+    [self.view removeConstraint:self.tableViewLayout];
     self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
     [self.view addConstraint:self.tableViewLayout];
 
@@ -122,7 +143,9 @@
         [self.view layoutIfNeeded];
         
     } completion:^(BOOL finished) {
-        
+        if (finished) {
+            [AccountManager setExistOngoingOrder:NO];
+        }
     }];
 }
 
