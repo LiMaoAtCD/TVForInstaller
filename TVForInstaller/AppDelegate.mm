@@ -14,6 +14,7 @@
 
 #import "BNCoreServices.h"
 
+#import "AccountManager.h"
 
 @interface AppDelegate ()
 
@@ -37,13 +38,13 @@
     [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]];
 
     
-    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
-    
+//    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
+    BOOL isLogin = [AccountManager isLogin];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.tabBarController = [sb instantiateViewControllerWithIdentifier:@"RootTabController"];
     
-    if (!isFirstLaunch) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
+    if (!isLogin) {
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         self.loginController = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
@@ -61,6 +62,8 @@
 }
 
 -(void)loginSuccess:(id)sender{
+    [AccountManager setLogin:YES];
+
     self.window.rootViewController = self.tabBarController;
 }
 

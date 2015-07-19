@@ -519,11 +519,14 @@
         
         [self.view addSubview:self.orderGoingNoteView];
         self.orderGoingNoteView.center = self.view.center;
-            
+        self.mapView.userInteractionEnabled = NO;
+
         
 
     } else{
         [self.orderGoingNoteView removeFromSuperview];
+        self.mapView.userInteractionEnabled = YES;
+
     }
     
     

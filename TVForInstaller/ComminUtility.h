@@ -58,6 +58,7 @@
 +(BOOL)validateName: (NSString *)name;
 
 +(NSString*)kSuspensionWindowNotification;
++(NSString*)kSuspensionWindowHiddenNotification;
 
 +(void)setSwitchKit:(BOOL)on;
 +(BOOL)isSwitchKitOn;

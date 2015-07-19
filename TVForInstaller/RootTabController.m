@@ -30,7 +30,6 @@
     
    
 }
-
 -(void)showSuspensionView{
     
     if ([ComminUtility isSwitchKitOn]) {
@@ -44,7 +43,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self manageLogState];
+//    [self manageLogState];
     
     if ([ComminUtility isSwitchKitOn]) {
         
@@ -67,21 +66,21 @@
 
 }
 
--(void)manageLogState{
-    
-    if (![AccountManager isLogin]) {
-        
-        
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-        
-        [self showDetailViewController:login sender:self];
-        
-    } else{
-        
-    }
-
-}
+//-(void)manageLogState{
+//    
+//    if (![AccountManager isLogin]) {
+//        
+//        
+//        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//        LoginNavigationController *login  =[sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+//        
+//        [self showDetailViewController:login sender:self];
+//        
+//    } else{
+//        
+//    }
+//
+//}
 
 -(void)suspensionWindow:(BOOL)Issuspension{
     

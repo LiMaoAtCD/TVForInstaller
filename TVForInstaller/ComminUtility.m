@@ -138,6 +138,9 @@
 +(NSString*)kSuspensionWindowNotification{
     return @"kSuspensionWindowNotification";
 }
++(NSString*)kSuspensionWindowHiddenNotification{
+    return @"kSuspensionWindowHiddenNotification";
+}
 
 
 +(void)setSwitchKit:(BOOL)on{
