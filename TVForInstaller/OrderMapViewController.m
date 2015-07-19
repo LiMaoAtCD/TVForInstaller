@@ -433,9 +433,12 @@
     if (mapView.zoomLevel < 12) {
         [mapView removeAnnotations:mapView.annotations];
     } else{
-        if (mapView.annotations.count == 0) {
-            [mapView addAnnotations:self.pointAnnotations];
+        if (!self.isOrderGoing) {
+            if (mapView.annotations.count == 0) {
+                [mapView addAnnotations:self.pointAnnotations];
+            }
         }
+        
     }
 }
 
@@ -472,9 +475,7 @@
         _mapView.showsUserLocation = YES;//显示定位图层
         _mapView.isSelectedAnnotationViewFront = NO;
         
-        
-        [self noteOngoingOrderView:YES];
-        
+
     }
 
 }
