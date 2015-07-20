@@ -13,15 +13,34 @@
 #import "OrderDetailViewController.h"
 #import "AccountManager.h"
 
-@interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKCloudSearchDelegate>
 
 
+/**
+ *  云检索服务
+ */
+@property (nonatomic, strong) BMKCloudSearch *cloudSearch;
+/**
+ *  位置编码服务
+ */
 @property (nonatomic, strong) BMKGeoCodeSearch *geocodesearch;
+/**
+ *  位置定位服务
+ */
 @property (nonatomic, strong) BMKLocationService *locService;
+/**
+ *  地图视图
+ */
 @property (nonatomic, strong) BMKMapView *mapView;
 
+/**
+ *  自定义标注视图
+ */
 @property (nonatomic, strong) CustomPointAnnotation *pointAnnotation;
 
+/**
+ *  标注数组
+ */
 @property (nonatomic, strong) NSMutableArray *pointAnnotations;
 
 /**
@@ -71,10 +90,20 @@
     //地址转经纬度
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     
+    //地图视图初始化
     _mapView =[[BMKMapView alloc] initWithFrame:self.view.bounds];
+    
+    //云检索服务
+    _cloudSearch = [[BMKCloudSearch alloc] init];
+    
+    
+    
     
 //    self.view = _mapView;
     [self.view addSubview:_mapView];
+    
+   
+
     
 }
 
@@ -95,13 +124,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [_mapView viewWillAppear];
+    
     _mapView.delegate = self;
     _locService.delegate = self;
     _geocodesearch.delegate = self;
+    _cloudSearch.delegate = self;
+
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
     if (self.isStopLocatingUser) {
         //定位到当前地址
         [_locService startUserLocationService];
@@ -169,6 +200,8 @@
     _mapView.delegate = nil;
     _locService.delegate = nil;
     _geocodesearch.delegate = nil;
+    _cloudSearch.delegate = nil;
+
 }
 
 #pragma mark - 添加标注
@@ -221,6 +254,13 @@
         [self getCurrentCityByLatitude:userLocation.location.coordinate.latitude Longitude:userLocation.location.coordinate.longitude];
     }
     self.currentUserLocation = userLocation;
+    [self LocalSearch];
+
+}
+
+- (void)didStopLocatingUser{
+//    NSLog(@"didStopLocatingUser");
+    self.isStopLocatingUser = YES;
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
@@ -480,6 +520,72 @@
 
 }
 
+#pragma mark - cloud search delegate
+
+-(void)LocalSearch{
+//    BMKCloudLocalSearchInfo *cloudLocalSearch = [[BMKCloudLocalSearchInfo alloc] init];
+//    cloudLocalSearch.ak = @"ASFFfRDOzCBZ4kqSLwOmsCvh";
+//    cloudLocalSearch.geoTableId = 113463;
+//    cloudLocalSearch.pageIndex = 0;
+//    cloudLocalSearch.pageSize = 10;
+////    cloudLocalSearch.region = @"成都市";
+////    cloudLocalSearch.keyword = @"天安门";
+//    BOOL flag = [_cloudSearch localSearchWithSearchInfo:cloudLocalSearch];
+//    if(flag){
+//        NSLog(@"本地云检索发送成功");
+//    }else{
+//        NSLog(@"本地云检索发送失败");
+//    }
+//    
+    BMKCloudNearbySearchInfo *cloudNearbySearch = [[BMKCloudNearbySearchInfo alloc]  init];
+    cloudNearbySearch.ak = @"ASFFfRDOzCBZ4kqSLwOmsCvh";
+    cloudNearbySearch.geoTableId = 113463;
+    cloudNearbySearch.location = [NSString stringWithFormat:@"(%f,%f)",self.currentUserLocation.location.coordinate.longitude,self.currentUserLocation.location.coordinate.latitude];
+    cloudNearbySearch.radius = 2000.f;
+    BOOL flag = [_cloudSearch nearbySearchWithSearchInfo:cloudNearbySearch];
+    if (flag) {
+        NSLog(@"附近云检索发送成功");
+    } else{
+        NSLog(@"附近云检索发送失败");
+
+    }
+    ///检索的中心点，逗号分隔的经纬度(116.4321,38.76623),string(25)
+//    @property (nonatomic, strong) NSString *location;
+    
+    
+//    cloudNearbySearch.location = @"()"
+//    BOOL flag = [_cloudSearch localSearchWithSearchInfo:cloudNearbySearch];
+//    if(flag){
+//        NSLog(@"本地云检索发送成功");
+//    }else{
+//        NSLog(@"本地云检索发送失败");
+//    }
+    
+    
+}
+
+//返回云检索结果回调
+- (void)onGetCloudPoiResult:(NSArray*)poiResultList searchType:(int)type errorCode:(int)error{
+    // 清楚屏幕中所有的annotation
+    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+    [_mapView removeAnnotations:array];
+    if (error == BMKErrorOk) {
+        BMKCloudPOIList* result = [poiResultList objectAtIndex:0];
+        for (int i = 0; i < result.POIs.count; i++) {
+            BMKCloudPOIInfo* poi = [result.POIs objectAtIndex:i];
+            CustomPointAnnotation* item = [[CustomPointAnnotation alloc] init];
+            CLLocationCoordinate2D pt = (CLLocationCoordinate2D){ poi.longitude,poi.latitude};
+            item.coordinate = pt;
+//            item.title = poi.title;
+            [_mapView addAnnotation:item];
+        }
+    } else {
+        NSLog(@"error ==%d",error);
+    }
+}
+
+
+#pragma mark - dealloc
 - (void)dealloc {
     if (_geocodesearch != nil) {
         _geocodesearch = nil;
@@ -492,12 +598,13 @@
         _locService = nil;
     }
     
+    if (_cloudSearch) {
+        _cloudSearch = nil;
+    }
+    
 }
 
-- (void)didStopLocatingUser{
-    NSLog(@"didStopLocatingUser");
-    self.isStopLocatingUser = YES;
-}
+#pragma mark - 正在进行的订单视图
 
 -(void)noteOngoingOrderView:(BOOL)show{
     
@@ -520,18 +627,12 @@
         [self.view addSubview:self.orderGoingNoteView];
         self.orderGoingNoteView.center = self.view.center;
         self.mapView.userInteractionEnabled = NO;
-
-        
-
     } else{
         [self.orderGoingNoteView removeFromSuperview];
         self.mapView.userInteractionEnabled = YES;
-
     }
-    
-    
-    
 }
+
 
 
 @end

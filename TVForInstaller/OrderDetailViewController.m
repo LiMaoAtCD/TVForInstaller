@@ -35,6 +35,21 @@
     [self configOrderContent];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [BNCoreServices_Instance initServices:@"8Nep3BNORZ9DaTyU0Cp5GUnn"];
+    [BNCoreServices_Instance startServicesAsyn:^{
+        NSLog(@"success");
+    } fail:^{
+        NSLog(@"fail");
+        
+    }];
+}
+
+-(void)dealloc{
+    [BNCoreServices_Instance stopServices];
+}
+
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -219,7 +234,6 @@
 {
     NSLog(@"退出导航");
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //退出导航声明页面回调
@@ -232,6 +246,7 @@
 {
     NSLog(@"退出电子狗页面");
 }
+
 
 
 @end
