@@ -59,6 +59,7 @@
 		8773380F1B11AB3F00C2DDC4 /* grade.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8773380E1B11AB3F00C2DDC4 /* grade.plist */; };
 		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
 		877404251B5B96A80055D2D6 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */; };
+		877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 877404271B5CE1640055D2D6 /* OngoingOrder.m */; };
 		877870511B563F4A0046650C /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870501B563F4A0046650C /* BaiduMapAPI.framework */; };
 		877870531B563F640046650C /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 877870521B563F640046650C /* mapapi.bundle */; };
 		877870551B563F750046650C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870541B563F750046650C /* Security.framework */; };
@@ -224,6 +225,8 @@
 		8773380E1B11AB3F00C2DDC4 /* grade.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grade.plist; sourceTree = "<group>"; };
 		877338101B11B3D000C2DDC4 /* storehouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = storehouse.plist; sourceTree = "<group>"; };
 		877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
+		877404261B5CE1640055D2D6 /* OngoingOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingOrder.h; sourceTree = "<group>"; };
+		877404271B5CE1640055D2D6 /* OngoingOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingOrder.m; sourceTree = "<group>"; };
 		877870501B563F4A0046650C /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		877870521B563F640046650C /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		877870541B563F750046650C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -829,6 +832,8 @@
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				877870611B56452A0046650C /* OrderContainer.h */,
 				877870621B56452A0046650C /* OrderContainer.m */,
+				877404261B5CE1640055D2D6 /* OngoingOrder.h */,
+				877404271B5CE1640055D2D6 /* OngoingOrder.m */,
 				877870601B5642650046650C /* FetchOngoing */,
 				877870671B5652BD0046650C /* MyOrder */,
 			);
@@ -1016,6 +1021,7 @@
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */,
 				872A61AE1B5B519900D62439 /* CJSONSerialization.m in Sources */,
+				877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
 				8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */,

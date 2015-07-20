@@ -13,6 +13,8 @@
 
 #import "AccountManager.h"
 
+#import "OngoingOrder.h"
+
 @interface OrderDetailViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -45,11 +47,10 @@
     }];
 }
 
--(void)dealloc{
-    [BNCoreServices_Instance stopServices];
-}
-
 -(void)pop{
+    
+    [BNCoreServices_Instance stopServices];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -89,6 +90,17 @@
 - (IBAction)confirmOrder:(id)sender {
 //    [self startNavi];
     [AccountManager setExistOngoingOrder:YES];
+    
+
+    [OngoingOrder setOngoingOrderName:self.info[@"name"]];
+    [OngoingOrder setOngoingOrderDate:self.info[@"subscribe"]];
+    [OngoingOrder setOngoingOrderType:[self.info[@"servicetype"] integerValue]];
+    [OngoingOrder setOngoingOrderAddress:self.info[@"detailAddress"]];
+    [OngoingOrder setOngoingOrderTelephone:self.info[@"telephone"]];
+    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"running"]];
+    
+    
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否开始导航？" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {

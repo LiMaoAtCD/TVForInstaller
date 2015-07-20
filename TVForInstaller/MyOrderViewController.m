@@ -11,6 +11,8 @@
 #import "OngoingDetailViewController.h"
 #import "AccountManager.h"
 
+#import "OngoingOrder.h"
+
 @interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -54,12 +56,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
-
-    
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     
     BOOL isOnGoing = [AccountManager existOngoingOrder];
     if (!isOnGoing) {
@@ -71,6 +67,27 @@
         
     } else{
         self.OngoingView.hidden = NO;
+        self.nameLabel.text = [OngoingOrder ongoingOrderName];
+        self.telphoneLabel.text = [OngoingOrder ongoingOrderTelephone];
+        self.addressLabel.text = [OngoingOrder ongoingOrderAddress];
+        self.runningLabel.text = [OngoingOrder ongoingOrderRunningNumber];
+        self.dateLabel.text = [OngoingOrder ongoingOrderDate];
+//        
+//        if (self.type == TV) {
+//            self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+//        } else{
+//            self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+//        }
+        
+        if ([OngoingOrder ongoingOrderServiceType] == 0) {
+            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
+        } else{
+            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+
+        }
+
+
+
         
         [self.view removeConstraint:self.tableViewLayout];
         
@@ -79,10 +96,18 @@
         
         [UIView animateWithDuration:0.1 animations:^{
             [self.view layoutIfNeeded];
-
+            
         }];
     }
 
+
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {

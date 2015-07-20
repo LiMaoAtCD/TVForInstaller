@@ -10,6 +10,8 @@
 
 #import "ComminUtility.h"
 
+#import "OngoingOrder.h"
+
 @interface OngoingDetailViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -68,12 +70,19 @@
 //        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
 //    }
     
-    self.nameLabel.text = @"李敏表";
-    self.addressLabel.text = @"成都市高新区新世界软件园D区5栋341是";
-    self.telphoneLabel.text =@"13803932222";
-    self.runningLabel.text = @"DAddddxxxxxx";
-    self.dateLabel.text = @"2015-09-09 12:00";
-    
+    self.nameLabel.text = [OngoingOrder ongoingOrderName];
+    self.telphoneLabel.text = [OngoingOrder ongoingOrderTelephone];
+    self.addressLabel.text = [OngoingOrder ongoingOrderAddress];
+    self.runningLabel.text = [OngoingOrder ongoingOrderRunningNumber];
+    self.dateLabel.text = [OngoingOrder ongoingOrderDate];
+
+    if ([OngoingOrder ongoingOrderServiceType] == 0) {
+        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+    } else{
+        self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+        
+    }
+
 }
 
 -(void)initialPayType{

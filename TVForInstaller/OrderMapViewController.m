@@ -13,6 +13,7 @@
 #import "OrderDetailViewController.h"
 #import "AccountManager.h"
 #import "NetworkingManager.h"
+#import <JGProgressHUD.h>
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKCloudSearchDelegate>
 
 
@@ -67,6 +68,11 @@
  *  是否有订单进行中
  */
 @property (nonatomic, assign) BOOL isOrderGoing;
+
+/**
+ *  是否正在POI检索附近
+ */
+@property (nonatomic, assign) BOOL isFetchOrder;
 
 
 /**
@@ -144,8 +150,9 @@
     //如果有订单还未完成
     self.isOrderGoing = [AccountManager existOngoingOrder];
     if (!self.isOrderGoing) {
-        [self addPointAnnotations];
-        [self noteOngoingOrderView:NO];
+//        [self addPointAnnotations];
+//        [self noteOngoingOrderView:NO];
+        [self SearchNearByOrders];
 
     } else {
         [self removeAnnotions];
@@ -237,7 +244,7 @@
     }
     self.currentUserLocation = userLocation;
     self.currentUserLocation.title = nil;
-    [self LocalSearch];
+    [self SearchNearByOrders];
 
 }
 
@@ -434,7 +441,7 @@
     destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
     
     detail.destinationPosition = destinationPostion;
-
+    detail.info = detailInfo;
     
     detail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
@@ -442,20 +449,13 @@
 }
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{
-   
-//    if (mapView.zoomIn ||mapView.zoomOut) {
-//        //定位到当前地址
-//        [_locService startUserLocationService];
-//        
-//        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-//        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
-//        _mapView.showsUserLocation = YES;//显示定位图层
-//
-//    }
     
     if (mapView.zoomLevel < 12) {
+        //缩放等级太小，隐藏订单
         [mapView removeAnnotations:mapView.annotations];
     } else{
+        
+        //如果已经有在进行中的订单，并且标注等于0
         if (!self.isOrderGoing) {
             if (mapView.annotations.count == 0) {
                 [mapView addAnnotations:self.pointAnnotations];
@@ -464,8 +464,6 @@
         
     }
 }
-
-
 
 -(void)mapViewDidFinishLoading:(BMKMapView *)mapView{
    CLAuthorizationStatus status =  [CLLocationManager authorizationStatus];
@@ -497,68 +495,54 @@
         _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
         _mapView.showsUserLocation = YES;//显示定位图层
         _mapView.isSelectedAnnotationViewFront = NO;
-        
-
     }
-
 }
 
-#pragma mark - cloud search delegate
+#pragma mark - 搜索附近订单
 
--(void)LocalSearch{
-    NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-    [NetworkingManager fetchNearbyOrdersByAK:@"GZXZUzmp3ZXLWYfEvQN6rbOr" geoTableId:114231 location:location radius:1000 tags:@"Marcoli" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *results = responseObject;
-
-        self.Orders = results[@"contents"];
-        NSLog(@"Order: %@",self.Orders);
+-(void)SearchNearByOrders{
+    //判断本地位置是否已经获取到
+    if (!self.currentUserLocation) {
+        return;
+    }
+    
+    //是否存在进行中订单
+    self.isOrderGoing = [AccountManager existOngoingOrder];
+    if (!self.isOrderGoing) {
         
-        //如果有订单还未完成
-        self.isOrderGoing = [AccountManager existOngoingOrder];
-        if (!self.isOrderGoing) {
-            [self addPointAnnotations];
-            [self noteOngoingOrderView:NO];
+        
+        //是否已经在请求(不发出多次请求)
+        if (!self.isFetchOrder) {
+            self.isFetchOrder = YES;
             
-        } else {
-            [self removeAnnotions];
-            [self noteOngoingOrderView:YES];
+            NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
+            [NetworkingManager fetchNearbyOrdersByAK:@"GZXZUzmp3ZXLWYfEvQN6rbOr" geoTableId:114231 location:location radius:1000 tags:@"Marcoli" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *results = responseObject;
+                
+                self.Orders = results[@"contents"];
+                
+                [self addPointAnnotations];
+                [self noteOngoingOrderView:NO];
+
+                self.isFetchOrder = NO;
+                
+            } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                self.isFetchOrder = NO;
+            }];
+            
         }
-
-        
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-}
-
-
-
-#pragma mark - dealloc
-- (void)dealloc {
-    if (_geocodesearch != nil) {
-        _geocodesearch = nil;
+    } else {
+        //存在
+        [self removeAnnotions];
+        [self noteOngoingOrderView:YES];
     }
-    if (_mapView) {
-        _mapView = nil;
-    }
-    
-    if (_locService) {
-        _locService = nil;
-    }
-    
-    if (_cloudSearch) {
-        _cloudSearch = nil;
-    }
-    
 }
 
 #pragma mark - 正在进行的订单视图
 
 -(void)noteOngoingOrderView:(BOOL)show{
-    
     if (show) {
-        
         [self.orderGoingNoteView removeFromSuperview];
-
         self.orderGoingNoteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
         self.orderGoingNoteView.backgroundColor = [UIColor whiteColor];
         self.orderGoingNoteView.layer.cornerRadius = 5.0;
@@ -580,6 +564,19 @@
     }
 }
 
-
-
+#pragma mark - dealloc
+- (void)dealloc {
+    if (_geocodesearch != nil) {
+        _geocodesearch = nil;
+    }
+    if (_mapView) {
+        _mapView = nil;
+    }
+    if (_locService) {
+        _locService = nil;
+    }
+    if (_cloudSearch) {
+        _cloudSearch = nil;
+    }
+}
 @end

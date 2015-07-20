@@ -30,4 +30,6 @@ typedef enum ServiceType: NSUInteger {
 @property (nonatomic, strong) BNPosition *originalPostion;
 @property (nonatomic, strong) BNPosition *destinationPosition;
 
+@property (nonatomic, strong) NSDictionary *info;
+
 @end
