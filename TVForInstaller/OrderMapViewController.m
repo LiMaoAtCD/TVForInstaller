@@ -12,7 +12,7 @@
 #import "CustomPointAnnotation.h"
 #import "OrderDetailViewController.h"
 #import "AccountManager.h"
-
+#import "NetworkingManager.h"
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKCloudSearchDelegate>
 
 
@@ -87,6 +87,7 @@
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
     [BMKLocationService setLocationDistanceFilter:100.f];
     _locService = [[BMKLocationService alloc] init];
+    
     //地址转经纬度
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     
@@ -97,30 +98,13 @@
     _cloudSearch = [[BMKCloudSearch alloc] init];
     
     
-    
-    
-//    self.view = _mapView;
     [self.view addSubview:_mapView];
-    
-   
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)viewWillAppear:(BOOL)animated{
     [_mapView viewWillAppear];
@@ -145,17 +129,17 @@
     
     //获取数据
     
-    self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
-                      @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
-                      
-                      @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
-                      
-                      @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
-                      
-                      @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"},
-                      @{@"latitude":@30.590,@"longitude":@104.071,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
-                      
-                      ] mutableCopy];
+//    self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
+//                      @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
+//                      
+//                      @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
+//                      
+//                      @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
+//                      
+//                      @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"},
+//                      @{@"latitude":@30.590,@"longitude":@104.071,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
+//                      
+//                      ] mutableCopy];
     
     //如果有订单还未完成
     self.isOrderGoing = [AccountManager existOngoingOrder];
@@ -167,9 +151,21 @@
         [self removeAnnotions];
         [self noteOngoingOrderView:YES];
     }
-
-
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [_mapView viewWillDisappear];
+    
+    [_locService stopUserLocationService];
+    _mapView.showsUserLocation = NO;//先关闭显示的定位图层
+    
+    _mapView.delegate = nil;
+    _locService.delegate = nil;
+    _geocodesearch.delegate = nil;
+    _cloudSearch.delegate = nil;
+    
+}
+
 -(void)getCurrentCityByLatitude:(CGFloat)latitude Longitude:(CGFloat)longitude{
     
     CLLocationCoordinate2D pt = (CLLocationCoordinate2D){0, 0};
@@ -191,19 +187,6 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [_mapView viewWillDisappear];
-    
-    [_locService stopUserLocationService];
-    _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-    
-    _mapView.delegate = nil;
-    _locService.delegate = nil;
-    _geocodesearch.delegate = nil;
-    _cloudSearch.delegate = nil;
-
-}
-
 #pragma mark - 添加标注
 
 -(void)addPointAnnotations{
@@ -216,10 +199,9 @@
         CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
         annotation.tag = idx;
         CLLocationCoordinate2D coor;
-        //        double latitude = [temp[@"latitude"] doubleValue];
-        //        double longitude = [temp[@"long"]]
-        coor.latitude = [temp[@"latitude"] doubleValue];
-        coor.longitude =  [temp[@"longitude"] doubleValue];
+        
+        coor.latitude = [temp[@"location"][1] doubleValue];
+        coor.longitude = [temp[@"location"][0] doubleValue];
         
         annotation.coordinate = coor;
         //        _pointAnnotation.title = @"test";
@@ -254,6 +236,7 @@
         [self getCurrentCityByLatitude:userLocation.location.coordinate.latitude Longitude:userLocation.location.coordinate.longitude];
     }
     self.currentUserLocation = userLocation;
+    self.currentUserLocation.title = nil;
     [self LocalSearch];
 
 }
@@ -323,9 +306,9 @@
     
     NSDictionary *data = self.Orders[temp_annotation.tag];
     NSString *name = data[@"name"];
-    NSString *address = data[@"address"];
+    NSString *address = data[@"detailAddress"];
     NSString *subscribe = data[@"subscribe"];
-    ServiceType type = [data[@"type"] integerValue];
+    ServiceType type = [data[@"servicetype"] integerValue];
     
     NSString *AnnotationViewID = @"ImageAnnotation";
     CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
@@ -436,7 +419,7 @@
     
     detail.name = detailInfo[@"name"];
     detail.telphone = detailInfo[@"telephone"];
-    detail.address = detailInfo[@"address"];
+    detail.address = detailInfo[@"detailAddress"];
     detail.runningNumber = detailInfo[@"running"];
     detail.date = detailInfo[@"subscribe"];
 //    detail.originalPostion = detailInfo[@"la"]
@@ -447,8 +430,8 @@
     detail.originalPostion = originPostion;
     
     BNPosition *destinationPostion = [[BNPosition alloc] init];
-    destinationPostion.x = [detailInfo[@"longitude"] doubleValue];
-    destinationPostion.y = [detailInfo[@"latitude"] doubleValue];
+    destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
+    destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
     
     detail.destinationPosition = destinationPostion;
 
@@ -523,66 +506,30 @@
 #pragma mark - cloud search delegate
 
 -(void)LocalSearch{
-//    BMKCloudLocalSearchInfo *cloudLocalSearch = [[BMKCloudLocalSearchInfo alloc] init];
-//    cloudLocalSearch.ak = @"ASFFfRDOzCBZ4kqSLwOmsCvh";
-//    cloudLocalSearch.geoTableId = 113463;
-//    cloudLocalSearch.pageIndex = 0;
-//    cloudLocalSearch.pageSize = 10;
-////    cloudLocalSearch.region = @"成都市";
-////    cloudLocalSearch.keyword = @"天安门";
-//    BOOL flag = [_cloudSearch localSearchWithSearchInfo:cloudLocalSearch];
-//    if(flag){
-//        NSLog(@"本地云检索发送成功");
-//    }else{
-//        NSLog(@"本地云检索发送失败");
-//    }
-//    
-    BMKCloudNearbySearchInfo *cloudNearbySearch = [[BMKCloudNearbySearchInfo alloc]  init];
-    cloudNearbySearch.ak = @"ASFFfRDOzCBZ4kqSLwOmsCvh";
-    cloudNearbySearch.geoTableId = 113463;
-    cloudNearbySearch.location = [NSString stringWithFormat:@"(%f,%f)",self.currentUserLocation.location.coordinate.longitude,self.currentUserLocation.location.coordinate.latitude];
-    cloudNearbySearch.radius = 2000.f;
-    BOOL flag = [_cloudSearch nearbySearchWithSearchInfo:cloudNearbySearch];
-    if (flag) {
-        NSLog(@"附近云检索发送成功");
-    } else{
-        NSLog(@"附近云检索发送失败");
+    NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
+    [NetworkingManager fetchNearbyOrdersByAK:@"GZXZUzmp3ZXLWYfEvQN6rbOr" geoTableId:114231 location:location radius:1000 tags:@"Marcoli" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *results = responseObject;
 
-    }
-    ///检索的中心点，逗号分隔的经纬度(116.4321,38.76623),string(25)
-//    @property (nonatomic, strong) NSString *location;
-    
-    
-//    cloudNearbySearch.location = @"()"
-//    BOOL flag = [_cloudSearch localSearchWithSearchInfo:cloudNearbySearch];
-//    if(flag){
-//        NSLog(@"本地云检索发送成功");
-//    }else{
-//        NSLog(@"本地云检索发送失败");
-//    }
-    
-    
-}
-
-//返回云检索结果回调
-- (void)onGetCloudPoiResult:(NSArray*)poiResultList searchType:(int)type errorCode:(int)error{
-    // 清楚屏幕中所有的annotation
-    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
-    [_mapView removeAnnotations:array];
-    if (error == BMKErrorOk) {
-        BMKCloudPOIList* result = [poiResultList objectAtIndex:0];
-        for (int i = 0; i < result.POIs.count; i++) {
-            BMKCloudPOIInfo* poi = [result.POIs objectAtIndex:i];
-            CustomPointAnnotation* item = [[CustomPointAnnotation alloc] init];
-            CLLocationCoordinate2D pt = (CLLocationCoordinate2D){ poi.longitude,poi.latitude};
-            item.coordinate = pt;
-//            item.title = poi.title;
-            [_mapView addAnnotation:item];
+        self.Orders = results[@"contents"];
+        NSLog(@"Order: %@",self.Orders);
+        
+        //如果有订单还未完成
+        self.isOrderGoing = [AccountManager existOngoingOrder];
+        if (!self.isOrderGoing) {
+            [self addPointAnnotations];
+            [self noteOngoingOrderView:NO];
+            
+        } else {
+            [self removeAnnotions];
+            [self noteOngoingOrderView:YES];
         }
-    } else {
-        NSLog(@"error ==%d",error);
-    }
+
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
+
 
 
 #pragma mark - dealloc

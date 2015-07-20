@@ -342,6 +342,18 @@
 }
 
 
++(void)fetchNearbyOrdersByAK:(NSString *)ak geoTableId:(NSInteger)geoTableId location:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.map.baidu.com/geosearch/v3/nearby" parameters:@{@"ak":ak,
+                                                                              @"geotable_id":@(geoTableId),
+                                                                              @"location":location,
+                                                                              @"radius":@(radius),
+                                                                              @"tags":tags,
+                                                                              @"pageIndex":@(pageIndex),
+                                                                              @"pageSize":@(pageSize)
+                                                                              } success:completionHandler failure:failHandler];
+}
+
 
 
 @end

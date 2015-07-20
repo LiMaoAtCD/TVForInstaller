@@ -42,7 +42,6 @@
         NSLog(@"success");
     } fail:^{
         NSLog(@"fail");
-        
     }];
 }
 

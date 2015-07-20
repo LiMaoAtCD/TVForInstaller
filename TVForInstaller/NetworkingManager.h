@@ -292,4 +292,21 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)selectAppToInstall:(NSString*)apkurl ipaddress:(NSString*)IPAddress WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+
+/**
+ *  百度POI云检索
+ *
+ *  @param ak                app key
+ *  @param geoTableId        表名
+ *  @param location          地址
+ *  @param radius            半径
+ *  @param tags              关键字
+ *  @param pageIndex         索引
+ *  @param pageSize          个数
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchNearbyOrdersByAK:(NSString *)ak geoTableId:(NSInteger)geoTableId location:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 @end
