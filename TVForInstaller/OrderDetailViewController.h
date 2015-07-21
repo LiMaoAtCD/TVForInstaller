@@ -10,6 +10,12 @@
 #import "BNCoreServices.h"
 
 
+@protocol DidConfirmOrderDelegate <NSObject>
+
+-(void)didConfirmOrderFrom:(BNPosition *)originalAddress to:(BNPosition*)destinationAddress;
+
+@end
+
 typedef enum ServiceType: NSUInteger {
     TV,
     BROADBAND
@@ -31,5 +37,7 @@ typedef enum ServiceType: NSUInteger {
 @property (nonatomic, strong) BNPosition *destinationPosition;
 
 @property (nonatomic, strong) NSDictionary *info;
+
+@property (nonatomic,weak) id<DidConfirmOrderDelegate> delegate;
 
 @end
