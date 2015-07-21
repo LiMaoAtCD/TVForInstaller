@@ -160,7 +160,7 @@
     if (!ret) {
         NSLog(@"manager start failed");
     }
-    [BNCoreServices_Instance initServices:@"8Nep3BNORZ9DaTyU0Cp5GUnn"];
+    [BNCoreServices_Instance initServices:@"ASFFfRDOzCBZ4kqSLwOmsCvh"];
 //    [BNCoreServices_Instance startServicesAsyn:^{
 //        NSLog(@"success");
 //    } fail:^{
