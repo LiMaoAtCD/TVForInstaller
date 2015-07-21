@@ -8,6 +8,7 @@ target 'TVForInstaller' do
     pod "HMSegmentedControl"
 	pod 'JGProgressHUD'
 	pod 'MJRefresh'
+    pod 'ZXingObjC', '~> 3.0'
 
 
 end

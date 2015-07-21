@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F90D34BB19C12B4A249D9366"
+               BlueprintIdentifier = "6B323C3FB48F13D603667726"
                BuildableName = "libPods-TVForInstaller.a"
                BlueprintName = "Pods-TVForInstaller"
                ReferencedContainer = "container:Pods.xcodeproj">

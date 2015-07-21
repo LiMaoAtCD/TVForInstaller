@@ -27,6 +27,9 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
+  - ZXingObjC (3.1.0):
+    - ZXingObjC/All (= 3.1.0)
+  - ZXingObjC/All (3.1.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -35,6 +38,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - MJRefresh
   - SDWebImage
+  - ZXingObjC (~> 3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
@@ -43,5 +47,6 @@ SPEC CHECKSUMS:
   JGProgressHUD: 151e8fcfdaa9ee1fb8370837a5ac1222efd3f2d3
   MJRefresh: 2eaa3fd8f67fbb86497840fb0167446f7eb61dc7
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
 COCOAPODS: 0.36.3

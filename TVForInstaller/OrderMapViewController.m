@@ -138,18 +138,7 @@
     }
     
     //获取数据
-    
-//    self.Orders = [ @[@{@"latitude":@30.576,@"longitude":@104.069,@"name":@"李敏",@"address":@"高新区环球中心乐天百货旁边LOL工作室0",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00001",@"telephone":@"13513833324"},
-//                      @{@"latitude":@30.578,@"longitude":@104.071,@"name":@"董帅",@"address":@"高新区环球中心乐天百货旁边LOL工作室1",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00002",@"telephone":@"13513833324"},
-//                      
-//                      @{@"latitude":@30.574,@"longitude":@104.063,@"name":@"杨敏",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00003",@"telephone":@"13513833324"},
-//                      
-//                      @{@"latitude":@30.579,@"longitude":@104.065,@"name":@"罗祖根",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@0,@"running":@"SSA00004",@"telephone":@"13513833324"},
-//                      
-//                      @{@"latitude":@30.577,@"longitude":@104.069,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"},
-//                      @{@"latitude":@30.590,@"longitude":@104.071,@"name":@"于波",@"address":@"高新区环球中心乐天百货旁边",@"subscribe":@"01-01 09:00 - 10:10",@"type":@1,@"running":@"SSA00005",@"telephone":@"13513833324"}
-//                      
-//                      ] mutableCopy];
+
     
     //如果有订单还未完成
     self.isOrderGoing = [AccountManager existOngoingOrder];
@@ -521,7 +510,7 @@
             self.isFetchOrder = YES;
             
             NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-            [NetworkingManager fetchNearbyOrdersByAK:@"ASFFfRDOzCBZ4kqSLwOmsCvh" geoTableId:113463 location:location radius:2000 tags:@" " pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [NetworkingManager fetchNearbyOrdersByAK:@"ASFFfRDOzCBZ4kqSLwOmsCvh" geoTableId:113463 location:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *results = responseObject;
                 
                 self.Orders = results[@"contents"];
