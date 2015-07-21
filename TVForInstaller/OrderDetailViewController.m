@@ -41,6 +41,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+
     [BNCoreServices_Instance startServicesAsyn:^{
         NSLog(@"success");
     } fail:^{
@@ -86,11 +87,11 @@
     
 
     [OngoingOrder setOngoingOrderName:self.info[@"name"]];
-    [OngoingOrder setOngoingOrderDate:self.info[@"subscribe"]];
-    [OngoingOrder setOngoingOrderType:[self.info[@"servicetype"] integerValue]];
-    [OngoingOrder setOngoingOrderAddress:self.info[@"detailAddress"]];
-    [OngoingOrder setOngoingOrderTelephone:self.info[@"telephone"]];
-    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"running"]];
+    [OngoingOrder setOngoingOrderDate:self.info[@"order_time"]];
+    [OngoingOrder setOngoingOrderType:[self.info[@"order_type"] integerValue]];
+    [OngoingOrder setOngoingOrderAddress:self.info[@"home_address"]];
+    [OngoingOrder setOngoingOrderTelephone:self.info[@"phone"]];
+    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"order_id"]];
     
     
     
@@ -120,6 +121,7 @@
 }
 
 -(void)configOrderContent{
+    
     if (self.type == TV) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{

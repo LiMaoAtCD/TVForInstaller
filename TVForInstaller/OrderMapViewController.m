@@ -411,7 +411,7 @@
     OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
     NSDictionary *detailInfo = self.Orders[view.tag];
     
-    if ([detailInfo[@"type"] integerValue] == 0) {
+    if ([detailInfo[@"order_type"] integerValue] == 0) {
         detail.type = TV;
     } else{
         detail.type = BROADBAND;
@@ -444,7 +444,7 @@
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{
     
-    if (mapView.zoomLevel < 12) {
+    if (mapView.zoomLevel < 11) {
         //缩放等级太小，隐藏订单
         [mapView removeAnnotations:mapView.annotations];
     } else{

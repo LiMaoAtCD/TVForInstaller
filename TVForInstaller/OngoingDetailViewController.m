@@ -12,7 +12,12 @@
 
 #import "OngoingOrder.h"
 
-@interface OngoingDetailViewController ()<UITextFieldDelegate>
+#import <ZXingObjC/ZXingObjC.h>
+#import "QRCodeViewController.h"
+#import "QRCodeAnimator.h"
+#import "QRCodeDismissAnimator.h"
+
+@interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
 
@@ -110,7 +115,45 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)createOrder:(id)sender {
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"QRCodeSegue"]) {
+        
+        NSError *error = nil;
+        CGImageRef qrImage = nil;
+        ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+        ZXBitMatrix* result = [writer encode:@"A string to encode"
+                                      format:kBarcodeFormatQRCode
+                                       width:500
+                                      height:500
+                                       error:&error];
+        if (result) {
+            
+            qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+            
+            // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
+        } else {
+            
+            NSString *errorMessage = [error localizedDescription];
+        }
+        
+
+        QRCodeViewController *qrcodeVC = segue.destinationViewController;
+        qrcodeVC.transitioningDelegate = self;
+        qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+        qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+    }
 }
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    return [[QRCodeAnimator alloc] init];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return [[QRCodeDismissAnimator alloc] init];
+
+}
+
 
 @end

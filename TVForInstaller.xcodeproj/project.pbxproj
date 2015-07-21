@@ -60,6 +60,9 @@
 		877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 877338101B11B3D000C2DDC4 /* storehouse.plist */; };
 		877404251B5B96A80055D2D6 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */; };
 		877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 877404271B5CE1640055D2D6 /* OngoingOrder.m */; };
+		8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774042A1B5E31810055D2D6 /* QRCodeViewController.m */; };
+		8774042E1B5E34A90055D2D6 /* QRCodeAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774042D1B5E34A90055D2D6 /* QRCodeAnimator.m */; };
+		877404311B5E3DC70055D2D6 /* QRCodeDismissAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 877404301B5E3DC70055D2D6 /* QRCodeDismissAnimator.m */; };
 		877870511B563F4A0046650C /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870501B563F4A0046650C /* BaiduMapAPI.framework */; };
 		877870531B563F640046650C /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 877870521B563F640046650C /* mapapi.bundle */; };
 		877870551B563F750046650C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877870541B563F750046650C /* Security.framework */; };
@@ -227,6 +230,12 @@
 		877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
 		877404261B5CE1640055D2D6 /* OngoingOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingOrder.h; sourceTree = "<group>"; };
 		877404271B5CE1640055D2D6 /* OngoingOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingOrder.m; sourceTree = "<group>"; };
+		877404291B5E31810055D2D6 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		8774042A1B5E31810055D2D6 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		8774042C1B5E34A90055D2D6 /* QRCodeAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeAnimator.h; sourceTree = "<group>"; };
+		8774042D1B5E34A90055D2D6 /* QRCodeAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeAnimator.m; sourceTree = "<group>"; };
+		8774042F1B5E3DC70055D2D6 /* QRCodeDismissAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeDismissAnimator.h; sourceTree = "<group>"; };
+		877404301B5E3DC70055D2D6 /* QRCodeDismissAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeDismissAnimator.m; sourceTree = "<group>"; };
 		877870501B563F4A0046650C /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		877870521B563F640046650C /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		877870541B563F750046650C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -622,6 +631,12 @@
 				877870691B56536E0046650C /* MyOrderViewController.m */,
 				87815FED1B57969A0028022D /* OngoingDetailViewController.h */,
 				87815FEE1B57969A0028022D /* OngoingDetailViewController.m */,
+				877404291B5E31810055D2D6 /* QRCodeViewController.h */,
+				8774042A1B5E31810055D2D6 /* QRCodeViewController.m */,
+				8774042C1B5E34A90055D2D6 /* QRCodeAnimator.h */,
+				8774042D1B5E34A90055D2D6 /* QRCodeAnimator.m */,
+				8774042F1B5E3DC70055D2D6 /* QRCodeDismissAnimator.h */,
+				877404301B5E3DC70055D2D6 /* QRCodeDismissAnimator.m */,
 			);
 			name = MyOrder;
 			sourceTree = "<group>";
@@ -1049,10 +1064,12 @@
 				87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */,
 				87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
+				8774042E1B5E34A90055D2D6 /* QRCodeAnimator.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				872A61AC1B5B519900D62439 /* CFilteringJSONSerializer.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
+				877404311B5E3DC70055D2D6 /* QRCodeDismissAnimator.m in Sources */,
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
 				87B400BE1B16ADD100CC1C95 /* ZhijiaTableViewCell.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
@@ -1088,6 +1105,7 @@
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				872A61AD1B5B519900D62439 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				87D274801B09DE7200189C33 /* RKSwipeBetweenViewControllers.m in Sources */,
+				8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 				87B400D21B16EE9700CC1C95 /* Animator.m in Sources */,
 				872A61B81B5B519900D62439 /* CSerializedJSONData.m in Sources */,
