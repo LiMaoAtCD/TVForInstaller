@@ -46,6 +46,11 @@ typedef void(^alertBlock)(void);
     [self configuretextfields];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+    [super viewWillAppear:animated];
+}
+
 -(void)dismissKeyboard:(id)sender{
     
     [self.cellphoneTF resignFirstResponder];
@@ -77,40 +82,48 @@ typedef void(^alertBlock)(void);
 
 - (IBAction)getVerifyCode:(id)sender {
     
-    _count = 60;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerCount:) userInfo:nil repeats:YES];
-    [self.timer fire];
-    
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"获取验证码中";
-    [hud showInView:self.view animated:YES];
-    
-    
-    [NetworkingManager fetchForgetPasswordVerifyCode:self.cellphone withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([responseObject[@"success"] integerValue] == 0) {
-            //error
+    if (![ComminUtility checkTel:self.cellphone]) {
+        [self alertWithMessage:@"手机号码不合法" withCompletionHandler:^{
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.indicatorView = nil;
-                hud.textLabel.text = responseObject[@"msg"];
+        }];
+        return;
+    } else {
+        _count = 60;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerCount:) userInfo:nil repeats:YES];
+        [self.timer fire];
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text = @"获取验证码中";
+        [hud showInView:self.view animated:YES];
+        
+        
+        [NetworkingManager fetchForgetPasswordVerifyCode:self.cellphone withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"success"] integerValue] == 0) {
+                //error
                 
-                [hud dismissAfterDelay:2.0];
-            });
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.indicatorView = nil;
+                    hud.textLabel.text = responseObject[@"msg"];
+                    
+                    [hud dismissAfterDelay:2.0];
+                });
+                
+                
+            } else{
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    hud.textLabel.text =@"验证码获取成功";
+                    hud.indicatorView = nil;
+                    [hud dismissAfterDelay:2.0];
+                });
+                
+            }
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [hud dismiss];
             
-            
-        } else{
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text =@"验证码获取成功";
-                hud.indicatorView = nil;
-                [hud dismissAfterDelay:2.0];
-            });
-            
-        }
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismiss];
-
-    }];
+        }];
+    }
+   
    
 }
 
@@ -161,10 +174,10 @@ typedef void(^alertBlock)(void);
 
 -(void)configuretextfields{
     
-    self.cellphoneTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"手机号码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-    self.passwordTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-    self.confirmTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-    self.verifyTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.cellphoneTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"手机号码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.passwordTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.confirmTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.verifyTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
 }
 
 

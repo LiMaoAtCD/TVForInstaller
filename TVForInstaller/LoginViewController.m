@@ -41,10 +41,16 @@
     
     self.navigationItem.leftBarButtonItem = nil;
     
-    self.CellularTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"用户名" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
-    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.CellularTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+//    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
 
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    [super viewWillAppear:animated];
+}
+
 
 -(void)dismissKeyboard:(id)sender{
     

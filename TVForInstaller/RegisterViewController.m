@@ -56,6 +56,11 @@ typedef void(^alertBlock)(void);
     [self registerForKeyboardNotifications];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+    [super viewWillAppear:animated];
+}
+
 
 - (void)registerForKeyboardNotifications
 {
@@ -208,55 +213,63 @@ typedef void(^alertBlock)(void);
 
 - (IBAction)getVerifyCode:(id)sender {
     
-    self.count = 60;
-    self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    self.hud.textLabel.text = @"获取验证码";
-    [self.hud showInView:self.view];
-
-    self.timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(count:) userInfo:nil repeats:YES];
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        hud.textLabel.text = @"验证码获取成功";
-//        hud.indicatorView = nil;
-//        [hud dismissAfterDelay:1.0];
-//        
-//        [self getcode:YES];
-//        
-//    });
-//
-    
-    if (self.cellphoneNumber != nil&&
-        ![self.cellphoneNumber isEqualToString:@""]) {
-        
-        [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            if ([responseObject[@"success"] integerValue] == 0) {
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   
-                    self.hud.textLabel.text =responseObject[@"msg"];
-                    self.hud.indicatorView = nil;
-                    [self.hud dismissAfterDelay:2.0];
-                });
-               
-            }else{
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.hud.textLabel.text = @"验证码获取成功";
-                    self.hud.indicatorView = nil;
-                    [self.hud dismissAfterDelay:2.0];
-
-                });
-                
-            }
-            
-            
-            
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.hud dismissAnimated:YES];
-            
+    if (![ComminUtility checkTel:self.cellphoneNumber]) {
+        [self alertWithMessage:@"手机号码不合法" withCompletionHandler:^{
         }];
+        return;
+    } else {
+    
+        self.count = 60;
+        self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        self.hud.textLabel.text = @"获取验证码";
+        [self.hud showInView:self.view];
+        
+        self.timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(count:) userInfo:nil repeats:YES];
+        //
+        //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //
+        //        hud.textLabel.text = @"验证码获取成功";
+        //        hud.indicatorView = nil;
+        //        [hud dismissAfterDelay:1.0];
+        //
+        //        [self getcode:YES];
+        //
+        //    });
+        //
+        
+        if (self.cellphoneNumber != nil&&
+            ![self.cellphoneNumber isEqualToString:@""]) {
+            
+            [NetworkingManager fetchRegisterVerifyCode:self.cellphoneNumber withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if ([responseObject[@"success"] integerValue] == 0) {
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        self.hud.textLabel.text =responseObject[@"msg"];
+                        self.hud.indicatorView = nil;
+                        [self.hud dismissAfterDelay:2.0];
+                    });
+                    
+                }else{
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        self.hud.textLabel.text = @"验证码获取成功";
+                        self.hud.indicatorView = nil;
+                        [self.hud dismissAfterDelay:2.0];
+                        
+                    });
+                    
+                }
+                
+                
+                
+            } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self.hud dismissAnimated:YES];
+                
+            }];
+        }
+
     }
     
     
