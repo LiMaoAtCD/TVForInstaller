@@ -80,6 +80,8 @@
  */
 @property (nonatomic, strong) UIView *orderGoingNoteView;
 
+@property (nonatomic, assign) BOOL isSelectedPaoPaoView;
+
 
 @end
 
@@ -319,10 +321,13 @@
     //先查看订单状态是否已被咱用
     NSDictionary *detailInfo = self.Orders[view.tag];
     
-    [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *poi = responseObject[@"poi"];
-        if ([poi[@"order_state"] integerValue] == 0) {
-            //如果没有被占用，就占用
+    //如果没有点击过泡泡
+    if (!self.isSelectedPaoPaoView) {
+        self.isSelectedPaoPaoView = YES;
+        [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *poi = responseObject[@"poi"];
+            if ([poi[@"order_state"] integerValue] == 0) {
+                //如果没有被占用，就占用
                 [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
                     NSLog(@"responseObject %@",responseObject);
@@ -332,18 +337,6 @@
                         
                         OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
                         
-//                        if ([detailInfo[@"order_type"] integerValue] == 0) {
-//                            detail.type = TV;
-//                        } else{
-//                            detail.type = BROADBAND;
-//                        }
-//                        
-//                        detail.name = detailInfo[@"name"];
-//                        detail.telphone = detailInfo[@"phone"];
-//                        detail.address = detailInfo[@"home_address"];
-//                        detail.runningNumber = detailInfo[@"order_id"];
-//                        detail.date = detailInfo[@"order_time"];
-                        //    detail.originalPostion = detailInfo[@"la"]
                         BNPosition *originPostion = [[BNPosition alloc] init];
                         originPostion.x = self.currentUserLocation.location.coordinate.longitude;
                         originPostion.y = self.currentUserLocation.location.coordinate.latitude;
@@ -356,27 +349,46 @@
                         
                         detail.destinationPosition = destinationPostion;
                         detail.info = detailInfo;
-                                                
+                        
                         detail.delegate = self;
                         detail.hidesBottomBarWhenPushed = YES;
                         [self.navigationController pushViewController:detail animated:YES];
+                        self.isSelectedPaoPaoView = NO;
+
                     }
-
-                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                     
-                }];
-               
-        
-        } else if([poi[@"order_state"] integerValue] == 1){
-            //TODO该订单已被占用
-            
-            
-        }
-        
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
+                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    self.isSelectedPaoPaoView = NO;
 
+                }];
+                
+                
+            } else if([poi[@"order_state"] integerValue] == 1){
+                //TODO该订单已被占用
+                [self alertWithMessage:@"此订单被其他工程师占用中，请稍后再试" withCompletionHandler:^{
+                    self.isSelectedPaoPaoView = NO;
+
+                }];
+                
+            }
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+            hud.textLabel.text = @"网络不稳定,请稍后再试";
+            hud.indicatorView = nil;
+            
+            [hud showInView:self.view];
+            [hud dismissAfterDelay:1.0];
+            
+            hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){[hud dismiss];};
+            hud.tapOutsideBlock = ^(JGProgressHUD *hud){[hud dismiss];};
+            self.isSelectedPaoPaoView = NO;
+
+        }];
+
+    }
+    
+    
     
     
     
@@ -462,12 +474,7 @@
                         //正在进行中的订单
                         NSLog(@"正在执行");
                         [OngoingOrder  setExistOngoingOrder:YES];
-//                        [OngoingOrder setOngoingOrderDate:temp[@"order_time"]];
-//                        [OngoingOrder setOngoingOrderName:temp[@"name"]];
-//                        [OngoingOrder setOngoingOrderType:[temp[@"order_type"] integerValue]];
-//                        [OngoingOrder setOngoingOrderAddress:temp[@"home_address"]];
-//                        [OngoingOrder setOngoingOrderTelephone:temp[@"phone"]];
-//                        [OngoingOrder setOngoingOrderRunningNumber:temp[@"order_id"]];
+
                         [OngoingOrder setOrder:temp];
                         
                     }

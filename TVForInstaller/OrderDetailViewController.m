@@ -74,11 +74,9 @@
 
 - (IBAction)call:(id)sender {
     
-     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.telphone preferredStyle:UIAlertControllerStyleAlert];
+     UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.info[@"phone"] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //TODO: 拨打电话
-        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:13568927473"]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.telphone]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.info[@"phone"]]]];
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
