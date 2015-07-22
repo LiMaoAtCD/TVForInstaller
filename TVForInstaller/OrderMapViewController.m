@@ -314,7 +314,7 @@
     
     NSString *AnnotationViewID = @"ImageAnnotation";
     CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-    
+
     if (type == TV) {
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_tv_button"];
 

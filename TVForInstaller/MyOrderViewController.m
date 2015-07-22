@@ -160,7 +160,6 @@
  */
 -(void)clickForKillingOrder:(UIButton *)button{
     
-//    [NetworkingManager ModifyOrderStateByID:@"" latitude:<#(double)#> longitude:<#(double)#> order_state:<#(NSString *)#> WithcompletionHandler:<#^(AFHTTPRequestOperation *operation, id responseObject)completionHandler#> failHandler:<#^(AFHTTPRequestOperation *operation, NSError *error)failHandler#>]
     NSDictionary *order =[OngoingOrder onGoingOrder];
     [OngoingOrder setExistOngoingOrder:NO];
 

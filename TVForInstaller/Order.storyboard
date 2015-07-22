@@ -1253,8 +1253,7 @@
                                                 <exclude reference="sYn-pa-pPh"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="178" y="85" width="108" height="15"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <include reference="sYn-pa-pPh"/>
                                             </mask>
@@ -1797,6 +1796,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ctj-yd-RnF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="64P-VC-y9C">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYR-xj-mFo">
@@ -1899,12 +1899,12 @@
                                     <mask key="constraints">
                                         <exclude reference="2HB-U9-RgX"/>
                                         <exclude reference="bYy-Ym-J8e"/>
-                                        <exclude reference="eRw-cD-j3Q"/>
-                                        <exclude reference="yND-6m-tx4"/>
                                         <exclude reference="sb2-Xx-5NT"/>
                                         <exclude reference="vE8-W1-DcT"/>
                                         <exclude reference="1vK-T3-kSL"/>
                                         <exclude reference="YvK-Yj-it9"/>
+                                        <exclude reference="eRw-cD-j3Q"/>
+                                        <exclude reference="yND-6m-tx4"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1916,12 +1916,12 @@
                                     <mask key="constraints">
                                         <include reference="2HB-U9-RgX"/>
                                         <include reference="bYy-Ym-J8e"/>
-                                        <include reference="eRw-cD-j3Q"/>
-                                        <include reference="yND-6m-tx4"/>
                                         <include reference="sb2-Xx-5NT"/>
                                         <include reference="vE8-W1-DcT"/>
                                         <include reference="1vK-T3-kSL"/>
                                         <include reference="YvK-Yj-it9"/>
+                                        <include reference="eRw-cD-j3Q"/>
+                                        <include reference="yND-6m-tx4"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1944,13 +1944,13 @@
                                 <exclude reference="qDt-Iz-acr"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="tyU-Jb-R6I"/>
                                 <exclude reference="6aB-KI-54u"/>
                                 <exclude reference="XlN-Pw-J2j"/>
                                 <exclude reference="qOe-kO-Fep"/>
                                 <exclude reference="Iag-NV-6cw"/>
                                 <exclude reference="kET-8J-QOC"/>
                                 <exclude reference="lLt-P2-LEg"/>
-                                <exclude reference="tyU-Jb-R6I"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1959,13 +1959,13 @@
                                 <include reference="qDt-Iz-acr"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="tyU-Jb-R6I"/>
                                 <include reference="6aB-KI-54u"/>
                                 <include reference="XlN-Pw-J2j"/>
                                 <include reference="qOe-kO-Fep"/>
                                 <include reference="Iag-NV-6cw"/>
                                 <include reference="kET-8J-QOC"/>
                                 <include reference="lLt-P2-LEg"/>
-                                <include reference="tyU-Jb-R6I"/>
                             </mask>
                         </variation>
                     </view>

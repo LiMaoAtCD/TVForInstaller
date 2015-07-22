@@ -387,5 +387,9 @@
 
 }
 
++(void)BeginPayForUID:(NSString*)uid byEngineerID:(NSString *)engineer_id totalFee:(NSString *)totalFee WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+}
+
 
 @end

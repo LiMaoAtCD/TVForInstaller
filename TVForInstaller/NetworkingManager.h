@@ -329,4 +329,16 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  */
 +(void)CheckOrderisOccupiedByID:(NSString*)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+/**
+ *  发起支付请求
+ *
+ *  @param uid               百度订单主键
+ *  @param engineer_id       工程师ID
+ *  @param totalFee          费用
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)BeginPayForUID:(NSString*)uid byEngineerID:(NSString *)engineer_id totalFee:(NSString *)totalFee WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 @end

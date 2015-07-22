@@ -17,6 +17,8 @@
 #import "QRCodeAnimator.h"
 #import "QRCodeDismissAnimator.h"
 
+#import "NetworkingManager.h"
+
 @interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -68,12 +70,7 @@
 }
 
 -(void)configOrderInfo{
-    //TODO: 客户资料
-//    if (YES) {
-//        self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-//    } else{
-//        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-//    }
+    
     NSDictionary *order = [OngoingOrder onGoingOrder];
     
     self.nameLabel.text = order[@"name"];
@@ -86,7 +83,6 @@
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-        
     }
 
 }
@@ -107,19 +103,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    if ([self.moneyTextField.text isEqualToString:@""] && [identifier isEqualToString:@"QRCodeSegue"]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"支付金额不可为空" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }];
+        [alert addAction:action];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        return NO;
+    } else{
+        return YES;
+    }
 }
-*/
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"QRCodeSegue"]) {
+        
+        
+        NSDictionary *info = [OngoingOrder onGoingOrder];
+    [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+        
         
         NSError *error = nil;
         CGImageRef qrImage = nil;
@@ -134,6 +146,8 @@
             qrImage = [[ZXImage imageWithMatrix:result] cgimage];
             
             // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
+            
+            
         } else {
             
             NSString *errorMessage = [error localizedDescription];
@@ -143,7 +157,15 @@
         QRCodeViewController *qrcodeVC = segue.destinationViewController;
         qrcodeVC.transitioningDelegate = self;
         qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+        
+        
+        
+        
         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImageWriteToSavedPhotosAlbum(qrcodeVC.image, nil, nil, nil);
+        });
     }
 }
 
