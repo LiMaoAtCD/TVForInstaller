@@ -74,14 +74,15 @@
 //    } else{
 //        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
 //    }
+    NSDictionary *order = [OngoingOrder onGoingOrder];
     
-    self.nameLabel.text = [OngoingOrder ongoingOrderName];
-    self.telphoneLabel.text = [OngoingOrder ongoingOrderTelephone];
-    self.addressLabel.text = [OngoingOrder ongoingOrderAddress];
-    self.runningLabel.text = [OngoingOrder ongoingOrderRunningNumber];
-    self.dateLabel.text = [OngoingOrder ongoingOrderDate];
+    self.nameLabel.text = order[@"name"];
+    self.telphoneLabel.text =  order[@"phone"];
+    self.addressLabel.text =  order[@"home_address"];
+    self.runningLabel.text = order[@"order_id"];
+    self.dateLabel.text = order[@"order_time"];
 
-    if ([OngoingOrder ongoingOrderServiceType] == 0) {
+    if ([order[@"order_type"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];

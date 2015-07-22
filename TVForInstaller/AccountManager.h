@@ -48,8 +48,6 @@
 +(void)setRank:(NSInteger)rank;
 +(NSInteger)getRank;
 
-+(BOOL)existOngoingOrder;
-+(void)setExistOngoingOrder:(BOOL)isExist;
 
 
 

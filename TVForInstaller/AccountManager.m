@@ -160,14 +160,5 @@
 
 
 
-+(BOOL)existOngoingOrder{
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    
-    BOOL islogin = [ud boolForKey:@"Account_Existing_Order"];
-    return islogin;
-}
-+(void)setExistOngoingOrder:(BOOL)isExist{
-    [[NSUserDefaults standardUserDefaults] setBool:isExist forKey:@"Account_Existing_Order"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+
 @end

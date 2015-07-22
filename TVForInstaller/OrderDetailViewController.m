@@ -15,6 +15,8 @@
 
 #import "OngoingOrder.h"
 
+#import "NetworkingManager.h"
+
 @interface OrderDetailViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -52,8 +54,16 @@
 }
 
 -(void)pop{
+    [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject[@"status"] integerValue] == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,29 +93,40 @@
 }
 - (IBAction)confirmOrder:(id)sender {
 //    [self startNavi];
-    [AccountManager setExistOngoingOrder:YES];
     
+    //确认订单，修改状态
+    [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"2" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject[@"status"] integerValue] == 0) {
+            [self setOrderStateAndNoteToNavi];
+        }
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 
-    [OngoingOrder setOngoingOrderName:self.info[@"name"]];
-    [OngoingOrder setOngoingOrderDate:self.info[@"order_time"]];
-    [OngoingOrder setOngoingOrderType:[self.info[@"order_type"] integerValue]];
-    [OngoingOrder setOngoingOrderAddress:self.info[@"home_address"]];
-    [OngoingOrder setOngoingOrderTelephone:self.info[@"phone"]];
-    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"order_id"]];
+}
+
+-(void)setOrderStateAndNoteToNavi{
     
+    [OngoingOrder setExistOngoingOrder:YES];
+    [OngoingOrder setOrder:self.info];
     
+//    [OngoingOrder setOngoingOrderName:self.info[@"name"]];
+//    [OngoingOrder setOngoingOrderDate:self.info[@"order_time"]];
+//    [OngoingOrder setOngoingOrderType:[self.info[@"order_type"] integerValue]];
+//    [OngoingOrder setOngoingOrderAddress:self.info[@"home_address"]];
+//    [OngoingOrder setOngoingOrderTelephone:self.info[@"phone"]];
+//    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"order_id"]];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否开始导航？" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-
-        
+    
         if ([_delegate respondsToSelector:@selector(didConfirmOrderFrom:to:)]) {
-            [self pop];
+            [self.navigationController popViewControllerAnimated:YES];
             [_delegate didConfirmOrderFrom:_originalPostion to:_destinationPosition];
         }
-        
-
     }];
     UIAlertAction *cancel =[UIAlertAction actionWithTitle:@"暂不" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
@@ -116,9 +137,10 @@
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-    
+
 }
+
+
 
 -(void)configOrderContent{
     

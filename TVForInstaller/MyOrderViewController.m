@@ -10,6 +10,7 @@
 #import "CompletedTableViewCell.h"
 #import "OngoingDetailViewController.h"
 #import "AccountManager.h"
+#import "NetworkingManager.h"
 
 #import "OngoingOrder.h"
 
@@ -57,7 +58,7 @@
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
     
-    BOOL isOnGoing = [AccountManager existOngoingOrder];
+    BOOL isOnGoing = [OngoingOrder existOngoingOrder];
     if (!isOnGoing) {
         self.OngoingView.hidden = YES;
         
@@ -67,11 +68,13 @@
         
     } else{
         self.OngoingView.hidden = NO;
-        self.nameLabel.text = [OngoingOrder ongoingOrderName];
-        self.telphoneLabel.text = [OngoingOrder ongoingOrderTelephone];
-        self.addressLabel.text = [OngoingOrder ongoingOrderAddress];
-        self.runningLabel.text = [OngoingOrder ongoingOrderRunningNumber];
-        self.dateLabel.text = [OngoingOrder ongoingOrderDate];
+        
+        NSDictionary *order =[OngoingOrder onGoingOrder];
+        self.nameLabel.text = order[@"name"];
+        self.telphoneLabel.text = order[@"phone"];
+        self.addressLabel.text = order[@"home_address"];
+        self.runningLabel.text = order[@"order_id"];
+        self.dateLabel.text = order[@"order_time"];
 //        
 //        if (self.type == TV) {
 //            self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
@@ -79,7 +82,7 @@
 //            self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
 //        }
         
-        if ([OngoingOrder ongoingOrderServiceType] == 0) {
+        if ([order[@"order_type"] integerValue] == 0) {
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
         } else{
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
@@ -157,21 +160,36 @@
  */
 -(void)clickForKillingOrder:(UIButton *)button{
     
-    self.OngoingView.hidden = YES;
-    
-    [self.view removeConstraint:self.tableViewLayout];
-    self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
-    [self.view addConstraint:self.tableViewLayout];
+//    [NetworkingManager ModifyOrderStateByID:@"" latitude:<#(double)#> longitude:<#(double)#> order_state:<#(NSString *)#> WithcompletionHandler:<#^(AFHTTPRequestOperation *operation, id responseObject)completionHandler#> failHandler:<#^(AFHTTPRequestOperation *operation, NSError *error)failHandler#>]
+    NSDictionary *order =[OngoingOrder onGoingOrder];
+    [OngoingOrder setExistOngoingOrder:NO];
 
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.view layoutIfNeeded];
+    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [AccountManager setExistOngoingOrder:NO];
+        if ([responseObject[@"status"] integerValue] == 0) {
+            self.OngoingView.hidden = YES;
+            
+            [self.view removeConstraint:self.tableViewLayout];
+            self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+            [self.view addConstraint:self.tableViewLayout];
+            
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                [self.view layoutIfNeeded];
+                
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    
+                    
+                }
+            }];
         }
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
     }];
+    
+    
+ 
 }
 
 

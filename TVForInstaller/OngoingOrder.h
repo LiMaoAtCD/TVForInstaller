@@ -10,24 +10,31 @@
 
 @interface OngoingOrder : NSObject
 
+//
+//+(void)setOngoingOrderName:(NSString *)name;
+//+(NSString *)ongoingOrderName;
+//
+//+(void)setOngoingOrderTelephone:(NSString *)telephone;
+//+(NSString *)ongoingOrderTelephone;
+//
+//+(void)setOngoingOrderAddress:(NSString *)address;
+//+(NSString *)ongoingOrderAddress;
+//
+//+(void)setOngoingOrderRunningNumber:(NSString *)runningNumber;
+//+(NSString *)ongoingOrderRunningNumber;
+//
+//
+//+(void)setOngoingOrderDate:(NSString *)date;
+//+(NSString *)ongoingOrderDate;
+//
+//+(void)setOngoingOrderType:(NSInteger)serviceType;
+//+(NSInteger)ongoingOrderServiceType;
+//
++(void)setOrder:(NSDictionary *)order;
++(NSDictionary *)onGoingOrder;
 
-+(void)setOngoingOrderName:(NSString *)name;
-+(NSString *)ongoingOrderName;
++(BOOL)existOngoingOrder;
++(void)setExistOngoingOrder:(BOOL)isExist;
 
-+(void)setOngoingOrderTelephone:(NSString *)telephone;
-+(NSString *)ongoingOrderTelephone;
-
-+(void)setOngoingOrderAddress:(NSString *)address;
-+(NSString *)ongoingOrderAddress;
-
-+(void)setOngoingOrderRunningNumber:(NSString *)runningNumber;
-+(NSString *)ongoingOrderRunningNumber;
-
-
-+(void)setOngoingOrderDate:(NSString *)date;
-+(NSString *)ongoingOrderDate;
-
-+(void)setOngoingOrderType:(NSInteger)serviceType;
-+(NSInteger)ongoingOrderServiceType;
 
 @end

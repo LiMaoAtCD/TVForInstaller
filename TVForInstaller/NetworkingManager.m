@@ -17,6 +17,9 @@
 //#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
 //#define kServer2 @"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService"
 
+#define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
+#define kBaiduGeoTableID 113463
+
 
 @implementation NetworkingManager
 
@@ -342,10 +345,10 @@
 }
 
 
-+(void)fetchNearbyOrdersByAK:(NSString *)ak geoTableId:(NSInteger)geoTableId location:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
++(void)fetchNearbyOrdersByLocation:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
      AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://api.map.baidu.com/geosearch/v3/nearby" parameters:@{@"ak":ak,
-                                                                              @"geotable_id":@(geoTableId),
+    [manager GET:@"http://api.map.baidu.com/geosearch/v3/nearby" parameters:@{@"ak":kBaiduAK,
+                                                                              @"geotable_id":@(kBaiduGeoTableID),
                                                                               @"location":location,
                                                                               @"radius":@(radius),
                                                                               @"tags":tags,
@@ -354,6 +357,35 @@
                                                                               } success:completionHandler failure:failHandler];
 }
 
+
++(void)ModifyOrderStateByID:(NSString *)ID latitude:(double)latitude longitude:(double)longitude order_state:(NSString*)order_state WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:@"http://api.map.baidu.com/geodata/v3/poi/update" parameters:@{
+                                                                                @"id":ID,
+                                                                                @"latitude":@(latitude),
+                                                                                @"longitude":@(longitude),
+                                                                                @"coord_type":@3,
+                                                                                @"ak":kBaiduAK,
+                                                                                @"geotable_id":@(kBaiduGeoTableID),
+                                                                                @"order_state":order_state,
+                                                                                @"engineer_id":[AccountManager getCellphoneNumber]
+                                                                                } success:completionHandler failure:failHandler];
+}
+
+
+
++(void)CheckOrderisOccupiedByID:(NSString*)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/detail" parameters:@{@"ak":kBaiduAK,
+                                                                              @"geotable_id":@(kBaiduGeoTableID),
+                                                                              @"id":ID
+                                                                              } success:completionHandler failure:failHandler];
+
+}
 
 
 @end

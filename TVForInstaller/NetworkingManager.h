@@ -297,8 +297,6 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
 /**
  *  百度POI云检索
  *
- *  @param ak                app key
- *  @param geoTableId        表名
  *  @param location          地址
  *  @param radius            半径
  *  @param tags              关键字
@@ -307,6 +305,28 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param completionHandler
  *  @param failHandler
  */
-+(void)fetchNearbyOrdersByAK:(NSString *)ak geoTableId:(NSInteger)geoTableId location:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
++(void)fetchNearbyOrdersByLocation:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  百度占用订单&取消咱用
+ *
+ *  @param ID                占用订单ID
+ *  @param latitude          纬度
+ *  @param longitude         经度
+ *  @param order_state       修改订单状态
+ *  @param completionHandler
+ *  @param failHandler       
+ */
++(void)ModifyOrderStateByID:(NSString *)ID latitude:(double)latitude longitude:(double)longitude order_state:(NSString*)order_state WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+/**
+ *  检查当前订单是否已被暂用
+ *
+ *  @param ID                ID
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)CheckOrderisOccupiedByID:(NSString*)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 @end

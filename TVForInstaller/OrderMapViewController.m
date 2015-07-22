@@ -12,6 +12,7 @@
 #import "CustomPointAnnotation.h"
 #import "OrderDetailViewController.h"
 #import "AccountManager.h"
+#import "OngoingOrder.h"
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 
@@ -141,7 +142,7 @@
 
     
     //如果有订单还未完成
-    self.isOrderGoing = [AccountManager existOngoingOrder];
+    self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
 //        [self addPointAnnotations];
         [self noteOngoingOrderView:NO];
@@ -305,6 +306,7 @@
     CustomPointAnnotation *temp_annotation = (CustomPointAnnotation *)annotation;
     
     NSDictionary *data = self.Orders[temp_annotation.tag];
+    
     NSString *name = data[@"name"];
     NSString *address = data[@"home_address"];
     NSString *subscribe = data[@"order_time"];
@@ -312,6 +314,7 @@
     
     NSString *AnnotationViewID = @"ImageAnnotation";
     CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    
     if (type == TV) {
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_tv_button"];
 
@@ -320,7 +323,6 @@
 
     }
 
-    
     
     BMKActionPaopaoView *paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:name address:address subscribeDate:subscribe orderType:type]];
     annotationView.paopaoView = paopaoView;
@@ -404,43 +406,70 @@
 // 当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
 {
-    NSLog(@"%ld",(long)view.tag);
-    
-    UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
-    
-    OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+    //先查看订单状态是否已被咱用
     NSDictionary *detailInfo = self.Orders[view.tag];
     
-    if ([detailInfo[@"order_type"] integerValue] == 0) {
-        detail.type = TV;
-    } else{
-        detail.type = BROADBAND;
-    }
-    
-    detail.name = detailInfo[@"name"];
-    detail.telphone = detailInfo[@"phone"];
-    detail.address = detailInfo[@"home_address"];
-    detail.runningNumber = detailInfo[@"order_id"];
-    detail.date = detailInfo[@"order_time"];
-//    detail.originalPostion = detailInfo[@"la"]
-    BNPosition *originPostion = [[BNPosition alloc] init];
-    originPostion.x = self.currentUserLocation.location.coordinate.longitude;
-    originPostion.y = self.currentUserLocation.location.coordinate.latitude;
+    [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *poi = responseObject[@"poi"];
+        if ([poi[@"order_state"] integerValue] == 0) {
+            //如果没有被占用，就占用
+                [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSLog(@"responseObject %@",responseObject);
+                    if ([responseObject[@"status"] integerValue] == 0) {
+                        //占用成功，跳到详情界面
+                        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                        
+                        OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+                        
+                        if ([detailInfo[@"order_type"] integerValue] == 0) {
+                            detail.type = TV;
+                        } else{
+                            detail.type = BROADBAND;
+                        }
+                        
+                        detail.name = detailInfo[@"name"];
+                        detail.telphone = detailInfo[@"phone"];
+                        detail.address = detailInfo[@"home_address"];
+                        detail.runningNumber = detailInfo[@"order_id"];
+                        detail.date = detailInfo[@"order_time"];
+                        //    detail.originalPostion = detailInfo[@"la"]
+                        BNPosition *originPostion = [[BNPosition alloc] init];
+                        originPostion.x = self.currentUserLocation.location.coordinate.longitude;
+                        originPostion.y = self.currentUserLocation.location.coordinate.latitude;
+                        
+                        detail.originalPostion = originPostion;
+                        
+                        BNPosition *destinationPostion = [[BNPosition alloc] init];
+                        destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
+                        destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
+                        
+                        detail.destinationPosition = destinationPostion;
+                        detail.info = detailInfo;
+                                                
+                        detail.delegate = self;
+                        detail.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:detail animated:YES];
+                    }
 
-    detail.originalPostion = originPostion;
+                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+               
+        
+        }
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
     
-    BNPosition *destinationPostion = [[BNPosition alloc] init];
-    destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
-    destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
     
-    detail.destinationPosition = destinationPostion;
-    detail.info = detailInfo;
     
-    detail.delegate = self;
-    detail.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detail animated:YES];
+   
     
 }
+
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{
     
@@ -501,7 +530,7 @@
     }
     
     //是否存在进行中订单
-    self.isOrderGoing = [AccountManager existOngoingOrder];
+    self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
         
         
@@ -510,18 +539,45 @@
             self.isFetchOrder = YES;
             
             NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-            [NetworkingManager fetchNearbyOrdersByAK:@"ASFFfRDOzCBZ4kqSLwOmsCvh" geoTableId:113463 location:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [NetworkingManager fetchNearbyOrdersByLocation:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *results = responseObject;
                 
-                self.Orders = results[@"contents"];
+                NSMutableArray *tempOrders = [NSMutableArray array];
+                NSArray *resultArray  = results[@"contents"];
+                [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    NSDictionary *temp = obj;
+                    if ([temp[@"order_state"] integerValue] == 0) {
+                        //空闲订单
+                        [tempOrders addObject:temp];
+                    } else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getCellphoneNumber]]){
+                        //正在进行中的订单
+                        NSLog(@"正在执行");
+                        [OngoingOrder  setExistOngoingOrder:YES];
+//                        [OngoingOrder setOngoingOrderDate:temp[@"order_time"]];
+//                        [OngoingOrder setOngoingOrderName:temp[@"name"]];
+//                        [OngoingOrder setOngoingOrderType:[temp[@"order_type"] integerValue]];
+//                        [OngoingOrder setOngoingOrderAddress:temp[@"home_address"]];
+//                        [OngoingOrder setOngoingOrderTelephone:temp[@"phone"]];
+//                        [OngoingOrder setOngoingOrderRunningNumber:temp[@"order_id"]];
+                        [OngoingOrder setOrder:temp];
+                        
+                    }
+                    
+                }];
                 
-                [self addPointAnnotations];
-                [self noteOngoingOrderView:NO];
-
+                if (![OngoingOrder existOngoingOrder]) {
+                    self.Orders = tempOrders;
+                    [self addPointAnnotations];
+                    [self noteOngoingOrderView:NO];
+                } else{
+                    [self removeAnnotions];
+                    [self noteOngoingOrderView:YES];
+                }
                 self.isFetchOrder = NO;
-                
+
             } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                 self.isFetchOrder = NO;
+
             }];
             
         }
@@ -656,10 +712,7 @@
 -(void)onExitNaviUI:(NSDictionary*)extraInfo
 {
     NSLog(@"退出导航");
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [BNCoreServices_Instance stopServices];
-//    });
-
+    [BNCoreServices_Instance stopServices];
 }
 
 //退出导航声明页面回调

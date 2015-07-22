@@ -10,60 +10,83 @@
 
 @implementation OngoingOrder
 
-+(void)setOngoingOrderName:(NSString *)name{
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"OngoingOrderName"];
+//+(void)setOngoingOrderName:(NSString *)name{
+//    [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"OngoingOrderName"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
+//+(NSString *)ongoingOrderName{
+//   return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderName"];
+//}
+//
+//+(void)setOngoingOrderTelephone:(NSString *)telephone{
+//    [[NSUserDefaults standardUserDefaults] setObject:telephone forKey:@"OngoingOrderTelePhone"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
+//+(NSString *)ongoingOrderTelephone{
+//    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderTelePhone"];
+//}
+//
+//+(void)setOngoingOrderAddress:(NSString *)address{
+//    [[NSUserDefaults standardUserDefaults] setObject:address forKey:@"OngoingOrderAddress"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//}
+//+(NSString *)ongoingOrderAddress{
+//    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderAddress"];
+//
+//}
+//
+//+(void)setOngoingOrderRunningNumber:(NSString *)runningNumber{
+//    [[NSUserDefaults standardUserDefaults] setObject:runningNumber forKey:@"OngoingOrderrunningNumber"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//}
+//+(NSString *)ongoingOrderRunningNumber{
+//    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderrunningNumber"];
+//
+//}
+//
+//
+//+(void)setOngoingOrderDate:(NSString *)date{
+//    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"OngoingOrderdate"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//}
+//+(NSString *)ongoingOrderDate{
+//    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderdate"];
+//
+//}
+//
+//+(void)setOngoingOrderType:(NSInteger)serviceType{
+//    [[NSUserDefaults standardUserDefaults] setInteger:serviceType forKey:@"OngoingOrderServiceType"];
+//
+//}
+//+(NSInteger)ongoingOrderServiceType{
+//    return [[NSUserDefaults standardUserDefaults] integerForKey:@"OngoingOrderServiceType"];
+//}
+
++(void)setOrder:(NSDictionary *)order{
+    [[NSUserDefaults standardUserDefaults] setObject:order forKey:@"OngoingOrder"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+}
++(NSDictionary *)onGoingOrder{
+    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrder"];
+
+}
+
++(void)setExistOngoingOrder:(BOOL)isExist{
+    [[NSUserDefaults standardUserDefaults] setBool:isExist forKey:@"Account_Existing_Order"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSString *)ongoingOrderName{
-   return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderName"];
+
++(BOOL)existOngoingOrder{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    BOOL islogin = [ud boolForKey:@"Account_Existing_Order"];
+    return islogin;
 }
 
-+(void)setOngoingOrderTelephone:(NSString *)telephone{
-    [[NSUserDefaults standardUserDefaults] setObject:telephone forKey:@"OngoingOrderTelePhone"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-+(NSString *)ongoingOrderTelephone{
-    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderTelePhone"];
-}
-
-+(void)setOngoingOrderAddress:(NSString *)address{
-    [[NSUserDefaults standardUserDefaults] setObject:address forKey:@"OngoingOrderAddress"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-}
-+(NSString *)ongoingOrderAddress{
-    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderAddress"];
-
-}
-
-+(void)setOngoingOrderRunningNumber:(NSString *)runningNumber{
-    [[NSUserDefaults standardUserDefaults] setObject:runningNumber forKey:@"OngoingOrderrunningNumber"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-}
-+(NSString *)ongoingOrderRunningNumber{
-    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderrunningNumber"];
-
-}
-
-
-+(void)setOngoingOrderDate:(NSString *)date{
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"OngoingOrderdate"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-}
-+(NSString *)ongoingOrderDate{
-    return  [[NSUserDefaults standardUserDefaults] objectForKey:@"OngoingOrderdate"];
-
-}
-
-+(void)setOngoingOrderType:(NSInteger)serviceType{
-    [[NSUserDefaults standardUserDefaults] setInteger:serviceType forKey:@"OngoingOrderServiceType"];
-
-}
-+(NSInteger)ongoingOrderServiceType{
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"OngoingOrderServiceType"];
-}
 
 
 @end
