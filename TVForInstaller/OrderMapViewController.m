@@ -65,11 +65,6 @@
 @property (nonatomic,strong) BMKUserLocation * currentUserLocation;
 
 /**
- *  当前城市名
- */
-@property (nonatomic, copy) NSString *cityName;
-
-/**
  *  是否有订单进行中
  */
 @property (nonatomic, assign) BOOL isOrderGoing;
@@ -167,27 +162,6 @@
     
 }
 
--(void)getCurrentCityByLatitude:(CGFloat)latitude Longitude:(CGFloat)longitude{
-    
-    CLLocationCoordinate2D pt = (CLLocationCoordinate2D){0, 0};
-//    if (_coordinateXText.text != nil && _coordinateYText.text != nil) {
-//        pt = (CLLocationCoordinate2D){[_coordinateYText.text floatValue], [_coordinateXText.text floatValue]};
-//    }
-//    
-    pt = (CLLocationCoordinate2D){latitude,longitude};
-    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
-    reverseGeocodeSearchOption.reverseGeoPoint = pt;
-    BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
-    if(flag)
-    {
-        NSLog(@"反geo检索发送成功");
-    }
-    else
-    {
-        NSLog(@"反geo检索发送失败");
-    }
-}
-
 #pragma mark - 添加标注
 
 -(void)addPointAnnotations{
@@ -205,16 +179,13 @@
         coor.longitude = [temp[@"location"][0] doubleValue];
         
         annotation.coordinate = coor;
-        //        _pointAnnotation.title = @"test";
-        //        _pointAnnotation.subtitle = @"此Annotation可拖拽!";
+        annotation.title = nil;
         [self.pointAnnotations addObject:annotation];
         
     }];
     
     [_mapView addAnnotations:self.pointAnnotations];
     
-    
-    //
 }
 -(void)removeAnnotions{
     NSArray *annotations= self.mapView.annotations;
@@ -232,69 +203,13 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     [_mapView updateLocationData:userLocation];
-    
-    if (!self.cityName || [self.cityName isEqualToString: @""]) {
-        [self getCurrentCityByLatitude:userLocation.location.coordinate.latitude Longitude:userLocation.location.coordinate.longitude];
-    }
     self.currentUserLocation = userLocation;
     self.currentUserLocation.title = nil;
     [self SearchNearByOrders];
-
 }
 
 - (void)didStopLocatingUser{
-//    NSLog(@"didStopLocatingUser");
     self.isStopLocatingUser = YES;
-}
-
-#pragma mark - BMKGeoCodeSearchDelegate
-
-- (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-{
-    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
-    [_mapView removeAnnotations:array];
-    array = [NSArray arrayWithArray:_mapView.overlays];
-    [_mapView removeOverlays:array];
-    if (error == 0) {
-        BMKPointAnnotation* item = [[BMKPointAnnotation alloc] init];
-        item.coordinate = result.location;
-        item.title = result.address;
-        [_mapView addAnnotation:item];
-        _mapView.centerCoordinate = result.location;
-        NSString* titleStr;
-        NSString* showmeg;
-        
-        titleStr = @"正向地理编码";
-        showmeg = [NSString stringWithFormat:@"经度:%f,纬度:%f",item.coordinate.latitude,item.coordinate.longitude];
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
-        [myAlertView show];
-    }
-}
-
--(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-{
-//    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
-//    [_mapView removeAnnotations:array];
-//    array = [NSArray arrayWithArray:_mapView.overlays];
-//    [_mapView removeOverlays:array];
-    if (error == 0) {
-//        BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-//        item.coordinate = result.location;
-//        item.title = result.address;
-//        [_mapView addAnnotation:item];
-//        _mapView.centerCoordinate = result.location;
-//        NSString* titleStr;
-//        NSString* showmeg;
-//        titleStr = @"反向地理编码";
-//        showmeg = [NSString stringWithFormat:@"%@",item.title];
-        
-//        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
-//        [myAlertView show];
-        self.cityName = result.addressDetail.city;
-
-        
-    }
 }
 
 #pragma mark -
@@ -322,7 +237,6 @@
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_broadband_button"];
 
     }
-
     
     BMKActionPaopaoView *paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:name address:address subscribeDate:subscribe orderType:type]];
     annotationView.paopaoView = paopaoView;
@@ -396,11 +310,7 @@
     [view addSubview:subscribeTimeLabel];
     [view addSubview:accessoryView];
 
-    
-    
-
     return view;
-    
 }
 
 // 当点击annotation view弹出的泡泡时，调用此接口
@@ -422,17 +332,17 @@
                         
                         OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
                         
-                        if ([detailInfo[@"order_type"] integerValue] == 0) {
-                            detail.type = TV;
-                        } else{
-                            detail.type = BROADBAND;
-                        }
-                        
-                        detail.name = detailInfo[@"name"];
-                        detail.telphone = detailInfo[@"phone"];
-                        detail.address = detailInfo[@"home_address"];
-                        detail.runningNumber = detailInfo[@"order_id"];
-                        detail.date = detailInfo[@"order_time"];
+//                        if ([detailInfo[@"order_type"] integerValue] == 0) {
+//                            detail.type = TV;
+//                        } else{
+//                            detail.type = BROADBAND;
+//                        }
+//                        
+//                        detail.name = detailInfo[@"name"];
+//                        detail.telphone = detailInfo[@"phone"];
+//                        detail.address = detailInfo[@"home_address"];
+//                        detail.runningNumber = detailInfo[@"order_id"];
+//                        detail.date = detailInfo[@"order_time"];
                         //    detail.originalPostion = detailInfo[@"la"]
                         BNPosition *originPostion = [[BNPosition alloc] init];
                         originPostion.x = self.currentUserLocation.location.coordinate.longitude;
@@ -457,6 +367,10 @@
                 }];
                
         
+        } else if([poi[@"order_state"] integerValue] == 1){
+            //TODO该订单已被占用
+            
+            
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -494,14 +408,9 @@
     
     if (status == kCLAuthorizationStatusDenied) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"请在设置-隐私-定位里打开极客快服访问权限" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self alertWithMessage:@"请在设置-隐私-定位里打开极客快服访问权限" withCompletionHandler:^{
             
         }];
-        [alert addAction:action];
-        
-        [self presentViewController:alert animated:YES completion:nil];
     } else{
         
         //配置mapView
@@ -637,12 +546,9 @@
 {
     if(![BNCoreServices_Instance isServicesInited])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"引擎尚未初始化完成，请稍后再试"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"我知道了"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        [self alertWithMessage:@"引擎尚未初始化完成，请稍后再试" withCompletionHandler:^{
+            
+        }];
         return NO;
     }
     return YES;
@@ -731,6 +637,24 @@
     if ([self checkServicesInited]) {
         [self startNavigatingFromOriginalAddress:originalAddress ToDestinationAddress:destinationAddress];
     }
+}
+
+#pragma mark - 提示消息方法
+typedef void(^alertBlock)(void);
+
+-(void)alertWithMessage:(NSString*)message withCompletionHandler:(alertBlock)handler{
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if (handler) {
+            handler();
+        }
+    }];
+    
+    [controller addAction:action];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 @end

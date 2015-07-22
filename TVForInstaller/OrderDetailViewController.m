@@ -144,16 +144,31 @@
 
 -(void)configOrderContent{
     
-    if (self.type == TV) {
+    if ([self.info[@"order_type"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+
     }
-    self.nameLabel.text = self.name;
-    self.telphoneLabel.text = self.telphone;
-    self.addressLabel.text = self.address;
-    self.runningNumberLabel.text =self.runningNumber;
-    self.dateLabel.text= self.date;
+    self.nameLabel.text = self.info[@"name"];
+    self.telphoneLabel.text = self.info[@"phone"];
+    self.addressLabel.text = self.info[@"home_address"];
+    self.runningNumberLabel.text =self.info[@"order_id"];
+    self.dateLabel.text = self.info[@"order_time"];
+
+
+//    
+//    if (self.type == TV) {
+//        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+//    } else{
+//        self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+//    }
+//    self.nameLabel.text = self.name;
+//    self.telphoneLabel.text = self.telphone;
+//    self.addressLabel.text = self.address;
+//    self.runningNumberLabel.text =self.runningNumber;
+//    self.dateLabel.text= self.date;
 }
 
 

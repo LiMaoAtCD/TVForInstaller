@@ -15,7 +15,7 @@
 }
 
 @property (nonatomic, assign) NSInteger tag;
-
+@property (nonatomic, strong) NSString * title;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 

@@ -14,5 +14,8 @@
 //-(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate{
 //    self.coordinate = newCoordinate;
 //}
+-(void)setTitle:(NSString *)title{
+    _title = nil;
+}
 
 @end
