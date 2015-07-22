@@ -75,13 +75,6 @@
         self.addressLabel.text = order[@"home_address"];
         self.runningLabel.text = order[@"order_id"];
         self.dateLabel.text = order[@"order_time"];
-//        
-//        if (self.type == TV) {
-//            self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-//        } else{
-//            self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-//        }
-        
         if ([order[@"order_type"] integerValue] == 0) {
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
         } else{
@@ -122,12 +115,13 @@
 #pragma mark -tableView delegate & dataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    return self.orders.count;
     return 5;
+    
 
 }
 
@@ -137,6 +131,25 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 20;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return @"支付中";
+    } else {
+        return @"支付成功";
+
+    }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 98.0;
+}
 #pragma mark - action target
 
 /**

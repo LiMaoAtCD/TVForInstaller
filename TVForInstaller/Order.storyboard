@@ -1689,7 +1689,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="KXS-rj-utu" kind="showDetail" identifier="QRCodeSegue" id="Uxg-Zn-ndA"/>
+                                    <action selector="clickCreatePayOrder:" destination="8Cr-nt-eii" eventType="touchUpInside" id="EyY-zg-2qD"/>
                                 </connections>
                             </button>
                         </subviews>

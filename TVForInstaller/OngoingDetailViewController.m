@@ -103,9 +103,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    if ([self.moneyTextField.text isEqualToString:@""] && [identifier isEqualToString:@"QRCodeSegue"]) {
+- (IBAction)clickCreatePayOrder:(id)sender {
+    if ([self.moneyTextField.text isEqualToString:@""]) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"支付金额不可为空" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -114,60 +113,96 @@
         [alert addAction:action];
         
         [self presentViewController:alert animated:YES completion:nil];
-        
-        return NO;
-    } else{
-        return YES;
-    }
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"QRCodeSegue"]) {
-        
-        
+    }else {
         NSDictionary *info = [OngoingOrder onGoingOrder];
-    [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-        
-        
-        NSError *error = nil;
-        CGImageRef qrImage = nil;
-        ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-        ZXBitMatrix* result = [writer encode:@"A string to encode"
-                                      format:kBarcodeFormatQRCode
-                                       width:500
-                                      height:500
-                                       error:&error];
-        if (result) {
-            
-            qrImage = [[ZXImage imageWithMatrix:result] cgimage];
-            
-            // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
-            
-            
-        } else {
-            
-            NSString *errorMessage = [error localizedDescription];
+        NSString *pay_type = @"0";
+        if (_iswechatPay) {
+            pay_type = @"0";
+        } else{
+            pay_type = @"1";
         }
         
+        [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"success"] integerValue] == 1) {
+                NSString *url = responseObject[@"obj"];
+                NSError *error = nil;
+                CGImageRef qrImage = nil;
+                ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                ZXBitMatrix* result = [writer encode:url
+                                              format:kBarcodeFormatQRCode
+                                               width:500
+                                              height:500
+                                               error:&error];
+                if (result) {
+                    
+                    qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+                    
+                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                    QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                    qrcodeVC.transitioningDelegate = self;
+                    qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                    qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                } else {
+                    
+//                    NSString *errorMessage = [error localizedDescription];
+                }
+                
+                
+            }
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
 
-        QRCodeViewController *qrcodeVC = segue.destinationViewController;
-        qrcodeVC.transitioningDelegate = self;
-        qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
-        
-        
-        
-        
-        qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            UIImageWriteToSavedPhotosAlbum(qrcodeVC.image, nil, nil, nil);
-        });
     }
 }
+
+
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if ([segue.identifier isEqualToString:@"QRCodeSegue"]) {
+//        
+//        
+//        NSDictionary *info = [OngoingOrder onGoingOrder];
+//        
+//        NSString *pay_type = @"0";
+//        if (_iswechatPay) {
+//            pay_type = @"0";
+//        } else{
+//            pay_type = @"1";
+//        }
+//        
+//        [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            if ([responseObject[@"success"] integerValue] == 1) {
+//                NSString *url = responseObject[@"obj"];
+//                NSError *error = nil;
+//                CGImageRef qrImage = nil;
+//                ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+//                ZXBitMatrix* result = [writer encode:url
+//                                              format:kBarcodeFormatQRCode
+//                                               width:500
+//                                              height:500
+//                                               error:&error];
+//                if (result) {
+//                    
+//                    qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+//                    
+//                    QRCodeViewController *qrcodeVC = segue.destinationViewController;
+//                    qrcodeVC.transitioningDelegate = self;
+//                    qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+//                    qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+//                } else {
+//                    
+//                    NSString *errorMessage = [error localizedDescription];
+//                }
+//
+//                
+//            }
+//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            
+//        }];
+//
+//    }
+//}
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     return [[QRCodeAnimator alloc] init];
