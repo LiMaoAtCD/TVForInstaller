@@ -18,7 +18,7 @@
     //    viewController.navigationController.navigationBar.opaque = YES;
     
     [viewController.navigationController.navigationBar setBackgroundImage:[self imageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]] forBarMetrics:UIBarMetricsDefault];
-    [viewController.navigationController.navigationBar setShadowImage:[self shadeImageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]]];
+//    [viewController.navigationController.navigationBar setShadowImage:[self shadeImageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]]];
     [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *image = [UIImage imageNamed:@"Navi_back"];

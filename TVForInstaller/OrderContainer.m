@@ -38,7 +38,7 @@
     self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 64.0, viewWidth, 35.0)];
     self.segmentedControl.sectionTitles = @[@"抢 单       ", @"我的订单"];
     self.segmentedControl.selectedSegmentIndex = 0;
-    self.segmentedControl.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+    self.segmentedControl.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
     self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
     self.segmentedControl.selectionIndicatorColor = [UIColor blackColor];

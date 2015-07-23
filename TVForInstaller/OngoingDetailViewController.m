@@ -18,6 +18,7 @@
 #import "QRCodeDismissAnimator.h"
 
 #import "NetworkingManager.h"
+#import <JGProgressHUD.h>
 
 @interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
@@ -104,6 +105,8 @@
 }
 
 - (IBAction)clickCreatePayOrder:(id)sender {
+    
+    
     if ([self.moneyTextField.text isEqualToString:@""]) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"支付金额不可为空" preferredStyle:UIAlertControllerStyleAlert];
@@ -122,6 +125,10 @@
         } else{
             pay_type = @"1";
         }
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text = @"正在生成订单";
+        [hud showInView:self.view];
+        
         
         [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"success"] integerValue] == 1) {
@@ -143,6 +150,17 @@
                     qrcodeVC.transitioningDelegate = self;
                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                    [self showDetailViewController:qrcodeVC sender:self];
+                    NSDictionary *order = [OngoingOrder onGoingOrder];
+
+                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if ([responseObject[@"status"] integerValue] == 0) {
+                            //修改订单为完成未支付
+                        }
+                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        
+                    }];
+                    
                 } else {
                     
 //                    NSString *errorMessage = [error localizedDescription];
@@ -150,8 +168,10 @@
                 
                 
             }
+            [hud dismissAfterDelay:1.0];
+
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
+            [hud dismissAfterDelay:1.0];
         }];
 
     }
