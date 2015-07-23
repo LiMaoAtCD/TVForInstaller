@@ -178,7 +178,7 @@ typedef void(^alertBlock)(void);
     if (indexPath.section == 0) {
         return 83;
     }else {
-        return 150;
+        return 120;
     }
 }
 

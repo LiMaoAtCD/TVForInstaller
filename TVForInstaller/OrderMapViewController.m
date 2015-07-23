@@ -136,7 +136,11 @@
     }
     
     //获取数据
-
+    [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"responseObject %@",responseObject);
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];

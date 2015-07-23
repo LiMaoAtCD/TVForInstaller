@@ -16,6 +16,7 @@
 #import "OngoingOrder.h"
 
 #import "NetworkingManager.h"
+#import <JGProgressHUD.h>
 
 @interface OrderDetailViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
 
@@ -54,6 +55,7 @@
 }
 
 -(void)pop{
+    
     [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"status"] integerValue] == 0) {
@@ -93,14 +95,18 @@
 //    [self startNavi];
     
     //确认订单，修改状态
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.textLabel.text = @"正在接单";
+    [hud showInView: self.view];
     [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"2" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [hud dismissAnimated:YES];
         if ([responseObject[@"status"] integerValue] == 0) {
             [self setOrderStateAndNoteToNavi];
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [hud dismissAnimated:YES];
+
     }];
 
 }
@@ -109,14 +115,7 @@
     
     [OngoingOrder setExistOngoingOrder:YES];
     [OngoingOrder setOrder:self.info];
-    
-//    [OngoingOrder setOngoingOrderName:self.info[@"name"]];
-//    [OngoingOrder setOngoingOrderDate:self.info[@"order_time"]];
-//    [OngoingOrder setOngoingOrderType:[self.info[@"order_type"] integerValue]];
-//    [OngoingOrder setOngoingOrderAddress:self.info[@"home_address"]];
-//    [OngoingOrder setOngoingOrderTelephone:self.info[@"phone"]];
-//    [OngoingOrder setOngoingOrderRunningNumber:self.info[@"order_id"]];
-    
+
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否开始导航？" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"导航" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -138,35 +137,18 @@
 
 }
 
-
-
 -(void)configOrderContent{
     
     if ([self.info[@"order_type"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-
     }
     self.nameLabel.text = self.info[@"name"];
     self.telphoneLabel.text = self.info[@"phone"];
     self.addressLabel.text = self.info[@"home_address"];
     self.runningNumberLabel.text =self.info[@"order_id"];
     self.dateLabel.text = self.info[@"order_time"];
-
-
-//    
-//    if (self.type == TV) {
-//        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-//    } else{
-//        self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-//    }
-//    self.nameLabel.text = self.name;
-//    self.telphoneLabel.text = self.telphone;
-//    self.addressLabel.text = self.address;
-//    self.runningNumberLabel.text =self.runningNumber;
-//    self.dateLabel.text= self.date;
 }
 
 

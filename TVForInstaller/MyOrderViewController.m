@@ -11,7 +11,7 @@
 #import "OngoingDetailViewController.h"
 #import "AccountManager.h"
 #import "NetworkingManager.h"
-
+#import <JGProgressHUD.h>
 #import "OngoingOrder.h"
 
 @interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -177,9 +177,16 @@
     
     NSDictionary *order =[OngoingOrder onGoingOrder];
     [OngoingOrder setExistOngoingOrder:NO];
-
+    
+    
+    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    hud.textLabel.text =@"正在取消订单";
+    [hud showInView:self.view];
+    
+    
     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [hud dismiss];
+
         if ([responseObject[@"status"] integerValue] == 0) {
             self.OngoingView.hidden = YES;
             
@@ -198,8 +205,9 @@
                 }
             }];
         }
+
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [hud dismissAfterDelay:1.0];
     }];
     
     

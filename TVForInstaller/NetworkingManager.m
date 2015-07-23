@@ -398,5 +398,14 @@
 
 }
 
++(void)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list" parameters:@{@"ak":kBaiduAK,
+                                                                                @"geotable_id":@(kBaiduGeoTableID),
+                                                                                @"engineer_id":[AccountManager getCellphoneNumber],
+                                                                              @"order_state":@"2"
+                                                                                } success:completionHandler failure:failHandler];
+}
+
 
 @end

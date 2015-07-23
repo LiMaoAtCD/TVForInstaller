@@ -15,7 +15,7 @@
 #import "BNCoreServices.h"
 
 #import "AccountManager.h"
-
+#import <AFNetworkActivityIndicatorManager.h>
 @interface AppDelegate ()
 
 
@@ -57,6 +57,9 @@
         [self.window makeKeyAndVisible];
     }
     
+    
+    AFNetworkActivityIndicatorManager *manager = [AFNetworkActivityIndicatorManager sharedManager];
+    manager.enabled = YES;
     
     return YES;
 }

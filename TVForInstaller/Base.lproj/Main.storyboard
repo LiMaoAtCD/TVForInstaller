@@ -45,7 +45,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="6dN-Je-aDP"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
@@ -55,7 +55,7 @@
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="6dN-Je-aDP"/>
+                                                    <exclude reference="6dN-Je-aDP"/>
                                                 </mask>
                                             </variation>
                                         </label>
@@ -63,7 +63,9 @@
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <color key="backgroundColor" red="0.99607843137254903" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="e6k-29-KiF"/>
+                                                <constraint firstAttribute="height" constant="30" id="e6k-29-KiF">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                </constraint>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                             <state key="normal" title="一 键 装 机">
