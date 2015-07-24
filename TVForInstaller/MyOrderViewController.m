@@ -160,7 +160,8 @@
         //支付进行中
         cell.cnyLabel.textColor = [UIColor redColor];
         cell.moneyLabel.textColor = [UIColor redColor];
-        cell.payTypeLabel.text =@"支付中";
+        cell.payTypeLabel.textColor = [UIColor redColor];
+        cell.payTypeLabel.text =@"等待支付";
 
     } else{
         //支付完成

@@ -239,18 +239,7 @@
 
 }
 
-+(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    
-    NSString * param = [@{@"curpage":curpage,@"userID":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    [manager POST:@"http://101.204.230.195:8192/zhiKey/weixinPayController.do?getSubmitOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self focusNetWorkError];
-        failHandler(operation,error);
-    }];
-}
+
 
 +(void)fetchMyChildrenListwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     NSString * param = [@{@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
@@ -394,7 +383,7 @@
     
     NSString * param = [@{@"uid":uid,@"totalfee":totalFee,@"pay_type":pay_type} bv_jsonStringWithPrettyPrint:YES];
 
-    [manager POST:@"http://101.204.230.195:8192/zhiKey/weixinPayController.do?wxPay" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?wxPay" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -409,6 +398,19 @@
                                                                                @"order_state":@2
                                                                                 } success:completionHandler failure:failHandler];
     return task;
+}
+
++(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+    NSString * param = [@{@"curpage":curpage,@"userID":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?getSubmitOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
 }
 
 

@@ -1405,7 +1405,7 @@
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="P8d-Fi-n0Y"/>
                                                                     <constraint firstAttribute="width" constant="50" id="u21-dK-JSF">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="22"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">

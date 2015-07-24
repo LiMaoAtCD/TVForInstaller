@@ -59,7 +59,11 @@
         } else{
             self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
         }
-
+        
+       NSString *fee =  self.OrderInfo[@"order_totalfee"];
+        
+        self.moneyTextField.text = fee;
+        
     }else{
         //如果是点击正在进行中的订单入口
 
