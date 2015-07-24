@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CBStoreHouseRefreshControl (1.0)
+  - DZNEmptyDataSet (1.6.1)
   - HMSegmentedControl (1.5.1)
   - JGProgressHUD (1.2.6)
   - MJRefresh (1.4.6)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - CBStoreHouseRefreshControl
+  - DZNEmptyDataSet
   - HMSegmentedControl
   - JGProgressHUD
   - MJRefresh
@@ -43,6 +45,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   CBStoreHouseRefreshControl: a814bd725e74ff4c1e8dd96eb02358199b0da04f
+  DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
   JGProgressHUD: 151e8fcfdaa9ee1fb8370837a5ac1222efd3f2d3
   MJRefresh: 2eaa3fd8f67fbb86497840fb0167446f7eb61dc7

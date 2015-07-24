@@ -461,7 +461,7 @@
             self.isFetchOrder = YES;
             
             NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-            [NetworkingManager fetchNearbyOrdersByLocation:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [NetworkingManager fetchNearbyOrdersByLocation:location radius:50 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *results = responseObject;
                 
                 NSMutableArray *tempOrders = [NSMutableArray array];

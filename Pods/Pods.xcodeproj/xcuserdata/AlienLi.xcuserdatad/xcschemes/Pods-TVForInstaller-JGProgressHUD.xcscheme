@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DDC94B51538162E56F0DDA4B"
+               BlueprintIdentifier = "D78251668165E06F0BECFCC0"
                BuildableName = "libPods-TVForInstaller-JGProgressHUD.a"
                BlueprintName = "Pods-TVForInstaller-JGProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -9,6 +9,7 @@ target 'TVForInstaller' do
 	pod 'JGProgressHUD'
 	pod 'MJRefresh'
     pod 'ZXingObjC', '~> 3.0'
+    pod 'DZNEmptyDataSet'
 
 
 end

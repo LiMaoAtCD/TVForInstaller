@@ -13,8 +13,9 @@
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
 #import "OngoingOrder.h"
+#import <UIScrollView+EmptyDataSet.h>
 
-@interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -54,6 +55,10 @@
     [self.OngoingView addGestureRecognizer:gesture];
     
     [self.killOrderButton addTarget:self action:@selector(clickForKillingOrder:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.tableFooterView = [UIView new];
     
 }
 
@@ -123,7 +128,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    return self.orders.count;
-    return 5;
+    return 0;
     
 
 }
@@ -221,6 +226,21 @@
         }];
 
     }
+}
+
+//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+//{
+//    return [UIImage imageNamed:@"empty_placeholder"];
+//}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"数据空空如也";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 

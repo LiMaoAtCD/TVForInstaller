@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TVForInstaller-DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller-HMSegmentedControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5057AB39ACA6653504CBB7DB</key>
+		<key>1E79F29C9C0A0461D3E79193</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>65C05FF075A18B8B8980EA5F</key>
+		<key>4312A6E8F24426A7FCCBA8FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B323C3FB48F13D603667726</key>
+		<key>5B6A3532C44BAB174A39058B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9722A8CBDF73DDA5884AB498</key>
+		<key>5DE7D2761BF8784B5ECEACE4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A95909959FDF2772FF0EAF8C</key>
+		<key>74FCC6F47237C73B4FCB22C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6A87AA47C92275D2071CC38</key>
+		<key>B2C313458770B1C2BA1F49B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD970B6F4513C8AF2FA93D3B</key>
+		<key>D38347E8307FA3DF133E6CF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DDC94B51538162E56F0DDA4B</key>
+		<key>D78251668165E06F0BECFCC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F10C371DA5F52D5357855AC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

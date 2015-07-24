@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_CBStoreHouseRefreshControl 0
 #define COCOAPODS_VERSION_PATCH_CBStoreHouseRefreshControl 0
 
+// DZNEmptyDataSet
+#define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
+#define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
+#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 6
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 1
+
 // HMSegmentedControl
 #define COCOAPODS_POD_AVAILABLE_HMSegmentedControl
 #define COCOAPODS_VERSION_MAJOR_HMSegmentedControl 1
