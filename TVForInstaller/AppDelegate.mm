@@ -16,6 +16,9 @@
 
 #import "AccountManager.h"
 #import <AFNetworkActivityIndicatorManager.h>
+
+#import "NetworkingManager.h"
+#import "OngoingOrder.h"
 @interface AppDelegate ()
 
 
@@ -92,9 +95,9 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[DLNAManager DefaultManager] createControlPoint];
     [BMKMapView didForeGround];
-
-
+    [self fetchOngoingOrder];
 }
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -172,6 +175,36 @@
 //    }];
 
 
+}
+-(void)fetchOngoingOrder{
+    //检查是否是登录状态,没有登录就不检查是否有正在执行订单
+    if ([AccountManager isLogin]) {
+        
+        [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"status"] integerValue] == 0) {
+                
+                NSArray *pois =responseObject[@"pois"];
+                //如果获取到有正在执行的订单
+                if (!pois  && pois.count > 0) {
+                    NSMutableDictionary *temp = [pois[0] mutableCopy];
+                    if (temp[@"id"]) {
+                        temp[@"uid"] = temp[@"id"];
+                    }
+                    //添加执行中的订单
+                    
+                    [OngoingOrder setOrder:temp];
+                    [OngoingOrder setExistOngoingOrder:YES];
+                }else {
+                    
+                }
+            }
+            
+            
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    }
+    
 }
 
 

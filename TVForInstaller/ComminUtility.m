@@ -33,7 +33,6 @@
 
 +(UIImage *)imageWithView:(UIView *)view
 {
-//    view.backgroundColor= [UIColor colorWithHex:@"fe7676"];
     view.backgroundColor = [UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];

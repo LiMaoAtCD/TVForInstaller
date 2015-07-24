@@ -37,6 +37,9 @@
 
 @property (nonatomic, strong) NSMutableArray *orders;
 
+
+@property (nonatomic, assign) BOOL isCanceling;
+
 @end
 
 @implementation MyOrderViewController
@@ -175,43 +178,49 @@
  */
 -(void)clickForKillingOrder:(UIButton *)button{
     
-    NSDictionary *order =[OngoingOrder onGoingOrder];
-    [OngoingOrder setExistOngoingOrder:NO];
-    
-    
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text =@"正在取消订单";
-    [hud showInView:self.view];
-    
-    
-    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [hud dismiss];
-
-        if ([responseObject[@"status"] integerValue] == 0) {
-            self.OngoingView.hidden = YES;
+    if (!self.isCanceling) {
+        self.isCanceling = YES;
+        NSDictionary *order =[OngoingOrder onGoingOrder];
+        [OngoingOrder setExistOngoingOrder:NO];
+        
+        
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text =@"正在取消订单";
+        [hud showInView:self.view];
+        
+        
+        
+        [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [hud dismiss];
             
-            [self.view removeConstraint:self.tableViewLayout];
-            self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
-            [self.view addConstraint:self.tableViewLayout];
-            
-            
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.view layoutIfNeeded];
+            if ([responseObject[@"status"] integerValue] == 0) {
                 
-            } completion:^(BOOL finished) {
-                if (finished) {
+                [OngoingOrder setOrder:nil];
+                
+                self.OngoingView.hidden = YES;
+                
+                [self.view removeConstraint:self.tableViewLayout];
+                self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+                [self.view addConstraint:self.tableViewLayout];
+                
+                
+                [UIView animateWithDuration:0.5 animations:^{
+                    [self.view layoutIfNeeded];
                     
-                    
-                }
-            }];
-        }
+                } completion:^(BOOL finished) {
+                    if (finished) {
+                    }
+                }];
+            }
+            self.isCanceling = NO;
 
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismissAfterDelay:1.0];
-    }];
-    
-    
- 
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [hud dismissAfterDelay:1.0];
+            self.isCanceling = NO;
+
+        }];
+
+    }
 }
 
 

@@ -18,7 +18,7 @@
 //#define kServer2 @"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService"
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
-#define kBaiduGeoTableID 113463
+#define kBaiduGeoTableID 114851
 
 
 @implementation NetworkingManager
@@ -400,10 +400,10 @@
 
 +(void)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list" parameters:@{@"ak":kBaiduAK,
+    [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list?" parameters:@{@"ak":kBaiduAK,
                                                                                 @"geotable_id":@(kBaiduGeoTableID),
                                                                                 @"engineer_id":[AccountManager getCellphoneNumber],
-                                                                              @"order_state":@"2"
+                                                                               @"order_state":@2
                                                                                 } success:completionHandler failure:failHandler];
 }
 

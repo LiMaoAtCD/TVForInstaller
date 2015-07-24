@@ -134,25 +134,22 @@
         _mapView.showsUserLocation = YES;//显示定位图层
         self.isStopLocatingUser = NO;
     }
-    
-    //获取数据
-    [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject %@",responseObject);
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    
+
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
-//        [self addPointAnnotations];
+        //        [self addPointAnnotations];
         [self noteOngoingOrderView:NO];
         [self SearchNearByOrders];
-
+        
     } else {
         [self removeAnnotions];
         [self noteOngoingOrderView:YES];
     }
+
+    
+    
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -476,9 +473,7 @@
                         [tempOrders addObject:temp];
                     } else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getCellphoneNumber]]){
                         //正在进行中的订单
-                        NSLog(@"正在执行");
-                        [OngoingOrder  setExistOngoingOrder:YES];
-
+                        [OngoingOrder setExistOngoingOrder:YES];
                         [OngoingOrder setOrder:temp];
                         
                     }
@@ -489,6 +484,14 @@
                     self.Orders = tempOrders;
                     [self addPointAnnotations];
                     [self noteOngoingOrderView:NO];
+                    
+                    if (self.Orders.count == 0) {
+                        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+                        hud.textLabel.text = @"暂未找到附近订单";
+                        hud.indicatorView = nil;
+                        [hud showInView:self.view];
+                        [hud dismissAfterDelay:2.0];
+                    }
                 } else{
                     [self removeAnnotions];
                     [self noteOngoingOrderView:YES];
