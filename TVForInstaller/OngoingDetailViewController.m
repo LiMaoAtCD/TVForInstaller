@@ -19,6 +19,7 @@
 
 #import "NetworkingManager.h"
 #import <JGProgressHUD.h>
+#import "OngoingOrder.h"
 
 @interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
@@ -43,7 +44,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [ComminUtility configureTitle:@"订单详情" forViewController:self];
-    [self configOrderInfo];
+    
+    if (self.OrderInfo) {
+        //如果是点击支付进行中的订单入口
+        
+        self.nameLabel.text = self.OrderInfo[@"name"];
+        self.telphoneLabel.text =  self.OrderInfo[@"phone"];
+        self.addressLabel.text =  self.OrderInfo[@"home_address"];
+        self.runningLabel.text = self.OrderInfo[@"order_id"];
+        self.dateLabel.text = self.OrderInfo[@"order_endtime"];
+        
+        if ([self.OrderInfo[@"order_type"] integerValue] == 0) {
+            self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+        } else{
+            self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+        }
+
+    }else{
+        //如果是点击正在进行中的订单入口
+
+        [self configOrderInfo];
+
+    }
     [self initialPayType];
     self.moneyTextField.delegate = self;
     
@@ -156,6 +178,11 @@
                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                         if ([responseObject[@"status"] integerValue] == 0) {
                             //修改订单为完成未支付
+                            
+                            [OngoingOrder setExistOngoingOrder:NO];
+                            [OngoingOrder setOrder:nil];
+                            
+                            
                         }
                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                         

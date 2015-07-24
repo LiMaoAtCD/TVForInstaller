@@ -59,6 +59,8 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     
+ 
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -108,7 +110,19 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    [NetworkingManager fetchCompletedOrderListByCurrentPage:@"0" withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"success"] integerValue] == 1) {
+            //列表请求成功
+            self.orders = responseObject[@"obj"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+        
+        
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
    
 }
 
@@ -126,7 +140,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 //    return self.orders.count;
-    return 0;
+    return self.orders.count;
     
 
 }
@@ -134,8 +148,64 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CompletedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedTableViewCell" forIndexPath:indexPath];
     
+    
+
+    
+    cell.nameLabel.text = self.orders[indexPath.row][@"name"];
+    cell.telphoneLabel.text = self.orders[indexPath.row][@"phone"];
+    cell.dateLabel.text = self.orders[indexPath.row][@"order_endtime"];
+    cell.addressLabel.text= self.orders[indexPath.row][@"home_address"];
+    cell.moneyLabel.text = self.orders[indexPath.row][@"order_totalfee"];
+    if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
+        //支付进行中
+        cell.cnyLabel.textColor = [UIColor redColor];
+        cell.moneyLabel.textColor = [UIColor redColor];
+        cell.payTypeLabel.text =@"支付中";
+
+    } else{
+        //支付完成
+        if ([self.orders[indexPath.row][@"pay_type"] integerValue] == 0) {
+            //微信支付
+            cell.payTypeLabel.text = @"微信支付";
+        } else if ([self.orders[indexPath.row][@"pay_type"] integerValue] == 1){
+            //支付宝支付
+            cell.payTypeLabel.text = @"支付宝支付";
+
+        } else{
+        //现金支付
+            cell.payTypeLabel.text = @"现金支付";
+        }
+    }
+   
+    if ([self.orders[indexPath.row][@"order_type"] integerValue] == 0) {
+        cell.typeImageView.image = [UIImage imageNamed:@"ui01_tv"];
+
+    } else{
+        cell.typeImageView.image = [UIImage imageNamed:@"ui01_Broadband"];
+
+    }
+    
+    
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView  deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
+        //未完成支付，可以点击进行支付
+        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+        
+        OngoingDetailViewController *ongingVC = [sb instantiateViewControllerWithIdentifier:@"OngoingDetailViewController"];
+        ongingVC.hidesBottomBarWhenPushed = YES;
+        ongingVC.OrderInfo = self.orders[indexPath.row];
+        [self.navigationController showViewController:ongingVC sender:self];
+        
+    }
+    
+}
+
+
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {

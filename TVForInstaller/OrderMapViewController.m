@@ -187,6 +187,7 @@
         
     }];
     
+    [_mapView removeAnnotations:_mapView.annotations];
     [_mapView addAnnotations:self.pointAnnotations];
     
 }

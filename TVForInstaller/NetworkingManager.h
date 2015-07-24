@@ -13,6 +13,7 @@ typedef void(^NetWorkHandler)(AFHTTPRequestOperation *operation, id responseObje
 typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *error);
 
 //(void (^)(AFHTTPRequestOperation *operation, NSError *error))
+typedef AFHTTPRequestOperation NetWorkOperation;
 @interface NetworkingManager : NSObject
 
 /**
@@ -242,7 +243,7 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param completionHandler
  *  @param failHandler
  */
-+(void)fetchCompletedOrderListByRow:(NSInteger)row withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
++(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 /**
  *  我的下级
@@ -349,6 +350,7 @@ typedef void(^NetWorkFailHandler)(AFHTTPRequestOperation *operation,NSError *err
  *  @param completionHandler <#completionHandler description#>
  *  @param failHandler       <#failHandler description#>
  */
-+(void)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
++(NetWorkOperation *)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 
 @end

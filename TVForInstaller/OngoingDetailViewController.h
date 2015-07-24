@@ -10,4 +10,6 @@
 
 @interface OngoingDetailViewController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *OrderInfo;
+
 @end

@@ -239,13 +239,14 @@
 
 }
 
-+(void)fetchCompletedOrderListByRow:(NSInteger)row withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"row":@(row),@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
++(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    
+    NSString * param = [@{@"curpage":curpage,@"userID":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"45",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:@"http://101.204.230.195:8192/zhiKey/weixinPayController.do?getSubmitOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -372,7 +373,7 @@
                                                                                 @"ak":kBaiduAK,
                                                                                 @"geotable_id":@(kBaiduGeoTableID),
                                                                                 @"order_state":order_state,
-                                                                                @"engineer_id":[AccountManager getCellphoneNumber]
+                                                                                @"engineer_id":[AccountManager getTokenID]
                                                                                 } success:completionHandler failure:failHandler];
 }
 
@@ -400,13 +401,14 @@
 
 }
 
-+(void)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
++(NetWorkOperation*)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list?" parameters:@{@"ak":kBaiduAK,
+    AFHTTPRequestOperation *task = [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list?" parameters:@{@"ak":kBaiduAK,
                                                                                 @"geotable_id":@(kBaiduGeoTableID),
-                                                                                @"engineer_id":[AccountManager getCellphoneNumber],
+                                                                                @"engineer_id":[AccountManager getTokenID],
                                                                                @"order_state":@2
                                                                                 } success:completionHandler failure:failHandler];
+    return task;
 }
 
 
