@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *telphoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *runningNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 
@@ -147,7 +146,6 @@
     self.nameLabel.text = self.info[@"name"];
     self.telphoneLabel.text = self.info[@"phone"];
     self.addressLabel.text = self.info[@"home_address"];
-    self.runningNumberLabel.text =self.info[@"order_id"];
     self.dateLabel.text = self.info[@"order_time"];
 }
 

@@ -936,6 +936,7 @@
 				TargetAttributes = {
 					87DBE1E21AFAFF0000AFB7BF = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = CMK99GW5P5;
 					};
 					87DBE1FB1AFAFF0000AFB7BF = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -1236,7 +1237,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1264,7 +1265,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

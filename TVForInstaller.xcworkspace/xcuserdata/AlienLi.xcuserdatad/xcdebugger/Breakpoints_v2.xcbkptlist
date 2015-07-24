@@ -13,53 +13,5 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TVForInstaller/OngoingDetailViewController.m"
-            timestampString = "459395387.636908"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "-clickCreatePayOrder:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__51-[OngoingDetailViewController clickCreatePayOrder:]_block_invoke_2"
-                  moduleName = "TVForInstaller"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/AlienLi/Desktop/TVForInstaller/TVForInstaller/OngoingDetailViewController.m"
-                  timestampString = "459416146.337634"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "868">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__51-[OngoingDetailViewController clickCreatePayOrder:]_block_invoke_3"
-                  moduleName = "TVForInstaller"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/AlienLi/Desktop/TVForInstaller/TVForInstaller/OngoingDetailViewController.m"
-                  timestampString = "459416146.337777"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

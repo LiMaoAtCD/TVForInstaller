@@ -15,9 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *telphoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *runningLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
