@@ -2,12 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "ui01_title.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "ui04_head-portrait@2x.png"
     },
     {
       "idiom" : "universal",
