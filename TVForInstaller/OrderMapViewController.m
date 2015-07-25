@@ -141,6 +141,9 @@
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
+        
+        [self addPointAnnotations];
+
         [self SearchNearByOrders];
         
     } else {
@@ -194,11 +197,14 @@
     }];
     
     [_mapView addAnnotations:self.pointAnnotations];
+    [self noteOngoingOrderView:NO];
+
     
 }
 -(void)removeAnnotions{
     NSArray *annotations= self.mapView.annotations;
     [self.mapView removeAnnotations:annotations];
+
 }
 
 #pragma mark - BMKLocationServiceDelegate
@@ -452,7 +458,6 @@
 #pragma mark - 搜索附近订单
 
 -(void)SearchNearByOrders{
-
     //判断本地位置是否已经获取到
     if (!self.currentUserLocation) {
         return;
@@ -462,63 +467,42 @@
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
         
-        
         //是否已经在请求(不发出多次请求)
         if (!self.isFetchOrder) {
             self.isFetchOrder = YES;
             
             NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-            NSLog(@"location : %@",location);
             [NetworkingManager fetchNearbyOrdersByLocation:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *results = responseObject;
-                NSLog(@"response %@",responseObject);
                 
                 NSMutableArray *tempOrders = [NSMutableArray array];
                 NSArray *resultArray  = results[@"contents"];
-
-                [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    NSDictionary *temp = obj;
-
+                
+                for (NSDictionary *temp in resultArray) {
                     if ([temp[@"order_state"] integerValue] == 0) {
                         //空闲订单
                         [tempOrders addObject:temp];
                     }
-//                    else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getCellphoneNumber]]){
-//                        //正在进行中的订单
-//                        [OngoingOrder setExistOngoingOrder:YES];
-//                        [OngoingOrder setOrder:temp];
-//                        
-//                    }
-                    
-                }];
-
+                    else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getTokenID]]){
+                        //正在进行中的订单
+                        [OngoingOrder setExistOngoingOrder:YES];
+                        [OngoingOrder setOrder:temp];
+                        
+                    }
+                }
                 
-                if (![OngoingOrder existOngoingOrder]) {
+//                if (![OngoingOrder existOngoingOrder]) {
+                    [self removeAnnotions];
                     self.Orders = tempOrders;
                     [self addPointAnnotations];
-                    [self noteOngoingOrderView:NO];
-                    
-//                    if (self.Orders.count == 0) {
-//                        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-//                        hud.textLabel.text = @"暂未找到附近订单";
-//                        hud.indicatorView = nil;
-//                        [hud showInView:self.view];
-//                        [hud dismissAfterDelay:2.0];
-//                    }
-                } else{
-                    [self removeAnnotions];
-                    [self noteOngoingOrderView:YES];
-                }
                 self.isFetchOrder = NO;
 
             } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                 self.isFetchOrder = NO;
-
             }];
-            
         }
     } else {
-        //存在
+        //存在执行中的订单
         [self removeAnnotions];
         [self noteOngoingOrderView:YES];
     }
@@ -537,7 +521,7 @@
         
         label.text = @"订单正在进行中";
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor colorWithRed:254./255 green:118.0/255 blue:118./255 alpha:1.0];
+        label.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
         
         [self.orderGoingNoteView addSubview:label];
         

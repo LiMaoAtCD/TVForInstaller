@@ -341,9 +341,7 @@
                                                                               @"geotable_id":@(kBaiduGeoTableID),
                                                                               @"location":location,
                                                                               @"radius":@(radius),
-                                                                              @"tags":tags,
-                                                                              @"pageIndex":@(pageIndex),
-                                                                              @"pageSize":@(pageSize)
+                                                                              @"tags":tags
                                                                               } success:completionHandler failure:failHandler];
     
 
