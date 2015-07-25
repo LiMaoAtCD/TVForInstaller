@@ -74,7 +74,6 @@
  */
 @property (nonatomic, assign) BOOL isFetchOrder;
 
-
 /**
  *  订单进行中-提示
  */
@@ -93,7 +92,7 @@
     
     //定位服务初始化
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
-    [BMKLocationService setLocationDistanceFilter:100.f];
+    [BMKLocationService setLocationDistanceFilter:500.f];
     _locService = [[BMKLocationService alloc] init];
     
     //地址转经纬度
@@ -104,6 +103,8 @@
     
     //云检索服务
     _cloudSearch = [[BMKCloudSearch alloc] init];
+    
+    
     
     
     [self.view addSubview:_mapView];
@@ -125,6 +126,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
     if (self.isStopLocatingUser) {
         //定位到当前地址
         [_locService startUserLocationService];
@@ -135,19 +137,21 @@
         self.isStopLocatingUser = NO;
     }
 
+
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
-        //        [self addPointAnnotations];
-        [self noteOngoingOrderView:NO];
         [self SearchNearByOrders];
         
     } else {
         [self removeAnnotions];
         [self noteOngoingOrderView:YES];
+        
+       
+
     }
 
-    
+
     
 
 }
@@ -162,6 +166,7 @@
     _locService.delegate = nil;
     _geocodesearch.delegate = nil;
     _cloudSearch.delegate = nil;
+
     
 }
 
@@ -169,6 +174,7 @@
 
 -(void)addPointAnnotations{
 
+    
     self.pointAnnotations = [NSMutableArray array];
     [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
@@ -187,7 +193,6 @@
         
     }];
     
-    [_mapView removeAnnotations:_mapView.annotations];
     [_mapView addAnnotations:self.pointAnnotations];
     
 }
@@ -202,6 +207,7 @@
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
     [_mapView updateLocationData:userLocation];
+
 }
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
@@ -332,7 +338,6 @@
                 //如果没有被占用，就占用
                 [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
-                    NSLog(@"responseObject %@",responseObject);
                     if ([responseObject[@"status"] integerValue] == 0) {
                         //占用成功，跳到详情界面
                         UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
@@ -447,6 +452,7 @@
 #pragma mark - 搜索附近订单
 
 -(void)SearchNearByOrders{
+
     //判断本地位置是否已经获取到
     if (!self.currentUserLocation) {
         return;
@@ -462,37 +468,43 @@
             self.isFetchOrder = YES;
             
             NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
+            NSLog(@"location : %@",location);
             [NetworkingManager fetchNearbyOrdersByLocation:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *results = responseObject;
+                NSLog(@"response %@",responseObject);
                 
                 NSMutableArray *tempOrders = [NSMutableArray array];
                 NSArray *resultArray  = results[@"contents"];
+
                 [resultArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     NSDictionary *temp = obj;
+
                     if ([temp[@"order_state"] integerValue] == 0) {
                         //空闲订单
                         [tempOrders addObject:temp];
-                    } else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getCellphoneNumber]]){
-                        //正在进行中的订单
-                        [OngoingOrder setExistOngoingOrder:YES];
-                        [OngoingOrder setOrder:temp];
-                        
                     }
+//                    else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getCellphoneNumber]]){
+//                        //正在进行中的订单
+//                        [OngoingOrder setExistOngoingOrder:YES];
+//                        [OngoingOrder setOrder:temp];
+//                        
+//                    }
                     
                 }];
+
                 
                 if (![OngoingOrder existOngoingOrder]) {
                     self.Orders = tempOrders;
                     [self addPointAnnotations];
                     [self noteOngoingOrderView:NO];
                     
-                    if (self.Orders.count == 0) {
-                        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-                        hud.textLabel.text = @"暂未找到附近订单";
-                        hud.indicatorView = nil;
-                        [hud showInView:self.view];
-                        [hud dismissAfterDelay:2.0];
-                    }
+//                    if (self.Orders.count == 0) {
+//                        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+//                        hud.textLabel.text = @"暂未找到附近订单";
+//                        hud.indicatorView = nil;
+//                        [hud showInView:self.view];
+//                        [hud dismissAfterDelay:2.0];
+//                    }
                 } else{
                     [self removeAnnotions];
                     [self noteOngoingOrderView:YES];

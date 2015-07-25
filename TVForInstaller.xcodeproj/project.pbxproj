@@ -1237,7 +1237,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1254,7 +1254,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43160e53-0cea-412f-bc76-58b097549ddd";
+				PROVISIONING_PROFILE = "48d2a474-5baf-4544-b639-9f8a470da057";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -1265,7 +1265,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GuangDong GuoGuangHanRong Technology Co., Ltd. (CMK99GW5P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: agent liam (ZCQZ824KK4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1281,7 +1281,7 @@
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK/inc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43160e53-0cea-412f-bc76-58b097549ddd";
+				PROVISIONING_PROFILE = "48d2a474-5baf-4544-b639-9f8a470da057";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;

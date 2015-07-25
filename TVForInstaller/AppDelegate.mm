@@ -109,7 +109,7 @@
 //    UIColor *backgroundColor = [UIColor greenColor];
     
     // set the bar background color
-//    [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 49) withCornerRadius:0]];
+//    [[UITabBar appearance] setBackgroundImage:];
     
     // set the text color for selected state
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]} forState:UIControlStateSelected];
