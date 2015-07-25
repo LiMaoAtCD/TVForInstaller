@@ -38,7 +38,7 @@
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
     
-    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]];
+    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
 
     
 //    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstLaunch"];
@@ -106,26 +106,10 @@
 
 -(void)configureTabBarAppearance{
     
-//    UIColor *backgroundColor = [UIColor greenColor];
-    
-    // set the bar background color
-//    [[UITabBar appearance] setBackgroundImage:];
-    
-    // set the text color for selected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]} forState:UIControlStateSelected];
-    // set the text color for unselected state
-    
-//    [UITabBarItem appearance] 
-//    // set the selected icon color
-//    UIColor *hexColor = [UIColor colorWithHex:@"fe7676"];
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0]];
-
-////    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
-//    // remove the shadow
-//    [[UITabBar appearance] setShadowImage:nil];
-//    
-//    // Set the dark color to selected tab (the dimmed background)
-//    [[UITabBar appearance] setSelectionIndicatorImage:[AppDelegate imageFromColor:[UIColor colorWithRed:26/255.0 green:163/255.0 blue:133/255.0 alpha:1] forSize:CGSizeMake(64, 49) withCornerRadius:0]];
+    UIColor *backgroundColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1.0];
+    [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 44) withCornerRadius:0]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]} forState:UIControlStateSelected];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
     
 }
 

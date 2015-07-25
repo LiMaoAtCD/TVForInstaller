@@ -26,7 +26,7 @@
     // Do any additional setup after loading the view.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSuspensionView) name:[ComminUtility kSuspensionWindowNotification] object:nil];
-
+    [self.tabBar setTranslucent:NO];
     
    
 }

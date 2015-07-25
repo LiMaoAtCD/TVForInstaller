@@ -14,14 +14,14 @@
 
     viewController.title = title;
     
-    [viewController.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:19.0/255 green:86./255 blue:115./255 alpha:1.0]];
+//    [viewController.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:19.0/255 green:86./255 blue:115./255 alpha:1.0]];
     //    viewController.navigationController.navigationBar.opaque = YES;
     
 //    [viewController.navigationController.navigationBar setBackgroundImage:[self imageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]] forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ui01_title"] forBarMetrics:UIBarMetricsDefault];
-    [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]}];
     
-    UIImage *image = [UIImage imageNamed:@"Navi_back"];
+    UIImage *image = [UIImage imageNamed:@"ui03_back_button"];
     
     UIButton *popButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, image.size.width,image.size.height)];
     [popButton setImage:image forState:UIControlStateNormal];

@@ -40,14 +40,14 @@
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
-    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
-    self.segmentedControl.selectionIndicatorColor = [UIColor blackColor];
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]};
+    self.segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     self.segmentedControl.selectionIndicatorHeight = 4.0;
     
     self.segmentedControl.verticalDividerEnabled = YES;
-    self.segmentedControl.verticalDividerColor = [UIColor colorWithRed:254./255 green:118./255 blue:118./255 alpha:1.0];
+    self.segmentedControl.verticalDividerColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
     self.segmentedControl.verticalDividerWidth = 2.0;
 //    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithHex:@"d8006c"]};
 //    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor lightGrayColor]};
