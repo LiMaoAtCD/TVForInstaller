@@ -4701,7 +4701,7 @@
         <image name="tuidan" width="41" height="37"/>
         <image name="ui01_Broadband" width="38" height="38"/>
         <image name="ui01_arrows" width="8" height="14"/>
-        <image name="ui01_long-string" width="1" height="1"/>
+        <image name="ui01_long-string" width="1" height="224"/>
         <image name="ui02_affirm_button" width="81" height="34"/>
         <image name="ui02_phone_button" width="44" height="44"/>
         <image name="ui03_Broadband" width="68" height="68"/>

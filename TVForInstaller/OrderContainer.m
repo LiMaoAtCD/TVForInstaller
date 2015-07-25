@@ -35,7 +35,7 @@
 
     CGFloat viewWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
 
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 64.0, viewWidth, 35.0)];
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0.0, viewWidth, 35.0)];
     self.segmentedControl.sectionTitles = @[@"抢 单       ", @"我的订单"];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];

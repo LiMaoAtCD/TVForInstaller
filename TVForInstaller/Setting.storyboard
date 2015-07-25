@@ -2499,7 +2499,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="USS-sB-hLG">
                                         <rect key="frame" x="0.0" y="0.0" width="440" height="435"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOE-l7-fT8">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOE-l7-fT8">
                                                 <rect key="frame" x="44" y="86" width="353" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="5Ij-Ag-teB"/>
@@ -2521,7 +2521,7 @@
                                                     <outlet property="delegate" destination="gBC-ZM-RSh" id="CEZ-8N-THu"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
                                                 <rect key="frame" x="43" y="129" width="354" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Krs-MI-FK7"/>
@@ -2543,7 +2543,7 @@
                                                     <outlet property="delegate" destination="gBC-ZM-RSh" id="7Ys-pc-BgZ"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
                                                 <rect key="frame" x="44" y="172" width="248" height="30"/>
                                                 <color key="textColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2582,7 +2582,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="获取验证码" backgroundImage="ui07_gain-frame_button">
-                                                    <color key="titleColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <variation key="default">
@@ -2592,7 +2592,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <mask key="constraints">
                                                         <include reference="I0I-Gl-fud"/>
                                                         <include reference="ptg-Ix-Xto"/>
@@ -2652,7 +2652,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ui07_identifying-code" translatesAutoresizingMaskIntoConstraints="NO" id="GcJ-SK-Q2L">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ui07_identifying_code" translatesAutoresizingMaskIntoConstraints="NO" id="GcJ-SK-Q2L">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="14" id="Dex-m6-k7o"/>
@@ -2673,9 +2673,11 @@
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hN1-7X-wy5">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                <color key="backgroundColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="V8S-Ch-3UD"/>
+                                                    <constraint firstAttribute="height" constant="35" id="V8S-Ch-3UD">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <state key="normal" title="确认修改">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3250,7 +3252,7 @@
                                                         <constraint firstAttribute="height" constant="48" id="TX4-IY-4fp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                    <color key="textColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -3398,7 +3400,8 @@
                                                             <exclude reference="tcQ-JV-mJw"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="300" y="36" width="12" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="L4j-5C-RR1"/>
                                                             <include reference="tcQ-JV-mJw"/>
@@ -3419,7 +3422,8 @@
                                                             <exclude reference="l5z-9Z-LXP"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="263" y="33" width="29" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="dXB-Xf-WiO"/>
                                                             <include reference="l5z-9Z-LXP"/>
@@ -3742,10 +3746,10 @@
         <image name="jifenchaxun1" width="90" height="90"/>
         <image name="s" width="33" height="33"/>
         <image name="tuijian" width="33" height="33"/>
-        <image name="ui07_confirm-password" width="41" height="53"/>
-        <image name="ui07_gain-frame_button" width="228" height="100"/>
-        <image name="ui07_identifying-code" width="42" height="58"/>
-        <image name="ui07_password" width="41" height="53"/>
+        <image name="ui07_confirm-password" width="13" height="17"/>
+        <image name="ui07_gain-frame_button" width="76" height="33"/>
+        <image name="ui07_identifying_code" width="14" height="19"/>
+        <image name="ui07_password" width="13" height="17"/>
         <image name="zhuangji" width="33" height="33"/>
         <image name="zuanshi" width="32" height="29"/>
     </resources>

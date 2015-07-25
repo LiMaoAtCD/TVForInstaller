@@ -20,7 +20,7 @@
 //    [viewController.navigationController.navigationBar setBackgroundImage:[self imageWithView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]] forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ui01_title"] forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]}];
-    
+    viewController.navigationController.navigationBar.translucent = NO;
     UIImage *image = [UIImage imageNamed:@"ui03_back_button"];
     
     UIButton *popButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, image.size.width,image.size.height)];
