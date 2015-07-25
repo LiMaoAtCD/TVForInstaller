@@ -158,9 +158,9 @@
     cell.moneyLabel.text = self.orders[indexPath.row][@"order_totalfee"];
     if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
         //支付进行中
-        cell.cnyLabel.textColor = [UIColor redColor];
-        cell.moneyLabel.textColor = [UIColor redColor];
-        cell.payTypeLabel.textColor = [UIColor redColor];
+        cell.cnyLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        cell.moneyLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        cell.payTypeLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
         cell.payTypeLabel.text =@"等待支付";
 
     } else{
@@ -179,10 +179,10 @@
     }
    
     if ([self.orders[indexPath.row][@"order_type"] integerValue] == 0) {
-        cell.typeImageView.image = [UIImage imageNamed:@"ui01_tv"];
+        cell.typeImageView.image = [UIImage imageNamed:@"ui08_tv"];
 
     } else{
-        cell.typeImageView.image = [UIImage imageNamed:@"ui01_Broadband"];
+        cell.typeImageView.image = [UIImage imageNamed:@"ui08_broadband"];
 
     }
     
