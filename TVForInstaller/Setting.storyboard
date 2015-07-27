@@ -3369,7 +3369,7 @@
                                                         <constraint firstAttribute="width" constant="114" id="sVH-3U-chL"/>
                                                         <constraint firstAttribute="height" constant="15" id="y4b-ly-Sa7"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.39607843139999999" green="0.39607843139999999" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -3400,8 +3400,7 @@
                                                             <exclude reference="tcQ-JV-mJw"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="300" y="36" width="12" height="15"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="L4j-5C-RR1"/>
                                                             <include reference="tcQ-JV-mJw"/>
@@ -3411,10 +3410,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhP-Yj-zBo">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="29" id="dXB-Xf-WiO"/>
+                                                        <constraint firstAttribute="width" constant="29" id="dXB-Xf-WiO">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="35"/>
+                                                        </constraint>
                                                         <constraint firstAttribute="height" constant="21" id="l5z-9Z-LXP"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -3422,8 +3423,7 @@
                                                             <exclude reference="l5z-9Z-LXP"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="263" y="33" width="29" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="dXB-Xf-WiO"/>
                                                             <include reference="l5z-9Z-LXP"/>
@@ -3437,8 +3437,12 @@
                                                 <constraint firstItem="TOP-Fb-zf0" firstAttribute="top" secondItem="Vys-vw-rT1" secondAttribute="topMargin" constant="11" id="drb-Hb-9Gb"/>
                                                 <constraint firstItem="NHm-uh-sZj" firstAttribute="leading" secondItem="Vys-vw-rT1" secondAttribute="leadingMargin" id="fJU-73-ZQp"/>
                                                 <constraint firstItem="TOP-Fb-zf0" firstAttribute="leading" secondItem="Vys-vw-rT1" secondAttribute="leadingMargin" id="jCQ-vZ-tCR"/>
-                                                <constraint firstAttribute="centerY" secondItem="1rz-5C-HFL" secondAttribute="centerY" constant="0.25" id="nTY-Da-UBM"/>
-                                                <constraint firstAttribute="centerY" secondItem="WhP-Yj-zBo" secondAttribute="centerY" constant="0.25" id="r6l-CV-Pkt"/>
+                                                <constraint firstAttribute="centerY" secondItem="1rz-5C-HFL" secondAttribute="centerY" constant="0.25" id="nTY-Da-UBM">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="-1"/>
+                                                </constraint>
+                                                <constraint firstAttribute="centerY" secondItem="WhP-Yj-zBo" secondAttribute="centerY" constant="0.25" id="r6l-CV-Pkt">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                </constraint>
                                                 <constraint firstItem="1rz-5C-HFL" firstAttribute="leading" secondItem="WhP-Yj-zBo" secondAttribute="trailing" constant="8" id="tci-Ks-s9h"/>
                                             </constraints>
                                             <variation key="default">

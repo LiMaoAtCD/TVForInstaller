@@ -78,7 +78,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-//    [[DLNAManager DefaultManager] stopService];
+    [[DLNAManager DefaultManager] stopService];
     [BMKMapView willBackGround];
 
 
@@ -95,7 +95,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//    [[DLNAManager DefaultManager] createControlPoint];
+    [[DLNAManager DefaultManager] createControlPoint];
     [BMKMapView didForeGround];
     [self fetchOngoingOrder];
 }
@@ -108,7 +108,9 @@
 
 -(void)configureTabBarAppearance{
     
-    UIColor *backgroundColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1.0];
+      UIColor *backgroundColor = [UIColor colorWithRed:255./255 green:255./255 blue:255./255 alpha:1.0];
+
+//    UIColor *backgroundColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1.0];
     [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 44) withCornerRadius:0]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];

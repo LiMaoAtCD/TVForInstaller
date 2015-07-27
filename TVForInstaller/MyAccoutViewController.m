@@ -124,6 +124,8 @@
         return 88.0;
     }
 }
-
+-(void)dealloc{
+    self.runningOrderItems = nil;
+}
 
 @end

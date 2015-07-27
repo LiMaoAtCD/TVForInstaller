@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
     //ok
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.totalFeeVC.totalFeeLabel.text = [NSString stringWithFormat:@"￥%.2f",self.totalCost];
+        self.totalFeeVC.totalFeeLabel.text = [NSString stringWithFormat:@"￥%ld",(NSInteger)self.totalCost];
     });
     
 }
@@ -254,9 +254,73 @@ typedef enum : NSUInteger {
     // Dispose of any resources that can be recreated.
 }
 
+
+//点击支付
 -(void)didClickSubmitButton{
+    
+#warning 支付处理
     if (self.currentPayType != CASH) {
         //在线支付
+        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+        hud.textLabel.text = @"正在生成订单";
+        [hud showInView:self.view];
+
+        NSString *pay_type = @"0";
+        if (self.currentPayType == WECHAT) {
+            pay_type = @"0";
+        } else if (self.currentPayType == ALIPAY){
+            pay_type = @"1";
+        } else{
+            pay_type = @"2";
+        }
+        [NetworkingManager BeginPayForUID:self.OrderInfo[@"uid"] byEngineerID:self.OrderInfo[@"engineer_id"] totalFee:[NSString stringWithFormat:@"%.2f",self.totalCost] pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"success"] integerValue] == 1) {
+                NSString *url = responseObject[@"obj"];
+                NSError *error = nil;
+                CGImageRef qrImage = nil;
+                ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                ZXBitMatrix* result = [writer encode:url
+                                              format:kBarcodeFormatQRCode
+                                               width:500
+                                              height:500
+                                               error:&error];
+                if (result) {
+
+                    qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+
+                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                    QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                    qrcodeVC.transitioningDelegate = self;
+                    qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                    qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                    [self showDetailViewController:qrcodeVC sender:self];
+                    NSDictionary *order = [OngoingOrder onGoingOrder];
+
+                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if ([responseObject[@"status"] integerValue] == 0) {
+                            //修改订单为完成未支付
+
+                            [OngoingOrder setExistOngoingOrder:NO];
+                            [OngoingOrder setOrder:nil];
+
+
+                        }
+                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+                    }];
+
+                } else {
+
+//                    NSString *errorMessage = [error localizedDescription];
+                }
+                
+                
+            }
+            [hud dismissAfterDelay:1.0];
+
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [hud dismissAfterDelay:1.0];
+        }];
     }
 }
 //- (IBAction)clickCreatePayOrder:(id)sender {
