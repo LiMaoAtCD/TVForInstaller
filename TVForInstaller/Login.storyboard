@@ -158,7 +158,8 @@
                                         <exclude reference="QqU-s1-QON"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="50" y="272" width="14" height="17"/>
                                     <mask key="constraints">
                                         <include reference="Lce-Rf-B4j"/>
                                         <include reference="QqU-s1-QON"/>
@@ -177,7 +178,8 @@
                                         <exclude reference="nDV-CS-R2g"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="50" y="320" width="14" height="17"/>
                                     <mask key="constraints">
                                         <include reference="EN2-XE-6u6"/>
                                         <include reference="nDV-CS-R2g"/>

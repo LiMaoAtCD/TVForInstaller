@@ -360,8 +360,8 @@ typedef enum : NSUInteger {
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    //    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64, 0, 0, 0);
+        UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64, 0, 0, 0);
     
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;

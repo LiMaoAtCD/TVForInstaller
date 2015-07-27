@@ -73,9 +73,10 @@
             self.Account = [textField.text substringToIndex:[textField.text length] - 1];
         }else if ([string isEqualToString:@"\n"]){
             self.Account = textField.text;
-            
         }else{
-            self.Account = [textField.text stringByAppendingString:string];
+            NSMutableString *temp = [textField.text mutableCopy];
+            [temp insertString:string atIndex:range.location];
+            self.Account = temp;
         }
     } else{
         
@@ -85,8 +86,10 @@
             self.password = textField.text;
             
         }else{
-            
-            self.password = [textField.text stringByAppendingString:string];
+            NSMutableString *temp = [textField.text mutableCopy];
+            [temp insertString:string atIndex:range.location];
+            self.password = temp;
+//            self.password = [textField.text stringByAppendingString:string];
             
         }
     }

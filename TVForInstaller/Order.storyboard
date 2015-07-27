@@ -1906,7 +1906,7 @@
                                             <constraint firstItem="AFw-5D-Ezc" firstAttribute="top" secondItem="jup-es-uaB" secondAttribute="bottom" constant="8" id="6Fz-1v-t9X"/>
                                             <constraint firstItem="AFw-5D-Ezc" firstAttribute="leading" secondItem="FcG-kM-Dm2" secondAttribute="leading" constant="8" id="Agh-2r-cGF"/>
                                             <constraint firstAttribute="bottom" secondItem="QIK-Nd-l0h" secondAttribute="bottom" constant="371" id="D7J-qg-kUI">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="200"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                             </constraint>
                                             <constraint firstItem="mXq-cN-3qU" firstAttribute="top" secondItem="3YR-5T-mq0" secondAttribute="bottom" constant="29" id="Hbc-g6-aoW">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
