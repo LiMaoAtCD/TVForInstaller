@@ -64,6 +64,8 @@
     AFNetworkActivityIndicatorManager *manager = [AFNetworkActivityIndicatorManager sharedManager];
     manager.enabled = YES;
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
 

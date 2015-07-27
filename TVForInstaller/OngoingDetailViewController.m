@@ -30,44 +30,47 @@ typedef enum : NSUInteger {
 
 @interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
+//这里是订单信息视图
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *telphoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
+//输入框
 @property (weak, nonatomic) IBOutlet UITextField *InstallFeeTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *accessoriesFeeTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *ServiceFeeTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *FlowTextfield;
-
+//当前活跃的输入框
 @property (nonatomic, strong) UITextField *activeTextfield;
 
+//各种费用
+@property (nonatomic, assign) float installCost;
+@property (nonatomic, assign) float accessoryCost;
+@property (nonatomic, assign) float serviceCost;
+@property (nonatomic, assign) float flowCost;
 
-@property (nonatomic, copy) NSString *installCost;
-@property (nonatomic, copy) NSString *accessoryCost;
-@property (nonatomic, copy) NSString *serviceCost;
-@property (nonatomic, copy) NSString *flowCost;
+//汇总费用
+@property (nonatomic, assign) float totalCost;
 
-//@property (nonatomic, copy) NSString *Cost;
-
+//汇总费用视图
+@property (nonatomic, strong) UILabel *totalFeeLabel;
 
 
+
+//微信&支付宝&现金按钮
 @property (weak, nonatomic) IBOutlet UIButton *wechatPay;
 @property (weak, nonatomic) IBOutlet UIButton *alipay;
 @property (weak, nonatomic) IBOutlet UIButton *cashPay;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-
-
-@property (nonatomic, copy) NSString * installFee;
-@property (nonatomic, copy) NSString * accessoryFee;
-@property (nonatomic, copy) NSString * serviceFee;
-@property (nonatomic, copy) NSString * flowFee;
+//支付类型
 @property (nonatomic, assign) PayType currentPayType;
 
-@property (nonatomic, strong) UILabel *totalFeeLabel;
+
+//滑动视图
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+//提交按钮
 @property (nonatomic, strong) UIButton *submitButton;
 
 
@@ -95,11 +98,21 @@ typedef enum : NSUInteger {
     
     //初始化微信支付
     [self initialPayType];
+    
     [self configureTextFields];
     [self registerForKeyboardNotifications];
     
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
-//    [self.view addGestureRecognizer:tap];
+    
+    //添加关闭键盘手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:tap];
+    
+    
+    
+    [self.InstallFeeTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.accessoriesFeeTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.ServiceFeeTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.FlowTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     
     
 }
@@ -108,11 +121,32 @@ typedef enum : NSUInteger {
     [self.view layoutIfNeeded];
 }
 
+-(void)textfieldDidChanged:(UITextField *)textField{
+    NSLog(@"textfieldDidChanged");
+    if (textField == self.InstallFeeTextfield) {
+        self.installCost = [self.InstallFeeTextfield.text  floatValue];
+    }
+    if (textField == self.accessoriesFeeTextfield) {
+        self.accessoryCost = [self.accessoriesFeeTextfield.text integerValue];
+    }
+    if (textField == self.ServiceFeeTextfield) {
+        self.serviceCost = [self.ServiceFeeTextfield.text integerValue];
+    }
+    if (textField == self.FlowTextfield) {
+        self.flowCost = [self.FlowTextfield.text integerValue];
+    }
+    NSLog(@"%.2f",[textField.text floatValue]);
+    
+
+}
+
+
 -(void)configureTextFields{
     self.InstallFeeTextfield.text = @"60";
     self.accessoriesFeeTextfield.text = @"120";
     
 }
+
 
 /**
  *  支付进行中的订单
@@ -149,8 +183,14 @@ typedef enum : NSUInteger {
     
 }
 //
-//-(void)dismissKeyboard:(id)sender{
-//}
+-(void)dismissKeyboard:(id)sender{
+    
+//    [self.activeTextfield resignFirstResponder];
+    [self.InstallFeeTextfield resignFirstResponder];
+    [self.accessoriesFeeTextfield resignFirstResponder];
+    [self.ServiceFeeTextfield resignFirstResponder];
+    [self.FlowTextfield resignFirstResponder];
+}
 
 - (IBAction)clickPayType:(id)sender {
     UIButton *button = sender;
@@ -366,6 +406,7 @@ typedef enum : NSUInteger {
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextfield = textField;
@@ -377,58 +418,64 @@ typedef enum : NSUInteger {
 }
 
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if (textField == self.InstallFeeTextfield) {
-        
-        
-        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-            self.installCost = [textField.text substringToIndex:[textField.text length] - 1];
-        }else if ([string isEqualToString:@"\n"]){
-            
-            self.installCost = textField.text;
-            
-        }else{
-            self.installCost = [textField.text stringByAppendingString:string];
-        }
-    } else if (textField == self.accessoriesFeeTextfield){
-        
-        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-            self.accessoryCost = [textField.text substringToIndex:[textField.text length] - 1];
-        }else if ([string isEqualToString:@"\n"]){
-            
-            self.accessoryCost= textField.text;
-            
-        }else{
-            self.accessoryCost = [textField.text stringByAppendingString:string];
-            
-        }
-    }else if (textField == self.ServiceFeeTextfield){
-        
-        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-            self.serviceCost = [textField.text substringToIndex:[textField.text length] - 1];
-        }else if ([string isEqualToString:@"\n"]){
-            
-            self.serviceCost= textField.text;
-            
-        }else{
-            self.serviceCost = [textField.text stringByAppendingString:string];
-            
-        }
-    }else if (textField == self.FlowTextfield){
-        
-        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-            self.flowCost = [textField.text substringToIndex:[textField.text length] - 1];
-        }else if ([string isEqualToString:@"\n"]){
-            
-            self.flowCost= textField.text;
-            
-        }else{
-            self.flowCost = [textField.text stringByAppendingString:string];
-            
-        }
-    }
-    return YES;
-}
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    if (textField == self.InstallFeeTextfield) {
+//        
+//        
+//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+//            self.installCost = [textField.text substringToIndex:[textField.text length] - 1];
+//        }else if ([string isEqualToString:@"\n"]){
+//            
+//            self.installCost = textField.text;
+//            
+//        }else{
+//            NSMutableString *temp = [textField.text mutableCopy];
+//            [temp insertString:string atIndex:range.location];
+//            self.installCost = temp;
+//        }
+//    } else if (textField == self.accessoriesFeeTextfield){
+//        
+//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+//            self.accessoryCost = [textField.text substringToIndex:[textField.text length] - 1];
+//        }else if ([string isEqualToString:@"\n"]){
+//            
+//            self.accessoryCost= textField.text;
+//            
+//        }else{
+//            NSMutableString *temp = [textField.text mutableCopy];
+//            [temp insertString:string atIndex:range.location];
+//            self.accessoryCost = temp;
+//        }
+//    }else if (textField == self.ServiceFeeTextfield){
+//        
+//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+//            self.serviceCost = [textField.text substringToIndex:[textField.text length] - 1];
+//        }else if ([string isEqualToString:@"\n"]){
+//            
+//            self.serviceCost= textField.text;
+//            
+//        }else{
+//            NSMutableString *temp = [textField.text mutableCopy];
+//            [temp insertString:string atIndex:range.location];
+//            self.serviceCost = temp;
+//            
+//        }
+//    }else if (textField == self.FlowTextfield){
+//        
+//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+//            self.flowCost = [textField.text substringToIndex:[textField.text length] - 1];
+//        }else if ([string isEqualToString:@"\n"]){
+//            
+//            self.flowCost= textField.text;
+//            
+//        }else{
+//            NSMutableString *temp = [textField.text mutableCopy];
+//            [temp insertString:string atIndex:range.location];
+//            self.flowCost = temp;
+//        }
+//    }
+//    return YES;
+//}
 
 
 

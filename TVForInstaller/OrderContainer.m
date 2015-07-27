@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     [ComminUtility configureTitle:@"订单" forViewController:self];
     self.navigationItem.leftBarButtonItem = nil;
     
@@ -145,6 +145,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
