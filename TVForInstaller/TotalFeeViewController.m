@@ -17,8 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.submitButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)submit:(UIButton *)button{
+    if ([self.delegate respondsToSelector:@selector(didClickSubmitButton)]) {
+        [self.delegate didClickSubmitButton];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

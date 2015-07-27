@@ -2641,7 +2641,7 @@
         <!--Total Fee View Controller-->
         <scene sceneID="3Fr-xe-svQ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="r2g-na-vqM" customClass="TotalFeeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TotalFeeViewController" automaticallyAdjustsScrollViewInsets="NO" id="r2g-na-vqM" customClass="TotalFeeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="efb-T8-TvN"/>
                         <viewControllerLayoutGuide type="bottom" id="4GI-Dm-Z50"/>
@@ -2650,13 +2650,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥240" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZS-9W-eai">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥240.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZS-9W-eai">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="G4z-BZ-foX"/>
                                     <constraint firstAttribute="width" constant="72" id="oDp-em-akb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">

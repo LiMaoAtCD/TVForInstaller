@@ -28,7 +28,7 @@ typedef enum : NSUInteger {
     CASH,
 } PayType;
 
-@interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate>
+@interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,SubmitDelegate>
 
 //这里是订单信息视图
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -54,11 +54,6 @@ typedef enum : NSUInteger {
 //汇总费用
 @property (nonatomic, assign) float totalCost;
 
-//汇总费用视图
-@property (nonatomic, strong) UILabel *totalFeeLabel;
-
-
-
 //微信&支付宝&现金按钮
 @property (weak, nonatomic) IBOutlet UIButton *wechatPay;
 @property (weak, nonatomic) IBOutlet UIButton *alipay;
@@ -70,11 +65,7 @@ typedef enum : NSUInteger {
 //滑动视图
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-//提交按钮
-@property (nonatomic, strong) UIButton *submitButton;
-
-
-
+@property (nonatomic, strong) TotalFeeViewController *totalFeeVC;
 
 
 
@@ -82,6 +73,8 @@ typedef enum : NSUInteger {
 
 @implementation OngoingDetailViewController
 
+
+#pragma mark - 视图生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -99,7 +92,6 @@ typedef enum : NSUInteger {
     //初始化微信支付
     [self initialPayType];
     
-    [self configureTextFields];
     [self registerForKeyboardNotifications];
     
     
@@ -119,32 +111,24 @@ typedef enum : NSUInteger {
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
-}
-
--(void)textfieldDidChanged:(UITextField *)textField{
-    NSLog(@"textfieldDidChanged");
-    if (textField == self.InstallFeeTextfield) {
-        self.installCost = [self.InstallFeeTextfield.text  floatValue];
-    }
-    if (textField == self.accessoriesFeeTextfield) {
-        self.accessoryCost = [self.accessoriesFeeTextfield.text integerValue];
-    }
-    if (textField == self.ServiceFeeTextfield) {
-        self.serviceCost = [self.ServiceFeeTextfield.text integerValue];
-    }
-    if (textField == self.FlowTextfield) {
-        self.flowCost = [self.FlowTextfield.text integerValue];
-    }
-    NSLog(@"%.2f",[textField.text floatValue]);
-    
+    [self configureTextFields];
 
 }
+
 
 
 -(void)configureTextFields{
     self.InstallFeeTextfield.text = @"60";
+    self.InstallFeeTextfield.placeholder = @"请输入金额";
     self.accessoriesFeeTextfield.text = @"120";
-    
+    self.accessoriesFeeTextfield.placeholder = @"请输入金额";
+
+    self.installCost = 60.0;
+    self.accessoryCost = 120.0;
+    self.serviceCost = 0.0;
+    self.flowCost = 0.0;
+    [self caculateTotalCost];
+
 }
 
 
@@ -182,26 +166,45 @@ typedef enum : NSUInteger {
     }
     
 }
-//
+
 -(void)dismissKeyboard:(id)sender{
-    
-//    [self.activeTextfield resignFirstResponder];
     [self.InstallFeeTextfield resignFirstResponder];
     [self.accessoriesFeeTextfield resignFirstResponder];
     [self.ServiceFeeTextfield resignFirstResponder];
     [self.FlowTextfield resignFirstResponder];
 }
 
+#pragma mark - 费用输入修改
+-(void)textfieldDidChanged:(UITextField *)textField{
+    if (textField == self.InstallFeeTextfield) {
+        self.installCost = [self.InstallFeeTextfield.text  floatValue];
+    }
+    if (textField == self.accessoriesFeeTextfield) {
+        self.accessoryCost = [self.accessoriesFeeTextfield.text integerValue];
+    }
+    if (textField == self.ServiceFeeTextfield) {
+        self.serviceCost = [self.ServiceFeeTextfield.text integerValue];
+    }
+    if (textField == self.FlowTextfield) {
+        self.flowCost = [self.FlowTextfield.text integerValue];
+    }
+    
+    //修改完成，计算费用
+    [self caculateTotalCost];
+}
+-(void)initialPayType{
+    [self.wechatPay setImage:[UIImage imageNamed:@"ui03_check_h"] forState:UIControlStateNormal];
+    [self.alipay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
+    [self.cashPay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
+    self.currentPayType = WECHAT;
+    
+}
 - (IBAction)clickPayType:(id)sender {
     UIButton *button = sender;
     
     if (button.tag == 0) {
         //点击微信支付
-        [self.wechatPay setImage:[UIImage imageNamed:@"ui03_check_h"] forState:UIControlStateNormal];
-        [self.alipay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
-        [self.cashPay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
-        self.currentPayType = WECHAT;
-
+        [self initialPayType];
 
     } else if(button.tag == 1){
         //支付宝
@@ -215,21 +218,32 @@ typedef enum : NSUInteger {
         [self.alipay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
         [self.cashPay setImage:[UIImage imageNamed:@"ui03_check_h"] forState:UIControlStateNormal];
         self.currentPayType = CASH;
-
     }
     
+    [self caculateTotalCost];
+
+}
+
+-(void)caculateTotalCost{
+    self.totalCost = self.installCost + self.accessoryCost + self.serviceCost + self.flowCost;
+    if (self.currentPayType != CASH) {
+        //如果是在线支付 减20
+        self.totalCost -= 20;
+        if (self.totalCost < 0.0) {
+            self.totalCost = 0.0;
+        }
+    }
+    
+    //ok
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.totalFeeVC.totalFeeLabel.text = [NSString stringWithFormat:@"￥%.2f",self.totalCost];
+    });
     
 }
 
 
 
--(void)initialPayType{
-    [self.wechatPay setImage:[UIImage imageNamed:@"ui03_check_h"] forState:UIControlStateNormal];
-    [self.alipay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
-    [self.cashPay setImage:[UIImage imageNamed:@"ui03_check"] forState:UIControlStateNormal];
-    self.currentPayType = WECHAT;
-
-}
 
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
@@ -240,6 +254,11 @@ typedef enum : NSUInteger {
     // Dispose of any resources that can be recreated.
 }
 
+-(void)didClickSubmitButton{
+    if (self.currentPayType != CASH) {
+        //在线支付
+    }
+}
 //- (IBAction)clickCreatePayOrder:(id)sender {
 
     
@@ -365,6 +384,8 @@ typedef enum : NSUInteger {
 //    }
 //}
 
+
+#pragma mark -keyboard deal
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -417,77 +438,12 @@ typedef enum : NSUInteger {
     self.activeTextfield = nil;
 }
 
-
-//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    if (textField == self.InstallFeeTextfield) {
-//        
-//        
-//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-//            self.installCost = [textField.text substringToIndex:[textField.text length] - 1];
-//        }else if ([string isEqualToString:@"\n"]){
-//            
-//            self.installCost = textField.text;
-//            
-//        }else{
-//            NSMutableString *temp = [textField.text mutableCopy];
-//            [temp insertString:string atIndex:range.location];
-//            self.installCost = temp;
-//        }
-//    } else if (textField == self.accessoriesFeeTextfield){
-//        
-//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-//            self.accessoryCost = [textField.text substringToIndex:[textField.text length] - 1];
-//        }else if ([string isEqualToString:@"\n"]){
-//            
-//            self.accessoryCost= textField.text;
-//            
-//        }else{
-//            NSMutableString *temp = [textField.text mutableCopy];
-//            [temp insertString:string atIndex:range.location];
-//            self.accessoryCost = temp;
-//        }
-//    }else if (textField == self.ServiceFeeTextfield){
-//        
-//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-//            self.serviceCost = [textField.text substringToIndex:[textField.text length] - 1];
-//        }else if ([string isEqualToString:@"\n"]){
-//            
-//            self.serviceCost= textField.text;
-//            
-//        }else{
-//            NSMutableString *temp = [textField.text mutableCopy];
-//            [temp insertString:string atIndex:range.location];
-//            self.serviceCost = temp;
-//            
-//        }
-//    }else if (textField == self.FlowTextfield){
-//        
-//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-//            self.flowCost = [textField.text substringToIndex:[textField.text length] - 1];
-//        }else if ([string isEqualToString:@"\n"]){
-//            
-//            self.flowCost= textField.text;
-//            
-//        }else{
-//            NSMutableString *temp = [textField.text mutableCopy];
-//            [temp insertString:string atIndex:range.location];
-//            self.flowCost = temp;
-//        }
-//    }
-//    return YES;
-//}
-
-
+#pragma mark -segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"TotalFeeSegue"]) {
         //
-        
-        TotalFeeViewController *feeVC = segue.destinationViewController;
-        
-        self.totalFeeLabel = feeVC.totalFeeLabel;
-        self.submitButton = feeVC.submitButton;
-        
+        self.totalFeeVC = (TotalFeeViewController*)segue.destinationViewController;
     }
 }
 
@@ -502,6 +458,8 @@ typedef enum : NSUInteger {
     return [[QRCodeDismissAnimator alloc] init];
 
 }
+
+
 
 
 @end
