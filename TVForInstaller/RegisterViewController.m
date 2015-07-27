@@ -65,8 +65,8 @@ typedef void(^alertBlock)(void);
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+                                             selector:@selector(keyboardWillShown:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
@@ -75,7 +75,7 @@ typedef void(^alertBlock)(void);
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
+- (void)keyboardWillShown:(NSNotification*)aNotification
 {
 
     NSDictionary* info = [aNotification userInfo];

@@ -22,6 +22,7 @@
 		871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 871B77491B0C9BBB00810EE3 /* DeviceViewController.mm */; };
 		871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */; };
 		871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 871B774F1B0CA54C00810EE3 /* DeviceContainer.m */; };
+		871E651C1B639FC400A9ACA1 /* TotalFeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 871E651B1B639FC400A9ACA1 /* TotalFeeViewController.m */; };
 		872A61A91B5B519900D62439 /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 872A61791B5B519900D62439 /* baiduNaviSDK.bundle */; };
 		872A61AA1B5B519900D62439 /* BaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 872A617B1B5B519900D62439 /* BaiduMobStat.a */; };
 		872A61AB1B5B519900D62439 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 872A617F1B5B519900D62439 /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -160,6 +161,8 @@
 		871B774C1B0CA41700810EE3 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
 		871B774E1B0CA54C00810EE3 /* DeviceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceContainer.h; sourceTree = "<group>"; };
 		871B774F1B0CA54C00810EE3 /* DeviceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceContainer.m; sourceTree = "<group>"; };
+		871E651A1B639FC400A9ACA1 /* TotalFeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalFeeViewController.h; sourceTree = "<group>"; };
+		871E651B1B639FC400A9ACA1 /* TotalFeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalFeeViewController.m; sourceTree = "<group>"; };
 		872A61791B5B519900D62439 /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
 		872A617B1B5B519900D62439 /* BaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = BaiduMobStat.a; sourceTree = "<group>"; };
 		872A617C1B5B519900D62439 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				877870691B56536E0046650C /* MyOrderViewController.m */,
 				87815FED1B57969A0028022D /* OngoingDetailViewController.h */,
 				87815FEE1B57969A0028022D /* OngoingDetailViewController.m */,
+				871E651A1B639FC400A9ACA1 /* TotalFeeViewController.h */,
+				871E651B1B639FC400A9ACA1 /* TotalFeeViewController.m */,
 				877404291B5E31810055D2D6 /* QRCodeViewController.h */,
 				8774042A1B5E31810055D2D6 /* QRCodeViewController.m */,
 				8774042C1B5E34A90055D2D6 /* QRCodeAnimator.h */,
@@ -1029,6 +1034,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871E651C1B639FC400A9ACA1 /* TotalFeeViewController.m in Sources */,
 				878160821B58DABC0028022D /* RunningOrderCell.m in Sources */,
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */,
