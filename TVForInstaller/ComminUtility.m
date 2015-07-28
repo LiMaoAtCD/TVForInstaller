@@ -148,7 +148,7 @@
 }
 +(BOOL)isSwitchKitOn{
     
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:@"k_switch_Kit"];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"k_switch_Kit"];
 }
 
 @end

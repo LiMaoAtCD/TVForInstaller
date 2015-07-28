@@ -108,9 +108,9 @@
 
 -(void)configureTabBarAppearance{
     
-      UIColor *backgroundColor = [UIColor colorWithRed:255./255 green:255./255 blue:255./255 alpha:1.0];
+//      UIColor *backgroundColor = [UIColor colorWithRed:255./255 green:255./255 blue:255./255 alpha:1.0];
 
-//    UIColor *backgroundColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1.0];
+    UIColor *backgroundColor = [UIColor colorWithRed:20./255 green:20./255 blue:20./255 alpha:1.0];
     [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 44) withCornerRadius:0]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
