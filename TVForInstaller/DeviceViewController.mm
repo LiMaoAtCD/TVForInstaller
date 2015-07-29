@@ -82,6 +82,8 @@
     if (indexPath.section == 1) {
         
         DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         cell.deviceTitle.text = self.devices[indexPath.row];
         
         if ([[[DLNAManager DefaultManager] getCurrentSpecifiedRenderer] isEqualToString:self.devices[indexPath.row]]) {
@@ -106,6 +108,7 @@
         }
         
         [cell.switchKit addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         
         return cell;
@@ -116,10 +119,10 @@
 -(void)changeSwitchState:(UISwitch*)kit{
     
     if (kit.isOn) {
-        [ComminUtility setSwitchKit:NO];
+        [ComminUtility setSwitchKit:YES];
 
     }else{
-        [ComminUtility setSwitchKit:YES];
+        [ComminUtility setSwitchKit:NO];
         }
     [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowNotification] object:nil];
 
@@ -127,12 +130,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.container.currentDevice.text = self.devices[indexPath.row];
-    
-    
-    [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
-    
-    [self.tableView reloadData];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1) {
+        self.container.currentDevice.text = self.devices[indexPath.row];
+        
+        
+        [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
+        
+        [self.tableView reloadData];
+    }
+   
     
     
 }
