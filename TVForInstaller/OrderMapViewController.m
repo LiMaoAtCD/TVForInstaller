@@ -127,20 +127,22 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if (self.isStopLocatingUser) {
-        //定位到当前地址
-        [_locService startUserLocationService];
-        
-        _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-        _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
-        _mapView.showsUserLocation = YES;//显示定位图层
-        self.isStopLocatingUser = NO;
-    }
+   
 
 
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
+        
+        if (self.isStopLocatingUser) {
+            //定位到当前地址
+            [_locService startUserLocationService];
+            
+            _mapView.showsUserLocation = NO;//先关闭显示的定位图层
+            _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态
+            _mapView.showsUserLocation = YES;//显示定位图层
+            self.isStopLocatingUser = NO;
+        }
         
         [self addPointAnnotations];
 

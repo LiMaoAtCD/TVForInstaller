@@ -103,7 +103,7 @@ typedef void(^alertBlock)(void);
 
 -(void)dealResponseData:(NSArray *)obj{
 
-    if (obj.count >0) {
+    if (obj.count > 0) {
         
         _appLists = [obj mutableCopy];
         
@@ -126,7 +126,6 @@ typedef void(^alertBlock)(void);
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    
     return 1;
     
 }
@@ -141,15 +140,24 @@ typedef void(^alertBlock)(void);
         [cell.OneInstall addTarget:self action:@selector(onekeyInstall) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else{
+        
+        
         AppCollectionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppCollectionTableCell" forIndexPath:indexPath];
-        
-        cell.collectionView.tag = indexPath.section -1;
-        
-        return cell;
+        cell.collectionView.tag = indexPath.section - 1;
+        [cell.collectionView reloadData];
 
+        return cell;
     }
-    
-    
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section != 0) {
+//        AppCollectionTableCell *tableCell = (AppCollectionTableCell *)cell;
+//        tableCell.collectionView.delegate = self;
+//        tableCell.collectionView.dataSource = self;
+//        tableCell.collectionView.tag = indexPath.section - 1;
+//        [tableCell.collectionView reloadData];
+//    }
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
  
@@ -202,19 +210,21 @@ typedef void(^alertBlock)(void);
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     NSArray *softList = _appLists[collectionView.tag][@"softlist"];
+    NSLog(@"cell数量为%ld ",softList.count);
     return softList.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     APPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"APPCollectionViewCell" forIndexPath:indexPath];
     
+    NSArray *temp = _appLists[collectionView.tag][@"softlist"];
     
-    NSString *url = _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softicon"];
+    NSString *url = temp[indexPath.row][@"softicon"];
     
     NSURL *imageURL = [NSURL URLWithString:url];
     [cell.appImageView sd_setImageWithURL:imageURL placeholderImage:nil];
     
-    cell.appNameLabel.text =  _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"];
+    cell.appNameLabel.text =  temp[indexPath.row][@"softname"];
     
     return cell;
 }
