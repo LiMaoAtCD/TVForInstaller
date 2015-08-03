@@ -10,9 +10,8 @@
 #import "ComminUtility.h"
 #import "AccountManager.h"
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
 #import "GenderViewController.h"
-
+#import <SVProgressHUD.h>
 typedef void(^alertBlock)(void);
 //#define kMaxLength 5
 
@@ -110,28 +109,22 @@ typedef void(^alertBlock)(void);
     }
  
     
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text =@"保存中";
-    [hud showInView:self.view];
+    
+    [SVProgressHUD showWithStatus:@"保存中"];
     
     [NetworkingManager modifyInfowithGender:self.gender name:self.name address:self.address withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"]integerValue] == 0) {
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text =@"保存失败";
-                hud.indicatorView = nil;
-
-                [hud dismissAfterDelay:2];
+                [SVProgressHUD showErrorWithStatus:@"保存失败"];
             });
             
         } else{
             
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text =@"保存成功";
-                hud.indicatorView = nil;
-                [hud dismissAfterDelay:2];
+                [SVProgressHUD showSuccessWithStatus:@"保存成功"];
                 
                 [AccountManager setName:self.name];
                 [AccountManager setAddress:self.address];
@@ -141,7 +134,7 @@ typedef void(^alertBlock)(void);
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismiss];
+        [SVProgressHUD dismiss];
     }];
     
     

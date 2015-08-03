@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import "ComminUtility.h"
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "NSString+Hashes.h"
 #import "AccountManager.h"
 
@@ -40,7 +40,6 @@ typedef void(^alertBlock)(void);
 
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSUInteger count;
-@property (nonatomic,strong) JGProgressHUD *hud;
 
 @end
 
@@ -220,9 +219,7 @@ typedef void(^alertBlock)(void);
     } else {
     
         self.count = 60;
-        self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        self.hud.textLabel.text = @"获取验证码";
-        [self.hud showInView:self.view];
+        [SVProgressHUD showWithStatus:@"正在获取验证码"];
         
         self.timer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(count:) userInfo:nil repeats:YES];
         //
@@ -244,29 +241,17 @@ typedef void(^alertBlock)(void);
                 
                 if ([responseObject[@"success"] integerValue] == 0) {
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        
-                        self.hud.textLabel.text =responseObject[@"msg"];
-                        self.hud.indicatorView = nil;
-                        [self.hud dismissAfterDelay:2.0];
-                    });
+                    [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
                     
                 }else{
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        self.hud.textLabel.text = @"验证码获取成功";
-                        self.hud.indicatorView = nil;
-                        [self.hud dismissAfterDelay:2.0];
-                        
-                    });
-                    
+                    [SVProgressHUD showSuccessWithStatus:@"验证码获取成功"];
                 }
                 
                 
                 
             } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [self.hud dismissAnimated:YES];
-                
+                [SVProgressHUD dismiss];
             }];
         }
 
@@ -382,34 +367,24 @@ typedef void(^alertBlock)(void);
 - (IBAction)submitForRegister:(id)sender {
     
     if ([self checkRegisterInfoCompletion]) {
-        self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        self.hud.textLabel.text =@"注册中";
-        [self.hud showInView:self.view];
+        [SVProgressHUD showWithStatus:@"正在注册"];
         [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.hud.textLabel.text =responseObject[@"msg"];
-                    self.hud.indicatorView = nil;
-                    
-                    [self.hud dismissAfterDelay:2.0];
-                });
-              
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
                 
             } else{
-                
+                [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.hud.textLabel.text =@"注册成功";
-                    self.hud.indicatorView = nil;
-                    [self.hud dismissAfterDelay:2.0];
+                   
                     NSDictionary *data = responseObject[@"obj"];
                     
                     [self dealRegister:data];
                 });
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.hud dismiss];
+            [SVProgressHUD dismiss];
         }];
     }
 }

@@ -19,6 +19,7 @@
 
 #import "NetworkingManager.h"
 #import "OngoingOrder.h"
+#import <SVProgressHUD.h>
 @interface AppDelegate ()
 
 
@@ -62,7 +63,7 @@
     manager.enabled = YES;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+    [self configureSVProgressHUDAppearance];
     return YES;
 }
 
@@ -146,11 +147,11 @@
 -(void)configureBaiduMapSetting{
     _mapManager = [[BMKMapManager alloc] init];
     
-    BOOL ret = [_mapManager start:@"8Nep3BNORZ9DaTyU0Cp5GUnn" generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"aTe5wOyxR5FMXvCeZc7PTMet" generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed");
     }
-    [BNCoreServices_Instance initServices:@"8Nep3BNORZ9DaTyU0Cp5GUnn"];
+    [BNCoreServices_Instance initServices:@"aTe5wOyxR5FMXvCeZc7PTMet"];
 //    [BNCoreServices_Instance startServicesAsyn:^{
 //        NSLog(@"success");
 //    } fail:^{
@@ -190,6 +191,10 @@
     }
     
     
+}
+
+-(void)configureSVProgressHUDAppearance{
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
 }
 
 

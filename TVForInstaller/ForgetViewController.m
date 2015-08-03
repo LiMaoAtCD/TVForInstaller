@@ -10,7 +10,7 @@
 #import "ComminUtility.h"
 #import "AccountManager.h"
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "NSString+Hashes.h"
 
 @interface ForgetViewController ()<UITextFieldDelegate>
@@ -92,35 +92,19 @@ typedef void(^alertBlock)(void);
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerCount:) userInfo:nil repeats:YES];
         [self.timer fire];
         
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = @"获取验证码中";
-        [hud showInView:self.view animated:YES];
+        [SVProgressHUD showWithStatus:@"正在获取验证码"];
+      
         
         
         [NetworkingManager fetchForgetPasswordVerifyCode:self.cellphone withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.indicatorView = nil;
-                    hud.textLabel.text = responseObject[@"msg"];
-                    
-                    [hud dismissAfterDelay:2.0];
-                });
-                
-                
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
             } else{
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.textLabel.text =@"验证码获取成功";
-                    hud.indicatorView = nil;
-                    [hud dismissAfterDelay:2.0];
-                });
-                
+                [SVProgressHUD showSuccessWithStatus:@"验证码获取成功"];
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [hud dismiss];
-            
+            [SVProgressHUD dismiss];
         }];
     }
    
@@ -131,40 +115,23 @@ typedef void(^alertBlock)(void);
     
     if ([self checkCompletion]) {
     
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = @"正在重置密码";
-        [hud showInView:self.view animated:YES];
+        [SVProgressHUD showWithStatus:@"正在重置密码"];
+
         
         [NetworkingManager forgetPasswordOnCellPhone:self.cellphone password:[self.password sha1] verifyCode:self.verifyCode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.indicatorView = nil;
-                    hud.textLabel.text =responseObject[@"msg"];
-                    
-                    [hud dismissAfterDelay:2.0];
-                });
-                
-                
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+            
             } else{
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.textLabel.text =@"重置成功,请重新登录";
-                    hud.indicatorView = nil;
-                    [hud dismissAfterDelay:2.0];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.navigationController popViewControllerAnimated:YES];
-
-                    });
-                    
-                    
-                });
+                [SVProgressHUD showSuccessWithStatus:@"重置成功,请重新登录"];
+               
 
             }
         }failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [hud dismiss];
+            [SVProgressHUD dismiss];
         }];
     }
 }

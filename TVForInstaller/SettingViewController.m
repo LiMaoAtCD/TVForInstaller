@@ -24,7 +24,7 @@
 #import "LoginNavigationController.h"
 
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import <SDImageCache.h>
 
 
@@ -300,42 +300,19 @@
 
 -(void)getInviteCode{
     //TODO:: 获取邀请码
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"获取邀请码";
-//    hud.interactionType = JGProgressHUDInteractionTypeBlockTouchesOnHUDView;
-    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
-        
-        [hud dismiss];
-    };
-    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
-        
-        [hud dismiss];
-    };
-    [hud showInRect:CGRectMake(0, 0, 200, 200) inView:self.view];
-    hud.center = self.view.center;
-    
+    [SVProgressHUD showWithStatus:@"正在获取邀请码"];
 
     
     //
     [NetworkingManager fetchInviteByTokenID:[AccountManager getTokenID] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
-            [hud dismiss];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                hud.indicatorView = nil;
-                hud.textLabel.text = responseObject[@"msg"];
-                
-                [hud dismissAfterDelay:2.0];
-            });
-            
-            
+            [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
         } else{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSString *code = responseObject[@"obj"];
-                NSLog(@"%@",code);
-                [hud dismiss];
+                [SVProgressHUD dismiss];
 
                 [self showInviteCode:code];
                
@@ -345,7 +322,7 @@
         }
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        [hud dismiss];
+        [SVProgressHUD dismiss];
         
     }];
 

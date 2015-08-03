@@ -8,7 +8,7 @@
 
 #import "ModifyPasswordViewController.h"
 #import "ComminUtility.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "AccountManager.h"
 #import "NetworkingManager.h"
 #import "NSString+Hashes.h"
@@ -101,36 +101,24 @@ typedef void(^alertBlock)(void);
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerCount:) userInfo:nil repeats:YES];
     [self.timer fire];
     
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"获取验证码中";
-    [hud showInView:self.view animated:YES];
+    [SVProgressHUD showWithStatus:@"正在获取验证码"];
     
     
     
     [NetworkingManager fetchRegisterVerifyCode:[AccountManager getCellphoneNumber] withComletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"success"] integerValue] == 0) {
             //error
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.indicatorView = nil;
-                hud.textLabel.text =responseObject[@"msg"];
-                
-                [hud dismissAfterDelay:2.0];
-            });
-            
+            [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
             
         } else{
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text =@"验证码获取成功";
-                hud.indicatorView = nil;
-                [hud dismissAfterDelay:2.0];
-            });
+            
+            [SVProgressHUD showSuccessWithStatus:@"验证码获取成功"];
 
         }
 
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismiss];
+        [SVProgressHUD dismiss];
     }];
 }
 
@@ -138,39 +126,20 @@ typedef void(^alertBlock)(void);
     
     if ([self checkCompletion]) {
         
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = @"正在修改";
-        [hud showInView:self.view animated:YES];
+        [SVProgressHUD showWithStatus:@"正在修改"];
         
         [NetworkingManager ModifyPasswordwithNewPassword:[self.password sha1] verifyCode:self.verifyCode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.indicatorView = nil;
-                    hud.textLabel.text = responseObject[@"msg"];
-                    
-                    [hud dismissAfterDelay:2.0];
-                });
-                
-                
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+
             } else{
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    hud.textLabel.text =@"修改成功";
-                    hud.indicatorView = nil;
-                    [hud dismissAfterDelay:2.0];
-                    
-                    [AccountManager setPassword:self.password];
-                    
-                    
-                });
-                
-                
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [AccountManager setPassword:self.password];
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [hud dismiss];
+            [SVProgressHUD dismiss];
         }];
     }
     

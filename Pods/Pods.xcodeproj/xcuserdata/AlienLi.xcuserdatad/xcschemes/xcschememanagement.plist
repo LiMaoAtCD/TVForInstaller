@@ -24,17 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TVForInstaller-JGProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-TVForInstaller-MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-TVForInstaller-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TVForInstaller-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E79F29C9C0A0461D3E79193</key>
+		<key>409FAA651A0F60F9FC5120F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4312A6E8F24426A7FCCBA8FF</key>
+		<key>5C5E80D7FDD71B2D152FF22A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B6A3532C44BAB174A39058B</key>
+		<key>5C9A5351650B02C4C9933F4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5DE7D2761BF8784B5ECEACE4</key>
+		<key>6ECD2E5BF6FDC99EE2032BAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74FCC6F47237C73B4FCB22C2</key>
+		<key>7FA7C43732D1654D58FF92AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2C313458770B1C2BA1F49B2</key>
+		<key>8DE82F546FD3420F235802E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D38347E8307FA3DF133E6CF7</key>
+		<key>9ADD5F6FE9C522AC11AA6C7C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D78251668165E06F0BECFCC0</key>
+		<key>B7E6C2E74B65BCEC1E245266</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F10C371DA5F52D5357855AC5</key>
+		<key>DAB74AA23759F5722FBB934E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

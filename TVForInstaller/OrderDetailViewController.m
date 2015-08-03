@@ -8,15 +8,11 @@
 
 #import "OrderDetailViewController.h"
 #import "ComminUtility.h"
-
 #import "BNCoreServices.h"
-
 #import "AccountManager.h"
-
 #import "OngoingOrder.h"
-
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 
 @interface OrderDetailViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
 
@@ -94,18 +90,17 @@
 //    [self startNavi];
     
     //确认订单，修改状态
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    hud.textLabel.text = @"正在接单";
-    [hud showInView: self.view];
+    [SVProgressHUD showWithStatus:@"接单中"];
+    
     [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"2" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [hud dismissAnimated:YES];
+        [SVProgressHUD dismiss];
+
         if ([responseObject[@"status"] integerValue] == 0) {
             [self setOrderStateAndNoteToNavi];
         }
-        
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud dismissAnimated:YES];
 
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
     }];
 
 }

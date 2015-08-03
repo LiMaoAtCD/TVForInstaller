@@ -10,7 +10,7 @@
 #import "ComminUtility.h"
 #import "ChildTableViewCell.h"
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import <MJRefresh.h>
 
 @interface MyChildrenViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -41,25 +41,15 @@
     [NetworkingManager fetchMyChildrenListwithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if ([responseObject[@"success"] integerValue] == 0) {
-            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-            hud.textLabel.text = responseObject[@"msg"];
-            hud.indicatorView = nil;
-            [hud showInView:self.tableView animated:YES];
+            [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
             
-            [hud dismissAfterDelay:1.0];
             
         } else{
             self.items = responseObject[@"obj"];
             if (self.items.count > 0) {
                 [self.tableView reloadData];
             }else{
-                JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-                hud.textLabel.text = @"您还没有下级";
-                hud.indicatorView = nil;
-                [hud showInView:self.tableView animated:YES];
-                
-                [hud dismissAfterDelay:1.0];
-
+                [SVProgressHUD showErrorWithStatus:responseObject[@"还没有下级"]];
             }
             
             

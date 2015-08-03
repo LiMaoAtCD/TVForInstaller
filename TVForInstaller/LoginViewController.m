@@ -12,15 +12,13 @@
 #import "NSString+Hashes.h"
 #import "AccountManager.h"
 
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-
-@property (nonatomic, strong) JGProgressHUD *HUD;
 
 @property (nonatomic,copy) NSString *Account;
 @property (nonatomic,copy) NSString *password;
@@ -105,9 +103,7 @@
         [self.CellularTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
 
-        self.HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        self.HUD.textLabel.text= @"登录中";
-        [self.HUD showInView:self.view animated:YES];
+        [SVProgressHUD showWithStatus:@"正在登录"];
 
         [NetworkingManager login:self.Account withPassword:[self.password sha1] withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
 
@@ -116,10 +112,7 @@
                 //error
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.HUD.indicatorView = nil;
-                    self.HUD.textLabel.text =responseObject[@"msg"];
-                    
-                    [self.HUD dismissAfterDelay:2.0];
+                    [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
                     
                     self.passwordTextField.text = @"";
                     self.password = @"";
@@ -129,9 +122,7 @@
             } else{
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.HUD.textLabel.text =@"登录成功";
-                    self.HUD.indicatorView = nil;
-                    [self.HUD dismissAfterDelay:2.0];
+                    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                     [self dealLoginMessages:(NSDictionary*)responseObject];
                 });
                 
@@ -139,7 +130,7 @@
             }
             
         } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.HUD dismiss];
+            [SVProgressHUD dismiss];
 
         }];
     }

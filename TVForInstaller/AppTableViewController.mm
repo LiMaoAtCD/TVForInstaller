@@ -15,7 +15,7 @@
 #import "APPCollectionViewCell.h"
 
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 
 #import <UIImageView+WebCache.h>
 
@@ -242,10 +242,8 @@ typedef void(^alertBlock)(void);
         [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
     }else{
         
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = [NSString stringWithFormat:@"%@ 即将安装", _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"]];
-        hud.indicatorView=  nil;
-        [hud showInView:self.view];
+        NSString *installMessage = [NSString stringWithFormat:@"%@ 即将安装", _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"]];
+        [SVProgressHUD showWithStatus:installMessage];
         
         [NetworkingManager selectAppToInstall:softwareAddress ipaddress:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
            
@@ -257,23 +255,17 @@ typedef void(^alertBlock)(void);
                 NSLog(@"response: %@",result);
                 
                 if ([result isEqualToString:@"success"]) {
-                    hud.textLabel.text = @"安装请求成功";
-                    hud.indicatorView = nil;
+                    [SVProgressHUD showSuccessWithStatus:@"安装请求成功"];
                 } else if([result isEqualToString:@"busy"]){
-                    hud.textLabel.text = @"电视正忙，请稍后再试";
-                    hud.indicatorView = nil;
+                    [SVProgressHUD showErrorWithStatus:@"电视正忙，请稍后再试"];
                 }
                 
-                [hud dismissAfterDelay:2];
             });
 
             
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                hud.textLabel.text = @"安装请求失败～";
-                [hud dismissAfterDelay:2];
-            });
+            [SVProgressHUD showErrorWithStatus:@"安装请求失败"];
+
         }];
     }
 }
@@ -288,33 +280,20 @@ typedef void(^alertBlock)(void);
         [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
     }else{
         
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = @"即将安装";
-        hud.indicatorView =  nil;
-        [hud showInView:self.view];
+        [SVProgressHUD showWithStatus:@"即将安装"];
         [NetworkingManager OneKeyInstall:ipAddress WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                  NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                 if ([result isEqualToString:@"success"]) {
-                    hud.textLabel.text = @"安装请求成功";
-                    hud.indicatorView = nil;
+                    [SVProgressHUD showSuccessWithStatus:@"安装请求成功"];
+
                 } else if([result isEqualToString:@"busy"]){
-                    hud.textLabel.text = @"电视正忙，请稍后再试";
-                    hud.indicatorView = nil;
+                    [SVProgressHUD showErrorWithStatus:@"电视正忙，请稍后再试"];
                 }
-
-
-                
-                
-                [hud dismissAfterDelay:2];
             });
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                hud.textLabel.text = @"安装请求失败～";
-                [hud dismissAfterDelay:2];
-            });
+            [SVProgressHUD showErrorWithStatus:@"安装请求失败"];
         }];
     }
 }

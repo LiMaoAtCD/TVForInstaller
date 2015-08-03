@@ -8,7 +8,7 @@
 
 #import "NetworkingManager.h"
 #import "NSDictionary+JSONString.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
@@ -28,23 +28,25 @@
 
 +(void)focusNetWorkError{
     
-    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    
-    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
-    hud.indicatorView = nil;
-    
-    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
-        [hud dismiss];
-    };
-    
-    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
-        [hud dismiss];
-    };
+//    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+//    
+//    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
+//    hud.indicatorView = nil;
+//    
+//    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
+//        [hud dismiss];
+//    };
+//    
+//    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
+//        [hud dismiss];
+//    };
 
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [hud showInView:delegate.window];
-    [hud dismissAfterDelay:2.0];
+//    [hud showInView:delegate.window];
+//    [hud dismissAfterDelay:2.0];
+    
+    [SVProgressHUD showErrorWithStatus:@"网络出错啦"];
     
 }
 

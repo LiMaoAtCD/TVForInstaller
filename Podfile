@@ -3,13 +3,13 @@
 
 target 'TVForInstaller' do
 	pod 'AFNetworking'
-    pod 'CBStoreHouseRefreshControl'
-    pod 'SDWebImage'
-    pod "HMSegmentedControl"
-	pod 'JGProgressHUD'
+    	pod 'CBStoreHouseRefreshControl'
+	pod 'SDWebImage'
+   	pod "HMSegmentedControl"
 	pod 'MJRefresh'
     pod 'ZXingObjC', '~> 3.0'
-    pod 'DZNEmptyDataSet'
+   	 pod 'DZNEmptyDataSet'
+    pod 'SVProgressHUD'
 
 
 end

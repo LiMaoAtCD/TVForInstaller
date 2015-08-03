@@ -14,7 +14,7 @@
 #import "AccountManager.h"
 #import "OngoingOrder.h"
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 
 
 #import "BNCoreServices.h"
@@ -340,13 +340,20 @@
     //如果没有点击过泡泡
     if (!self.isSelectedPaoPaoView) {
         self.isSelectedPaoPaoView = YES;
+        
+       
+        [SVProgressHUD show];
+       
+//        [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
         [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *poi = responseObject[@"poi"];
             if ([poi[@"order_state"] integerValue] == 0) {
+
                 //如果没有被占用，就占用
                 [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
                     if ([responseObject[@"status"] integerValue] == 0) {
+                        [SVProgressHUD dismiss];
                         //占用成功，跳到详情界面
                         UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
                         
@@ -370,6 +377,8 @@
                         [self.navigationController pushViewController:detail animated:YES];
                         self.isSelectedPaoPaoView = NO;
 
+                    } else{
+                        [SVProgressHUD showInfoWithStatus:@"订单请求失败"];
                     }
                     
                 } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -380,23 +389,14 @@
                 
             } else if([poi[@"order_state"] integerValue] == 1){
                 //TODO该订单已被占用
-                [self alertWithMessage:@"此订单被其他工程师占用中，请稍后再试" withCompletionHandler:^{
-                    self.isSelectedPaoPaoView = NO;
+                self.isSelectedPaoPaoView = NO;
+                [SVProgressHUD showInfoWithStatus:@"此订单被占用中，请稍后再试"];
 
-                }];
                 
             }
             
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-            hud.textLabel.text = @"网络不稳定,请稍后再试";
-            hud.indicatorView = nil;
-            
-            [hud showInView:self.view];
-            [hud dismissAfterDelay:1.0];
-            
-            hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){[hud dismiss];};
-            hud.tapOutsideBlock = ^(JGProgressHUD *hud){[hud dismiss];};
+            [SVProgressHUD showErrorWithStatus:@"网络出错，请稍后再试"];
             self.isSelectedPaoPaoView = NO;
 
         }];

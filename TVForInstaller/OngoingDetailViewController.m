@@ -18,7 +18,7 @@
 #import "QRCodeDismissAnimator.h"
 
 #import "NetworkingManager.h"
-#import <JGProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "OngoingOrder.h"
 #import "TotalFeeViewController.h"
 
@@ -261,9 +261,8 @@ typedef enum : NSUInteger {
 #warning 支付处理
     if (self.currentPayType != CASH) {
         //在线支付
-        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-        hud.textLabel.text = @"正在生成订单";
-        [hud showInView:self.view];
+
+        [SVProgressHUD showWithStatus:@"正在生成订单"];
 
         NSString *pay_type = @"0";
         if (self.currentPayType == WECHAT) {
@@ -311,15 +310,16 @@ typedef enum : NSUInteger {
 
                 } else {
 
-//                    NSString *errorMessage = [error localizedDescription];
                 }
+                [SVProgressHUD dismiss];
+
                 
-                
+            } else{
+                [SVProgressHUD showErrorWithStatus:@"出错啦"];
             }
-            [hud dismissAfterDelay:1.0];
 
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [hud dismissAfterDelay:1.0];
+            [SVProgressHUD dismiss];
         }];
     }
 }
