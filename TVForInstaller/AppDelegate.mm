@@ -38,6 +38,8 @@
     
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
+    [self configureSVProgressHUDAppearance];
+    [self checkNetworkEnvironment];
     
     [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
 
@@ -63,7 +65,6 @@
     manager.enabled = YES;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self configureSVProgressHUDAppearance];
     return YES;
 }
 
@@ -104,9 +105,6 @@
 }
 
 -(void)configureTabBarAppearance{
-    
-//      UIColor *backgroundColor = [UIColor colorWithRed:255./255 green:255./255 blue:255./255 alpha:1.0];
-
     UIColor *backgroundColor = [UIColor colorWithRed:44./255 green:44./255 blue:46./255 alpha:1.0];
     [[UITabBar appearance] setBackgroundImage:[AppDelegate imageFromColor:backgroundColor forSize:CGSizeMake(320, 44) withCornerRadius:0]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]} forState:UIControlStateSelected];
@@ -180,11 +178,8 @@
                     [OngoingOrder setOrder:temp];
                     [OngoingOrder setExistOngoingOrder:YES];
                 }else {
-                    
                 }
             }
-            
-            
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
@@ -195,6 +190,18 @@
 
 -(void)configureSVProgressHUDAppearance{
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
+}
+-(void)checkNetworkEnvironment{
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            
+        }
+    }];
+    
+    [manager startMonitoring];
 }
 
 

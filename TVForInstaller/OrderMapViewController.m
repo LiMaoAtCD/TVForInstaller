@@ -79,6 +79,10 @@
  */
 @property (nonatomic, strong) UIView *orderGoingNoteView;
 
+
+/**
+ *  泡泡点击锁
+ */
 @property (nonatomic, assign) BOOL isSelectedPaoPaoView;
 
 
@@ -223,6 +227,7 @@
     [_mapView updateLocationData:userLocation];
     self.currentUserLocation = userLocation;
     self.currentUserLocation.title = nil;
+    
     [self SearchNearByOrders];
 }
 
