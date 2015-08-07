@@ -130,7 +130,6 @@
             }
             
         } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
 
         }];
     }

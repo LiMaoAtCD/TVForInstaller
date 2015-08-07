@@ -17,6 +17,8 @@
 //#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
 //#define kServer2 @"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService"
 
+#define kServer3 @"http://10.0.0.62:8080/zhiKey1/appengController.do?enterService"
+
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
 #define kBaiduGeoTableID 114851
 
@@ -413,6 +415,22 @@
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
+}
+
++(void)fetchAvatarImageTokenWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[@{} mutableCopy];
+    
+    dic[@"userId"] = [AccountManager getTokenID];
+    dic[@"type"] = @3;
+    
+    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:kServer3 parameters:@{@"action":@"80",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+    
 }
 
 

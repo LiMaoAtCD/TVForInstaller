@@ -286,7 +286,6 @@
             self.isCanceling = NO;
 
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
             self.isCanceling = NO;
 
         }];

@@ -26,6 +26,8 @@
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
 #import <SDImageCache.h>
+#import <QiniuSDK.h>
+#import <UIImageView+WebCache.h>
 
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
@@ -65,16 +67,9 @@
     [self.avatarImageView addGestureRecognizer:tap];
     
 
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:@"kLocalAvatarImage"];
-    
-    if (image) {
-        self.avatarImageView.image  = image;
+    NSString *avatar = [AccountManager getAvatarUrlString];
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"tou"]];
 
-    }else{
-        self.avatarImageView.image = [UIImage imageNamed:@"tou"];
-    }
-    
-    
 }
 
 
@@ -282,18 +277,60 @@
     
     @autoreleasepool {
         
-        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-        
-        //TODO: deal image;
-        self.avatarImageView.image = image;
-        
-        [[SDImageCache sharedImageCache] storeImage:image forKey:@"kLocalAvatarImage" toDisk:YES];
-        
-        
-        
-        
+        UIImage *tempImage = [info objectForKey:UIImagePickerControllerEditedImage];
         
         [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [SVProgressHUD showWithStatus:@"正在上传头像"];
+        
+        [NetworkingManager fetchAvatarImageTokenWithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject[@"success"] integerValue] == 0) {
+                
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+                
+            } else {
+                //token获取成功
+                NSString *token = responseObject[@"obj"];
+                
+                //七牛初始化
+                QNUploadManager *upManager = [[QNUploadManager alloc] init];
+
+                //获取图片并转换成NSData
+                NSData *imageData = UIImageJPEGRepresentation(tempImage, 0.2);
+                
+                //根据时间生成唯一Key
+                NSDate *date = [NSDate date];
+                
+                NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"YY-MM-dd-HH-mm-SS"];
+                
+                NSString *key = [formatter stringFromDate:date];
+                
+                //上传七牛
+                [upManager putData:imageData key:key token:token complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                    
+                    NSLog(@"Qiniu callback   info：%@ \n key: %@ \n resp: %@",info,key,resp);
+                    
+                    //获取回调
+                    
+                    if ([resp[@"success"] integerValue] == 1) {
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
+                        NSURL *url =[NSURL URLWithString:resp[@"obj"]];
+                        [AccountManager setAvatarUrlString:resp[@"obj"]];
+                        [self.avatarImageView sd_setImageWithURL:url placeholderImage:tempImage];
+                    
+                    } else{
+                        [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+                    }
+                    
+                } option:nil];
+            
+            }
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
     }
     
 }
@@ -321,9 +358,6 @@
             });
         }
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [SVProgressHUD dismiss];
-        
     }];
 
 

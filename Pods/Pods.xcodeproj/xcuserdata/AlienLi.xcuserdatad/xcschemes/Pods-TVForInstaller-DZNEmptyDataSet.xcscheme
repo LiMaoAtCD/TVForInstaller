@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAB74AA23759F5722FBB934E"
+               BlueprintIdentifier = "1562EFA87342D4A6DEA205FE"
                BuildableName = "libPods-TVForInstaller-DZNEmptyDataSet.a"
                BlueprintName = "Pods-TVForInstaller-DZNEmptyDataSet"
                ReferencedContainer = "container:Pods.xcodeproj">

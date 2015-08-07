@@ -10,7 +10,7 @@ target 'TVForInstaller' do
     pod 'ZXingObjC', '~> 3.0'
    	 pod 'DZNEmptyDataSet'
     pod 'SVProgressHUD'
-
+	pod "Qiniu", "~> 7.0"
 
 end
 

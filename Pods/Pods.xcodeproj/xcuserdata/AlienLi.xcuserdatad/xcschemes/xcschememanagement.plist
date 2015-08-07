@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TVForInstaller-Qiniu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>409FAA651A0F60F9FC5120F6</key>
+		<key>1562EFA87342D4A6DEA205FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C5E80D7FDD71B2D152FF22A</key>
+		<key>1FA0DA446EE224167B3A461C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C9A5351650B02C4C9933F4D</key>
+		<key>34A604B9BBE011B4C47AE32F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6ECD2E5BF6FDC99EE2032BAF</key>
+		<key>6EDDC1A9944FB73DB778A773</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FA7C43732D1654D58FF92AF</key>
+		<key>6EF4CC91B011D0F9B73B6A18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8DE82F546FD3420F235802E3</key>
+		<key>7F074DB7FD37A439F186001D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9ADD5F6FE9C522AC11AA6C7C</key>
+		<key>9BA0B679981A7D4E3AC26855</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7E6C2E74B65BCEC1E245266</key>
+		<key>AA61789AF9F52EB680549C30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAB74AA23759F5722FBB934E</key>
+		<key>E750F4BA362C078C9F3F0F91</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA28828FF07FC3A067FF4D82</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -118,7 +118,6 @@ typedef void(^alertBlock)(void);
         }
 
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
     }];
 }
 
@@ -139,7 +138,6 @@ typedef void(^alertBlock)(void);
                 [AccountManager setPassword:self.password];
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
         }];
     }
     

@@ -134,7 +134,6 @@ typedef void(^alertBlock)(void);
         }
         
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
     }];
     
     

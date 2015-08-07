@@ -353,4 +353,12 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 +(NetWorkOperation *)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
+/**
+ *  上传头像
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)fetchAvatarImageTokenWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
 @end

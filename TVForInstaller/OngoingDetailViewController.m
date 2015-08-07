@@ -319,7 +319,6 @@ typedef enum : NSUInteger {
             }
 
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
         }];
     }
 }

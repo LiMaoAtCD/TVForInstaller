@@ -104,7 +104,6 @@ typedef void(^alertBlock)(void);
                 [SVProgressHUD showSuccessWithStatus:@"验证码获取成功"];
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
         }];
     }
    
@@ -131,7 +130,6 @@ typedef void(^alertBlock)(void);
 
             }
         }failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
         }];
     }
 }
