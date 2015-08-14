@@ -261,6 +261,8 @@
         [SVProgressHUD showWithStatus:@"正在取消订单"];
         
         
+     
+        
         [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
             
@@ -284,6 +286,14 @@
                 }];
             }
             self.isCanceling = NO;
+            
+            [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"response: %@",responseObject);
+                
+                
+            } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"error %@",error);
+            }];
 
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.isCanceling = NO;

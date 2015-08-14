@@ -344,6 +344,15 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)BeginPayForUID:(NSString*)uid byEngineerID:(NSString *)engineer_id totalFee:(NSString *)totalFee pay_type:(NSString *)pay_type WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+/**
+ *  接单后上传工程师ID
+ *
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)UploadEngineerInfoByID:(NSString *)uid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 /**
  *  查询自己进行中的订单
  *
@@ -360,5 +369,14 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param fail
  */
 +(void)fetchAvatarImageTokenWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  取消订单
+ *
+ *  @param uid               UID
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)CancelOrderByUID:(NSString *)uid WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 @end

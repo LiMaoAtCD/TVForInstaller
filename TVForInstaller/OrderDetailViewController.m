@@ -98,13 +98,22 @@
         if ([responseObject[@"status"] integerValue] == 0) {
             [self setOrderStateAndNoteToNavi];
         }
+        
+        
 
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
     }];
 
 }
 
 -(void)setOrderStateAndNoteToNavi{
+    
+    [NetworkingManager UploadEngineerInfoByID:self.info[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
     [OngoingOrder setExistOngoingOrder:YES];
     [OngoingOrder setOrder:self.info];

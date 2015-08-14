@@ -12,12 +12,12 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-//#define kServer @"http://10.0.0.116:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://10.0.0.116:8080/zhiKey/softController.do?getSoftService"
+//#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
+#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
 
-#define kServer3 @"http://10.0.0.62:8080/zhiKey1/appengController.do?enterService"
+#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
 #define kBaiduGeoTableID 114851
@@ -421,7 +421,7 @@
     NSMutableDictionary *dic =[@{} mutableCopy];
     
     dic[@"userId"] = [AccountManager getTokenID];
-    dic[@"type"] = @3;
+    dic[@"type"] = @7;
     
     NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -431,6 +431,35 @@
         fail(operation,error);
     }];
     
+}
+
++(void)UploadEngineerInfoByID:(NSString *)uid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    NSMutableDictionary *dic =[@{} mutableCopy];
+    
+    dic[@"uid"] = uid;
+    
+    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:@"http://10.0.0.62:8080/zhiKey/weixinPayController.do?submitOrderToDo" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failHandler(operation,error);
+    }];
+
+}
+
++(void)CancelOrderByUID:(NSString *)uid WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[@{} mutableCopy];
+    
+    dic[@"uid"] = uid;
+    
+    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:@"http://10.0.0.62:8080/zhiKey/weixinPayController.do?giveUpOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
 }
 
 
