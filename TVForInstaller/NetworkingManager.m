@@ -395,6 +395,19 @@
 
 }
 
++(void)BeginWeChatPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSString * param = [@{@"uid":uid,@"totalfee":totalFee,@"tvid":tvid} bv_jsonStringWithPrettyPrint:YES];
+    
+    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?wxPay" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+
+}
+
 +(NetWorkOperation*)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AFHTTPRequestOperation *task = [manager GET:@"http://api.map.baidu.com/geodata/v3/poi/list?" parameters:@{@"ak":kBaiduAK,

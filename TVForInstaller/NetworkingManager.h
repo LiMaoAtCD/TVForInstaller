@@ -346,6 +346,20 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 
 
 /**
+ *  微信支付
+ *
+ *  @param uid               uid
+ *  @param engineer_id       工程师ID
+ *  @param totalFee          总共费用
+ *  @param tvid              tvid
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)BeginWeChatPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+
+/**
  *  接单后上传工程师ID
  *
  *  @param completionHandler

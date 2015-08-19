@@ -163,7 +163,7 @@ typedef enum : NSUInteger {
 -(void)configOrderInfo{
     
     NSDictionary *order = [OngoingOrder onGoingOrder];
-    
+    self.OrderInfo = order;
     self.nameLabel.text = order[@"name"];
     self.telphoneLabel.text =  order[@"phone"];
     self.addressLabel.text =  order[@"home_address"];
@@ -265,26 +265,28 @@ typedef enum : NSUInteger {
 }
 
 
+
+
 //点击支付
 -(void)didClickSubmitButton{
     
-#warning 支付处理
-    if (self.currentPayType != CASH) {
-        //在线支付
 
+
+    if (self.currentPayType == WECHAT) {
+        //发起微信支付
         [SVProgressHUD showWithStatus:@"正在生成订单"];
 
-        NSString *pay_type = @"0";
-        if (self.currentPayType == WECHAT) {
-            pay_type = @"0";
-        } else if (self.currentPayType == ALIPAY){
-            pay_type = @"1";
-        } else{
-            pay_type = @"2";
-        }
-        [NetworkingManager BeginPayForUID:self.OrderInfo[@"uid"] byEngineerID:self.OrderInfo[@"engineer_id"] totalFee:[NSString stringWithFormat:@"%.2f",self.totalCost] pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
             if ([responseObject[@"success"] integerValue] == 1) {
+                [SVProgressHUD dismiss];
+
                 NSString *url = responseObject[@"obj"];
+                
+                if (!url) {
+                    return;
+                }
+                
                 NSError *error = nil;
                 CGImageRef qrImage = nil;
                 ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
@@ -294,9 +296,9 @@ typedef enum : NSUInteger {
                                               height:500
                                                error:&error];
                 if (result) {
-
+            
                     qrImage = [[ZXImage imageWithMatrix:result] cgimage];
-
+            
                     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
                     QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                     qrcodeVC.transitioningDelegate = self;
@@ -304,160 +306,40 @@ typedef enum : NSUInteger {
                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                     [self showDetailViewController:qrcodeVC sender:self];
                     NSDictionary *order = [OngoingOrder onGoingOrder];
-
+            
                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                         if ([responseObject[@"status"] integerValue] == 0) {
                             //修改订单为完成未支付
-
+            
                             [OngoingOrder setExistOngoingOrder:NO];
                             [OngoingOrder setOrder:nil];
-
-
+                            
+                            
                         }
                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+                        
                     }];
-
+                    
                 } else {
-
+                    
                 }
-                [SVProgressHUD dismiss];
-
                 
             } else{
-                [SVProgressHUD showErrorWithStatus:@"出错啦"];
+                //未成功
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
             }
-
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
         }];
+        
+        
+     } else if (self.currentPayType == ALIPAY){
+         //支付宝
+     } else{
+         //现金
     }
+
 }
-//- (IBAction)clickCreatePayOrder:(id)sender {
-
-    
-//    if ([self.moneyTextField.text isEqualToString:@""]) {
-//        
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"支付金额不可为空" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//            
-//        }];
-//        [alert addAction:action];
-//        
-//        [self presentViewController:alert animated:YES completion:nil];
-//    }else {
-//        NSDictionary *info = [OngoingOrder onGoingOrder];
-//        
-//        NSString *pay_type = @"0";
-//        if (_iswechatPay) {
-//            pay_type = @"0";
-//        } else{
-//            pay_type = @"1";
-//        }
-//        JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-//        hud.textLabel.text = @"正在生成订单";
-//        [hud showInView:self.view];
-//        
-//        
-//        [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            if ([responseObject[@"success"] integerValue] == 1) {
-//                NSString *url = responseObject[@"obj"];
-//                NSError *error = nil;
-//                CGImageRef qrImage = nil;
-//                ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-//                ZXBitMatrix* result = [writer encode:url
-//                                              format:kBarcodeFormatQRCode
-//                                               width:500
-//                                              height:500
-//                                               error:&error];
-//                if (result) {
-//                    
-//                    qrImage = [[ZXImage imageWithMatrix:result] cgimage];
-//                    
-//                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
-//                    QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
-//                    qrcodeVC.transitioningDelegate = self;
-//                    qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
-//                    qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
-//                    [self showDetailViewController:qrcodeVC sender:self];
-//                    NSDictionary *order = [OngoingOrder onGoingOrder];
-//
-//                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                        if ([responseObject[@"status"] integerValue] == 0) {
-//                            //修改订单为完成未支付
-//                            
-//                            [OngoingOrder setExistOngoingOrder:NO];
-//                            [OngoingOrder setOrder:nil];
-//                            
-//                            
-//                        }
-//                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                        
-//                    }];
-//                    
-//                } else {
-//                    
-////                    NSString *errorMessage = [error localizedDescription];
-//                }
-//                
-//                
-//            }
-//            [hud dismissAfterDelay:1.0];
-//
-//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            [hud dismissAfterDelay:1.0];
-//        }];
-//
-//    }
-//}
-
-
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if ([segue.identifier isEqualToString:@"QRCodeSegue"]) {
-//        
-//        
-//        NSDictionary *info = [OngoingOrder onGoingOrder];
-//        
-//        NSString *pay_type = @"0";
-//        if (_iswechatPay) {
-//            pay_type = @"0";
-//        } else{
-//            pay_type = @"1";
-//        }
-//        
-//        [NetworkingManager BeginPayForUID:info[@"uid"] byEngineerID:info[@"engineer_id"] totalFee:self.moneyTextField.text pay_type:pay_type WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            if ([responseObject[@"success"] integerValue] == 1) {
-//                NSString *url = responseObject[@"obj"];
-//                NSError *error = nil;
-//                CGImageRef qrImage = nil;
-//                ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-//                ZXBitMatrix* result = [writer encode:url
-//                                              format:kBarcodeFormatQRCode
-//                                               width:500
-//                                              height:500
-//                                               error:&error];
-//                if (result) {
-//                    
-//                    qrImage = [[ZXImage imageWithMatrix:result] cgimage];
-//                    
-//                    QRCodeViewController *qrcodeVC = segue.destinationViewController;
-//                    qrcodeVC.transitioningDelegate = self;
-//                    qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
-//                    qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
-//                } else {
-//                    
-//                    NSString *errorMessage = [error localizedDescription];
-//                }
-//
-//                
-//            }
-//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            
-//        }];
-//
-//    }
-//}
-
-
 #pragma mark -keyboard deal
 - (void)registerForKeyboardNotifications
 {
@@ -517,6 +399,7 @@ typedef enum : NSUInteger {
     if ([segue.identifier isEqualToString:@"TotalFeeSegue"]) {
         //
         self.totalFeeVC = (TotalFeeViewController*)segue.destinationViewController;
+        self.totalFeeVC.delegate = self;
     }
 }
 

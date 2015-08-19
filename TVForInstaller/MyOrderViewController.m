@@ -155,6 +155,8 @@
     cell.telphoneLabel.text = self.orders[indexPath.row][@"phone"];
     cell.dateLabel.text = self.orders[indexPath.row][@"order_endtime"];
     cell.addressLabel.text= self.orders[indexPath.row][@"home_address"];
+    
+ 
     cell.moneyLabel.text = self.orders[indexPath.row][@"order_totalfee"];
     if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
         //支付进行中
@@ -240,6 +242,7 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
     
     OngoingDetailViewController *ongoing =[sb instantiateViewControllerWithIdentifier:@"OngoingDetailViewController"];
+    
     ongoing.hidesBottomBarWhenPushed = YES;
     [self.navigationController showViewController:ongoing sender:self];
 
