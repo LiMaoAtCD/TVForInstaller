@@ -22,6 +22,8 @@
 #import "OngoingOrder.h"
 #import "TotalFeeViewController.h"
 
+#import "QRDecodeViewController.h"
+
 typedef enum : NSUInteger {
     WECHAT,
     ALIPAY,
@@ -54,6 +56,9 @@ typedef enum : NSUInteger {
 //汇总费用
 @property (nonatomic, assign) float totalCost;
 
+//扫码结果
+@property (nonatomic,copy) NSString * qrcode;
+
 //微信&支付宝&现金按钮
 @property (weak, nonatomic) IBOutlet UIButton *wechatPay;
 @property (weak, nonatomic) IBOutlet UIButton *alipay;
@@ -68,6 +73,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) TotalFeeViewController *totalFeeVC;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
+@property (weak, nonatomic) IBOutlet UILabel *scanLabel;
 
 @end
 
@@ -106,6 +113,8 @@ typedef enum : NSUInteger {
     [self.ServiceFeeTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.FlowTextfield addTarget:self action:@selector(textfieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     
+    self.scanLabel.hidden = YES;
+    [self.scanButton addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -114,6 +123,7 @@ typedef enum : NSUInteger {
     [self configureTextFields];
 
 }
+
 
 
 
@@ -523,6 +533,27 @@ typedef enum : NSUInteger {
 }
 
 
+#pragma mark - scan qrcode
+
+-(void)scanQRCode:(UIButton *)button{
+    QRDecodeViewController *qrcode = [[QRDecodeViewController alloc] init];
+    
+    [self showDetailViewController:qrcode sender:self];
+    //    [self presentViewController:qrcode animated:YES completion:^{
+    //        self.navigationController.tabBarController.view.frame = CGRectMake(0, 0, self.navigationController.tabBarController.view.frame.size.width, self.navigationController.tabBarController.view.frame.size.height);
+    //    }];
+    
+    __weak OngoingDetailViewController *weakSelf = self;
+    
+    qrcode.qrUrlBlock = ^(NSString * code) {
+        
+//        [weakSelf postNewRemoteTV:code];
+        self.qrcode = code;
+        weakSelf.scanLabel.text = code;
+        weakSelf.scanLabel.hidden = NO;
+        weakSelf.scanButton.hidden = YES;
+    };
+}
 
 
 @end

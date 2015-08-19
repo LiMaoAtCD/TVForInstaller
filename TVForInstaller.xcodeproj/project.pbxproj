@@ -70,6 +70,11 @@
 		877870661B56521F0046650C /* OrderMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870651B56521F0046650C /* OrderMapViewController.m */; };
 		8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877870691B56536E0046650C /* MyOrderViewController.m */; };
 		8778706D1B565D2A0046650C /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8778706C1B565D2A0046650C /* CustomAnnotationView.m */; };
+		877AAB321B8432C700A3326F /* qr_scan_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 877AAB2B1B8432C700A3326F /* qr_scan_line@2x.png */; };
+		877AAB331B8432C700A3326F /* QRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB2D1B8432C700A3326F /* QRItem.m */; };
+		877AAB341B8432C700A3326F /* QRMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB2F1B8432C700A3326F /* QRMenu.m */; };
+		877AAB351B8432C700A3326F /* QRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB311B8432C700A3326F /* QRView.m */; };
+		877AAB381B8432E700A3326F /* QRDecodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB371B8432E700A3326F /* QRDecodeViewController.m */; };
 		87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FEE1B57969A0028022D /* OngoingDetailViewController.m */; };
 		87815FF21B57B4F80028022D /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FF11B57B4F80028022D /* OrderDetailViewController.m */; };
 		8781607F1B58DA590028022D /* TotalPropertyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8781607E1B58DA590028022D /* TotalPropertyCell.m */; };
@@ -236,6 +241,15 @@
 		877870691B56536E0046650C /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		8778706B1B565D2A0046650C /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
 		8778706C1B565D2A0046650C /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		877AAB2B1B8432C700A3326F /* qr_scan_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr_scan_line@2x.png"; sourceTree = "<group>"; };
+		877AAB2C1B8432C700A3326F /* QRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRItem.h; sourceTree = "<group>"; };
+		877AAB2D1B8432C700A3326F /* QRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRItem.m; sourceTree = "<group>"; };
+		877AAB2E1B8432C700A3326F /* QRMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRMenu.h; sourceTree = "<group>"; };
+		877AAB2F1B8432C700A3326F /* QRMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRMenu.m; sourceTree = "<group>"; };
+		877AAB301B8432C700A3326F /* QRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRView.h; sourceTree = "<group>"; };
+		877AAB311B8432C700A3326F /* QRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRView.m; sourceTree = "<group>"; };
+		877AAB361B8432E700A3326F /* QRDecodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDecodeViewController.h; sourceTree = "<group>"; };
+		877AAB371B8432E700A3326F /* QRDecodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDecodeViewController.m; sourceTree = "<group>"; };
 		87815FED1B57969A0028022D /* OngoingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingDetailViewController.h; sourceTree = "<group>"; };
 		87815FEE1B57969A0028022D /* OngoingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingDetailViewController.m; sourceTree = "<group>"; };
 		87815FF01B57B4F80028022D /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
@@ -576,6 +590,7 @@
 		877870671B5652BD0046650C /* MyOrder */ = {
 			isa = PBXGroup;
 			children = (
+				877AAB271B84314300A3326F /* QRCode */,
 				87493ED61B57851900E9F840 /* CompletedTableViewCell.h */,
 				87493ED71B57851900E9F840 /* CompletedTableViewCell.m */,
 				877870681B56536E0046650C /* MyOrderViewController.h */,
@@ -592,6 +607,22 @@
 				877404301B5E3DC70055D2D6 /* QRCodeDismissAnimator.m */,
 			);
 			name = MyOrder;
+			sourceTree = "<group>";
+		};
+		877AAB271B84314300A3326F /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				877AAB2B1B8432C700A3326F /* qr_scan_line@2x.png */,
+				877AAB2C1B8432C700A3326F /* QRItem.h */,
+				877AAB2D1B8432C700A3326F /* QRItem.m */,
+				877AAB2E1B8432C700A3326F /* QRMenu.h */,
+				877AAB2F1B8432C700A3326F /* QRMenu.m */,
+				877AAB301B8432C700A3326F /* QRView.h */,
+				877AAB311B8432C700A3326F /* QRView.m */,
+				877AAB361B8432E700A3326F /* QRDecodeViewController.h */,
+				877AAB371B8432E700A3326F /* QRDecodeViewController.m */,
+			);
+			name = QRCode;
 			sourceTree = "<group>";
 		};
 		8785E9641B0C73E0003F4415 /* AppCollection */ = {
@@ -925,6 +956,7 @@
 				877338111B11B3D000C2DDC4 /* storehouse.plist in Resources */,
 				877870531B563F640046650C /* mapapi.bundle in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
+				877AAB321B8432C700A3326F /* qr_scan_line@2x.png in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				872A61A91B5B519900D62439 /* baiduNaviSDK.bundle in Resources */,
 				874753501B12C10C003BD8A3 /* Order.storyboard in Resources */,
@@ -985,10 +1017,12 @@
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */,
 				872A61B11B5B519900D62439 /* NSCharacterSet_Extensions.m in Sources */,
+				877AAB381B8432E700A3326F /* QRDecodeViewController.m in Sources */,
 				872A61AF1B5B519900D62439 /* CJSONSerializedData.m in Sources */,
 				871B774A1B0C9BBB00810EE3 /* DeviceViewController.mm in Sources */,
 				872DA8C31B0C839500C680B5 /* AppTableViewController.mm in Sources */,
 				872A61AE1B5B519900D62439 /* CJSONSerialization.m in Sources */,
+				877AAB341B8432C700A3326F /* QRMenu.m in Sources */,
 				877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
@@ -1004,6 +1038,7 @@
 				872A61B51B5B519900D62439 /* CJSONDeserializer.m in Sources */,
 				872A61B31B5B519900D62439 /* NSScanner_Extensions.m in Sources */,
 				872A61B21B5B519900D62439 /* NSDictionary_JSONExtensions.m in Sources */,
+				877AAB331B8432C700A3326F /* QRItem.m in Sources */,
 				87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */,
 				871B774D1B0CA41700810EE3 /* DeviceTableViewCell.m in Sources */,
 				87B400D71B16F1E600CC1C95 /* DeviceSuspensionController.mm in Sources */,
@@ -1042,6 +1077,7 @@
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				87B400CF1B16C30700CC1C95 /* SuspensionViewController.mm in Sources */,
+				877AAB351B8432C700A3326F /* QRView.m in Sources */,
 				8781607F1B58DA590028022D /* TotalPropertyCell.m in Sources */,
 				878160851B58F2320028022D /* CustomUserLocation.m in Sources */,
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,

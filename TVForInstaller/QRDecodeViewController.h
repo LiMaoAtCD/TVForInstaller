@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^QRUrlBlock)(NSString *url);
 
 @interface QRDecodeViewController : UIViewController
+@property (nonatomic, copy) QRUrlBlock qrUrlBlock;
 
 @end
