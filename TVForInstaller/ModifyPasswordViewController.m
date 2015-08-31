@@ -45,7 +45,8 @@ typedef void(^alertBlock)(void);
     
     [ComminUtility configureTitle:@"修改密码" forViewController:self];
     
-    
+    [[UITextField appearance] setTintColor:[UIColor blackColor]];
+
 }
 
 -(void)pop{
@@ -136,6 +137,8 @@ typedef void(^alertBlock)(void);
             } else{
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
                 [AccountManager setPassword:self.password];
+                [self.navigationController popViewControllerAnimated:YES];
+
             }
         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         }];
@@ -232,6 +235,7 @@ typedef void(^alertBlock)(void);
     
     [self presentViewController:controller animated:YES completion:nil];
 }
+
 
 -(void)dismissKeyboard:(id)sender{
     

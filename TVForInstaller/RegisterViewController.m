@@ -62,6 +62,8 @@ typedef void(^alertBlock)(void);
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
     [super viewWillAppear:animated];
+    [[UITextField appearance] setTintColor:[UIColor blackColor]];
+
 }
 
 

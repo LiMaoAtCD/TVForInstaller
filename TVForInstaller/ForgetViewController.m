@@ -49,6 +49,8 @@ typedef void(^alertBlock)(void);
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
     [super viewWillAppear:animated];
+    
+    
 }
 
 -(void)dismissKeyboard:(id)sender{
@@ -126,7 +128,7 @@ typedef void(^alertBlock)(void);
             } else{
                 
                 [SVProgressHUD showSuccessWithStatus:@"重置成功,请重新登录"];
-               
+                [self.navigationController popViewControllerAnimated:YES];
 
             }
         }failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -138,7 +140,8 @@ typedef void(^alertBlock)(void);
 
 
 -(void)configuretextfields{
-    
+    [[UITextField appearance] setTintColor:[UIColor blackColor]];
+
 //    self.cellphoneTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"手机号码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
 //    self.passwordTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
 //    self.confirmTF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];

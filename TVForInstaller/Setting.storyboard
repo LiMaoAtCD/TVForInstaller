@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -2504,7 +2504,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="5Ij-Ag-teB"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <variation key="default">
@@ -2521,12 +2521,12 @@
                                                     <outlet property="delegate" destination="gBC-ZM-RSh" id="CEZ-8N-THu"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aod-WA-euY">
                                                 <rect key="frame" x="43" y="129" width="354" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Krs-MI-FK7"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <variation key="default">
@@ -2543,9 +2543,9 @@
                                                     <outlet property="delegate" destination="gBC-ZM-RSh" id="7Ys-pc-BgZ"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwE-8s-ggy">
                                                 <rect key="frame" x="44" y="172" width="248" height="30"/>
-                                                <color key="textColor" red="0.99607843139999996" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.91764705879999997" green="0.050980392159999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -2553,7 +2553,7 @@
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-Na-yNz">
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="gvd-Ce-x9k"/>
                                                 </constraints>
@@ -2569,10 +2569,10 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XvF-65-oYh">
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqm-lJ-FaL">
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01u-T7-HW2">
                                                 <rect key="frame" x="169" y="385" width="62" height="30"/>
@@ -2709,7 +2709,9 @@
                                             <constraint firstAttribute="trailing" secondItem="bHe-Na-yNz" secondAttribute="trailing" constant="20" id="19k-lK-IvT"/>
                                             <constraint firstItem="0vI-sz-W14" firstAttribute="leading" secondItem="USS-sB-hLG" secondAttribute="leading" constant="31" id="410-QA-2ET"/>
                                             <constraint firstItem="Bqm-lJ-FaL" firstAttribute="trailing" secondItem="XvF-65-oYh" secondAttribute="trailing" id="CXI-j3-jde"/>
-                                            <constraint firstItem="hN1-7X-wy5" firstAttribute="leading" secondItem="USS-sB-hLG" secondAttribute="leading" constant="50" id="DCJ-L9-jyN"/>
+                                            <constraint firstItem="hN1-7X-wy5" firstAttribute="leading" secondItem="USS-sB-hLG" secondAttribute="leading" constant="50" id="DCJ-L9-jyN">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                            </constraint>
                                             <constraint firstItem="Bqm-lJ-FaL" firstAttribute="height" secondItem="XvF-65-oYh" secondAttribute="height" id="DqE-a0-cjj"/>
                                             <constraint firstItem="GcJ-SK-Q2L" firstAttribute="centerY" secondItem="VwE-8s-ggy" secondAttribute="centerY" constant="-0.5" id="Fxo-7h-DVR"/>
                                             <constraint firstItem="BAg-Xa-QQg" firstAttribute="top" secondItem="USS-sB-hLG" secondAttribute="top" constant="70" id="GbJ-Yx-BlD"/>
@@ -2726,7 +2728,9 @@
                                             <constraint firstItem="Bqm-lJ-FaL" firstAttribute="leading" secondItem="bHe-Na-yNz" secondAttribute="leading" id="Pjt-jv-SAQ"/>
                                             <constraint firstItem="01u-T7-HW2" firstAttribute="top" secondItem="XvF-65-oYh" secondAttribute="bottom" constant="8" id="WYD-O8-Grz"/>
                                             <constraint firstItem="0vI-sz-W14" firstAttribute="leading" secondItem="BAg-Xa-QQg" secondAttribute="leading" id="c9N-Ns-SSM"/>
-                                            <constraint firstAttribute="trailing" secondItem="hN1-7X-wy5" secondAttribute="trailing" constant="50" id="cTa-wZ-k4M"/>
+                                            <constraint firstAttribute="trailing" secondItem="hN1-7X-wy5" secondAttribute="trailing" constant="50" id="cTa-wZ-k4M">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                            </constraint>
                                             <constraint firstItem="0vI-sz-W14" firstAttribute="top" secondItem="bHe-Na-yNz" secondAttribute="bottom" constant="13" id="cvt-rc-7rC"/>
                                             <constraint firstItem="GcJ-SK-Q2L" firstAttribute="top" secondItem="XvF-65-oYh" secondAttribute="bottom" constant="35" id="cxS-8A-ssc">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="12"/>
@@ -3400,7 +3404,8 @@
                                                             <exclude reference="tcQ-JV-mJw"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="300" y="38" width="12" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="L4j-5C-RR1"/>
                                                             <include reference="tcQ-JV-mJw"/>
@@ -3423,7 +3428,8 @@
                                                             <exclude reference="l5z-9Z-LXP"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="257" y="34" width="35" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="dXB-Xf-WiO"/>
                                                             <include reference="l5z-9Z-LXP"/>

@@ -47,6 +47,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     [super viewWillAppear:animated];
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+
 }
 
 
