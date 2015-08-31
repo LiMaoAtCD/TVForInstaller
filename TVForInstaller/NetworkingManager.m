@@ -12,13 +12,18 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-//#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
+//#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
-//#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+
+#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
+#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+
+#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
+
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
 #define kBaiduGeoTableID 114851
@@ -388,7 +393,10 @@
     
     NSString * param = [@{@"uid":uid,@"totalfee":totalFee,@"pay_type":pay_type} bv_jsonStringWithPrettyPrint:YES];
 
-    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?wxPay" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?wxPay",kServer4];
+
+    
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -400,8 +408,9 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     NSString * param = [@{@"uid":uid,@"totalfee":totalFee,@"tvid":tvid} bv_jsonStringWithPrettyPrint:YES];
-    
-    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?wxPay" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?wxPay",kServer4];
+
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -425,7 +434,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?getSubmitOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?getSubmitOrder",kServer4];
+
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -456,7 +467,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?submitOrderToDo" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?submitOrderToDo",kServer4];
+
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failHandler(operation,error);
     }];
 
@@ -471,7 +484,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:@"http://zqzh1.chinacloudapp.cn:8080/zhiKey/weixinPayController.do?giveUpOrder" parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?giveUpOrder",kServer4];
+
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
 }
