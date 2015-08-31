@@ -29,6 +29,8 @@
 #import <QiniuSDK.h>
 #import <UIImageView+WebCache.h>
 
+#import "OngoingOrder.h"
+
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -90,6 +92,9 @@
     [AccountManager setPassword:nil];
 
     
+    [OngoingOrder setOrder:nil];
+    [OngoingOrder setExistOngoingOrder:NO];
+
     
     
     

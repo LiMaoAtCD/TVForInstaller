@@ -388,7 +388,7 @@ typedef void(^alertBlock)(void);
     
     if ([self checkRegisterInfoCompletion]) {
         [SVProgressHUD showWithStatus:@"正在注册"];
-        [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [NetworkingManager registerCellphone:self.cellphoneNumber password:[self.password sha1] inviteCode:self.inviteCode chinaID:self.chinaID verifyCode:self.verifycode name:self.name withCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 0) {
                 //error

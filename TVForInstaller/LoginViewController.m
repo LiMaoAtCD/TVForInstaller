@@ -14,6 +14,8 @@
 
 #import <SVProgressHUD.h>
 
+#import "OngoingOrder.h"
+
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *CellularTextField;
@@ -181,11 +183,43 @@
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];
     
+    [self fetchOngoingOrder];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
+   
 }
 
+
+-(void)fetchOngoingOrder{
+    //检查是否是登录状态,没有登录就不检查是否有正在执行订单
+    if ([AccountManager isLogin]) {
+        
+        [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"status"] integerValue] == 0) {
+                
+                NSArray *pois =responseObject[@"pois"];
+                //如果获取到有正在执行的订单
+                if (!pois  && pois.count > 0) {
+                    NSMutableDictionary *temp = [pois[0] mutableCopy];
+                    if (temp[@"id"]) {
+                        temp[@"uid"] = temp[@"id"];
+                    }
+                    //添加执行中的订单
+                    
+                    [OngoingOrder setOrder:temp];
+                    [OngoingOrder setExistOngoingOrder:YES];
+                }else {
+                }
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
+            }
+        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    }
+    
+    
+}
 
 -(BOOL)checkTextFieldCompletion{
     

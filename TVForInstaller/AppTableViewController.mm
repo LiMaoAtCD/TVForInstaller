@@ -239,7 +239,7 @@ typedef void(^alertBlock)(void);
     if ([ipAddress isEqualToString:@""]||
         ipAddress == nil) {
         //TODO::
-        [self alertWithMessage:@"无法获取到设备" withCompletionHandler:^{}];
+        [self alertWithMessage:@"请先关联设备" withCompletionHandler:^{}];
     }else{
         
         NSString *installMessage = [NSString stringWithFormat:@"%@ 即将安装", _appLists[collectionView.tag][@"softlist"][indexPath.row][@"softname"]];

@@ -33,11 +33,11 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param inviteCode        邀请码
  *  @param chinaID           身份证号
  *  @param verifyCode        验证码
+ *  @param name              姓名
  *  @param completionHandler 成功回调
  *  @param failHandler       失败回调
  */
-+(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-
++(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode name:(NSString *)name withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 /**
  *  注册获取验证码
  *
@@ -370,8 +370,8 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 /**
  *  查询自己进行中的订单
  *
- *  @param completionHandler <#completionHandler description#>
- *  @param failHandler       <#failHandler description#>
+ *  @param completionHandler
+ *  @param failHandler
  */
 +(NetWorkOperation *)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
