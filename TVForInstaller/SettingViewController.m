@@ -75,7 +75,25 @@
 
 -(void)dealLogout{
     
+    
     [AccountManager setLogin:NO];
+    [AccountManager setName:nil];
+    [AccountManager setRank:0];
+    [AccountManager setScore:0];
+    [AccountManager setgender:0];
+    [AccountManager setIDCard:nil];
+    [AccountManager setAddress:nil];
+    [AccountManager setTokenID:nil];
+    [AccountManager setLeaderID:nil];
+    [AccountManager setAvatarUrlString:nil];
+    [AccountManager setCellphoneNumber:nil];
+    [AccountManager setPassword:nil];
+
+    
+    
+    
+    
+    
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     LoginNavigationController *login = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];

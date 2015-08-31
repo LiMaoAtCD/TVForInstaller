@@ -407,7 +407,15 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSString * param = [@{@"uid":uid,@"totalfee":totalFee,@"tvid":tvid} bv_jsonStringWithPrettyPrint:YES];
+    NSMutableDictionary *dic  = [NSMutableDictionary dictionary];
+    if (tvid) {
+        dic[@"tvid"] = tvid;
+    }
+    dic[@"uid"] = uid;
+    dic[@"totalfee"] = totalFee;
+
+    
+    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?wxPay",kServer4];
 
     [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {

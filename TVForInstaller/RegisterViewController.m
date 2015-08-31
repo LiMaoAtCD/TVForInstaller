@@ -22,8 +22,10 @@ typedef void(^alertBlock)(void);
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPassword;
 @property (weak, nonatomic) IBOutlet UITextField *inviteTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *ChinaIdentifyTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *identityCodeTextFIeld;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *getIdentitycodeButton;
@@ -37,6 +39,8 @@ typedef void(^alertBlock)(void);
 @property (nonatomic,copy)NSString * verifycode;
 @property (nonatomic,copy)NSString * chinaID;
 @property (nonatomic,copy)NSString * inviteCode;
+@property (nonatomic,copy)NSString * name;
+
 
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSUInteger count;
@@ -173,6 +177,18 @@ typedef void(^alertBlock)(void);
             self.verifycode = [textField.text stringByAppendingString:string];
             
         }
+    }else if (textField == self.nameTextField){
+        
+        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+            self.name = [textField.text substringToIndex:[textField.text length] - 1];
+        }else if ([string isEqualToString:@"\n"]){
+            
+            self.name= textField.text;
+            
+        }else{
+            self.name = [textField.text stringByAppendingString:string];
+            
+        }
     }
 
     return YES;
@@ -189,7 +205,8 @@ typedef void(^alertBlock)(void);
     self.inviteTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"邀请码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     self.ChinaIdentifyTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"身份证" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     self.identityCodeTextFIeld.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    
+    self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"姓名" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
 }
 
 
@@ -322,7 +339,6 @@ typedef void(^alertBlock)(void);
     if ([self.verifycode isEqualToString:@""]||
         self.verifycode == nil) {
         [self alertWithMessage:@"验证码不能为空" withCompletionHandler:^{
-            
         }];
         return NO;
     }
@@ -334,8 +350,14 @@ typedef void(^alertBlock)(void);
         }];
         return NO;
     }
+    if ([self.name isEqualToString:@""]||
+        self.name == nil) {
+        [self alertWithMessage:@"姓名不能为空" withCompletionHandler:^{
+            
+        }];
+        return NO;
+    }
 
-    
     return YES;
 }
 
@@ -386,9 +408,15 @@ typedef void(^alertBlock)(void);
 
 
 -(void)dealRegister:(NSDictionary*)data{
+    
     if (![data[@"name"] isKindOfClass:[NSNull class]]) {
         [AccountManager setName:data[@"name"]];
     }
+    
+    
+    [AccountManager setName:self.name];
+    
+    
     if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
         [AccountManager setAvatarUrlString:data[@"headimg"]];
     }
