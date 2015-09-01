@@ -69,8 +69,7 @@
     [self.avatarImageView addGestureRecognizer:tap];
     
 
-    NSString *avatar = [AccountManager getAvatarUrlString];
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"tou"]];
+ 
 
 }
 
@@ -157,6 +156,8 @@
 
     }];
     
+    NSString *avatar = [AccountManager getAvatarUrlString];
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"tou"]];
     
 }
 

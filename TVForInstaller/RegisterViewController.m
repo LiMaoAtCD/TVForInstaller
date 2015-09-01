@@ -179,23 +179,33 @@ typedef void(^alertBlock)(void);
             self.verifycode = [textField.text stringByAppendingString:string];
             
         }
-    }else if (textField == self.nameTextField){
-        
-        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
-            self.name = [textField.text substringToIndex:[textField.text length] - 1];
-        }else if ([string isEqualToString:@"\n"]){
-            
-            self.name= textField.text;
-            
-        }else{
-            self.name = [textField.text stringByAppendingString:string];
-            
-        }
     }
+//    else if (textField == self.nameTextField){
+//        
+//        if ([string isEqualToString:@""]&& ![textField.text isEqualToString:@""]) {
+//            self.name = [textField.text substringToIndex:[textField.text length] - 1];
+//        }else if ([string isEqualToString:@"\n"]){
+//            
+//            self.name= textField.text;
+//            
+//        }else{
+//            self.name = [textField.text stringByAppendingString:string];
+//            
+//        }
+//    }
 
     return YES;
 }
 
+
+-(void)textFieldEditChanged:(UITextField *)textField{
+    
+    if (textField == self.nameTextField){
+
+        self.name= textField.text;
+
+    }
+}
 
 
 
@@ -208,6 +218,7 @@ typedef void(^alertBlock)(void);
     self.ChinaIdentifyTextfield.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"身份证" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     self.identityCodeTextFIeld.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"验证码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"姓名" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [self.nameTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
 
 }
 
@@ -415,16 +426,14 @@ typedef void(^alertBlock)(void);
         [AccountManager setName:data[@"name"]];
     }
     
-    
-    [AccountManager setName:self.name];
-    
-    
     if (![data[@"headimg"] isKindOfClass:[NSNull class]]) {
         [AccountManager setAvatarUrlString:data[@"headimg"]];
     }
+    
     if (![data[@"idcard"] isKindOfClass:[NSNull class]]) {
         [AccountManager setIDCard:data[@"idcard"]];
     }
+    
     if (![data[@"leaderid"] isKindOfClass:[NSNull class]]) {
         [AccountManager setLeaderID:data[@"leaderid"]];
     }

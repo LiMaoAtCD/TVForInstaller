@@ -99,15 +99,15 @@ typedef void(^alertBlock)(void);
     }
 
 
-    if ([self.address isEqualToString:@""]|| self.address == nil) {
-        
-//        self alertWithMessage:@"地址信息不能为空" withCompletionHandler
-        [self alertWithMessage:@"地址信息不能为空" withCompletionHandler:^{
-            
-        }];
-        return;
-    }
- 
+//    if ([self.address isEqualToString:@""]|| self.address == nil) {
+//        
+////        self alertWithMessage:@"地址信息不能为空" withCompletionHandler
+//        [self alertWithMessage:@"地址信息不能为空" withCompletionHandler:^{
+//            
+//        }];
+//        return;
+//    }
+// 
     
     
     [SVProgressHUD showWithStatus:@"保存中"];
