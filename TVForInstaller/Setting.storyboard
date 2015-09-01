@@ -2166,21 +2166,46 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小米电视" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr8-N2-7M2">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="bxK-r6-M3Y"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="24" y="11" width="290" height="21"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="bxK-r6-M3Y"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="bxK-r6-M3Y"/>
+                                                        </mask>
                                                     </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mr8-N2-7M2" firstAttribute="leading" secondItem="mVy-jN-qcP" secondAttribute="leadingMargin" constant="16" id="Fht-37-Tn0"/>
+                                                <constraint firstAttribute="centerY" secondItem="Mr8-N2-7M2" secondAttribute="centerY" constant="0.5" id="dpF-d5-jRS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mr8-N2-7M2" secondAttribute="trailing" constant="78" id="nG2-HM-bUW"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="Mr8-N2-7M2"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="Fht-37-Tn0"/>
+                                                    <exclude reference="dpF-d5-jRS"/>
+                                                    <exclude reference="nG2-HM-bUW"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="Mr8-N2-7M2"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="Fht-37-Tn0"/>
+                                                    <include reference="dpF-d5-jRS"/>
+                                                    <include reference="nG2-HM-bUW"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2231,8 +2256,7 @@
                                                             <exclude reference="wwD-lD-tzD"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="255" y="7" width="51" height="31"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="oke-dU-AXx"/>
                                                             <include reference="wwD-lD-tzD"/>

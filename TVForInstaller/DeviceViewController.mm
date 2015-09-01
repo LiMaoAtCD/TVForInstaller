@@ -13,6 +13,7 @@
 #import "DeviceContainer.h"
 #import "DLNAManager.h"
 #import "DeviceManageCell.h"
+#import <MJRefresh.h>
 
 @interface DeviceViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -36,15 +37,42 @@
  
     
     
+//    self.devices = [[[DLNAManager DefaultManager] getRendererResources] mutableCopy];
+//    
+//    UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+//    //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
+//    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",(unsigned long)self.devices.count];
+//    footerView.font = [UIFont boldSystemFontOfSize:12.0];
+//    footerView.textColor = [UIColor blackColor];
+//    footerView.textAlignment = NSTextAlignmentCenter;
+//    self.tableView.tableFooterView = footerView;
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        [weakSelf updateDevices];
+    }];
+
+    [self.tableView.header beginRefreshing];
+}
+
+-(void)updateDevices{
+    
     self.devices = [[[DLNAManager DefaultManager] getRendererResources] mutableCopy];
     
-    UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
-    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",(unsigned long)self.devices.count];
-    footerView.font = [UIFont boldSystemFontOfSize:12.0];
-    footerView.textColor = [UIColor blackColor];
-    footerView.textAlignment = NSTextAlignmentCenter;
-    self.tableView.tableFooterView = footerView;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        
+        UILabel *footerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+        //    footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",self.devices.count];
+        footerView.text = [NSString stringWithFormat:@"共搜索到%ld台设备",(unsigned long)self.devices.count];
+        footerView.font = [UIFont boldSystemFontOfSize:12.0];
+        footerView.textColor = [UIColor blackColor];
+        footerView.textAlignment = NSTextAlignmentCenter;
+        self.tableView.tableFooterView = footerView;
+        
+        [self.tableView.header endRefreshing];
+    });
 
 }
 
@@ -66,21 +94,18 @@
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (section == 1) {
         return self.devices.count;
 
-    } else
-        return 1;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        
+    
         DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -95,46 +120,16 @@
         
         
         return cell;
-    } else{
-        
-        DeviceManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceManageCell" forIndexPath:indexPath];
-        cell.titleLabel.text = @"是否开启浮窗模式";
-        
-        if ([ComminUtility isSwitchKitOn]) {
-            
-            cell.switchKit.on = YES;
-        }else{
-            cell.switchKit.on = NO;
-        }
-        
-        [cell.switchKit addTarget:self action:@selector(changeSwitchState:) forControlEvents:UIControlEventValueChanged];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        
-        return cell;
-    }
-   
+      
 }
 
--(void)changeSwitchState:(UISwitch*)kit{
-    
-    if (kit.isOn) {
-        [ComminUtility setSwitchKit:YES];
 
-    }else{
-        [ComminUtility setSwitchKit:NO];
-        }
-    [[NSNotificationCenter defaultCenter] postNotificationName:[ComminUtility kSuspensionWindowNotification] object:nil];
-
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
         self.container.currentDevice.text = self.devices[indexPath.row];
-        
-        
         [[DLNAManager DefaultManager] specifyRendererName:self.devices[indexPath.row]];
         
         [self.tableView reloadData];
@@ -145,11 +140,13 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
+    
+    if (self.devices.count > 0) {
         return @"已找到的设备";
     } else{
-        return @"模式设定";
+        return nil;
     }
+  
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -161,8 +158,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
-}
+    if (self.devices.count > 0) {
+        return 20;
+    } else{
+        return 0.01;
+    }}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
