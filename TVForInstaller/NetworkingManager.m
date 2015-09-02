@@ -416,13 +416,56 @@
 
     
     NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
-    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?wxPay",kServer4];
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/wxPay.do?",kServer4];
 
     [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 
+}
+
++(void)BeginAliPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSMutableDictionary *dic  = [NSMutableDictionary dictionary];
+    if (tvid) {
+        dic[@"tvid"] = tvid;
+    }
+    dic[@"uid"] = uid;
+    dic[@"totalfee"] = totalFee;
+    
+    
+    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/aliPay.do?",kServer4];
+    
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
+
+}
+
++(void)BeginCashPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSMutableDictionary *dic  = [NSMutableDictionary dictionary];
+    if (tvid) {
+        dic[@"tvid"] = tvid;
+    }
+    dic[@"uid"] = uid;
+    dic[@"totalfee"] = totalFee;
+    
+    
+    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/cashPay.do?",kServer4];
+    
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
+        failHandler(operation,error);
+    }];
 }
 
 +(NetWorkOperation*)FetchOngongOrderWithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
@@ -434,6 +477,8 @@
                                                                                 } success:completionHandler failure:failHandler];
     return task;
 }
+
+
 
 +(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     

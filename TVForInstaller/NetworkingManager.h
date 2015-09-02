@@ -349,7 +349,6 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  微信支付
  *
  *  @param uid               uid
- *  @param engineer_id       工程师ID
  *  @param totalFee          总共费用
  *  @param tvid              tvid
  *  @param completionHandler
@@ -357,6 +356,27 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)BeginWeChatPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
+
+/**
+ *  支付宝支付
+ *
+ *  @param uid               uid
+ *  @param totalFee          总共费用
+ *  @param tvid              uvid
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)BeginAliPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+/**
+ *  现金支付
+ *
+ *  @param uid               uid
+ *  @param totalFee          费用
+ *  @param tvid              tvid
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)BeginCashPayForUID:(NSString*)uid totalFee:(NSString *)totalFee tvid:(NSString *)tvid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
 /**
@@ -392,5 +412,7 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param fail
  */
 +(void)CancelOrderByUID:(NSString *)uid WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+
 
 @end

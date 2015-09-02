@@ -47,6 +47,8 @@ typedef void(^alertBlock)(void);
     
     [[UITextField appearance] setTintColor:[UIColor blackColor]];
 
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:recognizer];
 }
 
 -(void)pop{

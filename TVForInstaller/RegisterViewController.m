@@ -58,7 +58,25 @@ typedef void(^alertBlock)(void);
     [self configureTextFields];
     [self registerForKeyboardNotifications];
     
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:recognizer];
+    
 }
+
+-(void)dismissKeyboard:(id)sender{
+    
+    [self.cellphoneTextfield resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.confirmPassword resignFirstResponder];
+    [self.inviteTextField resignFirstResponder];
+    
+    [self.ChinaIdentifyTextfield resignFirstResponder];
+    [self.identityCodeTextFIeld resignFirstResponder];
+    [self.nameTextField resignFirstResponder];
+
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
     [super viewWillAppear:animated];

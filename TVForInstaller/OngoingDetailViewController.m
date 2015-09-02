@@ -335,8 +335,88 @@ typedef enum : NSUInteger {
         
      } else if (self.currentPayType == ALIPAY){
          //支付宝
+         
+         //发起支付
+         [SVProgressHUD showWithStatus:@"正在生成订单"];
+         
+         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             if ([responseObject[@"success"] integerValue] == 1) {
+                 [SVProgressHUD dismiss];
+                 
+                 NSString *url = responseObject[@"obj"];
+                 
+                 if (!url) {
+                     return;
+                 }
+                 
+                 NSError *error = nil;
+                 CGImageRef qrImage = nil;
+                 ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                 ZXBitMatrix* result = [writer encode:url
+                                               format:kBarcodeFormatQRCode
+                                                width:500
+                                               height:500
+                                                error:&error];
+                 if (result) {
+                     
+                     qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+                     
+                     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                     QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                     qrcodeVC.transitioningDelegate = self;
+                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                     [self showDetailViewController:qrcodeVC sender:self];
+                     NSDictionary *order = [OngoingOrder onGoingOrder];
+                     
+                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         if ([responseObject[@"status"] integerValue] == 0) {
+                             //修改订单为完成未支付
+                             
+                             [OngoingOrder setExistOngoingOrder:NO];
+                             [OngoingOrder setOrder:nil];
+                             
+                             
+                         }
+                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         
+                     }];
+                     
+                 } else {
+                     
+                 }
+                 
+             } else{
+                 //未成功
+                 [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+             }
+         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [SVProgressHUD showErrorWithStatus:@"网络出错"];
+         }];
+
      } else{
          //现金
+         //发起支付
+         [SVProgressHUD showWithStatus:@"正在提交支付结果"];
+         
+         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             if ([responseObject[@"success"] integerValue] == 1) {
+                 
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                     [self.navigationController popToRootViewControllerAnimated:YES];
+                 });
+             } else{
+                 //未成功
+                 [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+             }
+         } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [SVProgressHUD showErrorWithStatus:@"网络出错"];
+         }];
+
+         
     }
 
 }
