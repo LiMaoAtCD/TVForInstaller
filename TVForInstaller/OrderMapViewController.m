@@ -344,9 +344,10 @@
         [SVProgressHUD show];
         [NetworkingManager OccupyOrderOrCancelByUID:detailInfo[@"uid"] engineerid:[AccountManager getTokenID] orderstate:@"1" WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             self.isSelectedPaoPaoView = NO;
-
+            
             if ([responseObject[@"success"] integerValue] == 1) {
 
+                [SVProgressHUD dismiss];
                 UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
                 
                 OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
