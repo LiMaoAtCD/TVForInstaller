@@ -58,9 +58,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
-    
- 
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -111,8 +109,6 @@
                 [self.tableView reloadData];
             });
         }
-        
-        
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -256,11 +252,13 @@
         
         [SVProgressHUD showWithStatus:@"正在取消订单"];
         
-        //TODO: 取消订单
         [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
+            self.isCanceling = NO;
+
             if ([responseObject[@"success"] integerValue] == 1) {
-                self.isCanceling = NO;
+                
+                [SVProgressHUD showSuccessWithStatus:@"订单取消成功"];
+
                 
                 [OngoingOrder setOrder:nil];
                 
@@ -278,65 +276,20 @@
                     if (finished) {
                     }
                 }];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:@"订单取消失败"];
             }
-           
-
         } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.isCanceling = NO;
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
 
         }];
-     
-        
-        //Previous
-        
-//        [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            [SVProgressHUD dismiss];
-//            
-//            if ([responseObject[@"status"] integerValue] == 0) {
-//                
-//                [OngoingOrder setOrder:nil];
-//                
-//                self.OngoingView.hidden = YES;
-//                
-//                [self.view removeConstraint:self.tableViewLayout];
-//                self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
-//                [self.view addConstraint:self.tableViewLayout];
-//                
-//                
-//                [UIView animateWithDuration:0.5 animations:^{
-//                    [self.view layoutIfNeeded];
-//                    
-//                } completion:^(BOOL finished) {
-//                    if (finished) {
-//                    }
-//                }];
-//            }
-//            self.isCanceling = NO;
-//            
-//            [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                NSLog(@"response: %@",responseObject);
-//                
-//                
-//            } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                NSLog(@"error %@",error);
-//            }];
-//
-//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            self.isCanceling = NO;
-//
-//        }];
-//
     }
 }
 
-//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
-//{
-//    return [UIImage imageNamed:@"empty_placeholder"];
-//}
-
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSString *text = @"数据空空如也";
+    NSString *text = @"没有已完成的订单";
     
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};

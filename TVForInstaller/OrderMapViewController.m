@@ -340,6 +340,8 @@
         
         
         //TODO: 占用订单
+        
+        [SVProgressHUD show];
         [NetworkingManager OccupyOrderOrCancelByUID:detailInfo[@"uid"] engineerid:[AccountManager getTokenID] orderstate:@"1" WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             self.isSelectedPaoPaoView = NO;
 
@@ -365,85 +367,18 @@
                 detail.delegate = self;
                 detail.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:detail animated:YES];
+            } else{
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
             }
         } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.isSelectedPaoPaoView = NO;
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
 
         }];
     
     }
-        
- 
-//    self.isSelectedPaoPaoView = NO;
-
-        
-//        [SVProgressHUD show];
-//       
-//        [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSDictionary *poi = responseObject[@"poi"];
-//            if ([poi[@"order_state"] integerValue] == 0) {
-//
-//                //如果没有被占用，就占用
-//                [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                    
-//                    if ([responseObject[@"status"] integerValue] == 0) {
-//                        [SVProgressHUD dismiss];
-//                        //占用成功，跳到详情界面
-//                        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
-//                        
-//                        OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
-//                        
-//                        BNPosition *originPostion = [[BNPosition alloc] init];
-//                        originPostion.x = self.currentUserLocation.location.coordinate.longitude;
-//                        originPostion.y = self.currentUserLocation.location.coordinate.latitude;
-//                        
-//                        detail.originalPostion = originPostion;
-//                        
-//                        BNPosition *destinationPostion = [[BNPosition alloc] init];
-//                        destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
-//                        destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
-//                        
-//                        detail.destinationPosition = destinationPostion;
-//                        detail.info = detailInfo;
-//                        
-//                        detail.delegate = self;
-//                        detail.hidesBottomBarWhenPushed = YES;
-//                        [self.navigationController pushViewController:detail animated:YES];
-//                        self.isSelectedPaoPaoView = NO;
-//
-//                    } else{
-//                        [SVProgressHUD showInfoWithStatus:@"订单请求失败"];
-//                    }
-//                    
-//                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                    self.isSelectedPaoPaoView = NO;
-//
-//                }];
-//                
-//                
-//            } else if([poi[@"order_state"] integerValue] == 1){
-//                //TODO该订单已被占用
-//                self.isSelectedPaoPaoView = NO;
-//                [SVProgressHUD showInfoWithStatus:@"此订单被占用中，请稍后再试"];
-//
-//                
-//            }
-//            
-//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            [SVProgressHUD showErrorWithStatus:@"网络出错，请稍后再试"];
-//            self.isSelectedPaoPaoView = NO;
-//
-//        }];
-
-//}
     
-    
-    
-    
-    
-   
-    
-}
+ }
 
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{

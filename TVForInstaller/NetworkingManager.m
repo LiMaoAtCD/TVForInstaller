@@ -537,14 +537,15 @@
     NSMutableDictionary *dic =[@{} mutableCopy];
     
     dic[@"uid"] = uid;
-    
-    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+    dic[@"engineerid"] = [AccountManager getTokenID];
+
+//    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?giveUpOrder",kServer4];
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/giveUpOrder.do?",kServer4];
 
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
 }
@@ -557,11 +558,11 @@
     NSMutableDictionary *dic =[@{} mutableCopy];
     
     dic[@"uid"] = ID;
-//    dic[@"uid"] = ID;
+    dic[@"engineerid"] = [AccountManager getTokenID];
 
-    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+//    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
 
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
     
