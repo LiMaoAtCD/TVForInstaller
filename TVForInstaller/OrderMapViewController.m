@@ -131,9 +131,6 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-   
-
-
     //如果有订单还未完成
     self.isOrderGoing = [OngoingOrder existOngoingOrder];
     if (!self.isOrderGoing) {
@@ -149,20 +146,12 @@
         }
         
         [self addPointAnnotations];
-
         [self SearchNearByOrders];
         
     } else {
         [self removeAnnotions];
         [self noteOngoingOrderView:YES];
-        
-       
-
     }
-
-
-    
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -183,7 +172,6 @@
 
 -(void)addPointAnnotations{
 
-    
     self.pointAnnotations = [NSMutableArray array];
     [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
@@ -193,8 +181,12 @@
         annotation.tag = idx;
         CLLocationCoordinate2D coor;
         
-        coor.latitude = [temp[@"location"][1] doubleValue];
-        coor.longitude = [temp[@"location"][0] doubleValue];
+//        coor.latitude = [temp[@"location"][1] doubleValue];
+//        coor.longitude = [temp[@"location"][0] doubleValue];
+//        
+        coor.latitude = [temp[@"latitude"] doubleValue];
+        coor.longitude = [temp[@"longitude"] doubleValue];
+
         
         annotation.coordinate = coor;
         annotation.title = nil;
@@ -246,9 +238,9 @@
     NSDictionary *data = self.Orders[temp_annotation.tag];
     
     NSString *name = data[@"name"];
-    NSString *address = data[@"home_address"];
-    NSString *subscribe = data[@"order_time"];
-    ServiceType type = [data[@"order_type"] integerValue];
+    NSString *address = data[@"homeAddress"];
+    NSString *subscribe = data[@"orderTime"];
+    ServiceType type = [data[@"orderType"] integerValue];
     
     NSString *AnnotationViewID = @"ImageAnnotation";
     CustomAnnotationView *annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
@@ -346,67 +338,104 @@
     if (!self.isSelectedPaoPaoView) {
         self.isSelectedPaoPaoView = YES;
         
-       
-        [SVProgressHUD show];
-       
-//        [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
-        [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSDictionary *poi = responseObject[@"poi"];
-            if ([poi[@"order_state"] integerValue] == 0) {
+        
+        //TODO: 占用订单
+        [NetworkingManager OccupyOrderOrCancelByUID:detailInfo[@"uid"] engineerid:[AccountManager getTokenID] orderstate:@"1" WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.isSelectedPaoPaoView = NO;
 
-                //如果没有被占用，就占用
-                [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
-                    if ([responseObject[@"status"] integerValue] == 0) {
-                        [SVProgressHUD dismiss];
-                        //占用成功，跳到详情界面
-                        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
-                        
-                        OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
-                        
-                        BNPosition *originPostion = [[BNPosition alloc] init];
-                        originPostion.x = self.currentUserLocation.location.coordinate.longitude;
-                        originPostion.y = self.currentUserLocation.location.coordinate.latitude;
-                        
-                        detail.originalPostion = originPostion;
-                        
-                        BNPosition *destinationPostion = [[BNPosition alloc] init];
-                        destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
-                        destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
-                        
-                        detail.destinationPosition = destinationPostion;
-                        detail.info = detailInfo;
-                        
-                        detail.delegate = self;
-                        detail.hidesBottomBarWhenPushed = YES;
-                        [self.navigationController pushViewController:detail animated:YES];
-                        self.isSelectedPaoPaoView = NO;
+            if ([responseObject[@"success"] integerValue] == 1) {
 
-                    } else{
-                        [SVProgressHUD showInfoWithStatus:@"订单请求失败"];
-                    }
-                    
-                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    self.isSelectedPaoPaoView = NO;
-
-                }];
+                UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
                 
+                OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
                 
-            } else if([poi[@"order_state"] integerValue] == 1){
-                //TODO该订单已被占用
-                self.isSelectedPaoPaoView = NO;
-                [SVProgressHUD showInfoWithStatus:@"此订单被占用中，请稍后再试"];
-
+                BNPosition *originPostion = [[BNPosition alloc] init];
+                originPostion.x = self.currentUserLocation.location.coordinate.longitude;
+                originPostion.y = self.currentUserLocation.location.coordinate.latitude;
                 
+                detail.originalPostion = originPostion;
+                
+                BNPosition *destinationPostion = [[BNPosition alloc] init];
+                destinationPostion.x = [detailInfo[@"longitude"] doubleValue];
+                destinationPostion.y = [detailInfo[@"latitude"] doubleValue];
+                
+                detail.destinationPosition = destinationPostion;
+                detail.info = detailInfo;
+                
+                detail.delegate = self;
+                detail.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:detail animated:YES];
             }
-            
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"网络出错，请稍后再试"];
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.isSelectedPaoPaoView = NO;
 
         }];
-
+    
     }
+        
+ 
+//    self.isSelectedPaoPaoView = NO;
+
+        
+//        [SVProgressHUD show];
+//       
+//        [NetworkingManager CheckOrderisOccupiedByID:detailInfo[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSDictionary *poi = responseObject[@"poi"];
+//            if ([poi[@"order_state"] integerValue] == 0) {
+//
+//                //如果没有被占用，就占用
+//                [NetworkingManager ModifyOrderStateByID:detailInfo[@"uid"] latitude:[detailInfo[@"location"][1] doubleValue] longitude:[detailInfo[@"location"][0] doubleValue] order_state:@"1" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                    
+//                    if ([responseObject[@"status"] integerValue] == 0) {
+//                        [SVProgressHUD dismiss];
+//                        //占用成功，跳到详情界面
+//                        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+//                        
+//                        OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+//                        
+//                        BNPosition *originPostion = [[BNPosition alloc] init];
+//                        originPostion.x = self.currentUserLocation.location.coordinate.longitude;
+//                        originPostion.y = self.currentUserLocation.location.coordinate.latitude;
+//                        
+//                        detail.originalPostion = originPostion;
+//                        
+//                        BNPosition *destinationPostion = [[BNPosition alloc] init];
+//                        destinationPostion.x = [detailInfo[@"location"][0] doubleValue];
+//                        destinationPostion.y = [detailInfo[@"location"][1] doubleValue];
+//                        
+//                        detail.destinationPosition = destinationPostion;
+//                        detail.info = detailInfo;
+//                        
+//                        detail.delegate = self;
+//                        detail.hidesBottomBarWhenPushed = YES;
+//                        [self.navigationController pushViewController:detail animated:YES];
+//                        self.isSelectedPaoPaoView = NO;
+//
+//                    } else{
+//                        [SVProgressHUD showInfoWithStatus:@"订单请求失败"];
+//                    }
+//                    
+//                } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                    self.isSelectedPaoPaoView = NO;
+//
+//                }];
+//                
+//                
+//            } else if([poi[@"order_state"] integerValue] == 1){
+//                //TODO该订单已被占用
+//                self.isSelectedPaoPaoView = NO;
+//                [SVProgressHUD showInfoWithStatus:@"此订单被占用中，请稍后再试"];
+//
+//                
+//            }
+//            
+//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            [SVProgressHUD showErrorWithStatus:@"网络出错，请稍后再试"];
+//            self.isSelectedPaoPaoView = NO;
+//
+//        }];
+
+//}
     
     
     
@@ -478,35 +507,43 @@
         if (!self.isFetchOrder) {
             self.isFetchOrder = YES;
             
-            NSString *location = [NSString stringWithFormat:@"%.6f,%.6f", self.currentUserLocation.location.coordinate.longitude, self.currentUserLocation.location.coordinate.latitude];
-            [NetworkingManager fetchNearbyOrdersByLocation:location radius:5000 tags:@"" pageIndex:0 pageSize:10 WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSDictionary *results = responseObject;
-                
-                NSMutableArray *tempOrders = [NSMutableArray array];
-                NSArray *resultArray  = results[@"contents"];
-                
-                for (NSDictionary *temp in resultArray) {
-                    if ([temp[@"order_state"] integerValue] == 0) {
-                        //空闲订单
-                        [tempOrders addObject:temp];
-                    }
-                    else if ([temp[@"order_state"] integerValue] == 2 && [temp[@"engineer_id"] isEqualToString:[AccountManager getTokenID]]){
-                        //正在进行中的订单
-                        [OngoingOrder setExistOngoingOrder:YES];
-                        [OngoingOrder setOrder:temp];
-                        
-                    }
-                }
-                
-//                if (![OngoingOrder existOngoingOrder]) {
-                    [self removeAnnotions];
-                    self.Orders = tempOrders;
-                    [self addPointAnnotations];
-                self.isFetchOrder = NO;
+            NSMutableArray *tempOrders = [NSMutableArray array];
 
+            [NetworkingManager fetchNearByOrdersByLatitude:self.currentUserLocation.location.coordinate.latitude Logitude:self.currentUserLocation.location.coordinate.longitude WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if ([responseObject[@"success"] integerValue] == 1) {
+                    //附近订单获取成功
+
+                    NSArray *resultArray = responseObject[@"obj"];
+                    for (NSDictionary *temp in resultArray) {
+                        
+                        if ([temp[@"orderState"] integerValue] == 0) {
+                            //空闲订单
+                            [tempOrders addObject:temp];
+                        }else if ([temp[@"orderState"] integerValue] == 2 && [temp[@"engineerId"] isEqualToString:[AccountManager getTokenID]]){
+                            //正在进行中的订单
+                            [OngoingOrder setExistOngoingOrder:YES];
+                            [OngoingOrder setOrder:temp];
+                        }
+                    }
+                    
+                    
+                    if (![OngoingOrder existOngoingOrder]) {
+                        [self removeAnnotions];
+                        self.Orders = tempOrders;
+                        [self addPointAnnotations];
+                        self.isFetchOrder = NO;
+                    }
+                    
+                } else{
+                    
+                    //附近订单获取失败
+                }
             } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                 self.isFetchOrder = NO;
+
             }];
+
         }
     } else {
         //存在执行中的订单

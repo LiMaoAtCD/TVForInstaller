@@ -146,12 +146,15 @@ typedef enum : NSUInteger {
  *  支付进行中的订单
  */
 -(void)configOngoingOrderInfo{
+    
+    
+
     self.nameLabel.text = self.OrderInfo[@"name"];
     self.telphoneLabel.text =  self.OrderInfo[@"phone"];
-    self.addressLabel.text =  self.OrderInfo[@"home_address"];
+    self.addressLabel.text =  self.OrderInfo[@"homeAddress"];
     self.dateLabel.text = self.OrderInfo[@"order_endtime"];
     
-    if ([self.OrderInfo[@"order_type"] integerValue] == 0) {
+    if ([self.OrderInfo[@"orderType"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
@@ -163,13 +166,14 @@ typedef enum : NSUInteger {
 -(void)configOrderInfo{
     
     NSDictionary *order = [OngoingOrder onGoingOrder];
+    
     self.OrderInfo = order;
     self.nameLabel.text = order[@"name"];
     self.telphoneLabel.text =  order[@"phone"];
-    self.addressLabel.text =  order[@"home_address"];
-    self.dateLabel.text = order[@"order_time"];
+    self.addressLabel.text =  order[@"homeAddress"];
+    self.dateLabel.text = order[@"orderTime"];
     
-    if ([order[@"order_type"] integerValue] == 0) {
+    if ([order[@"orderType"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
@@ -305,20 +309,24 @@ typedef enum : NSUInteger {
                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                     [self showDetailViewController:qrcodeVC sender:self];
-                    NSDictionary *order = [OngoingOrder onGoingOrder];
+                    
+                    
+//                    NSDictionary *order = [OngoingOrder onGoingOrder];
             
-                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        if ([responseObject[@"status"] integerValue] == 0) {
-                            //修改订单为完成未支付
-            
-                            [OngoingOrder setExistOngoingOrder:NO];
-                            [OngoingOrder setOrder:nil];
-                            
-                            
-                        }
-                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        
-                    }];
+//
+                
+//                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                        if ([responseObject[@"status"] integerValue] == 0) {
+//                            //修改订单为完成未支付
+//            
+//                            [OngoingOrder setExistOngoingOrder:NO];
+//                            [OngoingOrder setOrder:nil];
+//                            
+//                            
+//                        }
+//                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                        
+//                    }];
                     
                 } else {
                     

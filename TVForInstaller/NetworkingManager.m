@@ -22,7 +22,9 @@
 #define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
 #define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
 
-#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
+//#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
+#define kServer4 @"http://wx.scui.com.cn/zhiKey/"
+
 
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
@@ -357,6 +359,24 @@
 
 }
 
++(void)fetchNearByOrdersByLatitude:(double)latitude Logitude:(double)longitude WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/getOrderByLatitudeAndLongitude.do?lng1=%f&lat1=%f",kServer4,longitude,latitude];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+
+    [manager GET:url parameters:nil success:completionHandler failure:failHandler];
+
+}
+
++(void)OccupyOrderOrCancelByUID:(NSString *)uid engineerid:(NSString*)engineerid orderstate:(NSString *)orderstate WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/lockOrReleaseOrder.do?uid=%@&engineerid=%@&orderstate=%@",kServer4,uid,engineerid,orderstate];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:nil success:completionHandler failure:fail];
+}
+
 
 +(void)ModifyOrderStateByID:(NSString *)ID latitude:(double)latitude longitude:(double)longitude order_state:(NSString*)order_state WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
@@ -511,22 +531,7 @@
     
 }
 
-+(void)UploadEngineerInfoByID:(NSString *)uid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSMutableDictionary *dic =[@{} mutableCopy];
-    
-    dic[@"uid"] = uid;
-    
-    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?submitOrderToDo",kServer4];
 
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failHandler(operation,error);
-    }];
-
-}
 
 +(void)CancelOrderByUID:(NSString *)uid WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
     NSMutableDictionary *dic =[@{} mutableCopy];
@@ -542,6 +547,24 @@
     [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
+}
+
++(void)GetTheOrderByID:(NSString *)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)fail{
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/submitOrderToDo.do?",kServer4];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSMutableDictionary *dic =[@{} mutableCopy];
+    
+    dic[@"uid"] = ID;
+//    dic[@"uid"] = ID;
+
+    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+
+    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+    
 }
 
 

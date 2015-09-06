@@ -51,16 +51,15 @@
 
 -(void)pop{
     
-    [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if ([responseObject[@"status"] integerValue] == 0) {
+    [NetworkingManager  OccupyOrderOrCancelByUID:self.info[@"uid"] engineerid:[AccountManager getTokenID] orderstate:@"0" WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"success"] integerValue] == 1) {
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+
+    } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
     }];
-    
+ 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,15 +91,18 @@
     //确认订单，修改状态
     [SVProgressHUD showWithStatus:@"接单中"];
     
-    [NetworkingManager ModifyOrderStateByID:self.info[@"uid"] latitude:[self.info[@"location"][1] doubleValue] longitude:[self.info[@"location"][0] doubleValue] order_state:@"2" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [NetworkingManager GetTheOrderByID:self.info[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
-
-        if ([responseObject[@"status"] integerValue] == 0) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if ([responseObject[@"success"] integerValue] == 1) {
             [self setOrderStateAndNoteToNavi];
+        } else{
+            
         }
         
-        
-
     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -109,14 +111,21 @@
 
 -(void)setOrderStateAndNoteToNavi{
     
-    [NetworkingManager UploadEngineerInfoByID:self.info[@"uid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-    }];
-    
     [OngoingOrder setExistOngoingOrder:YES];
-    [OngoingOrder setOrder:self.info];
+    
+    NSMutableDictionary *temp = [NSMutableDictionary dictionary];
+    
+    temp[@"name"] = self.info[@"name"];
+    temp[@"phone"] = self.info[@"phone"];
+    temp[@"homeAddress"] = self.info[@"homeAddress"];
+    temp[@"orderTime"] = self.info[@"orderTime"];
+    temp[@"orderType"]  = self.info[@"orderType"];
+    temp[@"uid"]  = self.info[@"uid"];
+//    temp[@""]
+
+    [OngoingOrder setOrder:temp];
+    
+    
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否开始导航？" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -141,19 +150,15 @@
 
 -(void)configOrderContent{
     
-    if ([self.info[@"order_type"] integerValue] == 0) {
+    if ([self.info[@"orderType"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
     }
     self.nameLabel.text = self.info[@"name"];
     self.telphoneLabel.text = self.info[@"phone"];
-    self.addressLabel.text = self.info[@"home_address"];
-    self.dateLabel.text = self.info[@"order_time"];
+    self.addressLabel.text = self.info[@"homeAddress"];
+    self.dateLabel.text = self.info[@"orderTime"];
 }
-
-
-
-
 
 @end

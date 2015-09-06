@@ -309,6 +309,17 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 +(void)fetchNearbyOrdersByLocation:(NSString *)location radius:(NSInteger)radius tags:(NSString*)tags pageIndex:(NSInteger)pageIndex  pageSize:(NSInteger)pageSize WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
 
 
+
+/**
+ *  云检索(后台)
+ *
+ *  @param latitude          纬度
+ *  @param longitude         经度
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)fetchNearByOrdersByLatitude:(double)latitude Logitude:(double)longitude WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
 /**
  *  百度占用订单&取消咱用
  *
@@ -320,6 +331,34 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param failHandler       
  */
 +(void)ModifyOrderStateByID:(NSString *)ID latitude:(double)latitude longitude:(double)longitude order_state:(NSString*)order_state WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+/**
+ *  接单(后台)
+ *
+ *  @param ID                uid
+ *  @param engineerid        engineerid
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)GetTheOrderByID:(NSString *)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+/**
+ *  取消订单
+ *
+ *  @param ID                uid
+ *  @param completionHandler
+ *  @param failHandler
+ */
++(void)CancelOrderByID:(NSString*)ID  WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
+
+
+
+
+
+
+
+
+
 
 /**
  *  检查当前订单是否已被暂用
@@ -380,14 +419,6 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 
 
 /**
- *  接单后上传工程师ID
- *
- *  @param completionHandler
- *  @param failHandler
- */
-+(void)UploadEngineerInfoByID:(NSString *)uid WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-
-/**
  *  查询自己进行中的订单
  *
  *  @param completionHandler
@@ -414,5 +445,15 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 +(void)CancelOrderByUID:(NSString *)uid WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 
+/**
+ *  占用/取消占用订单
+ *
+ *  @param uid               uid
+ *  @param engineerid
+ *  @param orderstate
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)OccupyOrderOrCancelByUID:(NSString *)uid engineerid:(NSString*)engineerid orderstate:(NSString *)orderstate WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 @end

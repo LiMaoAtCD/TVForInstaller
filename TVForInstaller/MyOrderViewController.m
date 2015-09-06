@@ -81,18 +81,15 @@
         NSDictionary *order =[OngoingOrder onGoingOrder];
         self.nameLabel.text = order[@"name"];
         self.telphoneLabel.text = order[@"phone"];
-        self.addressLabel.text = order[@"home_address"];
-        self.dateLabel.text = order[@"order_time"];
-        if ([order[@"order_type"] integerValue] == 0) {
+        self.addressLabel.text = order[@"homeAddress"];
+        self.dateLabel.text = order[@"orderTime"];
+        
+        if ([order[@"orderType"] integerValue] == 0) {
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
         } else{
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-
         }
 
-
-
-        
         [self.view removeConstraint:self.tableViewLayout];
         
         self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:125];
@@ -100,12 +97,8 @@
         
         [UIView animateWithDuration:0.1 animations:^{
             [self.view layoutIfNeeded];
-            
         }];
     }
-
-
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -263,13 +256,11 @@
         
         [SVProgressHUD showWithStatus:@"正在取消订单"];
         
-        
-     
-        
-        [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [SVProgressHUD dismiss];
+        //TODO: 取消订单
+        [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            if ([responseObject[@"status"] integerValue] == 0) {
+            if ([responseObject[@"success"] integerValue] == 1) {
+                self.isCanceling = NO;
                 
                 [OngoingOrder setOrder:nil];
                 
@@ -288,21 +279,53 @@
                     }
                 }];
             }
-            self.isCanceling = NO;
-            
-            [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"response: %@",responseObject);
-                
-                
-            } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"error %@",error);
-            }];
+           
 
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
             self.isCanceling = NO;
 
         }];
-
+     
+        
+        //Previous
+        
+//        [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"0" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            [SVProgressHUD dismiss];
+//            
+//            if ([responseObject[@"status"] integerValue] == 0) {
+//                
+//                [OngoingOrder setOrder:nil];
+//                
+//                self.OngoingView.hidden = YES;
+//                
+//                [self.view removeConstraint:self.tableViewLayout];
+//                self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+//                [self.view addConstraint:self.tableViewLayout];
+//                
+//                
+//                [UIView animateWithDuration:0.5 animations:^{
+//                    [self.view layoutIfNeeded];
+//                    
+//                } completion:^(BOOL finished) {
+//                    if (finished) {
+//                    }
+//                }];
+//            }
+//            self.isCanceling = NO;
+//            
+//            [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                NSLog(@"response: %@",responseObject);
+//                
+//                
+//            } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                NSLog(@"error %@",error);
+//            }];
+//
+//        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            self.isCanceling = NO;
+//
+//        }];
+//
     }
 }
 
