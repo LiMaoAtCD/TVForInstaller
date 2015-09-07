@@ -18,9 +18,13 @@
 //#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
-#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
-#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+//#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+
+#define kServer @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
+#define kServer2 @"http://wx.scui.com.cn/zhiKey/softController.do?getSoftService"
+#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
 
 //#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
 #define kServer4 @"http://wx.scui.com.cn/zhiKey/"
@@ -438,7 +442,7 @@
     NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/wxPay.do?",kServer4];
 
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -502,14 +506,19 @@
 
 +(void)fetchCompletedOrderListByCurrentPage:(NSString*)curpage withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"curpage":curpage,@"userID":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+//    NSString * param = [@{@"curpage":curpage,@"userID":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
     
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"curpage"] = curpage;
+    dic[@"userID"] = [AccountManager getTokenID];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSString *url = [NSString stringWithFormat:@"%@weixinPayController.do?getSubmitOrder",kServer4];
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/getCompleteOrder.do?",kServer4];
 
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -568,5 +577,17 @@
     
 }
 
++(void)FetchOnGoingOrderWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/getDoingOrder.do?",kServer4];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSMutableDictionary *dic =[@{} mutableCopy];
+    dic[@"userID"] = [AccountManager getTokenID];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
 
 @end

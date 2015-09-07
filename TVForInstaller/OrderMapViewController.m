@@ -19,6 +19,8 @@
 
 #import "BNCoreServices.h"
 
+typedef void (^searchResultBlock)(BOOL isExistOrder);
+
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKCloudSearchDelegate,BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate,DidConfirmOrderDelegate>
 
 
@@ -126,8 +128,9 @@
     _locService.delegate = self;
     _geocodesearch.delegate = self;
     _cloudSearch.delegate = self;
-
 }
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
@@ -145,8 +148,20 @@
             self.isStopLocatingUser = NO;
         }
         
-        [self addPointAnnotations];
-        [self SearchNearByOrders];
+       
+        
+        
+        [self searchOnGoingOrderWithBlock:^(BOOL isExistOrder) {
+            if (isExistOrder) {
+                //存在
+                [self removeAnnotions];
+                [self noteOngoingOrderView:YES];
+
+            } else{
+                [self addPointAnnotations];
+                [self SearchNearByOrders];
+            }
+        }];
         
     } else {
         [self removeAnnotions];
@@ -425,8 +440,53 @@
         _mapView.showsUserLocation = YES;//显示定位图层
         _mapView.isSelectedAnnotationViewFront = NO;
     }
+    
 }
 
+#pragma mark - 搜索正在进行中的订单
+
+-(void)searchOnGoingOrderWithBlock:(searchResultBlock)block{
+    [NetworkingManager FetchOnGoingOrderWithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        if ([responseObject[@"success"] integerValue] == 1) {
+            //
+            NSArray *tempArray = responseObject[@"obj"];
+            
+            if (tempArray.count > 0) {
+                //有正在进行的订单
+                NSDictionary *dic = tempArray[0];
+                
+                
+                NSMutableDictionary *temp = [NSMutableDictionary dictionary];
+                
+                temp[@"name"] = dic[@"name"];
+                temp[@"phone"] = dic[@"phone"];
+                temp[@"homeAddress"] = dic[@"homeAddress"];
+                temp[@"orderTime"] = dic[@"orderTime"];
+                temp[@"orderType"]  = dic[@"orderType"];
+                temp[@"uid"] = dic[@"uid"];
+                
+                [OngoingOrder setExistOngoingOrder:YES];
+                [OngoingOrder setOrder:temp];
+                
+                if (block) {
+                    block(YES);
+                }
+            } else{
+                if (block) {
+                    block(NO);
+                }
+            }
+        } else{
+            
+        }
+        
+    } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+        
+    }];
+}
 #pragma mark - 搜索附近订单
 
 -(void)SearchNearByOrders{

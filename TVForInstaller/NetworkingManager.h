@@ -456,4 +456,13 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)OccupyOrderOrCancelByUID:(NSString *)uid engineerid:(NSString*)engineerid orderstate:(NSString *)orderstate WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
+
+/**
+ *  查询正在进行的订单
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)FetchOnGoingOrderWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
 @end

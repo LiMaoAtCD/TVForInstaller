@@ -131,7 +131,6 @@
 //    return self.orders.count;
     return self.orders.count;
     
-
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -146,7 +145,8 @@
     cell.addressLabel.text= self.orders[indexPath.row][@"home_address"];
     
  
-    cell.moneyLabel.text = self.orders[indexPath.row][@"order_totalfee"];
+    float cost = [self.orders[indexPath.row][@"order_totalfee"] floatValue];
+    cell.moneyLabel.text =[NSString stringWithFormat:@"%.1f",cost];
     if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
         //支付进行中
         cell.cnyLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];

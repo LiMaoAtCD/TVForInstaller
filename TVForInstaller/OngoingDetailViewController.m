@@ -146,9 +146,6 @@ typedef enum : NSUInteger {
  *  支付进行中的订单
  */
 -(void)configOngoingOrderInfo{
-    
-    
-
     self.nameLabel.text = self.OrderInfo[@"name"];
     self.telphoneLabel.text =  self.OrderInfo[@"phone"];
     self.addressLabel.text =  self.OrderInfo[@"homeAddress"];
@@ -268,14 +265,9 @@ typedef enum : NSUInteger {
     // Dispose of any resources that can be recreated.
 }
 
-
-
-
 //点击支付
 -(void)didClickSubmitButton{
     
-
-
     if (self.currentPayType == WECHAT) {
         //发起微信支付
         [SVProgressHUD showWithStatus:@"正在生成订单"];
@@ -286,11 +278,10 @@ typedef enum : NSUInteger {
                 [SVProgressHUD dismiss];
 
                 NSString *url = responseObject[@"obj"];
-                
-                if (!url) {
+                if (!url || [url isEqualToString:@""]) {
+                    [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
                     return;
                 }
-                
                 NSError *error = nil;
                 CGImageRef qrImage = nil;
                 ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
@@ -312,21 +303,9 @@ typedef enum : NSUInteger {
                     
                     
 //                    NSDictionary *order = [OngoingOrder onGoingOrder];
-            
-//
-                
-//                    [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                        if ([responseObject[@"status"] integerValue] == 0) {
-//                            //修改订单为完成未支付
-//            
-//                            [OngoingOrder setExistOngoingOrder:NO];
-//                            [OngoingOrder setOrder:nil];
-//                            
-//                            
-//                        }
-//                    } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                        
-//                    }];
+                    [OngoingOrder setExistOngoingOrder:NO];
+                    [OngoingOrder setOrder:nil];
+
                     
                 } else {
                     
@@ -376,20 +355,23 @@ typedef enum : NSUInteger {
                      qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                      qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                      [self showDetailViewController:qrcodeVC sender:self];
-                     NSDictionary *order = [OngoingOrder onGoingOrder];
+//                     NSDictionary *order = [OngoingOrder onGoingOrder];
                      
-                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         if ([responseObject[@"status"] integerValue] == 0) {
-                             //修改订单为完成未支付
-                             
-                             [OngoingOrder setExistOngoingOrder:NO];
-                             [OngoingOrder setOrder:nil];
-                             
-                             
-                         }
-                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-                         
-                     }];
+                     [OngoingOrder setExistOngoingOrder:NO];
+                     [OngoingOrder setOrder:nil];
+                     
+//                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                         if ([responseObject[@"status"] integerValue] == 0) {
+//                             //修改订单为完成未支付
+//                             
+//                             [OngoingOrder setExistOngoingOrder:NO];
+//                             [OngoingOrder setOrder:nil];
+//                             
+//                             
+//                         }
+//                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                         
+//                     }];
                      
                  } else {
                      
@@ -413,8 +395,12 @@ typedef enum : NSUInteger {
              if ([responseObject[@"success"] integerValue] == 1) {
                  
                  [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 
                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                      [self.navigationController popToRootViewControllerAnimated:YES];
+                     
+                     [OngoingOrder setExistOngoingOrder:NO];
+                     [OngoingOrder setOrder:nil];
                  });
              } else{
                  //未成功
