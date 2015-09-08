@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol QRCodeCompletedDelegate <NSObject>
+
+-(void)didClickCloseQRCode;
+
+@end
+
 @interface QRCodeViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *image;
+
+@property (nonatomic, weak) id<QRCodeCompletedDelegate> delegate;
 
 @end

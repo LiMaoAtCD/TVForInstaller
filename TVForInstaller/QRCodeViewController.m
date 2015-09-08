@@ -37,6 +37,10 @@
 }
 */
 - (IBAction)dismiss:(id)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(didClickCloseQRCode)]) {
+        [self.delegate didClickCloseQRCode];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

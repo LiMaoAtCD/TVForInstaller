@@ -150,10 +150,12 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         
        
         
-        
+        [SVProgressHUD show];
         [self searchOnGoingOrderWithBlock:^(BOOL isExistOrder) {
             if (isExistOrder) {
                 //存在
+                [SVProgressHUD dismiss];
+
                 [self removeAnnotions];
                 [self noteOngoingOrderView:YES];
 
@@ -469,7 +471,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                 
                 [OngoingOrder setExistOngoingOrder:YES];
                 [OngoingOrder setOrder:temp];
-                
+
                 if (block) {
                     block(YES);
                 }
@@ -484,6 +486,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         
     } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
+        [SVProgressHUD dismiss];
+
         
     }];
 }
@@ -509,6 +513,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                 
                 if ([responseObject[@"success"] integerValue] == 1) {
                     //附近订单获取成功
+                    [SVProgressHUD dismiss];
 
                     NSArray *resultArray = responseObject[@"obj"];
                     for (NSDictionary *temp in resultArray) {
@@ -534,9 +539,12 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                 } else{
                     
                     //附近订单获取失败
+                    [SVProgressHUD showErrorWithStatus:@"获取订单失败"];
+
                 }
             } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
                 self.isFetchOrder = NO;
+                [SVProgressHUD dismiss];
 
             }];
 

@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
     CASH,
 } PayType;
 
-@interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,SubmitDelegate>
+@interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,SubmitDelegate,QRCodeCompletedDelegate>
 
 //这里是订单信息视图
 @property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
@@ -148,10 +148,10 @@ typedef enum : NSUInteger {
 -(void)configOngoingOrderInfo{
     self.nameLabel.text = self.OrderInfo[@"name"];
     self.telphoneLabel.text =  self.OrderInfo[@"phone"];
-    self.addressLabel.text =  self.OrderInfo[@"homeAddress"];
+    self.addressLabel.text =  self.OrderInfo[@"home_address"];
     self.dateLabel.text = self.OrderInfo[@"order_endtime"];
     
-    if ([self.OrderInfo[@"orderType"] integerValue] == 0) {
+    if ([self.OrderInfo[@"order_type"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
     } else{
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
@@ -297,6 +297,7 @@ typedef enum : NSUInteger {
                     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
                     QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                     qrcodeVC.transitioningDelegate = self;
+                    qrcodeVC.delegate = self;
                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                     [self showDetailViewController:qrcodeVC sender:self];
@@ -352,6 +353,7 @@ typedef enum : NSUInteger {
                      UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
                      QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                      qrcodeVC.transitioningDelegate = self;
+                     qrcodeVC.delegate = self;
                      qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                      qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                      [self showDetailViewController:qrcodeVC sender:self];
@@ -390,7 +392,7 @@ typedef enum : NSUInteger {
          //发起支付
          [SVProgressHUD showWithStatus:@"正在提交支付结果"];
          
-         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+         [NetworkingManager BeginCashPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
              
              if ([responseObject[@"success"] integerValue] == 1) {
                  
@@ -510,6 +512,12 @@ typedef enum : NSUInteger {
         weakSelf.scanLabel.hidden = NO;
         weakSelf.scanButton.hidden = YES;
     };
+}
+
+#pragma mark -关闭二维码
+
+-(void)didClickCloseQRCode{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
