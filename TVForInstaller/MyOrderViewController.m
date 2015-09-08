@@ -153,7 +153,7 @@
     
  
     float cost = [self.orders[indexPath.row][@"order_totalfee"] floatValue];
-    cell.moneyLabel.text =[NSString stringWithFormat:@"%.1f",cost];
+    cell.moneyLabel.text =[NSString stringWithFormat:@"%.2f",cost];
     if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
         //支付进行中
         cell.cnyLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];

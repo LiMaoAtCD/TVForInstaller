@@ -186,13 +186,13 @@
         self.installCost = [self.InstallFeeTextfield.text  floatValue];
     }
     if (textField == self.accessoriesFeeTextfield) {
-        self.accessoryCost = [self.accessoriesFeeTextfield.text integerValue];
+        self.accessoryCost = [self.accessoriesFeeTextfield.text floatValue];
     }
     if (textField == self.ServiceFeeTextfield) {
-        self.serviceCost = [self.ServiceFeeTextfield.text integerValue];
+        self.serviceCost = [self.ServiceFeeTextfield.text floatValue];
     }
     if (textField == self.FlowTextfield) {
-        self.flowCost = [self.FlowTextfield.text integerValue];
+        self.flowCost = [self.FlowTextfield.text floatValue];
     }
     
     //修改完成，计算费用
@@ -242,7 +242,7 @@
     //ok
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.totalFeeVC.totalFeeLabel.text = [NSString stringWithFormat:@"￥%ld",(NSInteger)self.totalCost];
+        self.totalFeeVC.totalFeeLabel.text = [NSString stringWithFormat:@"￥%.2f",self.totalCost];
     });
     
 }
