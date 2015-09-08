@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
+typedef enum : NSUInteger {
+    WECHAT,
+    ALIPAY,
+    CASH,
+} PayType;
+
+
+
+
 @protocol QRCodeCompletedDelegate <NSObject>
 
 -(void)didClickCloseQRCode;
@@ -20,5 +29,12 @@
 @property (nonatomic, strong) UIImage *image;
 
 @property (nonatomic, weak) id<QRCodeCompletedDelegate> delegate;
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *payTypeImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *payTypeLabel;
+
+@property (nonatomic,assign) PayType type;
 
 @end

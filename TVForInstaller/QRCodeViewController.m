@@ -20,6 +20,18 @@
     // Do any additional setup after loading the view.
     
     self.imageView.image = self.image;
+    
+    
+    if (self.type == WECHAT) {
+        self.payTypeLabel.text =@"请使用微信扫码完成支付";
+        self.payTypeImageView.image = [UIImage imageNamed:@"ui08_ wechat"];
+    } else{
+        self.payTypeLabel.text =@"请使用支付宝扫码完成支付";
+        self.payTypeImageView.image = [UIImage imageNamed:@"ui08_alipay"];
+
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

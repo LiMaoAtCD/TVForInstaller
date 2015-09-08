@@ -24,11 +24,6 @@
 
 #import "QRDecodeViewController.h"
 
-typedef enum : NSUInteger {
-    WECHAT,
-    ALIPAY,
-    CASH,
-} PayType;
 
 @interface OngoingDetailViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,SubmitDelegate,QRCodeCompletedDelegate>
 
@@ -270,14 +265,14 @@ typedef enum : NSUInteger {
     
     if (self.currentPayType == WECHAT) {
         //发起微信支付
-        [SVProgressHUD showWithStatus:@"正在生成订单"];
+        [SVProgressHUD show];
 
         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 1) {
 
                 NSString *url = responseObject[@"obj"];
-                if (!url || [url isEqualToString:@""]) {
+                if ([url isKindOfClass:[NSNull class]]||!url || [url isEqualToString:@""]) {
                     [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
                     return;
                 }
@@ -299,6 +294,8 @@ typedef enum : NSUInteger {
                     QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                     qrcodeVC.transitioningDelegate = self;
                     qrcodeVC.delegate = self;
+                    qrcodeVC.type = WECHAT;
+
                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                     [self showDetailViewController:qrcodeVC sender:self];
@@ -326,15 +323,15 @@ typedef enum : NSUInteger {
          //支付宝
          
          //发起支付
-         [SVProgressHUD showWithStatus:@"正在生成订单"];
+         [SVProgressHUD show];
          
-         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+         [NetworkingManager BeginAliPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%.2f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
              
              if ([responseObject[@"success"] integerValue] == 1) {
                  
                  NSString *url = responseObject[@"obj"];
                  
-                 if (!url || [url isEqualToString:@""]) {
+                 if ([url isKindOfClass:[NSNull class]]||!url || [url isEqualToString:@""]) {
                      [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
                  } else{
                      [SVProgressHUD dismiss];
@@ -356,6 +353,8 @@ typedef enum : NSUInteger {
                          QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                          qrcodeVC.transitioningDelegate = self;
                          qrcodeVC.delegate = self;
+                         qrcodeVC.type = ALIPAY;
+
                          qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                          qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                          [self showDetailViewController:qrcodeVC sender:self];

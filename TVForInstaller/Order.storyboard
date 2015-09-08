@@ -510,7 +510,8 @@
                                                                     <exclude reference="8yF-xp-hU6"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="48" y="25" width="202" height="30"/>
                                                                 <mask key="constraints">
                                                                     <include reference="8yF-xp-hU6"/>
                                                                 </mask>
@@ -532,7 +533,8 @@
                                                                     <exclude reference="te3-ut-s2F"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="260" y="12" width="1" height="56"/>
                                                                 <mask key="constraints">
                                                                     <include reference="dhv-yD-hSQ"/>
                                                                     <exclude reference="te3-ut-s2F"/>
@@ -556,7 +558,8 @@
                                                                     <exclude reference="V4L-3k-Pt8"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="265" y="28" width="39" height="21"/>
                                                                 <mask key="constraints">
                                                                     <exclude reference="1aA-ea-NQR"/>
                                                                     <include reference="G4A-1g-D6M"/>
@@ -579,7 +582,8 @@
                                                                     <exclude reference="ec1-oR-B7Y"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="308" y="31" width="12" height="15"/>
                                                                 <mask key="constraints">
                                                                     <include reference="aPu-Ej-DQE"/>
                                                                     <include reference="ec1-oR-B7Y"/>
@@ -601,7 +605,8 @@
                                                                     <exclude reference="kyH-Rn-tYM"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="269" y="54" width="51" height="12"/>
                                                                 <mask key="constraints">
                                                                     <include reference="emv-vb-NZy"/>
                                                                     <exclude reference="kyH-Rn-tYM"/>
@@ -623,7 +628,8 @@
                                                                     <exclude reference="ru3-ZF-IA7"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="48" y="55" width="214" height="21"/>
                                                                 <mask key="constraints">
                                                                     <exclude reference="3RB-1T-7nQ"/>
                                                                     <include reference="ru3-ZF-IA7"/>
@@ -2293,9 +2299,11 @@
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5UQ-Sv-bsG"/>
-                                            <constraint firstAttribute="width" constant="60" id="mnY-6H-psc"/>
+                                            <constraint firstAttribute="width" constant="60" id="mnY-6H-psc">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="123"/>
+                                            </constraint>
                                         </constraints>
-                                        <state key="normal" title="支付完成">
+                                        <state key="normal" backgroundImage="ui08_ btn_complete">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="default">
@@ -2333,15 +2341,51 @@
                                             </mask>
                                         </variation>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ui08_ wechat" translatesAutoresizingMaskIntoConstraints="NO" id="fPh-k3-Yah">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Xme-d7-FPT"/>
+                                            <constraint firstAttribute="height" constant="22" id="kPR-XC-MEL"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Xme-d7-FPT"/>
+                                                <exclude reference="kPR-XC-MEL"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="Xme-d7-FPT"/>
+                                                <include reference="kPR-XC-MEL"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请使用支付宝扫码完成支付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcs-pN-Mam">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="2HB-U9-RgX"/>
+                                    <constraint firstItem="fPh-k3-Yah" firstAttribute="top" secondItem="qDt-Iz-acr" secondAttribute="top" constant="24" id="9PQ-zw-2yg"/>
+                                    <constraint firstItem="fPh-k3-Yah" firstAttribute="centerX" secondItem="Dcs-pN-Mam" secondAttribute="centerX" id="S7S-yM-AK7"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="bYy-Ym-J8e"/>
+                                    <constraint firstItem="ROS-B7-Sj1" firstAttribute="top" secondItem="Dcs-pN-Mam" secondAttribute="bottom" constant="8" id="beD-aQ-hX2"/>
                                     <constraint firstAttribute="centerX" secondItem="ROS-B7-Sj1" secondAttribute="centerX" id="eRw-cD-j3Q"/>
-                                    <constraint firstItem="RVL-ic-PmM" firstAttribute="top" secondItem="ROS-B7-Sj1" secondAttribute="bottom" constant="23" id="sb2-Xx-5NT"/>
-                                    <constraint firstAttribute="centerX" secondItem="RVL-ic-PmM" secondAttribute="centerX" constant="-7" id="vE8-W1-DcT"/>
-                                    <constraint firstAttribute="centerY" secondItem="ROS-B7-Sj1" secondAttribute="centerY" id="yND-6m-tx4"/>
+                                    <constraint firstItem="Dcs-pN-Mam" firstAttribute="top" secondItem="fPh-k3-Yah" secondAttribute="bottom" constant="4" id="pZn-9W-T5l"/>
+                                    <constraint firstItem="RVL-ic-PmM" firstAttribute="top" secondItem="ROS-B7-Sj1" secondAttribute="bottom" constant="23" id="sb2-Xx-5NT">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                    </constraint>
+                                    <constraint firstAttribute="centerX" secondItem="fPh-k3-Yah" secondAttribute="centerX" id="taw-Hu-DMw"/>
+                                    <constraint firstAttribute="centerX" secondItem="RVL-ic-PmM" secondAttribute="centerX" constant="-7" id="vE8-W1-DcT">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstAttribute="centerY" secondItem="ROS-B7-Sj1" secondAttribute="centerY" id="yND-6m-tx4">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                                    </constraint>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
@@ -2353,28 +2397,42 @@
                                     <mask key="subviews">
                                         <exclude reference="RVL-ic-PmM"/>
                                         <exclude reference="ROS-B7-Sj1"/>
+                                        <exclude reference="fPh-k3-Yah"/>
+                                        <exclude reference="Dcs-pN-Mam"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="2HB-U9-RgX"/>
                                         <exclude reference="bYy-Ym-J8e"/>
-                                        <exclude reference="sb2-Xx-5NT"/>
-                                        <exclude reference="vE8-W1-DcT"/>
+                                        <exclude reference="pZn-9W-T5l"/>
+                                        <exclude reference="beD-aQ-hX2"/>
                                         <exclude reference="eRw-cD-j3Q"/>
                                         <exclude reference="yND-6m-tx4"/>
+                                        <exclude reference="9PQ-zw-2yg"/>
+                                        <exclude reference="S7S-yM-AK7"/>
+                                        <exclude reference="taw-Hu-DMw"/>
+                                        <exclude reference="sb2-Xx-5NT"/>
+                                        <exclude reference="vE8-W1-DcT"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="RVL-ic-PmM"/>
                                         <include reference="ROS-B7-Sj1"/>
+                                        <include reference="fPh-k3-Yah"/>
+                                        <include reference="Dcs-pN-Mam"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="2HB-U9-RgX"/>
                                         <include reference="bYy-Ym-J8e"/>
-                                        <include reference="sb2-Xx-5NT"/>
-                                        <include reference="vE8-W1-DcT"/>
+                                        <include reference="pZn-9W-T5l"/>
+                                        <exclude reference="beD-aQ-hX2"/>
                                         <include reference="eRw-cD-j3Q"/>
                                         <include reference="yND-6m-tx4"/>
+                                        <include reference="9PQ-zw-2yg"/>
+                                        <include reference="S7S-yM-AK7"/>
+                                        <include reference="taw-Hu-DMw"/>
+                                        <include reference="sb2-Xx-5NT"/>
+                                        <include reference="vE8-W1-DcT"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2424,6 +2482,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="ROS-B7-Sj1" id="dRM-Gp-Vlr"/>
+                        <outlet property="payTypeImageView" destination="fPh-k3-Yah" id="h5J-mK-yKc"/>
+                        <outlet property="payTypeLabel" destination="Dcs-pN-Mam" id="vDD-3h-amB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16t-gp-VEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2943,5 +3003,7 @@
         <image name="ui03_btn_-QR-code" width="26" height="26"/>
         <image name="ui03_check" width="24" height="24"/>
         <image name="ui03_submit_button" width="93" height="43"/>
+        <image name="ui08_ btn_complete" width="156" height="39"/>
+        <image name="ui08_ wechat" width="80" height="21"/>
     </resources>
 </document>

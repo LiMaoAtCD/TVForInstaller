@@ -210,14 +210,14 @@
         if ([self.orders[indexPath.row][@"pay_type"] integerValue] == 0) {
             //微信支付
             //发起微信支付
-            [SVProgressHUD showWithStatus:@"正在生成订单"];
+            [SVProgressHUD show];
             
             [NetworkingManager BeginWeChatPayForUID:self.orders[indexPath.row][@"uid"] totalFee:self.orders[indexPath.row][@"order_totalfee"] tvid:self.orders[indexPath.row][@"tvid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
                 if ([responseObject[@"success"] integerValue] == 1) {
                     
                     NSString *url = responseObject[@"obj"];
-                    if (!url || [url isEqualToString:@""]) {
+                    if ([url isKindOfClass:[NSNull class]]||!url || [url isEqualToString:@""]) {
                         [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
                         return;
                     }
@@ -239,6 +239,8 @@
                         QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                         qrcodeVC.transitioningDelegate = self;
                         qrcodeVC.delegate = self;
+                        
+                        qrcodeVC.type = WECHAT;
                         qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                         [self showDetailViewController:qrcodeVC sender:self];
@@ -264,7 +266,7 @@
             //支付宝
             
             //发起支付
-            [SVProgressHUD showWithStatus:@"正在生成订单"];
+            [SVProgressHUD show];
             
             [NetworkingManager BeginAliPayForUID:self.orders[indexPath.row][@"uid"] totalFee:self.orders[indexPath.row][@"order_totalfee"] tvid:self.orders[indexPath.row][@"tvid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
@@ -272,7 +274,7 @@
                     
                     NSString *url = responseObject[@"obj"];
                     
-                    if (!url || [url isEqualToString:@""]) {
+                    if ([url isKindOfClass:[NSNull class]]||!url || [url isEqualToString:@""]) {
                         [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
 
                         return;
@@ -296,6 +298,8 @@
                         QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
                         qrcodeVC.transitioningDelegate = self;
                         qrcodeVC.delegate = self;
+                        qrcodeVC.type = ALIPAY;
+
                         qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                         [self showDetailViewController:qrcodeVC sender:self];

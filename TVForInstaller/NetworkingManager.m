@@ -461,10 +461,10 @@
     dic[@"totalfee"] = totalFee;
     
     
-    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+//    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/aliPay.do?",kServer4];
     
-    [manager POST:url parameters:@{@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -483,7 +483,7 @@
     dic[@"totalfee"] = totalFee;
     
     
-    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+//    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/cashPay.do?",kServer4];
     
     [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {

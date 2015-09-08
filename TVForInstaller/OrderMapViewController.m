@@ -98,7 +98,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     
     //定位服务初始化
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
-    [BMKLocationService setLocationDistanceFilter:500.f];
+    [BMKLocationService setLocationDistanceFilter:kCLDistanceFilterNone];
     _locService = [[BMKLocationService alloc] init];
     
     //地址转经纬度
@@ -189,24 +189,34 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
 -(void)addPointAnnotations{
 
+    self.pointAnnotations = [self.mapView.annotations mutableCopy];
     self.pointAnnotations = [NSMutableArray array];
+    NSMutableArray *toRemoveAnnotations = [NSMutableArray array];
+
     [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         NSDictionary *temp = obj;
         
+        NSString *tempUID = temp[@"uid"];
+        [_mapView.annotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            CustomPointAnnotation *annotation = obj;
+            
+            if ([annotation.uid isEqualToString:tempUID]) {
+                
+            }
+        }];
+        
         CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
         annotation.tag = idx;
+        annotation.uid = tempUID;
         CLLocationCoordinate2D coor;
-        
-//        coor.latitude = [temp[@"location"][1] doubleValue];
-//        coor.longitude = [temp[@"location"][0] doubleValue];
-//        
         coor.latitude = [temp[@"latitude"] doubleValue];
         coor.longitude = [temp[@"longitude"] doubleValue];
-
-        
         annotation.coordinate = coor;
         annotation.title = nil;
+        
+        
+        
         [self.pointAnnotations addObject:annotation];
         
     }];
@@ -238,6 +248,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     self.currentUserLocation.title = nil;
     
     [self SearchNearByOrders];
+
 }
 
 - (void)didStopLocatingUser{
@@ -530,7 +541,6 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                     
                     
                     if (![OngoingOrder existOngoingOrder]) {
-                        [self removeAnnotions];
                         self.Orders = tempOrders;
                         [self addPointAnnotations];
                         self.isFetchOrder = NO;
