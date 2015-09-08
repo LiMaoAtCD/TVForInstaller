@@ -275,13 +275,14 @@ typedef enum : NSUInteger {
         [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([responseObject[@"success"] integerValue] == 1) {
-                [SVProgressHUD dismiss];
 
                 NSString *url = responseObject[@"obj"];
                 if (!url || [url isEqualToString:@""]) {
                     [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
                     return;
                 }
+                [SVProgressHUD dismiss];
+
                 NSError *error = nil;
                 CGImageRef qrImage = nil;
                 ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
@@ -330,54 +331,42 @@ typedef enum : NSUInteger {
          [NetworkingManager BeginWeChatPayForUID:self.OrderInfo[@"uid"] totalFee:[NSString stringWithFormat:@"%f",self.totalCost] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
              
              if ([responseObject[@"success"] integerValue] == 1) {
-                 [SVProgressHUD dismiss];
                  
                  NSString *url = responseObject[@"obj"];
                  
-                 if (!url) {
-                     return;
+                 if (!url || [url isEqualToString:@""]) {
+                     [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
+                 } else{
+                     [SVProgressHUD dismiss];
+
+                     
+                     NSError *error = nil;
+                     CGImageRef qrImage = nil;
+                     ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                     ZXBitMatrix* result = [writer encode:url
+                                                   format:kBarcodeFormatQRCode
+                                                    width:500
+                                                   height:500
+                                                    error:&error];
+                     if (result) {
+                         
+                         qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+                         
+                         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                         QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                         qrcodeVC.transitioningDelegate = self;
+                         qrcodeVC.delegate = self;
+                         qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                         [self showDetailViewController:qrcodeVC sender:self];
+                         
+                         [OngoingOrder setExistOngoingOrder:NO];
+                         [OngoingOrder setOrder:nil];
+
+                     }
                  }
+
                  
-                 NSError *error = nil;
-                 CGImageRef qrImage = nil;
-                 ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-                 ZXBitMatrix* result = [writer encode:url
-                                               format:kBarcodeFormatQRCode
-                                                width:500
-                                               height:500
-                                                error:&error];
-                 if (result) {
-                     
-                     qrImage = [[ZXImage imageWithMatrix:result] cgimage];
-                     
-                     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
-                     QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
-                     qrcodeVC.transitioningDelegate = self;
-                     qrcodeVC.delegate = self;
-                     qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
-                     qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
-                     [self showDetailViewController:qrcodeVC sender:self];
-//                     NSDictionary *order = [OngoingOrder onGoingOrder];
-                     
-                     [OngoingOrder setExistOngoingOrder:NO];
-                     [OngoingOrder setOrder:nil];
-                     
-//                     [NetworkingManager ModifyOrderStateByID:order[@"uid"] latitude:[order[@"location"][1] doubleValue] longitude:[order[@"location"][0] doubleValue] order_state:@"3" WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                         if ([responseObject[@"status"] integerValue] == 0) {
-//                             //修改订单为完成未支付
-//                             
-//                             [OngoingOrder setExistOngoingOrder:NO];
-//                             [OngoingOrder setOrder:nil];
-//                             
-//                             
-//                         }
-//                     } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                         
-//                     }];
-                     
-                 } else {
-                     
-                 }
                  
              } else{
                  //未成功

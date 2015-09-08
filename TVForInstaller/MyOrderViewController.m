@@ -15,7 +15,14 @@
 #import "OngoingOrder.h"
 #import <UIScrollView+EmptyDataSet.h>
 
-@interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+#import <ZXingObjC/ZXingObjC.h>
+#import "QRCodeViewController.h"
+#import "QRCodeAnimator.h"
+#import "QRCodeDismissAnimator.h"
+
+
+
+@interface MyOrderViewController ()<UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,UIViewControllerTransitioningDelegate,QRCodeCompletedDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -184,14 +191,156 @@
     [tableView  deselectRowAtIndexPath:indexPath animated:YES];
     
     
+    
+    
+    
+    
     if ([self.orders[indexPath.row][@"order_state"] integerValue] == 3) {
         //未完成支付，可以点击进行支付
-        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+//        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+//        
+//        OngoingDetailViewController *ongingVC = [sb instantiateViewControllerWithIdentifier:@"OngoingDetailViewController"];
+//        ongingVC.hidesBottomBarWhenPushed = YES;
+//        ongingVC.OrderInfo = self.orders[indexPath.row];
+//        [self.navigationController showViewController:ongingVC sender:self];
         
-        OngoingDetailViewController *ongingVC = [sb instantiateViewControllerWithIdentifier:@"OngoingDetailViewController"];
-        ongingVC.hidesBottomBarWhenPushed = YES;
-        ongingVC.OrderInfo = self.orders[indexPath.row];
-        [self.navigationController showViewController:ongingVC sender:self];
+        
+        
+        //支付完成
+        if ([self.orders[indexPath.row][@"pay_type"] integerValue] == 0) {
+            //微信支付
+            //发起微信支付
+            [SVProgressHUD showWithStatus:@"正在生成订单"];
+            
+            [NetworkingManager BeginWeChatPayForUID:self.orders[indexPath.row][@"uid"] totalFee:self.orders[indexPath.row][@"order_totalfee"] tvid:self.orders[indexPath.row][@"tvid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if ([responseObject[@"success"] integerValue] == 1) {
+                    
+                    NSString *url = responseObject[@"obj"];
+                    if (!url || [url isEqualToString:@""]) {
+                        [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
+                        return;
+                    }
+                    [SVProgressHUD dismiss];
+
+                    NSError *error = nil;
+                    CGImageRef qrImage = nil;
+                    ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                    ZXBitMatrix* result = [writer encode:url
+                                                  format:kBarcodeFormatQRCode
+                                                   width:500
+                                                  height:500
+                                                   error:&error];
+                    if (result) {
+                        
+                        qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+                        
+                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                        QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                        qrcodeVC.transitioningDelegate = self;
+                        qrcodeVC.delegate = self;
+                        qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                        qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                        [self showDetailViewController:qrcodeVC sender:self];
+                        
+                        
+                        [OngoingOrder setExistOngoingOrder:NO];
+                        [OngoingOrder setOrder:nil];
+                        
+                        
+                    } else {
+                        
+                    }
+                    
+                } else{
+                    //未成功
+                    [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+                }
+            } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD showErrorWithStatus:@"网络出错"];
+            }];
+
+        } else if ([self.orders[indexPath.row][@"pay_type"] integerValue] == 1){
+            //支付宝
+            
+            //发起支付
+            [SVProgressHUD showWithStatus:@"正在生成订单"];
+            
+            [NetworkingManager BeginAliPayForUID:self.orders[indexPath.row][@"uid"] totalFee:self.orders[indexPath.row][@"order_totalfee"] tvid:self.orders[indexPath.row][@"tvid"] WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if ([responseObject[@"success"] integerValue] == 1) {
+                    
+                    NSString *url = responseObject[@"obj"];
+                    
+                    if (!url || [url isEqualToString:@""]) {
+                        [SVProgressHUD showErrorWithStatus:@"二维码生成失败"];
+
+                        return;
+                    }
+                    [SVProgressHUD dismiss];
+
+                    
+                    NSError *error = nil;
+                    CGImageRef qrImage = nil;
+                    ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+                    ZXBitMatrix* result = [writer encode:url
+                                                  format:kBarcodeFormatQRCode
+                                                   width:500
+                                                  height:500
+                                                   error:&error];
+                    if (result) {
+                        
+                        qrImage = [[ZXImage imageWithMatrix:result] cgimage];
+                        
+                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                        QRCodeViewController *qrcodeVC = [sb instantiateViewControllerWithIdentifier:@"QRCodeViewController"];
+                        qrcodeVC.transitioningDelegate = self;
+                        qrcodeVC.delegate = self;
+                        qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
+                        qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+                        [self showDetailViewController:qrcodeVC sender:self];
+                        
+                        [OngoingOrder setExistOngoingOrder:NO];
+                        [OngoingOrder setOrder:nil];
+                        
+                        
+                    } else {
+                        
+                    }
+                    
+                } else{
+                    //未成功
+                    [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+                }
+            } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD showErrorWithStatus:@"网络出错"];
+            }];
+
+            
+        } else{
+            //现金支付(不应该出现现金未支付的情况)
+//            [SVProgressHUD showWithStatus:@"正在提交支付结果"];
+//            
+//            [NetworkingManager BeginCashPayForUID:self.orders[indexPath.row][@"uid"] totalFee:self.orders[indexPath.row][@"uid"] tvid:self.qrcode WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                
+//                if ([responseObject[@"success"] integerValue] == 1) {
+//                    
+//                    [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+//                    
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                        
+//                        [OngoingOrder setExistOngoingOrder:NO];
+//                        [OngoingOrder setOrder:nil];
+//                    });
+//                } else{
+//                    //未成功
+//                    [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+//                }
+//            } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                [SVProgressHUD showErrorWithStatus:@"网络出错"];
+//            }];
+        }
         
     }
     
@@ -295,6 +444,17 @@
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+#pragma mark - ViewController Transition Delegate
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    return [[QRCodeAnimator alloc] init];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return [[QRCodeDismissAnimator alloc] init];
+    
 }
 
 
