@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) UIImageView *annotationImageView;
 
+@property (nonatomic, copy) NSString *uid;
 
 @end

@@ -16,6 +16,7 @@
 @interface MyAccoutViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *runningOrderItems;
 @end
 
@@ -124,7 +125,9 @@
         return 88.0;
     }
 }
+
 -(void)dealloc{
+    
     self.runningOrderItems = nil;
 }
 

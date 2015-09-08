@@ -99,6 +99,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     //定位服务初始化
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
     [BMKLocationService setLocationDistanceFilter:kCLDistanceFilterNone];
+//    [BMKLocationService setLocationDistanceFilter:500.f];
+
     _locService = [[BMKLocationService alloc] init];
     
     //地址转经纬度
@@ -156,17 +158,18 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                 //存在
                 [SVProgressHUD dismiss];
 
-                [self removeAnnotions];
+                [self removeAnnotions:self.mapView.annotations];
                 [self noteOngoingOrderView:YES];
 
             } else{
+                
                 [self addPointAnnotations];
                 [self SearchNearByOrders];
             }
         }];
         
     } else {
-        [self removeAnnotions];
+        [self removeAnnotions:self.mapView.annotations];
         [self noteOngoingOrderView:YES];
     }
 }
@@ -189,25 +192,78 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
 -(void)addPointAnnotations{
 
-    self.pointAnnotations = [self.mapView.annotations mutableCopy];
-    self.pointAnnotations = [NSMutableArray array];
-    NSMutableArray *toRemoveAnnotations = [NSMutableArray array];
+//    self.pointAnnotations = [self.mapView.annotations mutableCopy];
+//    self.pointAnnotations = [NSMutableArray array];
+//
+//    
+//    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        
+//        NSDictionary *temp = obj;
+//        
+//        NSString *tempUID = temp[@"uid"];
+//        [_mapView.annotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            CustomPointAnnotation *annotation = obj;
+//            
+//            if ([annotation.uid isEqualToString:tempUID]) {
+//                
+//            }
+//        }];
+//        
+//        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
+//        annotation.tag = idx;
+//        annotation.uid = tempUID;
+//        CLLocationCoordinate2D coor;
+//        coor.latitude = [temp[@"latitude"] doubleValue];
+//        coor.longitude = [temp[@"longitude"] doubleValue];
+//        annotation.coordinate = coor;
+//        annotation.title = nil;
+//        
+//        [self.pointAnnotations addObject:annotation];
+//        
+//    }];
+//    
+//    [_mapView addAnnotations:self.pointAnnotations];
+//    [self noteOngoingOrderView:NO];
+    
+    
+    
+    //待增加的订单
+    NSMutableArray *toAddAnnotations = [NSMutableArray array];
+    //本地与服务器共同的订单
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    //遍历本地与服务器订单交集
+    [self.pointAnnotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        CustomPointAnnotation *annotation = obj;
+        [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
 
+            NSDictionary *temp = obj;
+            NSString *tempUID = temp[@"uid"];
+
+            if ([annotation.uid isEqualToString:tempUID]) {
+                [tempArray addObject:annotation];
+            }
+            
+        }];
+    }];
+    
+    //本地删除交集，剩余就是失效的订单
+    [self.pointAnnotations removeObjectsInArray:tempArray];
+    
+    //删除服务器上不存在的标注
+    [self.mapView removeAnnotations:self.pointAnnotations];
+    
+    
+    
+    //遍历远程的订单，生成新的标注数组
     [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         NSDictionary *temp = obj;
-        
         NSString *tempUID = temp[@"uid"];
-        [_mapView.annotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            CustomPointAnnotation *annotation = obj;
-            
-            if ([annotation.uid isEqualToString:tempUID]) {
-                
-            }
-        }];
         
         CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
-        annotation.tag = idx;
         annotation.uid = tempUID;
         CLLocationCoordinate2D coor;
         coor.latitude = [temp[@"latitude"] doubleValue];
@@ -215,21 +271,42 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         annotation.coordinate = coor;
         annotation.title = nil;
         
-        
-        
-        [self.pointAnnotations addObject:annotation];
-        
+        [toAddAnnotations addObject:annotation];
     }];
+    //先把本地最新的标注同步服务器的标注数组
+    self.pointAnnotations = [toAddAnnotations mutableCopy];
     
-    [_mapView addAnnotations:self.pointAnnotations];
+    //服务器标注删除本地已经有的标注
+    [toAddAnnotations removeObjectsInArray:tempArray];
+    
+    //剩余的就是待新增的标注
+    [self.mapView addAnnotations:toAddAnnotations];
+    
+    //不显示正在进行
     [self noteOngoingOrderView:NO];
+    
+    
+    
+    
+//    self.pointAnnotations = [self.Orders mutableCopy];
+    
+//    [self.Orders removeObjectsInArray:tempArray];
+    
+//    [self.mapView addAnnotations:self.Orders];
+    
+
+    
+    
+    
+//    self.pointAnnotations
+//    self.Orders
+    
+    
 
     
 }
--(void)removeAnnotions{
-    NSArray *annotations= self.mapView.annotations;
+-(void)removeAnnotions:(NSArray *)annotations{
     [self.mapView removeAnnotations:annotations];
-
 }
 
 #pragma mark - BMKLocationServiceDelegate
@@ -263,7 +340,17 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 {
     CustomPointAnnotation *temp_annotation = (CustomPointAnnotation *)annotation;
     
-    NSDictionary *data = self.Orders[temp_annotation.tag];
+//    NSDictionary *data = self.Orders[temp_annotation.tag];
+    
+    __block NSMutableDictionary *data =  [NSMutableDictionary dictionary];
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *temp = obj;
+        
+        if ([temp[@"uid"] isEqualToString:temp_annotation.uid]) {
+            data = [temp mutableCopy];
+        }
+    }];
+
     
     NSString *name = data[@"name"];
     NSString *address = data[@"homeAddress"];
@@ -284,7 +371,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     BMKActionPaopaoView *paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:name address:address subscribeDate:subscribe orderType:type]];
     annotationView.paopaoView = paopaoView;
     
-    annotationView.tag = temp_annotation.tag;
+    annotationView.uid = temp_annotation.uid;
 
     
     return annotationView;
@@ -360,7 +447,19 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
 {
     //先查看订单状态是否已被咱用
-    NSDictionary *detailInfo = self.Orders[view.tag];
+//    NSDictionary *detailInfo = self.Orders[view.tag];
+    
+    CustomAnnotationView *tempView = (CustomAnnotationView*)view;
+    
+    __block NSMutableDictionary *detailInfo =  [NSMutableDictionary dictionary];
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *temp = obj;
+        
+        if ([temp[@"uid"] isEqualToString:tempView.uid]) {
+            detailInfo = [temp mutableCopy];
+        }
+    }];
+
     
     //如果没有点击过泡泡
     if (!self.isSelectedPaoPaoView) {
@@ -561,7 +660,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         }
     } else {
         //存在执行中的订单
-        [self removeAnnotions];
+        [self removeAnnotions:self.mapView.annotations];
         [self noteOngoingOrderView:YES];
     }
 }

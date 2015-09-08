@@ -233,10 +233,9 @@
 -(void)caculateTotalCost{
     self.totalCost = self.installCost + self.accessoryCost + self.serviceCost + self.flowCost;
     if (self.currentPayType != CASH) {
-        //如果是在线支付 减20
-        self.totalCost -= 20;
-        if (self.totalCost < 0.0) {
-            self.totalCost = 0.0;
+        
+        if (self.totalCost > 20.0) {
+            self.totalCost -= 20.0;
         }
     }
     
