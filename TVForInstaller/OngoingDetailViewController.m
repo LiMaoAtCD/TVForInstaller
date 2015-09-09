@@ -148,8 +148,11 @@
     
     if ([self.OrderInfo[@"order_type"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-    } else{
+    }else if ([self.OrderInfo[@"order_type"] integerValue] == 1){
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+
+    } else{
+        self.typeImageView.image = [UIImage imageNamed:@"ui03_service"];
     }
 }
 /**
@@ -164,11 +167,14 @@
     self.telphoneLabel.text =  order[@"phone"];
     self.addressLabel.text =  order[@"homeAddress"];
     self.dateLabel.text = order[@"orderTime"];
-    
-    if ([order[@"orderType"] integerValue] == 0) {
+        
+    if ([self.OrderInfo[@"orderType"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-    } else{
+    }else if ([self.OrderInfo[@"order_type"] integerValue] == 1){
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+        
+    } else{
+        self.typeImageView.image = [UIImage imageNamed:@"ui03_service"];
     }
     
 }

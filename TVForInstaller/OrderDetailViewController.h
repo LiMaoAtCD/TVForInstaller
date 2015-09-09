@@ -18,7 +18,9 @@
 
 typedef enum ServiceType: NSUInteger {
     TV,
-    BROADBAND
+    BROADBAND,
+    SERVICE
+    
 } ServiceType;
 
 

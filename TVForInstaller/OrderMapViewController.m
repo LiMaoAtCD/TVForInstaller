@@ -364,9 +364,11 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     if (type == TV) {
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_tv_button"];
 
-    } else{
+    }else if (type == BROADBAND){
         annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_location_broadband_button"];
 
+    } else{
+        annotationView.annotationImageView.image = [UIImage imageNamed:@"ui01_btn_service"];
     }
     
     BMKActionPaopaoView *paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:[self paopaoView:name address:address subscribeDate:subscribe orderType:type]];
@@ -398,6 +400,13 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
             serviceImageView.image = [UIImage imageNamed:@"ui01_Broadband"];
 
         }
+            break;
+        case SERVICE:{
+            serviceImageView.image = [UIImage imageNamed:@"ui01_btn_service"];
+
+        }
+            break;
+
         default:
             break;
     }

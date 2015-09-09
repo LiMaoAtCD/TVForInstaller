@@ -91,8 +91,11 @@
         
         if ([order[@"orderType"] integerValue] == 0) {
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
-        } else{
+        }else if ([order[@"orderType"] integerValue] == 1){
             self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+
+        } else{
+            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_service"];
         }
 
         [self.view removeConstraint:self.tableViewLayout];
@@ -179,9 +182,11 @@
     if ([self.orders[indexPath.row][@"order_type"] integerValue] == 0) {
         cell.typeImageView.image = [UIImage imageNamed:@"ui08_tv"];
 
-    } else{
+    }else if ([self.orders[indexPath.row][@"order_type"] integerValue] == 1){
         cell.typeImageView.image = [UIImage imageNamed:@"ui08_broadband"];
 
+    } else{
+        cell.typeImageView.image = [UIImage imageNamed:@"ui08_service"];
     }
     
     

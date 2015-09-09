@@ -152,8 +152,10 @@
     
     if ([self.info[@"orderType"] integerValue] == 0) {
         self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-    } else{
+    }else if ([self.info[@"orderType"] integerValue] == 1){
         self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+    }else{
+        self.typeImageView.image = [UIImage imageNamed:@"ui03_service"];
     }
     self.nameLabel.text = self.info[@"name"];
     self.telphoneLabel.text = self.info[@"phone"];
