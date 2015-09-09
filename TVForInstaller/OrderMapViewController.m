@@ -185,6 +185,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     _geocodesearch.delegate = nil;
     _cloudSearch.delegate = nil;
 
+    [SVProgressHUD dismiss];
     
 }
 

@@ -147,8 +147,20 @@ typedef void(^alertBlock)(void);
         self.nameTextField.text = self.name;
     }
     self.cellphoneLabel.text = [AccountManager getCellphoneNumber];
+//    self.chinaIDLabel.text  =[AccountManager getIDCard];
     self.chinaIDLabel.text  =[AccountManager getIDCard];
     
+    NSMutableString *chinaIDString = [[AccountManager getIDCard] mutableCopy];
+    
+    if (chinaIDString) {
+        
+        NSUInteger length = chinaIDString.length;
+        NSRange range =  NSMakeRange(length - 4, 4);
+        NSString *temp = [chinaIDString stringByReplacingCharactersInRange:range withString:@"****"];
+        self.chinaIDLabel.text = temp;
+
+    }
+
     
     self.gender = [AccountManager getGender];
     if (self.gender == 0) {
