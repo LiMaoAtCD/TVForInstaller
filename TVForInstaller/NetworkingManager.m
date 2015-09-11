@@ -18,21 +18,21 @@
 //#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
-//#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
-#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-
+////#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+////#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+//
 #define kServer @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
 #define kServer2 @"http://wx.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
-
-//#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
+#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
+//
+////#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
 #define kServer4 @"http://wx.scui.com.cn/zhiKey/"
 
-//#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://blog.scui.com.cn/zhiKey/"
+//#define kServer  @"http://wx.tvkey.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://wx.tvkey.com.cn/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://wx.tvkey.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer4 @"http://wx.tvkey.com.cn/zhiKey/"
 
 
 

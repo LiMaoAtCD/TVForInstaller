@@ -19,6 +19,7 @@
 
 #import "BNCoreServices.h"
 
+
 typedef void (^searchResultBlock)(BOOL isExistOrder);
 
 @interface OrderMapViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKCloudSearchDelegate,BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate,DidConfirmOrderDelegate>
@@ -88,6 +89,26 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 @property (nonatomic, assign) BOOL isSelectedPaoPaoView;
 
 
+
+
+/**
+ *  判断订单是否需要显示
+ */
+@property (nonatomic, assign) BOOL isNeedShowNearestOrder;
+
+
+/**
+ *  最近订单
+ */
+@property (nonatomic, strong) UIView *nearestOrderView;
+
+/**
+ *  最近订单uid
+ */
+@property (nonatomic, copy) NSString *nearestUid;
+
+
+
 @end
 
 @implementation OrderMapViewController
@@ -98,8 +119,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     
     //定位服务初始化
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
-    [BMKLocationService setLocationDistanceFilter:kCLDistanceFilterNone];
-//    [BMKLocationService setLocationDistanceFilter:500.f];
+//    [BMKLocationService setLocationDistanceFilter:kCLDistanceFilterNone];
+    [BMKLocationService setLocationDistanceFilter:500.f];
 
     _locService = [[BMKLocationService alloc] init];
     
@@ -111,10 +132,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     
     //云检索服务
     _cloudSearch = [[BMKCloudSearch alloc] init];
-    
-    
-    
-    
+
     [self.view addSubview:_mapView];
 }
 
@@ -130,6 +148,9 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     _locService.delegate = self;
     _geocodesearch.delegate = self;
     _cloudSearch.delegate = self;
+    
+    
+    self.isNeedShowNearestOrder = YES;
 }
 
 
@@ -163,7 +184,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
             } else{
                 
-                [self addPointAnnotations];
+//                [self addPointAnnotations];
                 [self SearchNearByOrders];
             }
         }];
@@ -187,47 +208,15 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
     [SVProgressHUD dismiss];
     
+    
+    self.isNeedShowNearestOrder = NO;
+    
 }
 
 #pragma mark - 添加标注
 
 -(void)addPointAnnotations{
 
-//    self.pointAnnotations = [self.mapView.annotations mutableCopy];
-//    self.pointAnnotations = [NSMutableArray array];
-//
-//    
-//    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        
-//        NSDictionary *temp = obj;
-//        
-//        NSString *tempUID = temp[@"uid"];
-//        [_mapView.annotations enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            CustomPointAnnotation *annotation = obj;
-//            
-//            if ([annotation.uid isEqualToString:tempUID]) {
-//                
-//            }
-//        }];
-//        
-//        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
-//        annotation.tag = idx;
-//        annotation.uid = tempUID;
-//        CLLocationCoordinate2D coor;
-//        coor.latitude = [temp[@"latitude"] doubleValue];
-//        coor.longitude = [temp[@"longitude"] doubleValue];
-//        annotation.coordinate = coor;
-//        annotation.title = nil;
-//        
-//        [self.pointAnnotations addObject:annotation];
-//        
-//    }];
-//    
-//    [_mapView addAnnotations:self.pointAnnotations];
-//    [self noteOngoingOrderView:NO];
-    
-    
-    
     //待增加的订单
     NSMutableArray *toAddAnnotations = [NSMutableArray array];
     //本地与服务器共同的订单
@@ -285,6 +274,20 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     
     //不显示正在进行
     [self noteOngoingOrderView:NO];
+    
+    
+    //弹出最近的订单
+    
+    if (self.isNeedShowNearestOrder) {
+        [self showNearestOrderWithKiloMeters:@"0.23" type:TV];
+    } else{
+        
+    }
+    
+    
+    
+
+    
     
     
     
@@ -454,7 +457,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 }
 
 // 当点击annotation view弹出的泡泡时，调用此接口
-- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
     //先查看订单状态是否已被咱用
 //    NSDictionary *detailInfo = self.Orders[view.tag];
@@ -517,6 +520,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     }
     
  }
+
+
 
 
 -(void)mapStatusDidChanged:(BMKMapView *)mapView{
@@ -631,9 +636,14 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
             [NetworkingManager fetchNearByOrdersByLatitude:self.currentUserLocation.location.coordinate.latitude Logitude:self.currentUserLocation.location.coordinate.longitude WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
+//                NSLog(@"%@",responseObject);
+                
                 if ([responseObject[@"success"] integerValue] == 1) {
                     //附近订单获取成功
                     [SVProgressHUD dismiss];
+                    
+                    self.nearestUid = responseObject[@"attributes"][@"nearest"][@"uid"];
+                    
 
                     NSArray *resultArray = responseObject[@"obj"];
                     for (NSDictionary *temp in resultArray) {
@@ -673,6 +683,181 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         [self removeAnnotions:self.mapView.annotations];
         [self noteOngoingOrderView:YES];
     }
+}
+
+#pragma mark - 显示最近订单
+
+-(void)showNearestOrderWithKiloMeters:(NSString *)km type:(ServiceType)type{
+    self.isNeedShowNearestOrder = NO;
+    
+    _nearestOrderView= [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_nearestOrderView];
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    
+    bgView.backgroundColor = [UIColor blackColor];
+    
+    bgView.alpha = 0.3;
+    
+    [_nearestOrderView addSubview:bgView];
+    
+    
+    UIView *nearestView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
+    nearestView.layer.cornerRadius = 20.0;
+    nearestView.layer.masksToBounds = YES;
+    nearestView.backgroundColor = [UIColor blackColor];
+    
+    
+    [_nearestOrderView addSubview:nearestView];
+    
+    
+    nearestView.center = _nearestOrderView.center;
+    
+    
+    UIImageView *serviceTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 20, 53, 66)];
+    
+    [nearestView addSubview:serviceTypeImageView];
+    serviceTypeImageView.image =[UIImage imageNamed:@"ui10_service"];
+    
+    __block NSMutableDictionary *detailInfo =  [NSMutableDictionary dictionary];
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *temp = obj;
+        
+        if ([temp[@"uid"] isEqualToString:self.nearestUid]) {
+            detailInfo = [temp mutableCopy];
+        }
+    }];
+    
+    
+    if ([detailInfo[@"orderType"] integerValue] == TV) {
+        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_tv"];
+    } else if ([detailInfo[@"orderType"] integerValue] == BROADBAND){
+        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_broadband"];
+    } else{
+        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_service"];
+    }
+
+   
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(100, 51, 60, 24)];
+    label1.text = @"距离您";
+    label1.textColor = [UIColor whiteColor];
+    label1.font = [UIFont boldSystemFontOfSize:17.0];
+
+    
+    [nearestView addSubview:label1];
+    
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(161, 49, 60, 24)];
+    
+    label2.text = km;
+    label2.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+    label2.font = [UIFont boldSystemFontOfSize:28.0];
+    
+    
+    [nearestView addSubview:label2];
+
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(229, 51, 28, 24)];
+
+    
+    label3.text = @"km";
+    label3.textColor = [UIColor whiteColor];
+    label3.font = [UIFont boldSystemFontOfSize:17.0];
+    
+    
+    [nearestView addSubview:label3];
+
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelButton.frame = CGRectMake(0, 105, 149, 45);
+    
+    cancelButton.backgroundColor = [UIColor whiteColor];
+    
+    [cancelButton addTarget:self action:@selector(dismissNearestAlert) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"取消" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
+    
+    [nearestView addSubview:cancelButton];
+    
+    UIButton *orderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    orderButton.frame = CGRectMake(151, 105, 149, 45);
+
+    orderButton.backgroundColor = [UIColor whiteColor];
+    
+    [orderButton addTarget:self action:@selector(rabOrder:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    [orderButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"抢单" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
+    [nearestView addSubview:orderButton];
+
+}
+
+-(void)dismissNearestAlert{
+    
+    [self.nearestOrderView removeFromSuperview];
+    self.nearestOrderView = nil;
+}
+
+-(void)rabOrder:(id)sender{
+
+    __block NSMutableDictionary *detailInfo =  [NSMutableDictionary dictionary];
+    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *temp = obj;
+        
+        if ([temp[@"uid"] isEqualToString:self.nearestUid]) {
+            detailInfo = [temp mutableCopy];
+        }
+    }];
+    
+    
+    //如果没有点击过泡泡
+    if (!self.isSelectedPaoPaoView) {
+        self.isSelectedPaoPaoView = YES;
+        
+        
+        //TODO: 占用订单
+        
+        [SVProgressHUD show];
+        [NetworkingManager OccupyOrderOrCancelByUID:detailInfo[@"uid"] engineerid:[AccountManager getTokenID] orderstate:@"1" WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.isSelectedPaoPaoView = NO;
+            
+            if ([responseObject[@"success"] integerValue] == 1) {
+                
+                [SVProgressHUD dismiss];
+                UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Order" bundle:nil];
+                
+                OrderDetailViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailViewController"];
+                
+                BNPosition *originPostion = [[BNPosition alloc] init];
+                originPostion.x = self.currentUserLocation.location.coordinate.longitude;
+                originPostion.y = self.currentUserLocation.location.coordinate.latitude;
+                
+                detail.originalPostion = originPostion;
+                
+                BNPosition *destinationPostion = [[BNPosition alloc] init];
+                destinationPostion.x = [detailInfo[@"longitude"] doubleValue];
+                destinationPostion.y = [detailInfo[@"latitude"] doubleValue];
+                
+                detail.destinationPosition = destinationPostion;
+                detail.info = detailInfo;
+                
+                detail.delegate = self;
+                detail.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:detail animated:YES];
+            } else{
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+            }
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            self.isSelectedPaoPaoView = NO;
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
+            
+        }];
+        
+    }
+    
+    [self.nearestOrderView removeFromSuperview];
+    self.nearestOrderView = nil;
+
 }
 
 #pragma mark - 正在进行的订单视图
