@@ -18,6 +18,7 @@
 
 
 #import "BNCoreServices.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 typedef void (^searchResultBlock)(BOOL isExistOrder);
@@ -98,7 +99,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
 
 /**
- *  最近订单
+ *  最近订单视图
  */
 @property (nonatomic, strong) UIView *nearestOrderView;
 
@@ -106,6 +107,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
  *  最近订单uid
  */
 @property (nonatomic, copy) NSString *nearestUid;
+
+@property (nonatomic, copy) NSString *kiloMeters;
 
 
 
@@ -279,7 +282,19 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     //弹出最近的订单
     
     if (self.isNeedShowNearestOrder) {
-        [self showNearestOrderWithKiloMeters:@"0.23" type:TV];
+        
+        __block NSMutableDictionary *detailInfo =  [NSMutableDictionary dictionary];
+        [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *temp = obj;
+            
+            if ([temp[@"uid"] isEqualToString:self.nearestUid]) {
+                detailInfo = [temp mutableCopy];
+            }
+        }];
+    
+        ServiceType type = [detailInfo[@"orderType"] integerValue];
+        NSString *address = detailInfo[@"homeAddress"];
+        [self showNearestOrderWithKiloMeters:self.kiloMeters type:type address:address];
     } else{
         
     }
@@ -636,14 +651,13 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
             [NetworkingManager fetchNearByOrdersByLatitude:self.currentUserLocation.location.coordinate.latitude Logitude:self.currentUserLocation.location.coordinate.longitude WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
-//                NSLog(@"%@",responseObject);
                 
                 if ([responseObject[@"success"] integerValue] == 1) {
                     //附近订单获取成功
                     [SVProgressHUD dismiss];
                     
                     self.nearestUid = responseObject[@"attributes"][@"nearest"][@"uid"];
-                    
+                    self.kiloMeters = responseObject[@"attributes"][@"distance"];
 
                     NSArray *resultArray = responseObject[@"obj"];
                     for (NSDictionary *temp in resultArray) {
@@ -687,109 +701,117 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
 
 #pragma mark - 显示最近订单
 
--(void)showNearestOrderWithKiloMeters:(NSString *)km type:(ServiceType)type{
+-(void)showNearestOrderWithKiloMeters:(NSString *)km type:(ServiceType)type address:(NSString *)address{
     self.isNeedShowNearestOrder = NO;
     
-    _nearestOrderView= [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:_nearestOrderView];
-    
-    UIView *bgView = [[UIView alloc] initWithFrame:self.view.bounds];
-    
-    bgView.backgroundColor = [UIColor blackColor];
-    
-    bgView.alpha = 0.3;
-    
-    [_nearestOrderView addSubview:bgView];
-    
-    
-    UIView *nearestView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
-    nearestView.layer.cornerRadius = 20.0;
-    nearestView.layer.masksToBounds = YES;
-    nearestView.backgroundColor = [UIColor blackColor];
-    
-    
-    [_nearestOrderView addSubview:nearestView];
-    
-    
-    nearestView.center = _nearestOrderView.center;
-    
-    
-    UIImageView *serviceTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 20, 53, 66)];
-    
-    [nearestView addSubview:serviceTypeImageView];
-    serviceTypeImageView.image =[UIImage imageNamed:@"ui10_service"];
-    
-    __block NSMutableDictionary *detailInfo =  [NSMutableDictionary dictionary];
-    [self.Orders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSDictionary *temp = obj;
+    if (!self.nearestOrderView) {
+        self.nearestOrderView = [[UIView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:self.nearestOrderView];
         
-        if ([temp[@"uid"] isEqualToString:self.nearestUid]) {
-            detailInfo = [temp mutableCopy];
+        UIView *bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+        
+        bgView.backgroundColor = [UIColor blackColor];
+        
+        bgView.alpha = 0.3;
+        
+        [_nearestOrderView addSubview:bgView];
+        
+        
+        UIView *nearestView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
+        nearestView.layer.cornerRadius = 20.0;
+        nearestView.layer.masksToBounds = YES;
+        nearestView.backgroundColor = [UIColor blackColor];
+        
+        
+        [_nearestOrderView addSubview:nearestView];
+        
+        
+        nearestView.center = _nearestOrderView.center;
+        
+        
+        UIImageView *serviceTypeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 20, 53, 66)];
+        
+        [nearestView addSubview:serviceTypeImageView];
+
+        
+        if (type == TV) {
+            serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_tv"];
+        } else if (type == BROADBAND){
+            serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_broadband"];
+        } else{
+            serviceTypeImageView.image =[UIImage imageNamed:@"ui10_service"];
         }
-    }];
-    
-    
-    if ([detailInfo[@"orderType"] integerValue] == TV) {
-        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_tv"];
-    } else if ([detailInfo[@"orderType"] integerValue] == BROADBAND){
-        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_location_broadband"];
-    } else{
-        serviceTypeImageView.image =[UIImage imageNamed:@"ui10_service"];
+        
+        
+        
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(100, 51, 60, 24)];
+        label1.text = @"距离您";
+        label1.textColor = [UIColor whiteColor];
+        label1.font = [UIFont boldSystemFontOfSize:17.0];
+        
+        
+        [nearestView addSubview:label1];
+        
+        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(161, 49, 60, 24)];
+        
+        label2.text = km;
+        label2.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        label2.font = [UIFont boldSystemFontOfSize:28.0];
+        
+        
+        [nearestView addSubview:label2];
+        
+        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(229, 51, 50, 24)];
+        
+        
+        label3.text = @"公里";
+        label3.textColor = [UIColor whiteColor];
+        label3.font = [UIFont boldSystemFontOfSize:17.0];
+        
+        
+        [nearestView addSubview:label3];
+        
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(0, 105, 149, 45);
+        
+        cancelButton.backgroundColor = [UIColor whiteColor];
+        
+        [cancelButton addTarget:self action:@selector(dismissNearestAlert) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"取消" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
+        
+        [nearestView addSubview:cancelButton];
+        
+        UIButton *orderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        orderButton.frame = CGRectMake(151, 105, 149, 45);
+        
+        orderButton.backgroundColor = [UIColor whiteColor];
+        
+        [orderButton addTarget:self action:@selector(rabOrder:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [orderButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"抢单" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
+        [nearestView addSubview:orderButton];
+        
+        
+        
+        AVSpeechSynthesizer * speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+        
+        //    NSString * utteranceString = @"距离您0.23千米,有一个订单";
+        NSString * utteranceString =[NSString stringWithFormat:@"最近订单,距离您%@公里,地址:%@",km,address];
+        
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:utteranceString];
+        
+        utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
+        
+        utterance.preUtteranceDelay = 0.2f;
+        utterance.postUtteranceDelay = 0.2f;
+        
+        [speechSynthesizer speakUtterance:utterance];
+
     }
-
-   
-    
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(100, 51, 60, 24)];
-    label1.text = @"距离您";
-    label1.textColor = [UIColor whiteColor];
-    label1.font = [UIFont boldSystemFontOfSize:17.0];
-
-    
-    [nearestView addSubview:label1];
-    
-    
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(161, 49, 60, 24)];
-    
-    label2.text = km;
-    label2.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
-    label2.font = [UIFont boldSystemFontOfSize:28.0];
-    
-    
-    [nearestView addSubview:label2];
-
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(229, 51, 28, 24)];
-
-    
-    label3.text = @"km";
-    label3.textColor = [UIColor whiteColor];
-    label3.font = [UIFont boldSystemFontOfSize:17.0];
-    
-    
-    [nearestView addSubview:label3];
-
-    
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.frame = CGRectMake(0, 105, 149, 45);
-    
-    cancelButton.backgroundColor = [UIColor whiteColor];
-    
-    [cancelButton addTarget:self action:@selector(dismissNearestAlert) forControlEvents:UIControlEventTouchUpInside];
-    
-    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"取消" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
-    
-    [nearestView addSubview:cancelButton];
-    
-    UIButton *orderButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    orderButton.frame = CGRectMake(151, 105, 149, 45);
-
-    orderButton.backgroundColor = [UIColor whiteColor];
-    
-    [orderButton addTarget:self action:@selector(rabOrder:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    [orderButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"抢单" attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}] forState:UIControlStateNormal];
-    [nearestView addSubview:orderButton];
-
 }
 
 -(void)dismissNearestAlert{
