@@ -50,9 +50,14 @@
     self.navigationController.navigationBar.hidden = YES;
     [super viewWillAppear:animated];
     [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+    
+    self.CellularTextField.text = [AccountManager getCellphoneNumber];
+    self.passwordTextField.text = [AccountManager getPassword];
+    self.Account = [AccountManager getCellphoneNumber];
+    self.password = [AccountManager getPassword];
 
+    
 }
-
 
 -(void)dismissKeyboard:(id)sender{
     

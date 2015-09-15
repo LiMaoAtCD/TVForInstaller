@@ -19,10 +19,10 @@
 
 +(void)setLogin:(BOOL)login{
     
-    if (login == NO) {
-        [self setPassword:nil];
-        [self setCellphoneNumber:nil];
-    }
+//    if (login == NO) {
+//        [self setPassword:nil];
+//        [self setCellphoneNumber:nil];
+//    }
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setBool:login forKey:@"Account_login"];

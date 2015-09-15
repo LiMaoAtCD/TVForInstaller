@@ -87,8 +87,8 @@
     [AccountManager setTokenID:nil];
     [AccountManager setLeaderID:nil];
     [AccountManager setAvatarUrlString:nil];
-    [AccountManager setCellphoneNumber:nil];
-    [AccountManager setPassword:nil];
+//    [AccountManager setCellphoneNumber:nil];
+//    [AccountManager setPassword:nil];
 
     
     [OngoingOrder setOrder:nil];
