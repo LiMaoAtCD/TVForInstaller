@@ -4,47 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-TVForInstaller-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TVForInstaller-CBStoreHouseRefreshControl.xcscheme</key>
+		<key>CBStoreHouseRefreshControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TVForInstaller-DZNEmptyDataSet.xcscheme</key>
+		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TVForInstaller-HMSegmentedControl.xcscheme</key>
+		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TVForInstaller-MJRefresh.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TVForInstaller-Qiniu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TVForInstaller-SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TVForInstaller-SVProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TVForInstaller-ZXingObjC.xcscheme</key>
+		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -54,55 +34,85 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Qiniu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SVProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ZXingObjC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1562EFA87342D4A6DEA205FE</key>
+		<key>0DC3F65852FB1DC602B25A74012861A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1FA0DA446EE224167B3A461C</key>
+		<key>19E5DF7754A1170A87F4E815C19521A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>34A604B9BBE011B4C47AE32F</key>
+		<key>366131078BA66DCFC0FC84FDA17B7FFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EDDC1A9944FB73DB778A773</key>
+		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EF4CC91B011D0F9B73B6A18</key>
+		<key>6951DA9871DA259A9AAA6EFC68AEF8EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F074DB7FD37A439F186001D</key>
+		<key>892D72CF090328CD7D93892904FE6B50</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BA0B679981A7D4E3AC26855</key>
+		<key>98DD357BB2534ED8E72D1CD51A867D56</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA61789AF9F52EB680549C30</key>
+		<key>996421D23D6C8322918F0E7E9AF6F545</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E750F4BA362C078C9F3F0F91</key>
+		<key>ACC97929FC15656A5560F6A2B4443B03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA28828FF07FC3A067FF4D82</key>
+		<key>B281DA29A9C3EDFB45BA53651F6BA611</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC163264438E0A4DC35278577BAA16C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

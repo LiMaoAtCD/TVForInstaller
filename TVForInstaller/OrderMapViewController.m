@@ -292,9 +292,13 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
             }
         }];
     
-        ServiceType type = [detailInfo[@"orderType"] integerValue];
-        NSString *address = detailInfo[@"homeAddress"];
-        [self showNearestOrderWithKiloMeters:self.kiloMeters type:type address:address];
+        
+        if ([detailInfo allKeys].count > 0) {
+            ServiceType type = [detailInfo[@"orderType"] integerValue];
+            NSString *address = detailInfo[@"homeAddress"];
+            [self showNearestOrderWithKiloMeters:self.kiloMeters type:type address:address];
+        }
+       
     } else{
         
     }
@@ -656,8 +660,12 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                     //附近订单获取成功
                     [SVProgressHUD dismiss];
                     
-                    self.nearestUid = responseObject[@"attributes"][@"nearest"][@"uid"];
-                    self.kiloMeters = responseObject[@"attributes"][@"distance"];
+                    NSArray *array = responseObject[@"attributes"][@"nearest"];
+                    if (array.count != 0) {
+                        self.nearestUid = responseObject[@"attributes"][@"nearest"][@"uid"];
+                        self.kiloMeters = responseObject[@"attributes"][@"distance"];
+                    }
+                   
 
                     NSArray *resultArray = responseObject[@"obj"];
                     for (NSDictionary *temp in resultArray) {

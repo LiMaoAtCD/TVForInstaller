@@ -11,6 +11,7 @@ target 'TVForInstaller' do
    	 pod 'DZNEmptyDataSet'
     pod 'SVProgressHUD'
 	pod "Qiniu", "~> 7.0"
+    pod "ReactiveCocoa"
 
 end
 

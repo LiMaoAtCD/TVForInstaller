@@ -801,10 +801,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="5Yh-w9-d0J">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" constant="50" id="950-04-Zcq">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -855,7 +855,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                                             </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="bu4-jK-Y9E" secondAttribute="bottom" constant="8" id="a6f-Rg-eqe">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstItem="n9k-4Z-mO5" firstAttribute="centerX" secondItem="bu4-jK-Y9E" secondAttribute="centerX" id="svN-Rf-nWI">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
@@ -898,12 +898,12 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="XOE-XJ-Kz2">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="co6-rH-UNc"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fAe-DN-be2"/>
                                                                     <constraint firstAttribute="width" constant="50" id="kkh-ei-3LU">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -959,7 +959,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                                             </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="ML2-aJ-ow3" secondAttribute="bottom" constant="10" id="x7f-tG-jr5">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstAttribute="centerX" secondItem="NsO-2K-2tl" secondAttribute="centerX" id="yFA-l2-bBR"/>
                                                         </constraints>
@@ -997,10 +997,10 @@
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JPs-t8-gnF"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cD3-8U-OQn"/>
                                                                     <constraint firstAttribute="width" constant="50" id="meY-f0-ruA">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" constant="50" id="phW-OI-2BJ">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1052,7 +1052,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Gld-js-hdn" secondAttribute="bottom" constant="24" id="7kl-On-wG2">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstItem="Gld-js-hdn" firstAttribute="top" secondItem="jxQ-YL-v9E" secondAttribute="bottom" constant="9" id="O45-a1-n77"/>
                                                             <constraint firstAttribute="centerX" secondItem="jxQ-YL-v9E" secondAttribute="centerX" id="aPn-rV-FHN"/>
@@ -1095,11 +1095,11 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="QN0-NJ-tnk">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Vre-jq-Ky7"/>
                                                                     <constraint firstAttribute="width" constant="50" id="YN8-La-v2z">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zEW-Rb-rC6"/>
                                                                 </constraints>
@@ -1156,7 +1156,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                                             </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="Qfa-ng-nWd" secondAttribute="bottom" constant="13" id="Ply-Un-HOe">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstItem="Qfa-ng-nWd" firstAttribute="top" secondItem="XP4-fc-RGs" secondAttribute="bottom" constant="2" id="oRQ-8o-4hs">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
@@ -1197,10 +1197,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="EMV-2z-idA">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" constant="50" id="hvM-eg-xLO">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="snC-jZ-fQa"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="vmv-9j-86g"/>
@@ -1261,7 +1261,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                                             </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="iC9-qj-QbT" secondAttribute="bottom" constant="23" id="kkV-eE-bAr">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstItem="Hlo-fj-O01" firstAttribute="top" secondItem="wWx-LG-OXs" secondAttribute="top" constant="25" id="pHc-s2-YrU">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
@@ -1301,12 +1301,12 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="8N7-Mc-Toq">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QJa-0f-wBF"/>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="cBP-rh-gKS"/>
                                                                     <constraint firstAttribute="width" constant="50" id="zci-Gn-qdf">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1358,7 +1358,7 @@
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="107"/>
                                                             </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="ZSN-OE-xyH" secondAttribute="bottom" constant="18" id="s1S-0F-bYg">
-                                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                             </constraint>
                                                             <constraint firstItem="LSX-7X-h1g" firstAttribute="top" secondItem="JPp-AX-c5K" secondAttribute="top" constant="17" id="ySC-tc-Du9">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
@@ -1401,11 +1401,11 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="8ac-jP-UEN"/>
                                                                     <constraint firstAttribute="height" constant="50" id="Gfw-ci-5fj">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="P8d-Fi-n0Y"/>
                                                                     <constraint firstAttribute="width" constant="50" id="u21-dK-JSF">
-                                                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
@@ -1456,7 +1456,9 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="XUN-IT-UjR" secondAttribute="bottom" constant="20" id="0c6-Vg-kiU"/>
+                                                            <constraint firstAttribute="bottom" secondItem="XUN-IT-UjR" secondAttribute="bottom" constant="20" id="0c6-Vg-kiU">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                            </constraint>
                                                             <constraint firstAttribute="height" constant="100" id="135-1C-dt4">
                                                                 <variation key="heightClass=regular-widthClass=compact" constant="107"/>
                                                             </constraint>
@@ -1925,15 +1927,12 @@
                         <viewControllerLayoutGuide type="bottom" id="5pf-hP-hmb"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WYk-Bx-Ibl">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsV-Jh-MoJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="40"/>
-                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRC-A3-ALV">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1951,8 +1950,7 @@
                                         <exclude reference="bd3-7U-uWi"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="177" y="5" width="46" height="30"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Zic-wD-hVh"/>
                                         <include reference="bd3-7U-uWi"/>

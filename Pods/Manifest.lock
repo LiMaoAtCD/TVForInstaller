@@ -26,6 +26,13 @@ PODS:
   - MJRefresh (1.4.6)
   - Qiniu (7.0.11.1):
     - AFNetworking (~> 2.0)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
@@ -41,6 +48,7 @@ DEPENDENCIES:
   - HMSegmentedControl
   - MJRefresh
   - Qiniu (~> 7.0)
+  - ReactiveCocoa
   - SDWebImage
   - SVProgressHUD
   - ZXingObjC (~> 3.0)
@@ -52,8 +60,9 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
   MJRefresh: 2eaa3fd8f67fbb86497840fb0167446f7eb61dc7
   Qiniu: 080a6728b969f6b0e77c9de574ede37e78b0912b
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.38.2
