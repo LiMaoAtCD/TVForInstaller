@@ -112,7 +112,7 @@
     
 }
 
-+ (UIImage *)imageFromColor:(UIColor *)color forSize:(CGSize)size withCornerRadius:(CGFloat)radius
++(UIImage *)imageFromColor:(UIColor *)color forSize:(CGSize)size withCornerRadius:(CGFloat)radius
 {
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
