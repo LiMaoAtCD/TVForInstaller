@@ -1,30 +1,40 @@
 //
-//  OrderNoMapController.m
+//  CompletedNoMapDetailController.m
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/9/21.
 //  Copyright © 2015年 AlienLi. All rights reserved.
 //
 
-#import "OrderNoMapController.h"
+#import "CompletedNoMapDetailController.h"
+#import "CompletedNoMapTableViewCell.h"
 #import "ComminUtility.h"
-#import "OrderNoMapCell.h"
 
-@interface OrderNoMapController ()
+
+@interface CompletedNoMapDetailController ()
 
 @end
 
-@implementation OrderNoMapController
+@implementation CompletedNoMapDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ComminUtility configureTitle:@"订单" forViewController:self];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [ComminUtility configureTitle:@"已完成" forViewController:self];
     
 }
+
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -38,25 +48,44 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderNoMapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderNoMapCell" forIndexPath:indexPath];
+    CompletedNoMapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
     
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
-    
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100.0;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -31,6 +31,8 @@
 
 #import "OngoingOrder.h"
 
+#import "CompletedNoMapController.h"
+
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -218,11 +220,29 @@
 
         }
             break;
+//        case 7:
+//        {
+//            AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+//            about.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:about sender:self];
+//        }
+//            break;
+            
         case 7:
         {
-            AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
-            about.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:about sender:self];
+//            AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
+//            about.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:about sender:self];
+            
+            CompletedNoMapController *completed = [sb instantiateViewControllerWithIdentifier:@"CompletedNoMapController"];
+            
+            [self.navigationController showViewController:completed sender:self];
+            
+        }
+            break;
+            default:
+        {
+            NSAssert(false, @"这里不应该出现");
         }
             break;
   

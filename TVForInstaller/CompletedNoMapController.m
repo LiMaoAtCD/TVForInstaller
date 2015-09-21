@@ -1,29 +1,35 @@
 //
-//  OrderNoMapController.m
+//  CompletedNoMapController.m
 //  TVForInstaller
 //
 //  Created by AlienLi on 15/9/21.
 //  Copyright © 2015年 AlienLi. All rights reserved.
 //
 
-#import "OrderNoMapController.h"
+#import "CompletedNoMapController.h"
+#import "CompletedNoMapTableViewCell.h"
 #import "ComminUtility.h"
-#import "OrderNoMapCell.h"
-
-@interface OrderNoMapController ()
+#import "CompletedNoMapDetailController.h"
+@interface CompletedNoMapController ()
 
 @end
 
-@implementation OrderNoMapController
+@implementation CompletedNoMapController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ComminUtility configureTitle:@"订单" forViewController:self];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
+    [ComminUtility configureTitle:@"已完成订单" forViewController:self];
+}
+
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,25 +44,29 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderNoMapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderNoMapCell" forIndexPath:indexPath];
+    CompletedNoMapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
-    
+    cell.completedNumberLabel.text = @"10";
     return cell;
 }
 
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Setting" bundle:nil];
     
     
+    CompletedNoMapDetailController *detailVC = [sb instantiateViewControllerWithIdentifier:@"CompletedNoMapDetailController"];
     
+    [self.navigationController showViewController:detailVC sender:self];
 }
+
 
 /*
 // Override to support conditional editing of the table view.
