@@ -124,6 +124,14 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
 //    [BMKLocationService setLocationDistanceFilter:kCLDistanceFilterNone];
     [BMKLocationService setLocationDistanceFilter:500.f];
+    
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+//        [_locationManager requestAlwaysAuthorization];
+//    }
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+//        _locationManager.allowsBackgroundLocationUpdates = YES;
+//    }
+//    [_locationManager startUpdatingLocation];
 
     _locService = [[BMKLocationService alloc] init];
     
@@ -654,7 +662,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
             NSMutableArray *tempOrders = [NSMutableArray array];
 
             [NetworkingManager fetchNearByOrdersByLatitude:self.currentUserLocation.location.coordinate.latitude Logitude:self.currentUserLocation.location.coordinate.longitude WithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-                
+
                 
                 if ([responseObject[@"success"] integerValue] == 1) {
                     //附近订单获取成功
@@ -688,7 +696,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                     }
                     
                 } else{
-                    
+                    self.isFetchOrder = NO;
+
                     //附近订单获取失败
                     [SVProgressHUD showErrorWithStatus:@"获取订单失败"];
 
@@ -702,6 +711,8 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
         }
     } else {
         //存在执行中的订单
+        [SVProgressHUD dismiss];
+
         [self removeAnnotions:self.mapView.annotations];
         [self noteOngoingOrderView:YES];
     }
