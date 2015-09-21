@@ -94,6 +94,7 @@
 		879C61C01BAFD65900ACFEE8 /* CompletedNoMapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61BF1BAFD65900ACFEE8 /* CompletedNoMapTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		879C61C31BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C21BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m */; settings = {ASSET_TAGS = (); }; };
 		879C61C61BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C51BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m */; settings = {ASSET_TAGS = (); }; };
+		879C61C91BB0041300ACFEE8 /* OrderDetailNoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */; settings = {ASSET_TAGS = (); }; };
 		87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C31B16C14400CC1C95 /* DLNAManager.mm */; };
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
@@ -289,6 +290,8 @@
 		879C61C21BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedNoMapDetailCell.m; sourceTree = "<group>"; };
 		879C61C41BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedNoMapDetailController.h; sourceTree = "<group>"; };
 		879C61C51BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedNoMapDetailController.m; sourceTree = "<group>"; };
+		879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailNoMapViewController.h; sourceTree = "<group>"; };
+		879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailNoMapViewController.m; sourceTree = "<group>"; };
 		87B400C21B16C14400CC1C95 /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
 		87B400C31B16C14400CC1C95 /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		87B400C41B16C14400CC1C95 /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
@@ -663,6 +666,8 @@
 				879C613D1BAF9F3D00ACFEE8 /* OrderNoMapController.m */,
 				879C61B71BAFAA7300ACFEE8 /* OrderNoMapCell.h */,
 				879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */,
+				879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */,
+				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
 			);
 			name = OrderNoMap;
 			sourceTree = "<group>";
@@ -1046,6 +1051,7 @@
 				879C61B91BAFAA7300ACFEE8 /* OrderNoMapCell.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				872A61AC1B5B519900D62439 /* CFilteringJSONSerializer.m in Sources */,
+				879C61C91BB0041300ACFEE8 /* OrderDetailNoMapViewController.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
 				87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */,
 				877404311B5E3DC70055D2D6 /* QRCodeDismissAnimator.m in Sources */,

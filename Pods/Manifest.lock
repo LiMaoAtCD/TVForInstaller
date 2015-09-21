@@ -23,6 +23,7 @@ PODS:
   - CBStoreHouseRefreshControl (1.0)
   - DZNEmptyDataSet (1.6.1)
   - HMSegmentedControl (1.5.1)
+  - Masonry (0.6.2)
   - MJRefresh (1.4.6)
   - Qiniu (7.0.11.1):
     - AFNetworking (~> 2.0)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - CBStoreHouseRefreshControl
   - DZNEmptyDataSet
   - HMSegmentedControl
+  - Masonry
   - MJRefresh
   - Qiniu (~> 7.0)
   - ReactiveCocoa
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: a814bd725e74ff4c1e8dd96eb02358199b0da04f
   DZNEmptyDataSet: 3d31c27758230f03c71199f8c522bcfa99fba16c
   HMSegmentedControl: 35460abdd15c3087368db2d3d956717f088b34d1
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MJRefresh: 2eaa3fd8f67fbb86497840fb0167446f7eb61dc7
   Qiniu: 080a6728b969f6b0e77c9de574ede37e78b0912b
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a

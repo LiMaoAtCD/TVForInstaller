@@ -10,4 +10,12 @@
 
 @interface OrderNoMapCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UILabel *orderTimeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *orderImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cellphoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
 @end

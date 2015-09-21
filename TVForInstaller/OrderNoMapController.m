@@ -9,6 +9,8 @@
 #import "OrderNoMapController.h"
 #import "ComminUtility.h"
 #import "OrderNoMapCell.h"
+#import "OrderDetailNoMapViewController.h"
+
 
 @interface OrderNoMapController ()
 
@@ -54,8 +56,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
     
+    detail.hidesBottomBarWhenPushed = YES;
     
+    [self.navigationController pushViewController:detail animated:YES];
+
 }
 
 /*

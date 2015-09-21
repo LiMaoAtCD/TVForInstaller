@@ -12,6 +12,7 @@ target 'TVForInstaller' do
     pod 'SVProgressHUD'
 	pod "Qiniu", "~> 7.0"
     pod "ReactiveCocoa"
+    pod 'Masonry'
 
 end
 

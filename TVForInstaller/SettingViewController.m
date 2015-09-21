@@ -235,7 +235,7 @@
 //            [self.navigationController showViewController:about sender:self];
             
             CompletedNoMapController *completed = [sb instantiateViewControllerWithIdentifier:@"CompletedNoMapController"];
-            
+            completed.hidesBottomBarWhenPushed = YES;
             [self.navigationController showViewController:completed sender:self];
             
         }

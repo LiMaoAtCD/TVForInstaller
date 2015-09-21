@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TVForInstaller.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,16 +67,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0DC3F65852FB1DC602B25A74012861A4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>19E5DF7754A1170A87F4E815C19521A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>366131078BA66DCFC0FC84FDA17B7FFD</key>
 		<dict>
 			<key>primary</key>
@@ -87,12 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>892D72CF090328CD7D93892904FE6B50</key>
+		<key>6E312117F92B2F3F3CE534F1487108F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98DD357BB2534ED8E72D1CD51A867D56</key>
+		<key>97E7EF5C29D461406CF93973FE971BFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ACC97929FC15656A5560F6A2B4443B03</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B281DA29A9C3EDFB45BA53651F6BA611</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC163264438E0A4DC35278577BAA16C2</key>
+		<key>C59556758C56E4547DD396ACD604989D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8A48FED08D829B94C43E7F9AD37416C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB26A8C01C0464C1062E371B4E4AF8AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D51AE3B87224D24A61FBFEF2AB1AF442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F980054FF35D00F9D07AC7CA3ADA94A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
