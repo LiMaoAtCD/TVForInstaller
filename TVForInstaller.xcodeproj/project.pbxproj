@@ -88,6 +88,8 @@
 		878EE40A1B0EDDF1002E6B4E /* MyChildrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4091B0EDDF1002E6B4E /* MyChildrenViewController.m */; };
 		878EE40D1B0EDDFF002E6B4E /* InvatationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */; };
 		878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */; };
+		879C613E1BAF9F3D00ACFEE8 /* OrderNoMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C613D1BAF9F3D00ACFEE8 /* OrderNoMapController.m */; settings = {ASSET_TAGS = (); }; };
+		879C61B91BAFAA7300ACFEE8 /* OrderNoMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */; settings = {ASSET_TAGS = (); }; };
 		87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C31B16C14400CC1C95 /* DLNAManager.mm */; };
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
@@ -271,6 +273,10 @@
 		878EE40C1B0EDDFF002E6B4E /* InvatationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvatationViewController.m; sourceTree = "<group>"; };
 		878EE4111B0EDE3D002E6B4E /* InstallHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallHistoryViewController.h; sourceTree = "<group>"; };
 		878EE4121B0EDE3D002E6B4E /* InstallHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallHistoryViewController.m; sourceTree = "<group>"; };
+		879C613C1BAF9F3D00ACFEE8 /* OrderNoMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoMapController.h; sourceTree = "<group>"; };
+		879C613D1BAF9F3D00ACFEE8 /* OrderNoMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNoMapController.m; sourceTree = "<group>"; };
+		879C61B71BAFAA7300ACFEE8 /* OrderNoMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoMapCell.h; sourceTree = "<group>"; };
+		879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNoMapCell.m; sourceTree = "<group>"; };
 		87B400C21B16C14400CC1C95 /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
 		87B400C31B16C14400CC1C95 /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		87B400C41B16C14400CC1C95 /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
@@ -638,6 +644,17 @@
 			name = InstallHistory;
 			sourceTree = "<group>";
 		};
+		879C61381BAF9EBD00ACFEE8 /* OrderNoMap */ = {
+			isa = PBXGroup;
+			children = (
+				879C613C1BAF9F3D00ACFEE8 /* OrderNoMapController.h */,
+				879C613D1BAF9F3D00ACFEE8 /* OrderNoMapController.m */,
+				879C61B71BAFAA7300ACFEE8 /* OrderNoMapCell.h */,
+				879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */,
+			);
+			name = OrderNoMap;
+			sourceTree = "<group>";
+		};
 		87B400C11B16C14400CC1C95 /* PlatinumKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,6 +693,7 @@
 		87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				879C61381BAF9EBD00ACFEE8 /* OrderNoMap */,
 				872A61781B5B519900D62439 /* BaiduNaviSDK */,
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
@@ -994,6 +1012,7 @@
 				87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
 				8774042E1B5E34A90055D2D6 /* QRCodeAnimator.m in Sources */,
+				879C61B91BAFAA7300ACFEE8 /* OrderNoMapCell.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,
 				872A61AC1B5B519900D62439 /* CFilteringJSONSerializer.m in Sources */,
 				871A23341B0ACF7200B484CA /* RegisterViewController.m in Sources */,
@@ -1015,6 +1034,7 @@
 				877870631B56452A0046650C /* OrderContainer.m in Sources */,
 				872A61B71B5B519900D62439 /* CJSONSerializer.m in Sources */,
 				871973D41B0EC53B00D6CF36 /* MyAccoutViewController.m in Sources */,
+				879C613E1BAF9F3D00ACFEE8 /* OrderNoMapController.m in Sources */,
 				87EA3A9F1B0A0C7D004AB8F7 /* SettingViewController.m in Sources */,
 				872DA8D01B0C94E100C680B5 /* AboutViewController.m in Sources */,
 				877AAB351B8432C700A3326F /* QRView.m in Sources */,
