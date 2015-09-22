@@ -29,7 +29,10 @@
 	<key>NSAllowsArbitraryLoads</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>只有开启定位功能才能正常使用百度导航</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
