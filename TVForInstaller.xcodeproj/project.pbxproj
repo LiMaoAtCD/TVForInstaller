@@ -1233,7 +1233,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.guoguang.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5dc1dfaf-6f1e-4a5a-8e88-35f4631e7875";
+				PROVISIONING_PROFILE = "f4a1c351-8520-4c77-92da-04387eb4d970";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -1262,7 +1262,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.guoguang.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5dc1dfaf-6f1e-4a5a-8e88-35f4631e7875";
+				PROVISIONING_PROFILE = "f4a1c351-8520-4c77-92da-04387eb4d970";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;

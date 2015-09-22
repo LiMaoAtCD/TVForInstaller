@@ -10,6 +10,48 @@
 
 @interface OrderDetailNoMapViewController ()
 
+
+/**
+ *  第一个视图模块
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *cellphoneLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *NoLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *phoneCallButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *navigateButton;
+
+/**
+ *  第二个视图模块
+ */
+
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *scanLabel;
+
+/**
+ *  第三个视图模块
+ */
+
+@property (weak, nonatomic) IBOutlet UITextField *costTextField;
+
+/**
+ *  第四个模块
+ */
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *payType;
+
+
+
 @end
 
 @implementation OrderDetailNoMapViewController
