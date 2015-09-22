@@ -1,23 +1,23 @@
 {
   "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++6765" : {
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : {
 
     },
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : {
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++8993" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++6765" : 0,
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : 0,
     "C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951" : 0,
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : 0
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++8993" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "543CFBA8-8380-4E37-B85B-6D6F7BF34A16",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++6765" : "TVForInstaller\/TVForInstaller\/BaiduNaviSDK\/BaiduStatistics\/TouchJSON\/Extensions\/",
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : "TVForInstaller\/TVForInstaller\/BaiduNaviSDK\/BaiduStatistics\/TouchJSON\/JSON\/",
     "C7E0EA45D2A392CAEDF44FAD4D54D48142FCB951" : "TVForInstaller",
-    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++9691" : "TVForInstaller\/TVForInstaller\/BaiduNaviSDK\/BaiduStatistics\/TouchJSON\/JSON\/"
+    "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++8993" : "TVForInstaller\/TVForInstaller\/BaiduNaviSDK\/BaiduStatistics\/TouchJSON\/Extensions\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TVForInstaller",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -26,7 +26,7 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.baidu.com\/app\/search\/lbs-navi",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++6765"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7a2d1a18-cc9a-4d72-b225-2d6fa3914085++8993"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.baidu.com\/app\/search\/lbs-navi",
