@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIView *WeChatView;
 @property (weak, nonatomic) IBOutlet UIView *AlipayView;
 
+
+
+
 @end
 
 @implementation OrderPayTypeSelectionController

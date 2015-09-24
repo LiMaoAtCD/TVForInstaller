@@ -61,8 +61,79 @@
     
     [ComminUtility configureTitle:@"订单详情" forViewController:self];
     
+    
+    [self configFirstModuleView];
+    
 }
 
+-(void)configFirstModuleView{
+    
+    if (self.order) {
+        
+        NSInteger type = [self.order[@"orderType"] integerValue];
+        
+        self.typeImageView.image = [UIImage imageNamed:@""];
+        switch (type) {
+            case 0:
+            {
+                self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+            }
+                break;
+            case 1:
+            {
+                self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+            }
+                break;
+            case 2:
+            {
+                self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        //订单时间
+        
+        self.dateLabel.text = self.order[@"orderTime"];
+        
+        self.nameLabel.text = self.order[@"name"];
+        
+        self.cellphoneLabel.text = self.order[@"phone"];
+        
+        self.addressLabel.text = self.order[@"homeAddress"];
+        
+        [self.phoneCallButton addTarget:self action:@selector(callAlert:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+
+        
+    } else{
+    //
+    }
+    
+}
+
+
+#pragma mark - target action
+
+-(void)callAlert:(id)sender{
+    
+    UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:self.order[@"phone"] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.order[@"phone"]]]];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    [alert addAction:action];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
