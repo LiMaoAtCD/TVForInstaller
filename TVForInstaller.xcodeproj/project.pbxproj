@@ -589,7 +589,6 @@
 		877870671B5652BD0046650C /* MyOrder */ = {
 			isa = PBXGroup;
 			children = (
-				877AAB271B84314300A3326F /* QRCode */,
 				87493ED61B57851900E9F840 /* CompletedTableViewCell.h */,
 				87493ED71B57851900E9F840 /* CompletedTableViewCell.m */,
 				877870681B56536E0046650C /* MyOrderViewController.h */,
@@ -665,6 +664,7 @@
 		879C61381BAF9EBD00ACFEE8 /* OrderNoMap */ = {
 			isa = PBXGroup;
 			children = (
+				877AAB271B84314300A3326F /* QRCode */,
 				879C613C1BAF9F3D00ACFEE8 /* OrderNoMapController.h */,
 				879C613D1BAF9F3D00ACFEE8 /* OrderNoMapController.m */,
 				879C61B71BAFAA7300ACFEE8 /* OrderNoMapCell.h */,

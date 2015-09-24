@@ -597,12 +597,23 @@
 }
 
 +(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
-//    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/getDoingOrder.do?",kServer4];
-    
-    
+
 //    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=%@",[AccountManager getTokenID]];
     NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
 
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    
+//    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",deviceNumber,orderID];
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=xxxxxxxxxx&orderId=8a8080f44fbb42b7014fc1094cc20097";
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     

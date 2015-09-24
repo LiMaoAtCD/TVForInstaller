@@ -473,4 +473,14 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
+/**
+ *  上传设备二维码
+ *
+ *  @param deviceNumber      设备ma
+ *  @param orderID           订单编号
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
 @end

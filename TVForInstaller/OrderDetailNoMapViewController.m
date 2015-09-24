@@ -8,6 +8,9 @@
 
 #import "OrderDetailNoMapViewController.h"
 #import "ComminUtility.h"
+#import "QRDecodeViewController.h"
+#import "NetworkingManager.h"
+#import <SVProgressHUD.h>
 @interface OrderDetailNoMapViewController ()
 
 
@@ -38,6 +41,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scanLabel;
 
+@property (nonatomic,copy) NSString * qrcode;
+
+
 /**
  *  第三个视图模块
  */
@@ -48,6 +54,7 @@
  *  第四个模块
  */
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *checkButtons;
 
 
 
@@ -63,6 +70,8 @@
     
     
     [self configFirstModuleView];
+    [self configSecondModuleView];
+
     
 }
 
@@ -106,12 +115,22 @@
         
         [self.phoneCallButton addTarget:self action:@selector(callAlert:) forControlEvents:UIControlEventTouchUpInside];
         
+        //TODO：导航
+        
         
 
         
     } else{
     //
     }
+    
+}
+
+-(void)configSecondModuleView{
+    
+    _scanLabel.hidden = YES;
+    [_scanButton addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];
+    
     
 }
 
@@ -134,9 +153,69 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - scan qrcode
+
+-(void)scanQRCode:(UIButton *)button{
+    QRDecodeViewController *qrcode = [[QRDecodeViewController alloc] init];
+    
+    [self showDetailViewController:qrcode sender:self];
+    //    [self presentViewController:qrcode animated:YES completion:^{
+    //        self.navigationController.tabBarController.view.frame = CGRectMake(0, 0, self.navigationController.tabBarController.view.frame.size.width, self.navigationController.tabBarController.view.frame.size.height);
+    //    }];
+    
+    __weak OrderDetailNoMapViewController *weakSelf = self;
+    
+    qrcode.qrUrlBlock = ^(NSString * code) {
+        
+        
+        [weakSelf uploadDeviceID:code];
+//        self.qrcode = code;
+        weakSelf.scanLabel.text = code;
+        weakSelf.scanLabel.hidden = NO;
+        weakSelf.scanButton.hidden = YES;
+        
+        
+    };
+}
+
+-(void)uploadDeviceID:(NSString *)deviceID{
+    if (deviceID) {
+        
+        [SVProgressHUD showWithStatus:@"正在上传设备编码"];
+        [NetworkingManager uploadDeviceNumber:deviceID orderID:self.order[@"id"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject[@"success"] integerValue] == 1) {
+                self.scanLabel.text = deviceID;
+                self.scanLabel.hidden = NO;
+                self.scanButton.hidden = YES;
+                [SVProgressHUD showSuccessWithStatus:@"二维码上传成功"];
+
+            } else{
+            }
+            
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"网络连接出错"];
+        }];
+    }else{
+        //没有获取到
+        
+    }
+}
+
+
+
+#pragma mark -关闭二维码
+
+-(void)didClickCloseQRCode{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
