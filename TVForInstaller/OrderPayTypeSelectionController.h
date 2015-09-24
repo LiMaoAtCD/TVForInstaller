@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    ALIPay,
+    WECHAT
+} DetailPayType;
+
+
+@protocol DetailPayTypeDelegate <NSObject>
+
+-(void)didSelectedPayType:(DetailPayType)type;
+
+@end
+
 @interface OrderPayTypeSelectionController : UIViewController
+
+@property (weak, nonatomic) id<DetailPayTypeDelegate> delegate;
 
 @end

@@ -11,6 +11,7 @@
 #import "QRDecodeViewController.h"
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
+#import "OrderTypesViewController.h"
 @interface OrderDetailNoMapViewController ()
 
 
@@ -50,13 +51,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *costTextField;
 
-/**
- *  第四个模块
- */
 
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *checkButtons;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *totalCostLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -71,6 +68,8 @@
     
     [self configFirstModuleView];
     [self configSecondModuleView];
+    [self configThirdModuleView];
+
 
     
 }
@@ -130,12 +129,28 @@
     
     _scanLabel.hidden = YES;
     [_scanButton addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)configThirdModuleView{
     
-    
+    [self.submitButton addTarget:self action:@selector(submitOrder:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
+
+
 #pragma mark - target action
+
+-(void)submitOrder:(id)sender{
+    //TODO:提交当前订单
+    UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
+    
+    [self.navigationController pushViewController:orderVC animated:YES];
+    
+}
+
 
 -(void)callAlert:(id)sender{
     

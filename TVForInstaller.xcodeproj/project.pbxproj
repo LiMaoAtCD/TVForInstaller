@@ -72,6 +72,7 @@
 		877AAB341B8432C700A3326F /* QRMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB2F1B8432C700A3326F /* QRMenu.m */; };
 		877AAB351B8432C700A3326F /* QRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB311B8432C700A3326F /* QRView.m */; };
 		877AAB381B8432E700A3326F /* QRDecodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AAB371B8432E700A3326F /* QRDecodeViewController.m */; };
+		877D047F1BB3E08B00CF90EA /* OrderTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */; settings = {ASSET_TAGS = (); }; };
 		87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FEE1B57969A0028022D /* OngoingDetailViewController.m */; };
 		87815FF21B57B4F80028022D /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87815FF11B57B4F80028022D /* OrderDetailViewController.m */; };
 		8781607F1B58DA590028022D /* TotalPropertyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8781607E1B58DA590028022D /* TotalPropertyCell.m */; };
@@ -245,6 +246,8 @@
 		877AAB311B8432C700A3326F /* QRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRView.m; sourceTree = "<group>"; };
 		877AAB361B8432E700A3326F /* QRDecodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRDecodeViewController.h; sourceTree = "<group>"; };
 		877AAB371B8432E700A3326F /* QRDecodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRDecodeViewController.m; sourceTree = "<group>"; };
+		877D047D1BB3E08B00CF90EA /* OrderTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTypesViewController.h; sourceTree = "<group>"; };
+		877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTypesViewController.m; sourceTree = "<group>"; };
 		87815FED1B57969A0028022D /* OngoingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingDetailViewController.h; sourceTree = "<group>"; };
 		87815FEE1B57969A0028022D /* OngoingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingDetailViewController.m; sourceTree = "<group>"; };
 		87815FF01B57B4F80028022D /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
@@ -668,6 +671,8 @@
 				879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */,
 				879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */,
 				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
+				877D047D1BB3E08B00CF90EA /* OrderTypesViewController.h */,
+				877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */,
 				87CE0C351BB1449E000D15C4 /* OrderPayTypeSelectionController.h */,
 				87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */,
 			);
@@ -1012,6 +1017,7 @@
 				87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */,
 				879C61C01BAFD65900ACFEE8 /* CompletedNoMapTableViewCell.m in Sources */,
 				87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */,
+				877D047F1BB3E08B00CF90EA /* OrderTypesViewController.m in Sources */,
 				872A61B11B5B519900D62439 /* NSCharacterSet_Extensions.m in Sources */,
 				877AAB381B8432E700A3326F /* QRDecodeViewController.m in Sources */,
 				872A61AF1B5B519900D62439 /* CJSONSerializedData.m in Sources */,
