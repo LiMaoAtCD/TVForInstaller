@@ -10,7 +10,6 @@
 #import "ComminUtility.h"
 #import "BNCoreServices.h"
 #import "AccountManager.h"
-#import "OngoingOrder.h"
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
 
@@ -111,19 +110,6 @@
 
 -(void)setOrderStateAndNoteToNavi{
     
-    [OngoingOrder setExistOngoingOrder:YES];
-    
-    NSMutableDictionary *temp = [NSMutableDictionary dictionary];
-    
-    temp[@"name"] = self.info[@"name"];
-    temp[@"phone"] = self.info[@"phone"];
-    temp[@"homeAddress"] = self.info[@"homeAddress"];
-    temp[@"orderTime"] = self.info[@"orderTime"];
-    temp[@"orderType"]  = self.info[@"orderType"];
-    temp[@"uid"]  = self.info[@"uid"];
-//    temp[@""]
-
-    [OngoingOrder setOrder:temp];
     
     
 

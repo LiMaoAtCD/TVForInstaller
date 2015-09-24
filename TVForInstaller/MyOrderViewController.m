@@ -12,7 +12,6 @@
 #import "AccountManager.h"
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
-#import "OngoingOrder.h"
 #import <UIScrollView+EmptyDataSet.h>
 
 #import <ZXingObjC/ZXingObjC.h>
@@ -72,41 +71,40 @@
     [super viewWillAppear:animated];
     [self.view layoutIfNeeded];
     
-    BOOL isOnGoing = [OngoingOrder existOngoingOrder];
-    if (!isOnGoing) {
-        self.OngoingView.hidden = YES;
-        
-        [self.view removeConstraint:self.tableViewLayout];
-        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
-        [self.view addConstraint:self.tableViewLayout];
-        
-    } else{
-        self.OngoingView.hidden = NO;
-        
-        NSDictionary *order =[OngoingOrder onGoingOrder];
-        self.nameLabel.text = order[@"name"];
-        self.telphoneLabel.text = order[@"phone"];
-        self.addressLabel.text = order[@"homeAddress"];
-        self.dateLabel.text = order[@"orderTime"];
-        
-        if ([order[@"orderType"] integerValue] == 0) {
-            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
-        }else if ([order[@"orderType"] integerValue] == 1){
-            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-
-        } else{
-            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_service"];
-        }
-
-        [self.view removeConstraint:self.tableViewLayout];
-        
-        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:125];
-        [self.view addConstraint:self.tableViewLayout];
-        
-        [UIView animateWithDuration:0.1 animations:^{
-            [self.view layoutIfNeeded];
-        }];
-    }
+//    if (!isOnGoing) {
+//        self.OngoingView.hidden = YES;
+//        
+//        [self.view removeConstraint:self.tableViewLayout];
+//        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
+//        [self.view addConstraint:self.tableViewLayout];
+//        
+//    } else{
+//        self.OngoingView.hidden = NO;
+//        
+//        NSDictionary *order =[OngoingOrder onGoingOrder];
+//        self.nameLabel.text = order[@"name"];
+//        self.telphoneLabel.text = order[@"phone"];
+//        self.addressLabel.text = order[@"homeAddress"];
+//        self.dateLabel.text = order[@"orderTime"];
+//        
+//        if ([order[@"orderType"] integerValue] == 0) {
+//            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_tv"];
+//        }else if ([order[@"orderType"] integerValue] == 1){
+//            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
+//
+//        } else{
+//            self.ongoingImageView.image = [UIImage imageNamed:@"ui03_service"];
+//        }
+//
+//        [self.view removeConstraint:self.tableViewLayout];
+//        
+//        self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:125];
+//        [self.view addConstraint:self.tableViewLayout];
+//        
+//        [UIView animateWithDuration:0.1 animations:^{
+//            [self.view layoutIfNeeded];
+//        }];
+//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -250,11 +248,7 @@
                         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                         [self showDetailViewController:qrcodeVC sender:self];
                         
-                        
-                        [OngoingOrder setExistOngoingOrder:NO];
-                        [OngoingOrder setOrder:nil];
-                        
-                        
+             
                     } else {
                         
                     }
@@ -308,9 +302,7 @@
                         qrcodeVC.image = [UIImage imageWithCGImage:qrImage];
                         qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                         [self showDetailViewController:qrcodeVC sender:self];
-                        
-                        [OngoingOrder setExistOngoingOrder:NO];
-                        [OngoingOrder setOrder:nil];
+                    
                         
                         
                     } else {
@@ -395,55 +387,6 @@
 
 }
 
-/**
- *  点击取消订单
- *
- *  @param button
- */
--(void)clickForKillingOrder:(UIButton *)button{
-    
-    if (!self.isCanceling) {
-        self.isCanceling = YES;
-        NSDictionary *order =[OngoingOrder onGoingOrder];
-        [OngoingOrder setExistOngoingOrder:NO];
-        
-        
-        [SVProgressHUD showWithStatus:@"正在取消订单"];
-        
-        [NetworkingManager CancelOrderByUID:order[@"uid"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            self.isCanceling = NO;
-
-            if ([responseObject[@"success"] integerValue] == 1) {
-                
-                [SVProgressHUD showSuccessWithStatus:@"订单取消成功"];
-
-                
-                [OngoingOrder setOrder:nil];
-                
-                self.OngoingView.hidden = YES;
-                
-                [self.view removeConstraint:self.tableViewLayout];
-                self.tableViewLayout =[NSLayoutConstraint constraintWithItem:self.completedView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant:8];
-                [self.view addConstraint:self.tableViewLayout];
-                
-                
-                [UIView animateWithDuration:0.5 animations:^{
-                    [self.view layoutIfNeeded];
-                    
-                } completion:^(BOOL finished) {
-                    if (finished) {
-                    }
-                }];
-            } else {
-                [SVProgressHUD showSuccessWithStatus:@"订单取消失败"];
-            }
-        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
-            self.isCanceling = NO;
-            [SVProgressHUD showErrorWithStatus:@"网络出错"];
-
-        }];
-    }
-}
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {

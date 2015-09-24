@@ -2755,7 +2755,9 @@
                                             </constraint>
                                             <constraint firstItem="Bqm-lJ-FaL" firstAttribute="height" secondItem="XvF-65-oYh" secondAttribute="height" id="DqE-a0-cjj"/>
                                             <constraint firstItem="GcJ-SK-Q2L" firstAttribute="centerY" secondItem="VwE-8s-ggy" secondAttribute="centerY" constant="-0.5" id="Fxo-7h-DVR"/>
-                                            <constraint firstItem="BAg-Xa-QQg" firstAttribute="top" secondItem="USS-sB-hLG" secondAttribute="top" constant="70" id="GbJ-Yx-BlD"/>
+                                            <constraint firstItem="BAg-Xa-QQg" firstAttribute="top" secondItem="USS-sB-hLG" secondAttribute="top" constant="70" id="GbJ-Yx-BlD">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                            </constraint>
                                             <constraint firstAttribute="trailing" secondItem="hOE-l7-fT8" secondAttribute="trailing" constant="55" id="Gp5-Ai-oEV"/>
                                             <constraint firstItem="BAg-Xa-QQg" firstAttribute="centerY" secondItem="hOE-l7-fT8" secondAttribute="centerY" constant="-0.5" id="HAH-2n-aYj"/>
                                             <constraint firstItem="aod-WA-euY" firstAttribute="leading" secondItem="0vI-sz-W14" secondAttribute="trailing" constant="18" id="Hsp-uo-ivR"/>

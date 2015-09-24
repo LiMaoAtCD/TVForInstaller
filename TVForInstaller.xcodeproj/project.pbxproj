@@ -52,7 +52,6 @@
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
 		877404251B5B96A80055D2D6 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */; };
-		877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 877404271B5CE1640055D2D6 /* OngoingOrder.m */; };
 		8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774042A1B5E31810055D2D6 /* QRCodeViewController.m */; };
 		8774042E1B5E34A90055D2D6 /* QRCodeAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774042D1B5E34A90055D2D6 /* QRCodeAnimator.m */; };
 		877404311B5E3DC70055D2D6 /* QRCodeDismissAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 877404301B5E3DC70055D2D6 /* QRCodeDismissAnimator.m */; };
@@ -215,8 +214,6 @@
 		8773380B1B11A45600C2DDC4 /* GradeTotalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeTotalTableViewCell.h; sourceTree = "<group>"; };
 		8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeTotalTableViewCell.m; sourceTree = "<group>"; };
 		877404241B5B96A80055D2D6 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
-		877404261B5CE1640055D2D6 /* OngoingOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OngoingOrder.h; sourceTree = "<group>"; };
-		877404271B5CE1640055D2D6 /* OngoingOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OngoingOrder.m; sourceTree = "<group>"; };
 		877404291B5E31810055D2D6 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		8774042A1B5E31810055D2D6 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		8774042C1B5E34A90055D2D6 /* QRCodeAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeAnimator.h; sourceTree = "<group>"; };
@@ -831,8 +828,6 @@
 				8747534F1B12C10C003BD8A3 /* Order.storyboard */,
 				877870611B56452A0046650C /* OrderContainer.h */,
 				877870621B56452A0046650C /* OrderContainer.m */,
-				877404261B5CE1640055D2D6 /* OngoingOrder.h */,
-				877404271B5CE1640055D2D6 /* OngoingOrder.m */,
 				877870601B5642650046650C /* FetchOngoing */,
 				877870671B5652BD0046650C /* MyOrder */,
 			);
@@ -1025,7 +1020,6 @@
 				872A61AE1B5B519900D62439 /* CJSONSerialization.m in Sources */,
 				877AAB341B8432C700A3326F /* QRMenu.m in Sources */,
 				879C61C61BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m in Sources */,
-				877404281B5CE1640055D2D6 /* OngoingOrder.m in Sources */,
 				8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */,
 				87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */,
 				879C61C31BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m in Sources */,
