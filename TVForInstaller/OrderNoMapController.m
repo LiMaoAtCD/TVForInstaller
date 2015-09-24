@@ -11,6 +11,7 @@
 #import "OrderNoMapCell.h"
 #import "OrderDetailNoMapViewController.h"
 
+#import <MJRefresh.h>
 
 @interface OrderNoMapController ()
 
@@ -25,12 +26,22 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
     
+    __weak typeof(self) weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf refreshToDayOrders];
+    }];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshToDayOrders{
+    //TODO：
+    
 }
 
 #pragma mark - Table view data source

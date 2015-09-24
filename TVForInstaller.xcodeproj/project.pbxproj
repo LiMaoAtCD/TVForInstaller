@@ -101,6 +101,7 @@
 		87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */; };
 		87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */; };
 		87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E51B18145400CC1C95 /* GenderViewController.m */; };
+		87CE0C371BB1449E000D15C4 /* OrderPayTypeSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */; settings = {ASSET_TAGS = (); }; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
 		87DBE1EC1AFAFF0000AFB7BF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.mm */; };
@@ -303,6 +304,8 @@
 		87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		87B400E41B18145400CC1C95 /* GenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderViewController.h; sourceTree = "<group>"; };
 		87B400E51B18145400CC1C95 /* GenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderViewController.m; sourceTree = "<group>"; };
+		87CE0C351BB1449E000D15C4 /* OrderPayTypeSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPayTypeSelectionController.h; sourceTree = "<group>"; };
+		87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPayTypeSelectionController.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
 		87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatorDetailViewController.m; sourceTree = "<group>"; };
 		87DBE1E31AFAFF0000AFB7BF /* TVForInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVForInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -668,6 +671,8 @@
 				879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */,
 				879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */,
 				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
+				87CE0C351BB1449E000D15C4 /* OrderPayTypeSelectionController.h */,
+				87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */,
 			);
 			name = OrderNoMap;
 			sourceTree = "<group>";
@@ -725,13 +730,13 @@
 		87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */ = {
 			isa = PBXGroup;
 			children = (
-				879C61381BAF9EBD00ACFEE8 /* OrderNoMap */,
-				872A61781B5B519900D62439 /* BaiduNaviSDK */,
 				87DBE1F01AFAFF0000AFB7BF /* Main.storyboard */,
 				87DBE1EA1AFAFF0000AFB7BF /* AppDelegate.h */,
 				87DBE1EB1AFAFF0000AFB7BF /* AppDelegate.mm */,
 				87EA3AB01B0AC8A9004AB8F7 /* RootTabController.h */,
 				87EA3AB11B0AC8A9004AB8F7 /* RootTabController.m */,
+				872A61781B5B519900D62439 /* BaiduNaviSDK */,
+				879C61381BAF9EBD00ACFEE8 /* OrderNoMap */,
 				87EA3AA71B0A1094004AB8F7 /* Login */,
 				87EA3AA01B0A1016004AB8F7 /* Orders */,
 				87EA3AA61B0A105A004AB8F7 /* Applications */,
@@ -1081,6 +1086,7 @@
 				871B77501B0CA54C00810EE3 /* DeviceContainer.m in Sources */,
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
 				8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */,
+				87CE0C371BB1449E000D15C4 /* OrderPayTypeSelectionController.m in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				872A61AD1B5B519900D62439 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */,

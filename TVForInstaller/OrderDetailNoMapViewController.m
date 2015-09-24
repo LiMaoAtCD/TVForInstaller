@@ -7,7 +7,7 @@
 //
 
 #import "OrderDetailNoMapViewController.h"
-
+#import "ComminUtility.h"
 @interface OrderDetailNoMapViewController ()
 
 
@@ -48,7 +48,6 @@
  *  第四个模块
  */
 
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *payType;
 
 
 
@@ -59,6 +58,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [ComminUtility configureTitle:@"订单详情" forViewController:self];
+    
+}
+
+-(void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
