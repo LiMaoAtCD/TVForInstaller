@@ -465,4 +465,12 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)FetchOnGoingOrderWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
+/**
+ *  获取今日订单
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
 @end

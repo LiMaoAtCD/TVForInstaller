@@ -10,10 +10,13 @@
 #import "ComminUtility.h"
 #import "OrderNoMapCell.h"
 #import "OrderDetailNoMapViewController.h"
-
+#import "NetworkingManager.h"
 #import <MJRefresh.h>
 
 @interface OrderNoMapController ()
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
+
 
 @end
 
@@ -32,6 +35,7 @@
         [strongSelf refreshToDayOrders];
     }];
     
+    [self.tableView.header beginRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +45,35 @@
 
 -(void)refreshToDayOrders{
     //TODO：
-    
+    [NetworkingManager fetchTodayOrdersWithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.tableView.header endRefreshing];
+
+        if ([responseObject[@"success"] integerValue] == 1) {
+            //success
+            
+            NSArray *temp = responseObject[@"data"];
+            
+            if (temp.count > 0) {
+                
+                self.dataSource = [temp mutableCopy];
+                
+            } else{
+                //没有
+                self.dataSource = [NSMutableArray array];
+
+            }
+            
+            [self.tableView reloadData];
+            
+        } else{
+            
+        }
+        
+        
+    } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+        [self.tableView.header endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -51,7 +83,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return self.dataSource.count;
 }
 
 
@@ -59,6 +91,43 @@
     OrderNoMapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderNoMapCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    
+    
+
+    
+    //订单时间
+    cell.orderTimeLabel.text = self.dataSource[indexPath.row][@"orderTime"];
+    
+    //订单类型
+    NSInteger type = [self.dataSource[indexPath.row][@"orderType"] integerValue];
+    switch (type) {
+        case 0:
+        {
+            cell.orderImageView.image = [UIImage imageNamed:@"ui08_tv"];
+        }
+            break;
+        case 1:
+        {
+            cell.orderImageView.image = [UIImage imageNamed:@"ui08_tv"];
+        }
+            break;
+
+        case 2:
+        {
+            cell.orderImageView.image = [UIImage imageNamed:@"ui08_tv"];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    //姓名
+    cell.nameLabel.text = self.dataSource[indexPath.row][@"name"];
+    
+    cell.cellphoneLabel.text = self.dataSource[indexPath.row][@"phone"];
+    
+    cell.addressLabel.text = self.dataSource[indexPath.row][@"homeAddress"];
+
     
     
     return cell;
@@ -70,6 +139,7 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
     
+    detail.order = self.dataSource[indexPath.row];
     detail.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:detail animated:YES];

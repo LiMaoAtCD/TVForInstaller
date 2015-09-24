@@ -36,6 +36,7 @@
 
 
 
+
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
 #define kBaiduGeoTableID 114851
 
@@ -591,6 +592,21 @@
     dic[@"userID"] = [AccountManager getTokenID];
     
     [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+//    NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/getDoingOrder.do?",kServer4];
+    
+    
+//    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=%@",[AccountManager getTokenID]];
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
 }

@@ -10,4 +10,7 @@
 
 @interface OrderDetailNoMapViewController : UIViewController
 
+@property (nonatomic, strong, nonnull) NSDictionary *order;
+
+
 @end
