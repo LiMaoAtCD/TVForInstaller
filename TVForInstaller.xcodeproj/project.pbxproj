@@ -48,6 +48,10 @@
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED11B57465500E9F840 /* CustomPointAnnotation.m */; };
 		87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED71B57851900E9F840 /* CompletedTableViewCell.m */; };
+		8750BF071BB4E59100773DF7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8750BF031BB4E59100773DF7 /* libWeChatSDK.a */; settings = {ASSET_TAGS = (); }; };
+		8750BF081BB4E59100773DF7 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8750BF041BB4E59100773DF7 /* read_me.txt */; settings = {ASSET_TAGS = (); }; };
+		8750BF0A1BB4E5DC00773DF7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8750BF091BB4E5DC00773DF7 /* libz.tbd */; };
+		8750BF0C1BB4E5EF00773DF7 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8750BF0B1BB4E5EF00773DF7 /* libsqlite3.0.tbd */; };
 		875BE5401B1AA6170063056F /* DeviceManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875BE53F1B1AA6170063056F /* DeviceManageCell.m */; };
 		8773380A1B11A44A00C2DDC4 /* gradeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877338091B11A44A00C2DDC4 /* gradeDetailTableViewCell.m */; };
 		8773380D1B11A45600C2DDC4 /* GradeTotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8773380C1B11A45600C2DDC4 /* GradeTotalTableViewCell.m */; };
@@ -208,6 +212,12 @@
 		87493ED11B57465500E9F840 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
 		87493ED61B57851900E9F840 /* CompletedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedTableViewCell.h; sourceTree = "<group>"; };
 		87493ED71B57851900E9F840 /* CompletedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTableViewCell.m; sourceTree = "<group>"; };
+		8750BF031BB4E59100773DF7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		8750BF041BB4E59100773DF7 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
+		8750BF051BB4E59100773DF7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		8750BF061BB4E59100773DF7 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		8750BF091BB4E5DC00773DF7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		8750BF0B1BB4E5EF00773DF7 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		875BE53E1B1AA6170063056F /* DeviceManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManageCell.h; sourceTree = "<group>"; };
 		875BE53F1B1AA6170063056F /* DeviceManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManageCell.m; sourceTree = "<group>"; };
 		877338081B11A44A00C2DDC4 /* gradeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gradeDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -340,6 +350,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8750BF0C1BB4E5EF00773DF7 /* libsqlite3.0.tbd in Frameworks */,
+				8750BF0A1BB4E5DC00773DF7 /* libz.tbd in Frameworks */,
 				872A61C81B5B523100D62439 /* CoreTelephony.framework in Frameworks */,
 				872A61C61B5B522100D62439 /* ImageIO.framework in Frameworks */,
 				872A61C41B5B521400D62439 /* MediaPlayer.framework in Frameworks */,
@@ -352,6 +364,7 @@
 				8778705D1B563F970046650C /* QuartzCore.framework in Frameworks */,
 				872A61AA1B5B519900D62439 /* BaiduMobStat.a in Frameworks */,
 				8778705B1B563F900046650C /* OpenGLES.framework in Frameworks */,
+				8750BF071BB4E59100773DF7 /* libWeChatSDK.a in Frameworks */,
 				877870591B563F880046650C /* SystemConfiguration.framework in Frameworks */,
 				877870571B563F7F0046650C /* CoreGraphics.framework in Frameworks */,
 				877870551B563F750046650C /* Security.framework in Frameworks */,
@@ -383,6 +396,8 @@
 		488D5A3FC8DCC7161CFF28C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8750BF0B1BB4E5EF00773DF7 /* libsqlite3.0.tbd */,
+				8750BF091BB4E5DC00773DF7 /* libz.tbd */,
 				872A61C71B5B523100D62439 /* CoreTelephony.framework */,
 				872A61C51B5B522100D62439 /* ImageIO.framework */,
 				872A61C31B5B521400D62439 /* MediaPlayer.framework */,
@@ -569,6 +584,17 @@
 			name = modifyPassword;
 			sourceTree = "<group>";
 		};
+		8750BF021BB4E59100773DF7 /* SDKExport */ = {
+			isa = PBXGroup;
+			children = (
+				8750BF031BB4E59100773DF7 /* libWeChatSDK.a */,
+				8750BF041BB4E59100773DF7 /* read_me.txt */,
+				8750BF051BB4E59100773DF7 /* WXApi.h */,
+				8750BF061BB4E59100773DF7 /* WXApiObject.h */,
+			);
+			path = SDKExport;
+			sourceTree = "<group>";
+		};
 		877870601B5642650046650C /* FetchOngoing */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +737,7 @@
 		87DBE1DA1AFAFF0000AFB7BF = {
 			isa = PBXGroup;
 			children = (
+				8750BF021BB4E59100773DF7 /* SDKExport */,
 				877870521B563F640046650C /* mapapi.bundle */,
 				87DBE1E51AFAFF0000AFB7BF /* TVForInstaller */,
 				87DBE1FF1AFAFF0000AFB7BF /* TVForInstallerTests */,
@@ -960,6 +987,7 @@
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
 				872A61A91B5B519900D62439 /* baiduNaviSDK.bundle in Resources */,
 				874753501B12C10C003BD8A3 /* Order.storyboard in Resources */,
+				8750BF081BB4E59100773DF7 /* read_me.txt in Resources */,
 				87DBE1F41AFAFF0000AFB7BF /* Images.xcassets in Resources */,
 				872DA8C51B0C883F00C680B5 /* Setting.storyboard in Resources */,
 			);
@@ -1235,6 +1263,7 @@
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK/BaiduStatistics",
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK/inc",
+					"$(PROJECT_DIR)/SDKExport",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.guoguang.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1265,6 +1294,7 @@
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK/BaiduStatistics",
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TVForInstaller/BaiduNaviSDK/inc",
+					"$(PROJECT_DIR)/SDKExport",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.guoguang.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
