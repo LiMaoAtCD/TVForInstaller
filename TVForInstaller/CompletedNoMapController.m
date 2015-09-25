@@ -10,7 +10,17 @@
 #import "CompletedNoMapTableViewCell.h"
 #import "ComminUtility.h"
 #import "CompletedNoMapDetailController.h"
+#import "NetworkingManager.h"
+#import <SVProgressHUD.h>
+#import <MJRefresh.h>
+
+
 @interface CompletedNoMapController ()
+
+
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -26,6 +36,67 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [ComminUtility configureTitle:@"已完成订单" forViewController:self];
+    
+    
+    
+    self.currentPage = 1;
+    
+    __weak typeof(self) weakSelf = self;
+    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        __strong typeof (self) strongSelf = weakSelf;
+    
+        [strongSelf fetchFinishedOrders:strongSelf.currentPage];
+    }];
+    
+    [self.tableView.header beginRefreshing];
+    
+}
+
+-(void)fetchFinishedOrders:(NSInteger)pageNumber{
+    
+        //请求数据
+        [NetworkingManager FetchCompletedOrderByPageNumber:pageNumber WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self handleResponseObject:responseObject];
+            
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.tableView.header endRefreshing];
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
+        }];
+
+}
+
+-(void)handleResponseObject:(id)responseObject{
+    
+    if ([responseObject[@"success"] integerValue] == 1) {
+        
+        if (self.currentPage == 1) {
+            
+            [self.tableView.header endRefreshing];
+
+            //header 刷新
+            NSArray *temp = responseObject[@"data"];
+            if (temp.count > 0) {
+                
+                self.dataSource = [temp mutableCopy];
+                [self.tableView reloadData];
+                
+                
+            } else{
+                //没有数据
+            }
+        } else{
+            // footer 刷新
+            
+            
+        }
+        
+    
+        
+    } else{
+        //出错
+    }
+
 }
 
 -(void)pop{
@@ -44,7 +115,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 
 
@@ -52,7 +123,29 @@
     CompletedNoMapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.completedNumberLabel.text = @"10";
+    
+    NSDate *today = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *todayString = [formatter stringFromDate:today];
+    
+    if ([todayString isEqualToString: self.dataSource[indexPath.row][@"orderDate"] ]) {
+        cell.timeLabel.text = @"今天";
+    } else{
+        cell.timeLabel.text = self.dataSource[indexPath.row][@"orderDate"];
+
+    }
+    
+    
+    cell.completedNumberLabel.text = self.dataSource[indexPath.row][@"finishedOrderNum"];
+    cell.scanNumberLabel.text = self.dataSource[indexPath.row][@"scanCodeNum"];
+    cell.totalCostLabel.text = self.dataSource[indexPath.row][@"totalFee"];
+
+    
+    
     return cell;
 }
 
@@ -63,6 +156,9 @@
     
     
     CompletedNoMapDetailController *detailVC = [sb instantiateViewControllerWithIdentifier:@"CompletedNoMapDetailController"];
+    
+    detailVC.infoDictionary = self.dataSource[indexPath.row];
+    
     
     [self.navigationController showViewController:detailVC sender:self];
 }

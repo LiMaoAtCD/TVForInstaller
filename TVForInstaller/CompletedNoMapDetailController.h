@@ -10,4 +10,6 @@
 
 @interface CompletedNoMapDetailController : UITableViewController
 
+@property (nonatomic, strong) NSDictionary * infoDictionary;
+
 @end

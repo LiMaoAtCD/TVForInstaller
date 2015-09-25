@@ -622,4 +622,39 @@
     }];
 }
 
++(void)FetchCompletedOrderByPageNumber:(NSInteger)pageNumber WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"pageNum"] = @(pageNumber);
+//    dic[@"engineerId"] = [AccountManager getTokenID];
+    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?";
+    
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?pageNum=1&engineerId=8a8080be4f86ecd0014f879860b4001c";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
+
++(void)fetchFinishedOrdersByDate:(NSString *)date WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"date"] = date;
+    //    dic[@"engineerId"] = [AccountManager getTokenID];
+    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getDetailOfFinishedOrders.do?";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
 @end

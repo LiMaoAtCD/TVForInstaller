@@ -370,10 +370,10 @@
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderNoMapCell" rowHeight="120" id="zVg-ev-qEF" customClass="OrderNoMapCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="117"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zVg-ev-qEF" id="wSc-M1-XKX">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QG-bD-yuv">
@@ -3685,7 +3685,7 @@
         <image name="ui03_-alipay1" width="21" height="21"/>
         <image name="ui03_btn_-QR-code" width="26" height="26"/>
         <image name="ui03_check0" width="24" height="24"/>
-        <image name="ui03_check1" width="8" height="14"/>
+        <image name="ui03_check1" width="32" height="29"/>
         <image name="ui03_submit_button" width="93" height="43"/>
         <image name="ui03_wechat1" width="25" height="21"/>
         <image name="ui04_Invitation-code_button" width="46" height="46"/>

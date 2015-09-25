@@ -7,11 +7,16 @@
 //
 
 #import "CompletedNoMapDetailController.h"
-#import "CompletedNoMapTableViewCell.h"
+#import "CompletedNoMapDetailCell.h"
 #import "ComminUtility.h"
+
+#import "NetworkingManager.h"
+#import <SVProgressHUD.h>
 
 
 @interface CompletedNoMapDetailController ()
+
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
 @end
 
@@ -26,7 +31,29 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [ComminUtility configureTitle:@"已完成" forViewController:self];
+    [ComminUtility configureTitle:self.infoDictionary[@"orderDate"] forViewController:self];
+    
+    
+    [SVProgressHUD show];
+    [NetworkingManager fetchFinishedOrdersByDate:self.infoDictionary[@"orderDate"] WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+
+        if ([responseObject[@"success"] integerValue] == 1) {
+            //成功
+            
+            self.dataSource = [responseObject[@"data"] mutableCopy];
+            
+            [self.tableView reloadData];
+            
+        } else {
+            
+        }
+        
+        
+    } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"网络出错"];
+
+    }];
     
 }
 
@@ -48,14 +75,53 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CompletedNoMapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapTableViewCell" forIndexPath:indexPath];
+    CompletedNoMapDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapDetailCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+
+//    deviceTag = "<null>";
+//    homeAddress = "\U6210\U90fd\U5e02\U9ad8\U65b0\U533a\U5965\U514b\U65af\U5e7f\U573a";
+//    id = 8a8080be4fda3fd6014fde2fa9ed002f;
+//    latitude = "30.58204899495";
+//    longitude = "104.06927809813";
+//    name = "\U53e4\U7b71\U5f64\U5f64";
+//    orderState = 2;
+//    orderTime = "2015-09-24 10:01:34";
+//    orderType = 0;
+//    phone = 13548097234;
+//    totalFee = "<null>";
+    
+    
+    cell.nameLabel.text = self.dataSource[indexPath.row][@"name"];
+    cell.cellphoneLabel.text = self.dataSource[indexPath.row][@"phone"];
+    
+    if ([self.dataSource[indexPath.row][@"deviceTag"] isKindOfClass:[NSNull class]] || self.dataSource[indexPath.row][@"deviceTag"] == nil) {
+        cell.scanLabel.hidden = YES;
+    } else{
+        cell.scanLabel.hidden = NO;
+    }
+    cell.addressLabel.text = self.dataSource[indexPath.row][@"homeAddress"];
+    
+    
+    NSString *orderTime = self.dataSource[indexPath.row][@"orderTime"];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *date = [formatter dateFromString:orderTime];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSString *convertible = [formatter stringFromDate:date];
+    
+    cell.timeLabel.text = convertible;
+    
+    
     
     return cell;
 }
@@ -87,48 +153,5 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

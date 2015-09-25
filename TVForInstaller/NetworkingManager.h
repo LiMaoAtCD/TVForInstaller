@@ -483,4 +483,21 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  */
 +(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
+/**
+ *  获取已完成订单(取消地图抢单)
+ *
+ *  @param pageNumber        页数
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)FetchCompletedOrderByPageNumber:(NSInteger)pageNumber WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  获取已完成订单详情
+ *
+ *  @param date              日期
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)fetchFinishedOrdersByDate:(NSString *)date WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 @end
