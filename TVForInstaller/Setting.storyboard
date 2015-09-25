@@ -3591,7 +3591,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="134" sectionHeaderHeight="28" sectionFooterHeight="28" id="hyZ-DX-BPy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CompletedNoMapTableViewCell" rowHeight="134" id="xj8-M9-UpB" customClass="CompletedNoMapTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="600" height="134"/>
@@ -3900,10 +3900,10 @@
                                         <constraint firstItem="qEL-v6-cak" firstAttribute="top" secondItem="ZdW-8x-zUb" secondAttribute="topMargin" constant="8" id="LrO-ko-cpG">
                                             <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                         </constraint>
-                                        <constraint firstItem="qEL-v6-cak" firstAttribute="trailing" secondItem="ZdW-8x-zUb" secondAttribute="trailingMargin" id="XWz-qT-eZV">
+                                        <constraint firstItem="qEL-v6-cak" firstAttribute="trailing" secondItem="ZdW-8x-zUb" secondAttribute="trailing" id="XWz-qT-eZV">
                                             <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
                                         </constraint>
-                                        <constraint firstItem="qEL-v6-cak" firstAttribute="leading" secondItem="ZdW-8x-zUb" secondAttribute="leadingMargin" id="gLy-E4-ZNX">
+                                        <constraint firstItem="qEL-v6-cak" firstAttribute="leading" secondItem="ZdW-8x-zUb" secondAttribute="leading" id="gLy-E4-ZNX">
                                             <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                         </constraint>
                                     </constraints>
@@ -3934,7 +3934,7 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="completedNumberLabel" destination="8tM-ps-XRG" id="XOy-Yd-4fS"/>
                                     <outlet property="scanNumberLabel" destination="1Rt-uZ-Oxe" id="m9D-qQ-Hwg"/>
