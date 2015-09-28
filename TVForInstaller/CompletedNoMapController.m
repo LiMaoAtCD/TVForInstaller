@@ -44,7 +44,7 @@
     __weak typeof(self) weakSelf = self;
     [self.tableView addLegendHeaderWithRefreshingBlock:^{
         __strong typeof (self) strongSelf = weakSelf;
-    
+        strongSelf.currentPage = 1;
         [strongSelf fetchFinishedOrders:strongSelf.currentPage];
     }];
     
@@ -54,6 +54,7 @@
 
 -(void)fetchFinishedOrders:(NSInteger)pageNumber{
     
+
         //请求数据
         [NetworkingManager FetchCompletedOrderByPageNumber:pageNumber WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -82,11 +83,44 @@
                 [self.tableView reloadData];
                 
                 
+                if (temp.count == 5) {
+                    self.currentPage++;
+                    __weak typeof(self) weakSelf = self;
+
+                    [self.tableView addLegendFooterWithRefreshingBlock:^{
+                        __strong typeof (self) strongSelf = weakSelf;
+                        [strongSelf fetchFinishedOrders:strongSelf.currentPage];
+                    }];
+                }
+                
             } else{
                 //没有数据
             }
         } else{
             // footer 刷新
+            NSLog(@"%@",responseObject);
+            
+            
+            if ([responseObject[@"success"] integerValue] == 1) {
+                NSArray *temp = responseObject[@"data"];
+                self.currentPage++;
+
+                if (temp.count < 5) {
+                    
+                    [self.tableView.footer noticeNoMoreData];
+                } else{
+                    
+                    [self.tableView.footer resetNoMoreData];
+                }
+                [self.dataSource addObjectsFromArray:temp];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+                
+                
+            } else{
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+            }
             
             
         }
