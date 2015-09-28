@@ -462,11 +462,13 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王小天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvr-Fd-goG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王小天天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvr-Fd-goG">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="ZIk-J0-zss"/>
-                                                        <constraint firstAttribute="width" constant="42" id="dUX-u9-zNC"/>
+                                                        <constraint firstAttribute="width" constant="42" id="dUX-u9-zNC">
+                                                            <variation key="heightClass=regular-widthClass=compact" constant="56"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -552,7 +554,9 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="SH9-4x-ern" firstAttribute="centerY" secondItem="sBu-Fx-y2P" secondAttribute="centerY" id="0RA-Bk-NRh"/>
-                                                <constraint firstItem="Fvr-Fd-goG" firstAttribute="leading" secondItem="yze-dr-RV7" secondAttribute="trailing" constant="8" id="8g7-rm-cEG"/>
+                                                <constraint firstItem="Fvr-Fd-goG" firstAttribute="leading" secondItem="yze-dr-RV7" secondAttribute="trailing" constant="8" id="8g7-rm-cEG">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                </constraint>
                                                 <constraint firstItem="Fvr-Fd-goG" firstAttribute="top" secondItem="AAy-Tx-Yg1" secondAttribute="bottom" constant="8" id="Cgd-eu-zrT">
                                                     <variation key="heightClass=regular-widthClass=compact" constant="12"/>
                                                 </constraint>
@@ -775,7 +779,9 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王小天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhd-sr-ftL">
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="62" id="cdW-FX-kPU"/>
+                                                            <constraint firstAttribute="width" constant="62" id="cdW-FX-kPU">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                                                            </constraint>
                                                             <constraint firstAttribute="height" constant="21" id="oKs-Gd-Pcy"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -1371,9 +1377,24 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dc8-LR-5qg">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="43" id="xCL-w3-NXw">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                                            </constraint>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="xCL-w3-NXw"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="xCL-w3-NXw"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v21-H0-qAN">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1498,6 +1519,7 @@
                     <connections>
                         <outlet property="NoLabel" destination="8Af-Xv-n0l" id="1uO-34-uJ0"/>
                         <outlet property="addressLabel" destination="qEO-L4-nze" id="Aq1-8f-A97"/>
+                        <outlet property="backGroundView" destination="Lul-qp-52h" id="M3Q-C2-DnR"/>
                         <outlet property="cellphoneLabel" destination="BKe-ja-3PU" id="tgN-JG-aH7"/>
                         <outlet property="costTextField" destination="Wc8-UY-0vQ" id="Lr8-sz-zZo"/>
                         <outlet property="dateLabel" destination="frC-gZ-zkF" id="yDi-Cm-Liq"/>

@@ -29,6 +29,10 @@ typedef enum {
 #import "ComminUtility.h"
 #import "OrderPayTypeSelectionController.h"
 
+#import <Masonry.h>
+#import "NetworkingManager.h"
+#import <SVProgressHUD.h>
+
 
 @interface OrderTypesViewController ()<DetailPayTypeDelegate>
 
@@ -51,8 +55,8 @@ typedef enum {
     // Do any additional setup after loading the view.
     
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
+    
     
     
 }

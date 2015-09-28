@@ -15,6 +15,9 @@
 @interface OrderDetailNoMapViewController ()
 
 
+
+@property (weak, nonatomic) IBOutlet UIView *backGroundView;
+
 /**
  *  第一个视图模块
  */
@@ -50,8 +53,11 @@
  */
 
 @property (weak, nonatomic) IBOutlet UITextField *costTextField;
+@property (nonatomic,copy) NSString * costNumber;
 
-
+/**
+ *  第四个模块
+ */
 @property (weak, nonatomic) IBOutlet UILabel *totalCostLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -66,13 +72,29 @@
     [ComminUtility configureTitle:@"订单详情" forViewController:self];
     
     
+    
+    [self configBackGroundView];
     [self configFirstModuleView];
     [self configSecondModuleView];
     [self configThirdModuleView];
+    [self configFourthModuleView];
+
 
 
     
 }
+
+-(void)configBackGroundView{
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    
+    [self.backGroundView addGestureRecognizer:recognizer];
+}
+
+-(void)dismissKeyboard:(id)sender{
+    [self.costTextField resignFirstResponder];
+}
+
 
 -(void)configFirstModuleView{
     
@@ -133,22 +155,47 @@
 
 -(void)configThirdModuleView{
     
-    [self.submitButton addTarget:self action:@selector(submitOrder:) forControlEvents:UIControlEventTouchUpInside];
+    self.costTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    [self.costTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
 }
+
+-(void)configFourthModuleView{
+    self.totalCostLabel.text = @"0";
+    [self.submitButton addTarget:self action:@selector(submitOrder:) forControlEvents:UIControlEventTouchUpInside];
+
+}
+
+
 
 
 
 
 #pragma mark - target action
 
+-(void)textFieldEditChanged:(UITextField *)textfield{
+    
+    self.costNumber = textfield.text;
+    self.totalCostLabel.text = self.costNumber;
+}
+
 -(void)submitOrder:(id)sender{
-    //TODO:提交当前订单
+
     UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
+    orderVC.qrcode = self.qrcode;
+    orderVC.cost = self.costNumber;
     
-    [self.navigationController pushViewController:orderVC animated:YES];
-    
+    if (self.costNumber == nil ||[self.costNumber isEqualToString:@"0"]) {
+        UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"请填写正确的金额" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        }];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else{
+        [self.navigationController pushViewController:orderVC animated:YES];
+    }
 }
 
 
@@ -210,6 +257,7 @@
                 self.scanLabel.hidden = NO;
                 self.scanButton.hidden = YES;
                 [SVProgressHUD showSuccessWithStatus:@"二维码上传成功"];
+                self.qrcode = deviceID;
 
             } else{
             }

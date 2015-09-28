@@ -10,4 +10,12 @@
 
 @interface OrderTypesViewController : UIViewController
 
+/**
+ *  设备二维码
+ */
+
+@property (nonatomic, copy) NSString *qrcode;
+
+
+@property (nonatomic, copy) NSString *cost;
 @end
