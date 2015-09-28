@@ -8,23 +8,6 @@
 
 
 
-//typedef enum : NSUInteger {
-//    APP,
-//    SCAN_WECHAT,
-//    SCAN_ALIPAY,
-//    CASH_WECHAT,
-//    CASH_ALIPAY
-//
-//} PAY_TYPE;
-typedef enum {
-    NONE,
-    APP,
-    SCAN_WECHAT,
-    SCAN_ALIPAY,
-    CASH_WECHAT,
-    CASH_ALIPAY
-} PAY_TYPE;
-
 #import "OrderTypesViewController.h"
 #import "ComminUtility.h"
 #import "OrderPayTypeSelectionController.h"
@@ -32,7 +15,7 @@ typedef enum {
 #import <Masonry.h>
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
-
+#import "PayType.h"
 
 @interface OrderTypesViewController ()<DetailPayTypeDelegate>
 
@@ -56,10 +39,11 @@ typedef enum {
     
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
-    
-    
-    
 }
+
+
+
+
 
 - (IBAction)clickType:(id)sender {
     

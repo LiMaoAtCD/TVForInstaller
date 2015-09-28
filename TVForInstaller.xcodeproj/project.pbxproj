@@ -48,6 +48,7 @@
 		874753501B12C10C003BD8A3 /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8747534F1B12C10C003BD8A3 /* Order.storyboard */; };
 		87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED11B57465500E9F840 /* CustomPointAnnotation.m */; };
 		87493ED81B57851900E9F840 /* CompletedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87493ED71B57851900E9F840 /* CompletedTableViewCell.m */; };
+		874F8EEA1BB8DF7B00837BB4 /* OrderTypeNoScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874F8EE81BB8DF7B00837BB4 /* OrderTypeNoScanViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8750BF071BB4E59100773DF7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8750BF031BB4E59100773DF7 /* libWeChatSDK.a */; settings = {ASSET_TAGS = (); }; };
 		8750BF081BB4E59100773DF7 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8750BF041BB4E59100773DF7 /* read_me.txt */; settings = {ASSET_TAGS = (); }; };
 		8750BF0A1BB4E5DC00773DF7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8750BF091BB4E5DC00773DF7 /* libz.tbd */; };
@@ -212,6 +213,9 @@
 		87493ED11B57465500E9F840 /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPointAnnotation.m; sourceTree = "<group>"; };
 		87493ED61B57851900E9F840 /* CompletedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedTableViewCell.h; sourceTree = "<group>"; };
 		87493ED71B57851900E9F840 /* CompletedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTableViewCell.m; sourceTree = "<group>"; };
+		874F8EE71BB8DF7B00837BB4 /* OrderTypeNoScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTypeNoScanViewController.h; sourceTree = "<group>"; };
+		874F8EE81BB8DF7B00837BB4 /* OrderTypeNoScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTypeNoScanViewController.m; sourceTree = "<group>"; };
+		874F8EEC1BB8E6A100837BB4 /* PayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayType.h; sourceTree = "<group>"; };
 		8750BF031BB4E59100773DF7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		8750BF041BB4E59100773DF7 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		8750BF051BB4E59100773DF7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -699,6 +703,9 @@
 				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
 				877D047D1BB3E08B00CF90EA /* OrderTypesViewController.h */,
 				877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */,
+				874F8EE71BB8DF7B00837BB4 /* OrderTypeNoScanViewController.h */,
+				874F8EE81BB8DF7B00837BB4 /* OrderTypeNoScanViewController.m */,
+				874F8EEC1BB8E6A100837BB4 /* PayType.h */,
 				87CE0C351BB1449E000D15C4 /* OrderPayTypeSelectionController.h */,
 				87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */,
 			);
@@ -1080,6 +1087,7 @@
 				87815FEF1B57969A0028022D /* OngoingDetailViewController.m in Sources */,
 				87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */,
 				8785E91E1B0C162A003F4415 /* NSString+Hashes.m in Sources */,
+				874F8EEA1BB8DF7B00837BB4 /* OrderTypeNoScanViewController.m in Sources */,
 				8774042E1B5E34A90055D2D6 /* QRCodeAnimator.m in Sources */,
 				879C61B91BAFAA7300ACFEE8 /* OrderNoMapCell.m in Sources */,
 				8785E9631B0C6E7F003F4415 /* AppCollectionTableCell.m in Sources */,

@@ -10,7 +10,8 @@
 
 typedef enum : NSUInteger {
     ALIPay,
-    WECHAT
+    WECHAT,
+    NONE_TYPE
 } DetailPayType;
 
 

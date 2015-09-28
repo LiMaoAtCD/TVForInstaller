@@ -12,6 +12,8 @@
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
 #import "OrderTypesViewController.h"
+#import "OrderTypeNoScanViewController.h"
+
 @interface OrderDetailNoMapViewController ()
 
 
@@ -179,12 +181,6 @@
 }
 
 -(void)submitOrder:(id)sender{
-
-    UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
-    orderVC.qrcode = self.qrcode;
-    orderVC.cost = self.costNumber;
     
     if (self.costNumber == nil ||[self.costNumber isEqualToString:@"0"]) {
         UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"请填写正确的金额" preferredStyle:UIAlertControllerStyleAlert];
@@ -194,7 +190,22 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     } else{
-        [self.navigationController pushViewController:orderVC animated:YES];
+        
+        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        if ([self.qrcode isEqualToString:@""]|| self.qrcode == nil) {
+            OrderTypeNoScanViewController *scanVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypeNoScanViewController"];
+            scanVC.cost = self.costNumber;
+            [self.navigationController pushViewController:scanVC animated:YES];
+
+        } else {
+            OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
+            orderVC.qrcode = self.qrcode;
+            orderVC.cost = self.costNumber;
+            [self.navigationController pushViewController:orderVC animated:YES];
+
+
+        }
+    
     }
 }
 

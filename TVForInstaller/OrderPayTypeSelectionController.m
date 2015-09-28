@@ -62,12 +62,16 @@
         [self.delegate didSelectedPayType:ALIPay];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 
 -(void)dimissSelf{
     self.blackView.hidden = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(didSelectedPayType:)]) {
+        [self.delegate didSelectedPayType:NONE_TYPE];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
