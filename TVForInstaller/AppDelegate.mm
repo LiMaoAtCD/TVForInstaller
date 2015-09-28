@@ -148,12 +148,12 @@
         NSLog(@"manager start failed");
     }
     [BNCoreServices_Instance initServices:@"aTe5wOyxR5FMXvCeZc7PTMet"];
-//    [BNCoreServices_Instance startServicesAsyn:^{
-//        NSLog(@"success");
-//    } fail:^{
-//        NSLog(@"fail");
-//
-//    }];
+    [BNCoreServices_Instance startServicesAsyn:^{
+        NSLog(@"success");
+    } fail:^{
+        NSLog(@"fail");
+
+    }];
 
 
 }

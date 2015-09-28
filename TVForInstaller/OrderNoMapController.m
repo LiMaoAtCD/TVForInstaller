@@ -13,10 +13,18 @@
 #import "NetworkingManager.h"
 #import <MJRefresh.h>
 
-@interface OrderNoMapController ()
+#import <CoreLocation/CoreLocation.h>
+#import "BNCoreServices.h"
+
+
+
+@interface OrderNoMapController ()<CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic, strong) CLLocationManager *manager;
+
+@property (nonatomic, strong) BNPosition *currentPostion;
 
 @end
 
@@ -35,12 +43,47 @@
         [strongSelf refreshToDayOrders];
     }];
     
-    [self.tableView.header beginRefreshing];
+
+    _manager = [[CLLocationManager alloc] init];
+    _manager.delegate = self;
+    _manager.distanceFilter = kCLDistanceFilterNone;
+    _manager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    // 获取经纬度
+    NSLog(@"纬度:%f",locations[0].coordinate.latitude);
+    NSLog(@"经度:%f",locations[0].coordinate.longitude);
+    // 停止位置更新
+    [manager stopUpdatingLocation];
+    
+    BNPosition *originPostion = [[BNPosition alloc] init];
+    originPostion.x = locations[0].coordinate.longitude;
+    originPostion.y = locations[0].coordinate.latitude;
+    
+    self.currentPostion = originPostion;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView.header beginRefreshing];
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        [_manager startUpdatingLocation];
+        
+    } else{
+        
+    }
+
+
 }
 
 -(void)refreshToDayOrders{
@@ -121,15 +164,10 @@
             break;
     }
     
-    //姓名
+    //
     cell.nameLabel.text = self.dataSource[indexPath.row][@"name"];
-    
     cell.cellphoneLabel.text = self.dataSource[indexPath.row][@"phone"];
-    
     cell.addressLabel.text = self.dataSource[indexPath.row][@"homeAddress"];
-
-    
-    
     return cell;
 }
 
@@ -139,6 +177,7 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
     
+    detail.originPostion = self.currentPostion;
     detail.order = self.dataSource[indexPath.row];
     detail.hidesBottomBarWhenPushed = YES;
     
@@ -146,48 +185,5 @@
 
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

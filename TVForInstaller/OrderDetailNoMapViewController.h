@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNCoreServices.h"
 
 @interface OrderDetailNoMapViewController : UIViewController
 
 @property (nonatomic, strong, nonnull) NSDictionary *order;
 
+@property (nonatomic, strong, nullable) BNPosition *originPostion;
 
 @end
