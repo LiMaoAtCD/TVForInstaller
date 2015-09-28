@@ -14,5 +14,7 @@
 
 @property (nonatomic, copy) NSString *orderID;
 
+@property (nonatomic, assign) BOOL isFromCompletionList;
+
 
 @end

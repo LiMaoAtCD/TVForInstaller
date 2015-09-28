@@ -500,4 +500,22 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param fail
  */
 +(void)fetchFinishedOrdersByDate:(NSString *)date WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  将订单发送至手机app
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)uploadOrderInfoToAPPByOrderID:(NSString*)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  提交订单
+ *
+ *  @param orderId           订单编号
+ *  @param fee               费用
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 @end

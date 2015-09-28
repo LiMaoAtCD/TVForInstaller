@@ -182,6 +182,11 @@
 
 -(void)submitOrder:(id)sender{
     
+    
+  
+    
+    
+    
     if (self.costNumber == nil ||[self.costNumber isEqualToString:@"0"]) {
         UIAlertController *alert =[UIAlertController alertControllerWithTitle:@"" message:@"请填写正确的金额" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -191,27 +196,35 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else{
         
-        UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        if ([self.qrcode isEqualToString:@""]|| self.qrcode == nil) {
-            OrderTypeNoScanViewController *scanVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypeNoScanViewController"];
-            scanVC.cost = self.costNumber;
-            scanVC.orderID = self.order[@"id"];
-            [self.navigationController pushViewController:scanVC animated:YES];
-
-        } else {
-            OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
-            orderVC.qrcode = self.qrcode;
-            orderVC.cost = self.costNumber;
-            orderVC.orderID = self.order[@"id"];
-
-            [self.navigationController pushViewController:orderVC animated:YES];
-
-
-        }
-    
+        [SVProgressHUD show];
+        
+        [NetworkingManager sumitOrderID:self.order[@"id"] andFee:self.costNumber WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([responseObject[@"success"] integerValue] == 1) {
+                [SVProgressHUD dismiss];
+                UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                if ([self.qrcode isEqualToString:@""]|| self.qrcode == nil) {
+                    OrderTypeNoScanViewController *scanVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypeNoScanViewController"];
+                    scanVC.cost = self.costNumber;
+                    scanVC.orderID = self.order[@"id"];
+                    [self.navigationController pushViewController:scanVC animated:YES];
+                    
+                } else {
+                    OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
+                    orderVC.qrcode = self.qrcode;
+                    orderVC.cost = self.costNumber;
+                    orderVC.orderID = self.order[@"id"];
+                    
+                    [self.navigationController pushViewController:orderVC animated:YES];
+                }
+            } else{
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+            }
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
+        }];
     }
 }
-
 
 -(void)callAlert:(id)sender{
     
@@ -248,15 +261,10 @@
     __weak OrderDetailNoMapViewController *weakSelf = self;
     
     qrcode.qrUrlBlock = ^(NSString * code) {
-        
-        
         [weakSelf uploadDeviceID:code];
-//        self.qrcode = code;
         weakSelf.scanLabel.text = code;
         weakSelf.scanLabel.hidden = NO;
         weakSelf.scanButton.hidden = YES;
-        
-        
     };
 }
 

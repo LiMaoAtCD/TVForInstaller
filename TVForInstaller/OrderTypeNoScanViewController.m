@@ -34,9 +34,17 @@
     // Do any additional setup after loading the view from its nib.
     
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
     self.type = NONE;
 
+}
+
+-(void)pop{
+    
+    if (_isFromCompletionList) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,10 +118,18 @@
     
     
     if (_type == APP) {
-        [NetworkingManager uploadOrderInfoToAPPWithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"responseObject: %@",responseObject);
-        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD show];
+        [NetworkingManager uploadOrderInfoToAPPByOrderID:self.orderID WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
             
+            if ([responseObject[@"success"] integerValue] == 1) {
+                [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+            } else{
+                [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
+            }
+            
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"网络出错"];
         }];
     } else{
         

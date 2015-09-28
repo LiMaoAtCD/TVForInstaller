@@ -657,4 +657,35 @@
         fail(operation,error);
     }];
 }
+
++(void)uploadOrderInfoToAPPByOrderID:(NSString*)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderID;
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/sendCmdMsgToTvkeyUser.do?";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderId;
+    //    dic[@"engineerId"] = [AccountManager getTokenID];
+    dic[@"fee"] = fee;
+    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderFeeById.do?";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
 @end
