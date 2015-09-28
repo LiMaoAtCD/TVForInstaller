@@ -39,11 +39,9 @@
     
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
+    self.type = NONE;
+
 }
-
-
-
-
 
 - (IBAction)clickType:(id)sender {
     
@@ -128,33 +126,56 @@
                 self.typeImageView2.image = nil;
                 self.type = SCAN_WECHAT;
                 
-            } else{
+            } else if (type == ALIPay){
                 self.typeImageView.image = [UIImage imageNamed:@"ui03_alipay"];
                 self.typeImageView2.image = nil;
                 self.type = SCAN_ALIPAY;
 
+            } else{
+                self.typeImageView.image = nil;
+                self.typeImageView2.image = nil;
+                
+                self.type = NONE;
+                [self.PayButtons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    UIButton *button  = obj;
+                    [button setImage:[UIImage imageNamed:@"ui03_check0"] forState:UIControlStateNormal];
+                }];
             }
         }
             break;
         case 2:
         {
             if (type == WECHAT) {
+                
                 self.typeImageView2.image = [UIImage imageNamed:@"ui03_wechat"];
                 self.typeImageView.image = nil;
                 self.type = CASH_WECHAT;
-
-
-            } else{
+                
+            } else if (type == ALIPay){
                 self.typeImageView2.image = [UIImage imageNamed:@"ui03_alipay"];
                 self.typeImageView.image = nil;
                 self.type = CASH_ALIPAY;
-
+                
+            } else{
+                self.typeImageView.image = nil;
+                self.typeImageView2.image = nil;
+                
+                self.type = NONE;
+                [self.PayButtons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    UIButton *button  = obj;
+                    [button setImage:[UIImage imageNamed:@"ui03_check0"] forState:UIControlStateNormal];
+                }];
+                
             }
         }
             break;
     }
 }
 
+- (IBAction)confirmPay:(id)sender {
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

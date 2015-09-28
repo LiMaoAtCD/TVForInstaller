@@ -1983,6 +1983,9 @@
                                         <include reference="IRA-ni-zkb"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="confirmPay:" destination="dWK-kC-f2y" eventType="touchUpInside" id="T6X-cS-4Jb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
