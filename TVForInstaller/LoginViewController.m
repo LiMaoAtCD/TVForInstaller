@@ -132,9 +132,9 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                     [self dealLoginMessages:(NSDictionary*)responseObject];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 });
-                
-
             }
             
         } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -150,7 +150,6 @@
     //TODO: 登录成功处理数据
     
     NSDictionary *data = responseObject[@"obj"];
-    NSLog(@"返回的数据: %@",data);
     
     if (![data[@"name"] isKindOfClass:[NSNull class]]) {
         [AccountManager setName:data[@"name"]];
@@ -186,9 +185,6 @@
     
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];
-    
-    
-   
 }
 
 
