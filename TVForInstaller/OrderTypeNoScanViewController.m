@@ -12,6 +12,9 @@
 #import "OrderPayTypeSelectionController.h"
 #import "PayType.h"
 
+#import "NetworkingManager.h"
+#import <SVProgressHUD.h>
+
 
 @interface OrderTypeNoScanViewController ()<DetailPayTypeDelegate>
 
@@ -105,6 +108,17 @@
     
     //TODO：根据选择不同，进行不同操作
     
+    
+    if (_type == APP) {
+        [NetworkingManager uploadOrderInfoToAPPWithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"responseObject: %@",responseObject);
+        } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    } else{
+        
+    }
+  
 }
 
 @end

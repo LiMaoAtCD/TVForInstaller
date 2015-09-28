@@ -38,7 +38,7 @@
     // Do any additional setup after loading the view.
     
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIView new]];
     self.type = NONE;
 
 }

@@ -195,12 +195,15 @@
         if ([self.qrcode isEqualToString:@""]|| self.qrcode == nil) {
             OrderTypeNoScanViewController *scanVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypeNoScanViewController"];
             scanVC.cost = self.costNumber;
+            scanVC.orderID = self.order[@"id"];
             [self.navigationController pushViewController:scanVC animated:YES];
 
         } else {
             OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
             orderVC.qrcode = self.qrcode;
             orderVC.cost = self.costNumber;
+            orderVC.orderID = self.order[@"id"];
+
             [self.navigationController pushViewController:orderVC animated:YES];
 
 

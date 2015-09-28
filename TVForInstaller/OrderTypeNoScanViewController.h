@@ -12,4 +12,7 @@
 
 @property (nonatomic, copy) NSString *cost;
 
+@property (nonatomic, copy) NSString *orderID;
+
+
 @end
