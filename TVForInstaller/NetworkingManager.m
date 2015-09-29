@@ -18,10 +18,11 @@
 //#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
-////#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-////#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-//
+#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
+#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
+#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
+
 //#define kServer @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
 //#define kServer2 @"http://wx.scui.com.cn/zhiKey/softController.do?getSoftService"
 //#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
@@ -29,10 +30,10 @@
 //////#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
 //#define kServer4 @"http://wx.scui.com.cn/zhiKey/"
 
-#define kServer  @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
+//#define kServer  @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+//#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
 
@@ -598,8 +599,8 @@
 
 +(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
 
-//    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=%@",[AccountManager getTokenID]];
-    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
+    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=%@",[AccountManager getTokenID]];
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -611,8 +612,8 @@
 
 +(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
     
-//    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",deviceNumber,orderID];
-    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=xxxxxxxxxx&orderId=8a8080f44fbb42b7014fc1094cc20097";
+    NSString *url = [NSString stringWithFormat:@"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",deviceNumber,orderID];
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=xxxxxxxxxx&orderId=8a8080f44fbb42b7014fc1094cc20097";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -627,8 +628,8 @@
     NSMutableDictionary *dic =[NSMutableDictionary dictionary];
     
     dic[@"pageNum"] = @(pageNumber);
-//    dic[@"engineerId"] = [AccountManager getTokenID];
-    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+    dic[@"engineerId"] = [AccountManager getTokenID];
+//    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
     NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?";
     
 //    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?pageNum=1&engineerId=8a8080be4f86ecd0014f879860b4001c";
@@ -646,8 +647,8 @@
     NSMutableDictionary *dic =[NSMutableDictionary dictionary];
     
     dic[@"date"] = date;
-    //    dic[@"engineerId"] = [AccountManager getTokenID];
-    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+        dic[@"engineerId"] = [AccountManager getTokenID];
+//    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
     NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getDetailOfFinishedOrders.do?";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

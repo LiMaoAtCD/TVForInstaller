@@ -479,6 +479,12 @@
         
 //        [weakSelf postNewRemoteTV:code];
         self.qrcode = code;
+        NSArray *temp = [code componentsSeparatedByString:@"TVID:"];
+        
+        NSLog(@"%@",temp);
+        
+        
+        
         weakSelf.scanLabel.text = code;
         weakSelf.scanLabel.hidden = NO;
         weakSelf.scanButton.hidden = YES;

@@ -13,6 +13,9 @@
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
 
+#import "OrderTypesViewController.h"
+#import "OrderTypeNoScanViewController.h"
+
 
 @interface CompletedNoMapDetailController ()
 
@@ -111,8 +114,29 @@
         cell.scanLabel.hidden= NO;
     } else{
         cell.scanLabel.hidden= YES;
-
     }
+    
+//    0待分配（没有分配工程师的状态）、1已分配（可以查看到分配的工程师）、2已提交待付款（订单已提交等待支付状态）、3已完成
+    
+    if ([self.dataSource[indexPath.row][@"orderState"] integerValue] == 2) {
+        cell.yuanLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        cell.payTypeLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        cell.costLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
+        cell.payTypeLabel.text = @"等待支付";
+
+    } else{
+        cell.payTypeLabel.text = @"已支付";
+
+        cell.yuanLabel.textColor = [UIColor blackColor];
+        cell.payTypeLabel.textColor = [UIColor blackColor];
+        cell.costLabel.textColor = [UIColor blackColor];
+    }
+    
+    
+    if (![self.dataSource[indexPath.row][@"totalFee"] isKindOfClass:[NSNull class]]) {
+        cell.costLabel.text = self.dataSource[indexPath.row][@"totalFee"];
+    }
+    
     
     
     return cell;
@@ -144,6 +168,33 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([self.dataSource[indexPath.row][@"orderState"] integerValue] == 2) {
+        if ([self.dataSource[indexPath.row][@"deviceTag"] isKindOfClass:[NSNull class]] || self.dataSource[indexPath.row][@"deviceTag"] == nil) {
+            //进入没有扫码支付的界面
+            
+            
+            UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+            OrderTypeNoScanViewController *scanVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypeNoScanViewController"];
+               scanVC.orderID = self.dataSource[indexPath.row][@"id"];
+            scanVC.isFromCompletionList = YES;
+            [self.navigationController pushViewController:scanVC animated:YES];
+        } else{
+            //进入有扫码支付的界面
+            UIStoryboard *sb =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            
+            OrderTypesViewController *orderVC = [sb instantiateViewControllerWithIdentifier:@"OrderTypesViewController"];
+            orderVC.qrcode = self.dataSource[indexPath.row][@"deviceTag"];
+            orderVC.cost = self.dataSource[indexPath.row][@"totalFee"];
+            orderVC.orderID = self.dataSource[indexPath.row][@"id"];
+            orderVC.isFromCompletionList = YES;
+
+            [self.navigationController pushViewController:orderVC animated:YES];
+        }
+    }
+}
 
 
 @end

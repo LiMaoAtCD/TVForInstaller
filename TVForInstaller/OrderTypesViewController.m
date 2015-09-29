@@ -183,12 +183,15 @@
     if (_type == APP) {
         [SVProgressHUD show];
         [NetworkingManager uploadOrderInfoToAPPByOrderID:self.orderID WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@",responseObject);
             
             if ([responseObject[@"success"] integerValue] == 1) {
                 [SVProgressHUD showSuccessWithStatus:@"发送成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    if (_isFromCompletionList) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } else{
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
                 });
             } else{
                 [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
@@ -204,7 +207,11 @@
             if ([responseObject[@"success"] integerValue] == 1) {
                 [SVProgressHUD showSuccessWithStatus:@"发送成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    if (_isFromCompletionList) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } else{
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
                 });
             } else {
                 [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];

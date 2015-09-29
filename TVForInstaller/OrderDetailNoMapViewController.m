@@ -276,10 +276,21 @@
     __weak OrderDetailNoMapViewController *weakSelf = self;
     
     qrcode.qrUrlBlock = ^(NSString * code) {
-        [weakSelf uploadDeviceID:code];
-        weakSelf.scanLabel.text = code;
-        weakSelf.scanLabel.hidden = NO;
-        weakSelf.scanButton.hidden = YES;
+        
+        
+        NSArray *temp = [code componentsSeparatedByString:@"TVID:"];
+        
+        if (temp.count > 1) {
+            [weakSelf uploadDeviceID:temp[1]];
+            weakSelf.scanLabel.text = temp[1];
+            weakSelf.scanLabel.hidden = NO;
+            weakSelf.scanButton.hidden = YES;
+            weakSelf.qrcode = temp[1];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"非法设备"];
+        }
+        
+       
     };
 }
 
@@ -294,7 +305,6 @@
                 self.scanLabel.hidden = NO;
                 self.scanButton.hidden = YES;
                 [SVProgressHUD showSuccessWithStatus:@"二维码上传成功"];
-                self.qrcode = deviceID;
 
             } else{
             }
