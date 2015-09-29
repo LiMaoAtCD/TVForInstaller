@@ -510,6 +510,16 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 +(void)uploadOrderInfoToAPPByOrderID:(NSString*)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 /**
+ *  扫码支付(微信)
+ *
+ *  @param orderId           订单编号
+ *  @param deviceTag         设备编码
+ *  @param totalFee          支付的费用
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+/**
  *  提交订单
  *
  *  @param orderId           订单编号
@@ -518,4 +528,6 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param fail
  */
 +(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+
 @end

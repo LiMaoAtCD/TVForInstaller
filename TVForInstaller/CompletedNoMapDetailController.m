@@ -25,12 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     [ComminUtility configureTitle:self.infoDictionary[@"orderDate"] forViewController:self];
     
     
@@ -83,17 +77,6 @@
     CompletedNoMapDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CompletedNoMapDetailCell" forIndexPath:indexPath];
     
 
-//    deviceTag = "<null>";
-//    homeAddress = "\U6210\U90fd\U5e02\U9ad8\U65b0\U533a\U5965\U514b\U65af\U5e7f\U573a";
-//    id = 8a8080be4fda3fd6014fde2fa9ed002f;
-//    latitude = "30.58204899495";
-//    longitude = "104.06927809813";
-//    name = "\U53e4\U7b71\U5f64\U5f64";
-//    orderState = 2;
-//    orderTime = "2015-09-24 10:01:34";
-//    orderType = 0;
-//    phone = 13548097234;
-//    totalFee = "<null>";
     
     
     cell.nameLabel.text = self.dataSource[indexPath.row][@"name"];
@@ -121,6 +104,15 @@
     
     cell.timeLabel.text = convertible;
     
+    
+    cell.starImageView.image = [UIImage imageNamed:@"ui08_star1"];
+    
+    if (![self.dataSource[indexPath.row][@"deviceTag"] isKindOfClass:[NSNull class]]) {
+        cell.scanLabel.hidden= NO;
+    } else{
+        cell.scanLabel.hidden= YES;
+
+    }
     
     
     return cell;
