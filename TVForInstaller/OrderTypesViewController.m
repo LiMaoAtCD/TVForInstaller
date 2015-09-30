@@ -202,8 +202,7 @@
         }];
     } else if(_type == SCAN_WECHAT){
         [SVProgressHUD show];
-        [NetworkingManager ScanQRCodeByOrderId:self.orderID deviceTag:self.qrcode totalFee:self.cost WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
+        [NetworkingManager scanQRCodeWeXin:self.orderID WithCompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject[@"success"] integerValue] == 1) {
                 [SVProgressHUD showSuccessWithStatus:@"发送成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -215,13 +214,15 @@
                 });
             } else {
                 [SVProgressHUD showErrorWithStatus:responseObject[@"msg"]];
-
+                
             }
-            
         } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD showErrorWithStatus:@"网络出错"];
+
         }];
-    }
+        
+        
+          }
     
 }
 

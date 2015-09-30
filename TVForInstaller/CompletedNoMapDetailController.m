@@ -124,7 +124,7 @@
         cell.costLabel.textColor = [UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0];
         cell.payTypeLabel.text = @"等待支付";
 
-    } else{
+    } else if ([self.dataSource[indexPath.row][@"orderState"] integerValue] == 3) {
         cell.payTypeLabel.text = @"已支付";
 
         cell.yuanLabel.textColor = [UIColor blackColor];
