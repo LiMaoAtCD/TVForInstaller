@@ -188,7 +188,9 @@
         
     } else{
     
-       
+       [self alertWithMessage:@"无法导航" withCompletionHandler:^{
+           
+       }];
     }
     
     

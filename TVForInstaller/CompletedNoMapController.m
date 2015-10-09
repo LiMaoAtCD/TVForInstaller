@@ -176,9 +176,20 @@
     
     cell.completedNumberLabel.text = self.dataSource[indexPath.row][@"finishedOrderNum"];
     cell.scanNumberLabel.text = self.dataSource[indexPath.row][@"scanCodeNum"];
-    cell.totalCostLabel.text = self.dataSource[indexPath.row][@"totalFee"];
-
     
+    
+    cell.totalCostLabel.text = self.dataSource[indexPath.row][@"totalFee"];
+    
+    float totalFee = [self.dataSource[indexPath.row][@"totalFee"] floatValue];
+
+    totalFee *= 100;
+    
+    totalFee = roundf(totalFee);
+    
+    totalFee /= 100;
+    
+    cell.totalCostLabel.text = [NSString stringWithFormat:@"%.2f",totalFee];
+
     
     return cell;
 }
