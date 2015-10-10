@@ -724,4 +724,36 @@
     }];
 }
 
++(void)FetchLocalCashPay:(NSString*)wxPayOrderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"wxPayOrderId"] = wxPayOrderId;
+    dic[@"payModel"] = @2;
+    
+    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/unifiedorder.do?";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)checkOrderPayedSuccessfullyByOrderID:(NSString*)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderId;
+    
+    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/checkOrderHasPayed.do?";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+
+}
+
 @end

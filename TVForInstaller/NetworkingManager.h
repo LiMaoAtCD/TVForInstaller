@@ -541,6 +541,23 @@ typedef AFHTTPRequestOperation NetWorkOperation;
 +(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 
+/**
+ *  现金本地支付(微信支付)
+ *
+ *  @param wxPayOrderId      Orderid
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)FetchLocalCashPay:(NSString*)wxPayOrderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
+
+/**
+ *  检查服务端是否支付成功
+ *
+ *  @param orderId           订单号
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)checkOrderPayedSuccessfullyByOrderID:(NSString*)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 @end

@@ -106,6 +106,7 @@
 		87B400CC1B16C17B00CC1C95 /* DLNADataManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400CB1B16C17B00CC1C95 /* DLNADataManager.mm */; };
 		87B400E31B17FAF500CC1C95 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */; };
 		87B400E61B18145400CC1C95 /* GenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B400E51B18145400CC1C95 /* GenderViewController.m */; };
+		87CAD56D1BC8FC9A007C5F8B /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87CAD56C1BC8FC9A007C5F8B /* WXUtil.mm */; settings = {ASSET_TAGS = (); }; };
 		87CE0C371BB1449E000D15C4 /* OrderPayTypeSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */; settings = {ASSET_TAGS = (); }; };
 		87D969B41B0DF59D0063F02B /* AvatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D969B31B0DF59D0063F02B /* AvatorDetailViewController.m */; };
 		87DBE1E91AFAFF0000AFB7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DBE1E81AFAFF0000AFB7BF /* main.m */; };
@@ -318,6 +319,8 @@
 		87B400E21B17FAF500CC1C95 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		87B400E41B18145400CC1C95 /* GenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderViewController.h; sourceTree = "<group>"; };
 		87B400E51B18145400CC1C95 /* GenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderViewController.m; sourceTree = "<group>"; };
+		87CAD56B1BC8FC9A007C5F8B /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		87CAD56C1BC8FC9A007C5F8B /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		87CE0C351BB1449E000D15C4 /* OrderPayTypeSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPayTypeSelectionController.h; sourceTree = "<group>"; };
 		87CE0C361BB1449E000D15C4 /* OrderPayTypeSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPayTypeSelectionController.m; sourceTree = "<group>"; };
 		87D969B21B0DF59D0063F02B /* AvatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatorDetailViewController.h; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 		8750BF021BB4E59100773DF7 /* SDKExport */ = {
 			isa = PBXGroup;
 			children = (
+				87CAD56B1BC8FC9A007C5F8B /* WXUtil.h */,
+				87CAD56C1BC8FC9A007C5F8B /* WXUtil.mm */,
 				8750BF031BB4E59100773DF7 /* libWeChatSDK.a */,
 				8750BF041BB4E59100773DF7 /* read_me.txt */,
 				8750BF051BB4E59100773DF7 /* WXApi.h */,
@@ -1123,6 +1128,7 @@
 				878EE4131B0EDE3D002E6B4E /* InstallHistoryViewController.m in Sources */,
 				8778706A1B56536E0046650C /* MyOrderViewController.m in Sources */,
 				87CE0C371BB1449E000D15C4 /* OrderPayTypeSelectionController.m in Sources */,
+				87CAD56D1BC8FC9A007C5F8B /* WXUtil.mm in Sources */,
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				872A61AD1B5B519900D62439 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */,

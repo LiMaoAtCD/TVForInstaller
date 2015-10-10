@@ -19,7 +19,9 @@
 
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
-@interface AppDelegate ()
+#import "WXApi.h"
+
+@interface AppDelegate ()<WXApiDelegate>
 
 
 @property (nonatomic, strong) BMKMapManager *mapManager;
@@ -39,6 +41,7 @@
     [self configureBaiduMapSetting];
     [self configureSVProgressHUDAppearance];
     [self checkNetworkEnvironment];
+    [self configureWeChat];
     
     [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
 
@@ -81,6 +84,12 @@
 
 
 }
+
+-(void)configureWeChat{
+    [WXApi registerApp:@"wxd5cf5a03a579d6cb" withDescription:@"demo 2.0"];
+}
+
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -174,6 +183,53 @@
     
     [manager startMonitoring];
 }
+
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(void)onResp:(BaseResp *)resp{
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle;
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                strMsg = @"支付结果：成功！";
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                
+                
+                
+                
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"checkWXPayIsSuccessed" object:nil];
+       
+            }
+                break;
+            default:
+            {
+                strMsg = @"支付结果：失败！";//[NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+                break;
+        }
+    }
+}
+
 
 
 
