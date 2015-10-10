@@ -28,7 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ComminUtility configureTitle:self.infoDictionary[@"orderDate"] forViewController:self];
+    if (!self.isTodayOrder) {
+        [ComminUtility configureTitle:self.infoDictionary[@"orderDate"] forViewController:self];
+
+    } else{
+        [ComminUtility configureTitle:@"今日订单" forViewController:self];
+
+    }
     
     
     [SVProgressHUD show];
@@ -137,6 +143,7 @@
         cell.costLabel.text = self.dataSource[indexPath.row][@"totalFee"];
     }
     
+    cell.orderIDLabel.text = self.dataSource[indexPath.row][@"id"];
     
     
     return cell;

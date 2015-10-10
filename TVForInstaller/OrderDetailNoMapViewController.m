@@ -128,6 +128,8 @@
         
         //订单时间
         
+        self.NoLabel.text = self.order[@"id"];
+        
         self.dateLabel.text = self.order[@"orderTime"];
         
         self.nameLabel.text = self.order[@"name"];

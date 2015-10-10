@@ -689,29 +689,30 @@
     }];
 }
 
-+(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
-    
-    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-
-    dic[@"orderId"] = orderId;
-    dic[@"deviceTag"] = deviceTag;
-    dic[@"totalFee"] = totalFee;
-
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getWxPayQRcode.do?";
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        fail(operation,error);
-    }];
-
-}
+//+(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+//    
+//    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+//
+//    dic[@"orderId"] = orderId;
+//    dic[@"deviceTag"] = deviceTag;
+//    dic[@"totalFee"] = totalFee;
+//    
+//
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getWxPayQRcode.do?";
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    
+//    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        fail(operation,error);
+//    }];
+//
+//}
 +(void)scanQRCodeWeXin:(NSString *)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
     NSMutableDictionary *dic =[NSMutableDictionary dictionary];
     
     dic[@"wxPayOrderId"] = orderId;
-  
+    dic[@"payModel"] = @1;
     
     NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/scanCodePay.do?";
     

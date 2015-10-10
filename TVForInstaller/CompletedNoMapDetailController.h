@@ -11,5 +11,6 @@
 @interface CompletedNoMapDetailController : UITableViewController
 
 @property (nonatomic, strong) NSDictionary * infoDictionary;
+@property (nonatomic, assign) BOOL isTodayOrder;
 
 @end

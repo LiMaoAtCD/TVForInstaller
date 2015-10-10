@@ -520,7 +520,7 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param completionHandler
  *  @param fail
  */
-+(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+//+(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 /**
  *        扫码支付(微信2)

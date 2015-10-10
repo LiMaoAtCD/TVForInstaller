@@ -35,7 +35,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [ComminUtility configureTitle:@"已完成订单" forViewController:self];
+    [ComminUtility configureTitle:@"我的订单" forViewController:self];
     
     
     
@@ -167,7 +167,7 @@
     NSString *todayString = [formatter stringFromDate:today];
     
     if ([todayString isEqualToString: self.dataSource[indexPath.row][@"orderDate"] ]) {
-        cell.timeLabel.text = @"今天";
+        cell.timeLabel.text = @"今日订单";
     } else{
         cell.timeLabel.text = self.dataSource[indexPath.row][@"orderDate"];
 
@@ -205,6 +205,19 @@
     detailVC.infoDictionary = self.dataSource[indexPath.row];
     
     
+    
+    NSDate *today = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *todayString = [formatter stringFromDate:today];
+    
+    if ([todayString isEqualToString: self.dataSource[indexPath.row][@"orderDate"] ]) {
+        detailVC.isTodayOrder = YES;
+    }
+
     [self.navigationController showViewController:detailVC sender:self];
 }
 
