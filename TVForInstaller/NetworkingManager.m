@@ -12,10 +12,7 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-//#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
+
 
 
 #define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
@@ -23,17 +20,6 @@
 #define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
 #define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
 
-//#define kServer @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://wx.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
-////
-//////#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
-//#define kServer4 @"http://wx.scui.com.cn/zhiKey/"
-
-//#define kServer  @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
 
@@ -599,7 +585,7 @@
 
 +(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
 
-    NSString *url = [NSString stringWithFormat:@"http://tvkf.zhikey.com.cn/tvkf/orderController/getTodayOrders.do?engineerId=%@",[AccountManager getTokenID]];
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getTodayOrders.do?engineerId=%@",kServer4,[AccountManager getTokenID]];
 //    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -612,7 +598,7 @@
 
 +(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
     
-    NSString *url = [NSString stringWithFormat:@"http://tvkf.zhikey.com.cn/tvkf/orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",deviceNumber,orderID];
+    NSString *url = [NSString stringWithFormat:@"%@orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",kServer4,deviceNumber,orderID];
 //    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=xxxxxxxxxx&orderId=8a8080f44fbb42b7014fc1094cc20097";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -630,7 +616,9 @@
     dic[@"pageNum"] = @(pageNumber);
     dic[@"engineerId"] = [AccountManager getTokenID];
 //    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getFinishedOrders.do?";
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getFinishedOrders.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getFinishedOrders.do?",kServer4];
+    
     
 //    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?pageNum=1&engineerId=8a8080be4f86ecd0014f879860b4001c";
     
@@ -649,8 +637,9 @@
     dic[@"date"] = date;
         dic[@"engineerId"] = [AccountManager getTokenID];
 //    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getDetailOfFinishedOrders.do?";
-    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getDetailOfFinishedOrders.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getDetailOfFinishedOrders.do?",kServer4];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -663,7 +652,9 @@
     NSMutableDictionary *dic =[NSMutableDictionary dictionary];
     
     dic[@"orderId"] = orderID;
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/sendCmdMsgToTvkeyUser.do?";
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/sendCmdMsgToTvkeyUser.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/sendCmdMsgToTvkeyUser.do?",kServer4];
+
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -679,8 +670,9 @@
     dic[@"orderId"] = orderId;
     //    dic[@"engineerId"] = [AccountManager getTokenID];
     dic[@"fee"] = fee;
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/updateOrderFeeById.do?";
-    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/updateOrderFeeById.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/updateOrderFeeById.do?",kServer4];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -714,8 +706,9 @@
     dic[@"wxPayOrderId"] = orderId;
     dic[@"payModel"] = @1;
     
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/scanCodePay.do?";
-    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/scanCodePay.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/scanCodePay.do?",kServer4];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -730,8 +723,9 @@
     dic[@"wxPayOrderId"] = wxPayOrderId;
     dic[@"payModel"] = @2;
     
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/unifiedorder.do?";
-    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/unifiedorder.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/unifiedorder.do?",kServer4];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -745,8 +739,9 @@
     
     dic[@"orderId"] = orderId;
     
-    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/checkOrderHasPayed.do?";
-    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/checkOrderHasPayed.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/checkOrderHasPayed.do?",kServer4];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
