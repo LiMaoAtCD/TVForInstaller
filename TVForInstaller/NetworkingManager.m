@@ -15,13 +15,18 @@
 
 
 
-#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
+
+#define kServer @"http://wx.scui.com.cn/tvkf/commonEngController/register.do"
 #define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
 #define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
 #define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
 
 
-
+static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngController";
 
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
@@ -35,36 +40,19 @@
 
 +(void)focusNetWorkError{
     
-//    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-//    
-//    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
-//    hud.indicatorView = nil;
-//    
-//    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
-//        [hud dismiss];
-//    };
-//    
-//    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
-//        [hud dismiss];
-//    };
-
-//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-//    [hud showInView:delegate.window];
-//    [hud dismissAfterDelay:2.0];
-    
     [SVProgressHUD showErrorWithStatus:@"网络出错啦"];
     
 }
 
 +(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler FailHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"phone":account,@"password":password} bv_jsonStringWithPrettyPrint:YES];
-   
+    NSString *url = [NSString stringWithFormat:@"%@/login.do",server_prefix];
+    NSDictionary *param = @{@"phone":account,@"password":password};
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"20",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -72,13 +60,13 @@
 
 
 +(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode name:(NSString *)name withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    
-    NSString * param = [@{@"phone":phone,@"password":password,@"invitecode":inviteCode,@"idcard":chinaID,@"code":verifyCode,@"name":name} bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@/register.do",server_prefix];
+    NSDictionary *param = @{@"phone":phone,@"password":password,@"invitecode":inviteCode,@"idcard":chinaID,@"code":verifyCode,@"name":name};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"10",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -88,12 +76,13 @@
 
 +(void)fetchRegisterVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"phone":cellphoneNumber} bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@/getCodeFoRegister.do",server_prefix];
+    NSDictionary *param = @{@"phone":cellphoneNumber};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"11",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
