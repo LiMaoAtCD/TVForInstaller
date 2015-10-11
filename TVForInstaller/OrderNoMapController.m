@@ -51,6 +51,8 @@
     _manager.desiredAccuracy = kCLLocationAccuracyBest;
     
     
+    
+    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
@@ -81,7 +83,15 @@
         [_manager startUpdatingLocation];
         
     } else{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"如需开启位置导航，请在设置-隐私开启地理位置访问" preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [alertController addAction:action];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 
 

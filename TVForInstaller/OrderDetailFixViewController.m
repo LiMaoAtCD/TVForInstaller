@@ -17,6 +17,8 @@
 
 @interface OrderDetailFixViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UIView *backGroundView;
 
 /**
@@ -80,6 +82,8 @@
     [self configThirdModuleView];
     [self configFourthModuleView];
     [self configFivethModuleView];
+
+    [self registerForKeyboardNotifications];
 
 }
 
@@ -157,30 +161,36 @@
         
         NSArray *arr = [orderInfo componentsSeparatedByString:@" "];
         
-        NSLog(@"%@",arr);
         
         if (arr.count > 0) {
             
+            
+            
             [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (idx != 0 && idx < 7) {
+                if (idx != 0) {
                     
                     NSString *info = obj;
-                    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    btn.userInteractionEnabled = NO;
-                    [btn setAttributedTitle:[[NSAttributedString alloc]initWithString:info attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}] forState:UIControlStateNormal];
-                    [btn setBackgroundImage:[UIImage imageNamed:@"ui08_rectangle"] forState:UIControlStateNormal];
-                    [self.reasonView addSubview:btn];
                     
-                    NSInteger index = (idx - 1) % 3;
-                    CGFloat leftConstraint = margin_Horizontal + index * (margin_Horizontal + tagWidth);
-                    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    if (![info isEqualToString:@""]) {
+                        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                        btn.userInteractionEnabled = NO;
+                        [btn setAttributedTitle:[[NSAttributedString alloc]initWithString:info attributes:@{NSForegroundColorAttributeName: [UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:12.0]}] forState:UIControlStateNormal];
+                        [btn setBackgroundImage:[UIImage imageNamed:@"ui08_rectangle"] forState:UIControlStateNormal];
+                        [self.reasonView addSubview:btn];
                         
-                        make.top.equalTo(self.reasonView.mas_topMargin).offset(tagHeight + idx/4 * (tagHeight + margin_Vertical));
-                        make.left.equalTo(self.reasonView.mas_left).offset(leftConstraint);
-                        make.width.equalTo(@(tagWidth));
-                        make.height.equalTo(@(tagHeight));
+                        
+                        NSInteger index = (idx - 1) % 3;
+                        CGFloat leftConstraint = margin_Horizontal + index * (margin_Horizontal + tagWidth);
+                        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                            
+                            make.top.equalTo(self.reasonView.mas_topMargin).offset(tagHeight + idx/4 * (tagHeight + margin_Vertical));
+                            make.left.equalTo(self.reasonView.mas_left).offset(leftConstraint);
+                            make.width.greaterThanOrEqualTo(@(tagWidth));
+                            make.height.equalTo(@(tagHeight));
+                            
+                        }];
 
-                    }];
+                    }
                     
                     
                 }
@@ -404,6 +414,50 @@ typedef void(^alertBlock)(void);
     
     [self presentViewController:controller animated:YES completion:nil];
 }
+
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWillShown:(NSNotification*)aNotification
+{
+    
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, self.costTextField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:self.costTextField.frame animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    //    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64, 0, 0, 0);
+    
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShown:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
 
 
 

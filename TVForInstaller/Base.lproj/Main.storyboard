@@ -2421,6 +2421,7 @@
                         <outlet property="navigateButton" destination="gc5-OI-BRq" id="T2E-fS-I2A"/>
                         <outlet property="phoneCallButton" destination="HMX-Cx-dG0" id="3tD-13-DJu"/>
                         <outlet property="reasonView" destination="YsY-6d-a4w" id="Krs-xh-Ljf"/>
+                        <outlet property="scrollView" destination="3dc-AL-ODY" id="HV8-YL-swb"/>
                         <outlet property="submitButton" destination="26E-2J-ttw" id="BrI-sh-2Vn"/>
                         <outlet property="totalCostLabel" destination="4mY-nV-pE5" id="uQj-64-CWb"/>
                         <outlet property="typeImageView" destination="fEB-l9-Ix9" id="xHd-XR-aBf"/>
