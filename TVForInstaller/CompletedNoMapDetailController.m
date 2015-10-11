@@ -131,8 +131,17 @@
         cell.payTypeLabel.text = @"等待支付";
 
     } else if ([self.dataSource[indexPath.row][@"orderState"] integerValue] == 3) {
-        cell.payTypeLabel.text = @"已支付";
+        
+        if ([self.dataSource[indexPath.row][@"payModel"] integerValue] == 0) {
+            cell.payTypeLabel.text = @"手机支付成功";
 
+        } else if ([self.dataSource[indexPath.row][@"payModel"] integerValue] == 1) {
+            cell.payTypeLabel.text = @"扫描支付成功";
+            
+        } else{
+            cell.payTypeLabel.text = @"现金支付成功";
+
+        }
         cell.yuanLabel.textColor = [UIColor blackColor];
         cell.payTypeLabel.textColor = [UIColor blackColor];
         cell.costLabel.textColor = [UIColor blackColor];

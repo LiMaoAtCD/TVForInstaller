@@ -37,6 +37,7 @@
     [ComminUtility configureTitle:@"订单支付" forViewController:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:@"checkWXPayIsSuccessed" object:nil];
+
     self.type = NONE;
 
 }
@@ -178,6 +179,7 @@
                         req.sign                = [paydemoDic objectForKey:@"sign"];
                         
                         [WXApi sendReq:req];
+                        
                     }
                 }
             }
@@ -267,16 +269,19 @@
         NSInteger data = [responseObject[@"data"] integerValue];
         if (data > 0) {
             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            });
+           
         } else {
-            [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+            [SVProgressHUD showErrorWithStatus:@"支付失败"];
         }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        });
     } failedHander:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"网络出错"];
     }];
 }
+
 
 
 
