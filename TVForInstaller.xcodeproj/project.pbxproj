@@ -101,6 +101,8 @@
 		879C61C61BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C51BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m */; settings = {ASSET_TAGS = (); }; };
 		879C61C91BB0041300ACFEE8 /* OrderDetailNoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */; settings = {ASSET_TAGS = (); }; };
 		87A0AB681BCA213A00A324D1 /* OrderDetailFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */; settings = {ASSET_TAGS = (); }; };
+		87A0ABB91BCA68E300A324D1 /* FixedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0ABB71BCA68E300A324D1 /* FixedCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		87A0ABBA1BCA68E300A324D1 /* FixedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A0ABB81BCA68E300A324D1 /* FixedCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C31B16C14400CC1C95 /* DLNAManager.mm */; };
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
@@ -311,6 +313,9 @@
 		879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailNoMapViewController.m; sourceTree = "<group>"; };
 		87A0AB661BCA213A00A324D1 /* OrderDetailFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailFixViewController.h; sourceTree = "<group>"; };
 		87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailFixViewController.m; sourceTree = "<group>"; };
+		87A0ABB61BCA68E300A324D1 /* FixedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedCollectionViewCell.h; sourceTree = "<group>"; };
+		87A0ABB71BCA68E300A324D1 /* FixedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedCollectionViewCell.m; sourceTree = "<group>"; };
+		87A0ABB81BCA68E300A324D1 /* FixedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixedCollectionViewCell.xib; sourceTree = "<group>"; };
 		87B400C21B16C14400CC1C95 /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
 		87B400C31B16C14400CC1C95 /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		87B400C41B16C14400CC1C95 /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
@@ -711,6 +716,9 @@
 				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
 				87A0AB661BCA213A00A324D1 /* OrderDetailFixViewController.h */,
 				87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */,
+				87A0ABB61BCA68E300A324D1 /* FixedCollectionViewCell.h */,
+				87A0ABB71BCA68E300A324D1 /* FixedCollectionViewCell.m */,
+				87A0ABB81BCA68E300A324D1 /* FixedCollectionViewCell.xib */,
 				877D047D1BB3E08B00CF90EA /* OrderTypesViewController.h */,
 				877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */,
 				874F8EE71BB8DF7B00837BB4 /* OrderTypeNoScanViewController.h */,
@@ -999,6 +1007,7 @@
 				872A61BA1B5B519900D62439 /* updatelog.txt in Resources */,
 				87EA3AAF1B0A11AF004AB8F7 /* Login.storyboard in Resources */,
 				877870531B563F640046650C /* mapapi.bundle in Resources */,
+				87A0ABBA1BCA68E300A324D1 /* FixedCollectionViewCell.xib in Resources */,
 				87DBE1F21AFAFF0000AFB7BF /* Main.storyboard in Resources */,
 				877AAB321B8432C700A3326F /* qr_scan_line@2x.png in Resources */,
 				87DBE1F71AFAFF0000AFB7BF /* LaunchScreen.xib in Resources */,
@@ -1109,6 +1118,7 @@
 				87EA3AAA1B0A10AE004AB8F7 /* LoginViewController.m in Sources */,
 				87EA3AB21B0AC8A9004AB8F7 /* RootTabController.m in Sources */,
 				87493ED21B57465500E9F840 /* CustomPointAnnotation.m in Sources */,
+				87A0ABB91BCA68E300A324D1 /* FixedCollectionViewCell.m in Sources */,
 				872A61B61B5B519900D62439 /* CJSONScanner.m in Sources */,
 				871973D71B0EC54300D6CF36 /* GradeViewController.m in Sources */,
 				8736FDEB1B0D808900E3685C /* ModifyPasswordViewController.m in Sources */,

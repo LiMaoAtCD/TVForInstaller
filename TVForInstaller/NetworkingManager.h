@@ -342,15 +342,6 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param failHandler
  */
 +(void)GetTheOrderByID:(NSString *)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-/**
- *  取消订单
- *
- *  @param ID                uid
- *  @param completionHandler
- *  @param failHandler
- */
-+(void)CancelOrderByID:(NSString*)ID  WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-
 
 
 

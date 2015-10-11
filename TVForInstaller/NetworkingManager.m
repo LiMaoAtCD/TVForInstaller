@@ -15,18 +15,10 @@
 
 
 
-#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
-#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-#define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
+#define kServer1 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+#define kServer4 @"http://wx.tvkey.com.cn/tvkf/"
 
-//#define kServer @"http://blog.scui.com.cn/zhiKey/softController.do?enterService"
-//#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
-
-
-static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngController";
+static NSString *server_prefix = @"http://wx.tvkey.com.cn/tvkf/commonEngController";
 
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
@@ -154,7 +146,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"33",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"33",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -196,7 +188,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -209,7 +201,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"42",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"42",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -221,7 +213,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"43",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"43",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -235,7 +227,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"44",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"44",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -277,7 +269,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"60",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"60",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -453,7 +445,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     dic[@"totalfee"] = totalFee;
 
     
-    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+//    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/wxPay.do?",kServer4];
 
     [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {

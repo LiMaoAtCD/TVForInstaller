@@ -14,8 +14,8 @@
 #import "OrderTypesViewController.h"
 #import "OrderTypeNoScanViewController.h"
 #import <Masonry.h>
-
-@interface OrderDetailFixViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate>
+#import "FixedCollectionViewCell.h"
+@interface OrderDetailFixViewController ()<BNNaviUIManagerDelegate,BNNaviRoutePlanDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -50,6 +50,9 @@
  *  第三个模块
  */
 @property (weak, nonatomic) IBOutlet UIView *reasonView;
+@property (weak, nonatomic) IBOutlet UICollectionView *reasonsCollectionView;
+
+@property (nonatomic, strong) NSMutableArray *tags;
 
 
 /**
@@ -145,8 +148,31 @@
         }
     }
 }
-
 -(void)configThirdModuleView{
+    
+    [self.reasonsCollectionView registerNib:[UINib nibWithNibName:@"FixedCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FixedCollectionViewCell"];
+    self.reasonsCollectionView.backgroundColor = [UIColor whiteColor];
+    self.reasonsCollectionView.delegate = self;
+    
+    if (self.order) {
+        
+        NSString *orderInfo = self.order[@"orderInfo"];
+        
+        NSArray *arr = [orderInfo componentsSeparatedByString:@" "];
+        
+        
+        if (arr.count > 0) {
+            self.tags = [arr mutableCopy];
+            
+            [self.tags removeObjectAtIndex:0];
+            [self.tags removeLastObject];
+            
+        }
+    
+    }
+    
+}
+-(void)configThirdModuleView1{
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat margin_Horizontal = 20.0;
@@ -457,6 +483,54 @@ typedef void(^alertBlock)(void);
                                                  name:UIKeyboardWillHideNotification object:nil];
     
 }
+
+
+
+#pragma mark - collecitonview 
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.tags.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    FixedCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FixedCollectionViewCell" forIndexPath:indexPath];
+    
+    cell.label.text = _tags[indexPath.row];
+
+    
+    cell.contentView.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.contentView.layer.borderWidth = 1.0;
+    [cell layoutIfNeeded];
+    return cell;
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSString *string = _tags[indexPath.row];
+    
+    CGRect temp = [string boundingRectWithSize:CGSizeMake(400, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18.0]} context:nil];
+    
+    
+    return CGSizeMake(temp.size.width + 20, temp.size.height+ 10);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 5.0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 15.0;
+
+}
+
+
+
+
 
 
 
