@@ -151,13 +151,13 @@
             break;
         case 1:
         {
-            cell.orderImageView.image = [UIImage imageNamed:@"ui08_service"];
+            cell.orderImageView.image = [UIImage imageNamed:@"ui08_broadband"];
         }
             break;
 
         case 2:
         {
-            cell.orderImageView.image = [UIImage imageNamed:@"ui08_tv"];
+            cell.orderImageView.image = [UIImage imageNamed:@"ui08_service"];
         }
             break;
         default:

@@ -113,12 +113,12 @@
                 break;
             case 1:
             {
-                self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+                self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
             }
                 break;
             case 2:
             {
-                self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
+                self.typeImageView.image = [UIImage imageNamed:@"ui03_service"];
             }
                 break;
                 
