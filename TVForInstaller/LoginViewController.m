@@ -149,7 +149,7 @@
     
     //TODO: 登录成功处理数据
     
-    NSDictionary *data = responseObject[@"obj"];
+    NSDictionary *data = responseObject[@"data"];
     
     if (![data[@"name"] isKindOfClass:[NSNull class]]) {
         [AccountManager setName:data[@"name"]];

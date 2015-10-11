@@ -86,7 +86,7 @@ typedef void(^alertBlock)(void);
             
 //            [hud dismiss];
             
-            NSArray *temp = responseObject[@"obj"];
+            NSArray *temp = responseObject[@"data"];
             [self dealResponseData:temp];
 
             

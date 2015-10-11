@@ -427,7 +427,7 @@ typedef void(^alertBlock)(void);
                 [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
-                    NSDictionary *data = responseObject[@"obj"];
+                    NSDictionary *data = responseObject[@"data"];
                     
                     [self dealRegister:data];
                 });

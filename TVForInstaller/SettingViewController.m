@@ -297,7 +297,8 @@
                 
             } else {
                 //token获取成功
-                NSString *token = responseObject[@"obj"];
+                NSDictionary *data =responseObject[@"data"];
+                NSString *token = data[@"token"];
                 
                 //七牛初始化
                 QNUploadManager *upManager = [[QNUploadManager alloc] init];
@@ -313,6 +314,8 @@
                 
                 NSString *key = [formatter stringFromDate:date];
                 
+                key = [key stringByAppendingString:[AccountManager getTokenID]];
+                
                 //上传七牛
                 [upManager putData:imageData key:key token:token complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                     
@@ -323,8 +326,8 @@
                     if ([resp[@"success"] integerValue] == 1) {
                         
                         [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
-                        NSURL *url =[NSURL URLWithString:resp[@"obj"]];
-                        [AccountManager setAvatarUrlString:resp[@"obj"]];
+                        NSURL *url =[NSURL URLWithString:resp[@"data"][@"headImg"]];
+                        [AccountManager setAvatarUrlString:resp[@"data"][@"headImg"]];
                         [self.avatarImageView sd_setImageWithURL:url placeholderImage:tempImage];
                     
                     } else{
@@ -354,7 +357,11 @@
         } else{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSString *code = responseObject[@"obj"];
+                
+                NSDictionary *temp = responseObject[@"data"];
+                NSString *code = temp[@"inviteCode"];
+                
+                
                 [SVProgressHUD dismiss];
 
                 [self showInviteCode:code];
