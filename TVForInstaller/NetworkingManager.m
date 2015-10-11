@@ -15,15 +15,15 @@
 
 
 
-//#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
-
-#define kServer @"http://wx.scui.com.cn/tvkf/commonEngController/register.do"
+#define kServer @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
 #define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
 #define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
 #define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
+
+//#define kServer @"http://blog.scui.com.cn/zhiKey/softController.do?enterService"
+//#define kServer2 @"http://blog.scui.com.cn/zhiKey/softController.do?getSoftService"
+//#define kServer3 @"http://blog.scui.com.cn/zhiKey/appengController.do?enterService"
+//#define kServer4 @"http://tvkf.zhikey.com.cn/tvkf/"
 
 
 static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngController";
@@ -244,16 +244,29 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
 
 +(void)modifyInfowithGender:(NSInteger)gender name:(NSString *)name address:(NSString *)address withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"gender":@(gender),@"name":name,@"address":address,@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    
+    if (gender) {
+        parameter[@"gender"] = @(gender);
+    }
+    if (name) {
+        parameter[@"name"] = name;
+    }
+    if (gender) {
+        parameter[@"address"] = address;
+    }
+    parameter[@"userId"]  = [AccountManager getTokenID];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/updateInfo.do",server_prefix];
+//    NSDictionary *param = @{@"gender":@(gender),@"name":name,@"address":address,@"id":[AccountManager getTokenID]};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"30",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:parameter success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
-
 }
 
 
@@ -689,25 +702,7 @@ static NSString *server_prefix = @"http://wx.scui.com.cn/tvkf/commonEngControlle
     }];
 }
 
-//+(void)ScanQRCodeByOrderId:(NSString*)orderId deviceTag:(NSString *)deviceTag totalFee:(NSString *)totalFee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
-//    
-//    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
-//
-//    dic[@"orderId"] = orderId;
-//    dic[@"deviceTag"] = deviceTag;
-//    dic[@"totalFee"] = totalFee;
-//    
-//
-//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getWxPayQRcode.do?";
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    
-//    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        fail(operation,error);
-//    }];
-//
-//}
+
 +(void)scanQRCodeWeXin:(NSString *)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
     NSMutableDictionary *dic =[NSMutableDictionary dictionary];
     
