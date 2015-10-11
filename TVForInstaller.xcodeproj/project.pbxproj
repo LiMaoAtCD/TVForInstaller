@@ -100,6 +100,7 @@
 		879C61C31BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C21BAFD8E400ACFEE8 /* CompletedNoMapDetailCell.m */; settings = {ASSET_TAGS = (); }; };
 		879C61C61BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C51BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m */; settings = {ASSET_TAGS = (); }; };
 		879C61C91BB0041300ACFEE8 /* OrderDetailNoMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */; settings = {ASSET_TAGS = (); }; };
+		87A0AB681BCA213A00A324D1 /* OrderDetailFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */; settings = {ASSET_TAGS = (); }; };
 		87B400C71B16C14400CC1C95 /* DLNAManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C31B16C14400CC1C95 /* DLNAManager.mm */; };
 		87B400C81B16C14400CC1C95 /* Platinum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B400C41B16C14400CC1C95 /* Platinum.framework */; };
 		87B400C91B16C14400CC1C95 /* PltMicroMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87B400C61B16C14400CC1C95 /* PltMicroMediaController.mm */; };
@@ -308,6 +309,8 @@
 		879C61C51BAFD8FA00ACFEE8 /* CompletedNoMapDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedNoMapDetailController.m; sourceTree = "<group>"; };
 		879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailNoMapViewController.h; sourceTree = "<group>"; };
 		879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailNoMapViewController.m; sourceTree = "<group>"; };
+		87A0AB661BCA213A00A324D1 /* OrderDetailFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailFixViewController.h; sourceTree = "<group>"; };
+		87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailFixViewController.m; sourceTree = "<group>"; };
 		87B400C21B16C14400CC1C95 /* DLNAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNAManager.h; sourceTree = "<group>"; };
 		87B400C31B16C14400CC1C95 /* DLNAManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DLNAManager.mm; sourceTree = "<group>"; };
 		87B400C41B16C14400CC1C95 /* Platinum.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Platinum.framework; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 				879C61B81BAFAA7300ACFEE8 /* OrderNoMapCell.m */,
 				879C61C71BB0041300ACFEE8 /* OrderDetailNoMapViewController.h */,
 				879C61C81BB0041300ACFEE8 /* OrderDetailNoMapViewController.m */,
+				87A0AB661BCA213A00A324D1 /* OrderDetailFixViewController.h */,
+				87A0AB671BCA213A00A324D1 /* OrderDetailFixViewController.m */,
 				877D047D1BB3E08B00CF90EA /* OrderTypesViewController.h */,
 				877D047E1BB3E08B00CF90EA /* OrderTypesViewController.m */,
 				874F8EE71BB8DF7B00837BB4 /* OrderTypeNoScanViewController.h */,
@@ -1132,6 +1137,7 @@
 				87EA3AAD1B0A11A1004AB8F7 /* LoginNavigationController.m in Sources */,
 				872A61AD1B5B519900D62439 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				8774042B1B5E31810055D2D6 /* QRCodeViewController.m in Sources */,
+				87A0AB681BCA213A00A324D1 /* OrderDetailFixViewController.m in Sources */,
 				8785E9051B0ADB90003F4415 /* ComminUtility.m in Sources */,
 				872A61B81B5B519900D62439 /* CSerializedJSONData.m in Sources */,
 			);

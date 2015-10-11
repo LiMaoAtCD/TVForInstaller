@@ -10,6 +10,7 @@
 #import "ComminUtility.h"
 #import "OrderNoMapCell.h"
 #import "OrderDetailNoMapViewController.h"
+#import "OrderDetailFixViewController.h"
 #import "NetworkingManager.h"
 #import <MJRefresh.h>
 
@@ -174,14 +175,37 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
     
-    detail.originPostion = self.currentPostion;
-    detail.order = self.dataSource[indexPath.row];
-    detail.hidesBottomBarWhenPushed = YES;
+    if ([self.dataSource[indexPath.row][@"orderType"] integerValue] == 2) {
+            //维修
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        OrderDetailFixViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailFixViewController"];
+        
+        detail.originPostion = self.currentPostion;
+        detail.order = self.dataSource[indexPath.row];
+        detail.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:detail animated:YES];
+    } else{
+        //安装
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
+        
+        detail.originPostion = self.currentPostion;
+        detail.order = self.dataSource[indexPath.row];
+        detail.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:detail animated:YES];
+    }
     
-    [self.navigationController pushViewController:detail animated:YES];
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    OrderDetailNoMapViewController *detail = [sb instantiateViewControllerWithIdentifier:@"OrderDetailNoMapViewController"];
+//    
+//    detail.originPostion = self.currentPostion;
+//    detail.order = self.dataSource[indexPath.row];
+//    detail.hidesBottomBarWhenPushed = YES;
+//    
+//    [self.navigationController pushViewController:detail animated:YES];
 
 }
 
