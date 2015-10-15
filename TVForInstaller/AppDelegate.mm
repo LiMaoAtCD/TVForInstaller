@@ -36,7 +36,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    //test
     [self configureTabBarAppearance];
     [self configureBaiduMapSetting];
     [self configureSVProgressHUDAppearance];
