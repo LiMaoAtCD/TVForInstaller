@@ -14,7 +14,6 @@
 
 #import <SVProgressHUD.h>
 
-#import "OngoingOrder.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -133,9 +132,9 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                     [self dealLoginMessages:(NSDictionary*)responseObject];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 });
-                
-
             }
             
         } FailHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -150,8 +149,7 @@
     
     //TODO: 登录成功处理数据
     
-    NSDictionary *data = responseObject[@"obj"];
-    NSLog(@"返回的数据: %@",data);
+    NSDictionary *data = responseObject[@"data"];
     
     if (![data[@"name"] isKindOfClass:[NSNull class]]) {
         [AccountManager setName:data[@"name"]];
@@ -187,44 +185,8 @@
     
     [AccountManager setPassword:self.password];
     [AccountManager setLogin:YES];
-    
-    [self fetchOngoingOrder];
-    
-   
 }
 
-
--(void)fetchOngoingOrder{
-    //检查是否是登录状态,没有登录就不检查是否有正在执行订单
-    if ([AccountManager isLogin]) {
-        
-        [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject[@"status"] integerValue] == 0) {
-                
-                NSArray *pois =responseObject[@"pois"];
-                //如果获取到有正在执行的订单
-                if (!pois  && pois.count > 0) {
-                    NSMutableDictionary *temp = [pois[0] mutableCopy];
-                    if (temp[@"id"]) {
-                        temp[@"uid"] = temp[@"id"];
-                    }
-                    //添加执行中的订单
-                    
-                    [OngoingOrder setOrder:temp];
-                    [OngoingOrder setExistOngoingOrder:YES];
-                }else {
-                }
-                
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccess" object:nil];
-            }
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
-    }
-    
-    
-}
 
 -(BOOL)checkTextFieldCompletion{
     

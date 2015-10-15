@@ -12,28 +12,13 @@
 #import "AppDelegate.h"
 #import "AccountManager.h"
 
-//#define kServer @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-//#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
 
 
-////#define kServer @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-////#define kServer2 @"http://10.0.0.62:8080/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://10.0.0.62:8080/zhiKey/appengController.do?enterService"
-//
-//#define kServer @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
-//#define kServer2 @"http://wx.scui.com.cn/zhiKey/softController.do?getSoftService"
-//#define kServer3 @"http://wx.scui.com.cn/zhiKey/appengController.do?enterService"
-////
-//////#define kServer4 @"http://10.0.0.62:8080/zhiKey/"
-//#define kServer4 @"http://wx.scui.com.cn/zhiKey/"
 
-#define kServer  @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer2 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/softController.do?getSoftService"
-#define kServer3 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
-#define kServer4 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/"
+#define kServer1 @"http://zqzh1.chinacloudapp.cn:8080/zhiKey/appengController.do?enterService"
+#define kServer4 @"http://wx.tvkey.com.cn/tvkf/"
 
+static NSString *server_prefix = @"http://wx.tvkey.com.cn/tvkf/commonEngController";
 
 
 #define kBaiduAK @"ASFFfRDOzCBZ4kqSLwOmsCvh"
@@ -47,36 +32,19 @@
 
 +(void)focusNetWorkError{
     
-//    JGProgressHUD *hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-//    
-//    hud.textLabel.text = @"无法连接服务器,请检查网络连接";
-//    hud.indicatorView = nil;
-//    
-//    hud.tapOutsideBlock = ^(JGProgressHUD *hud){
-//        [hud dismiss];
-//    };
-//    
-//    hud.tapOnHUDViewBlock = ^(JGProgressHUD *hud){
-//        [hud dismiss];
-//    };
-
-//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-//    [hud showInView:delegate.window];
-//    [hud dismissAfterDelay:2.0];
-    
     [SVProgressHUD showErrorWithStatus:@"网络出错啦"];
     
 }
 
 +(void)login:(NSString*)account withPassword:(NSString *)password withCompletionHandler:(NetWorkHandler)completionHandler FailHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"phone":account,@"password":password} bv_jsonStringWithPrettyPrint:YES];
-   
+    NSString *url = [NSString stringWithFormat:@"%@/login.do",server_prefix];
+    NSDictionary *param = @{@"phone":account,@"password":password};
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"20",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -84,13 +52,13 @@
 
 
 +(void)registerCellphone:(NSString*)phone password:(NSString*)password inviteCode:(NSString*)inviteCode chinaID:(NSString*)chinaID verifyCode:(NSString*)verifyCode name:(NSString *)name withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    
-    NSString * param = [@{@"phone":phone,@"password":password,@"invitecode":inviteCode,@"idcard":chinaID,@"code":verifyCode,@"name":name} bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@/register.do",server_prefix];
+    NSDictionary *param = @{@"phone":phone,@"password":password,@"invitecode":inviteCode,@"idcard":chinaID,@"code":verifyCode,@"name":name};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"10",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -100,64 +68,76 @@
 
 +(void)fetchRegisterVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"phone":cellphoneNumber} bv_jsonStringWithPrettyPrint:YES];
+    NSString *url = [NSString stringWithFormat:@"%@/getCodeFoRegister.do",server_prefix];
+    NSDictionary *param = @{@"phone":cellphoneNumber};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"11",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 }
 
 +(void)fetchForgetPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"phone":cellphoneNumber} bv_jsonStringWithPrettyPrint:YES];
+ 
+    NSString *url = [NSString stringWithFormat:@"%@/getCodeForReSetPassword.do",server_prefix];
+    NSDictionary *param = @{@"phone":cellphoneNumber};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"50",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 
+
 }
 
 +(void)fetchModifyPasswordVerifyCode:(NSString*)cellphoneNumber withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"phone":cellphoneNumber} bv_jsonStringWithPrettyPrint:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/getCodeForUpatePassword.do",server_prefix];
+    NSDictionary *param = @{@"phone":cellphoneNumber};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"51",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 
 }
 +(void)ModifyPasswordwithNewPassword:(NSString*)password verifyCode:(NSString*)code withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"newpassword":password,@"id":[AccountManager getTokenID],@"code":code} bv_jsonStringWithPrettyPrint:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/updatePassword.do",server_prefix];
+    NSDictionary *param = @{@"newpassword":password,@"userId":[AccountManager getTokenID],@"code":code};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"32",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 }
 
 +(void)forgetPasswordOnCellPhone:(NSString*)cellphone password:(NSString*)password verifyCode:(NSString*)code withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"phone":cellphone,@"newpassword":password,@"code":code} bv_jsonStringWithPrettyPrint:YES];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/resetPasswordWhenForget.do",server_prefix];
+    NSDictionary *param = @{@"phone":cellphone,@"newpassword":password,@"code":code};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"31",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
+
+    
 }
 
 +(void)fetchGradeByTokenID:(NSString*)tokenID withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
@@ -166,31 +146,39 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"33",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"33",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 }
 +(void)fetchInviteByTokenID:(NSString*)tokenID withCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
-    NSString * param = [@{@"id":tokenID} bv_jsonStringWithPrettyPrint:YES];
+ 
+    
+    NSString *url = [NSString stringWithFormat:@"%@/createInviteCode.do",server_prefix];
+    NSDictionary *param = @{@"userId":tokenID};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"34",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
 }
 
 +(void)fetchApplicationwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
+ 
+    
+    NSString *url = [NSString stringWithFormat:@"%@/getSoftList.do",server_prefix];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer2 parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
+    
 }
 
 +(void)fetchOrderwithCompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
@@ -200,7 +188,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"41",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -213,7 +201,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"42",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"42",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -225,7 +213,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"43",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"43",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -239,7 +227,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"44",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"44",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -248,16 +236,29 @@
 
 +(void)modifyInfowithGender:(NSInteger)gender name:(NSString *)name address:(NSString *)address withComletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler{
     
-    NSString * param = [@{@"gender":@(gender),@"name":name,@"address":address,@"id":[AccountManager getTokenID]} bv_jsonStringWithPrettyPrint:YES];
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    
+    if (gender) {
+        parameter[@"gender"] = @(gender);
+    }
+    if (name) {
+        parameter[@"name"] = name;
+    }
+    if (gender) {
+        parameter[@"address"] = address;
+    }
+    parameter[@"userId"]  = [AccountManager getTokenID];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/updateInfo.do",server_prefix];
+//    NSDictionary *param = @{@"gender":@(gender),@"name":name,@"address":address,@"id":[AccountManager getTokenID]};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"30",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:parameter success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
-
 }
 
 
@@ -268,7 +269,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer parameters:@{@"action":@"60",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:kServer1 parameters:@{@"action":@"60",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self focusNetWorkError];
         failHandler(operation,error);
     }];
@@ -444,7 +445,7 @@
     dic[@"totalfee"] = totalFee;
 
     
-    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
+//    NSString * param = [dic bv_jsonStringWithPrettyPrint:YES];
     NSString *url = [NSString stringWithFormat:@"%@jiKeKuaiFuController/wxPay.do?",kServer4];
 
     [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -530,19 +531,19 @@
 }
 
 +(void)fetchAvatarImageTokenWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
-    NSMutableDictionary *dic =[@{} mutableCopy];
     
-    dic[@"userId"] = [AccountManager getTokenID];
-    dic[@"type"] = @7;
+    NSString *url = [NSString stringWithFormat:@"%@/getQiNiuUploadTokenForHeadImg.do",server_prefix];
+    NSMutableDictionary *param =[@{} mutableCopy];
     
-    NSString *param = [dic bv_jsonStringWithPrettyPrint:YES];
+    param[@"userId"] = [AccountManager getTokenID];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:kServer3 parameters:@{@"action":@"80",@"param":param} success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [manager POST:url parameters:param success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self focusNetWorkError];
         fail(operation,error);
     }];
-    
 }
 
 
@@ -593,6 +594,156 @@
     [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         fail(operation,error);
     }];
+}
+
++(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getTodayOrders.do?engineerId=%@",kServer4,[AccountManager getTokenID]];
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getTodayOrders.do?engineerId=8a8080be4f86ecd0014f879860b4001c";
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    
+    NSString *url = [NSString stringWithFormat:@"%@orderController/updateOrderTagById.do?deviceTag=%@&orderId=%@",kServer4,deviceNumber,orderID];
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/updateOrderTagById.do?deviceTag=xxxxxxxxxx&orderId=8a8080f44fbb42b7014fc1094cc20097";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:nil success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)FetchCompletedOrderByPageNumber:(NSInteger)pageNumber WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"pageNum"] = @(pageNumber);
+    dic[@"engineerId"] = [AccountManager getTokenID];
+//    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getFinishedOrders.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getFinishedOrders.do?",kServer4];
+    
+    
+//    NSString *url = @"http://10.0.0.62:8999/tvkf/orderController/getFinishedOrders.do?pageNum=1&engineerId=8a8080be4f86ecd0014f879860b4001c";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
+
++(void)fetchFinishedOrdersByDate:(NSString *)date WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"date"] = date;
+        dic[@"engineerId"] = [AccountManager getTokenID];
+//    dic[@"engineerId"] =  @"8a8080be4f86ecd0014f879860b4001c";
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/getDetailOfFinishedOrders.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/getDetailOfFinishedOrders.do?",kServer4];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)uploadOrderInfoToAPPByOrderID:(NSString*)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderID;
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/sendCmdMsgToTvkeyUser.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/sendCmdMsgToTvkeyUser.do?",kServer4];
+
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderId;
+    //    dic[@"engineerId"] = [AccountManager getTokenID];
+    dic[@"fee"] = fee;
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/updateOrderFeeById.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/updateOrderFeeById.do?",kServer4];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
+
++(void)scanQRCodeWeXin:(NSString *)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"wxPayOrderId"] = orderId;
+    dic[@"payModel"] = @1;
+    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/scanCodePay.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/scanCodePay.do?",kServer4];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)FetchLocalCashPay:(NSString*)wxPayOrderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"wxPayOrderId"] = wxPayOrderId;
+    dic[@"payModel"] = @2;
+    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/unifiedorder.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/unifiedorder.do?",kServer4];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+}
+
++(void)checkOrderPayedSuccessfullyByOrderID:(NSString*)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail{
+    NSMutableDictionary *dic =[NSMutableDictionary dictionary];
+    
+    dic[@"orderId"] = orderId;
+    
+//    NSString *url = @"http://tvkf.zhikey.com.cn/tvkf/orderController/checkOrderHasPayed.do?";
+    NSString *url = [NSString stringWithFormat:@"%@orderController/checkOrderHasPayed.do?",kServer4];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    [manager POST:url parameters:dic success:completionHandler failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        fail(operation,error);
+    }];
+
 }
 
 @end

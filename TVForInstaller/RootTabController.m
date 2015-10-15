@@ -13,8 +13,6 @@
 #import "ComminUtility.h"
 @interface RootTabController ()
 
-@property(nonatomic,strong) UIView * suspensionView;
-
 @end
 
 @implementation RootTabController

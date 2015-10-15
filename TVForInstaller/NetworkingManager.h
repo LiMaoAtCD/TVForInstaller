@@ -342,15 +342,6 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param failHandler
  */
 +(void)GetTheOrderByID:(NSString *)ID WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-/**
- *  取消订单
- *
- *  @param ID                uid
- *  @param completionHandler
- *  @param failHandler
- */
-+(void)CancelOrderByID:(NSString*)ID  WithcompletionHandler:(NetWorkHandler)completionHandler failHandler:(NetWorkFailHandler)failHandler;
-
 
 
 
@@ -464,5 +455,90 @@ typedef AFHTTPRequestOperation NetWorkOperation;
  *  @param fail
  */
 +(void)FetchOnGoingOrderWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  获取今日订单
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)fetchTodayOrdersWithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  上传设备二维码
+ *
+ *  @param deviceNumber      设备ma
+ *  @param orderID           订单编号
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)uploadDeviceNumber:(NSString *)deviceNumber orderID:(NSString *)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  获取已完成订单(取消地图抢单)
+ *
+ *  @param pageNumber        页数
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)FetchCompletedOrderByPageNumber:(NSInteger)pageNumber WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  获取已完成订单详情
+ *
+ *  @param date              日期
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)fetchFinishedOrdersByDate:(NSString *)date WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+/**
+ *  将订单发送至手机app
+ *
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)uploadOrderInfoToAPPByOrderID:(NSString*)orderID WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+
+/**
+ *        扫码支付(微信2)
+ *
+ *  @param orderId
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)scanQRCodeWeXin:(NSString *)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+/**
+ *  提交订单
+ *
+ *  @param orderId           订单编号
+ *  @param fee               费用
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)sumitOrderID:(NSString*)orderId andFee:(NSString*)fee WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+
+
+
+/**
+ *  现金支付(微信支付)
+ *
+ *  @param wxPayOrderId      Orderid
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)FetchLocalCashPay:(NSString*)wxPayOrderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
+
+
+/**
+ *  检查服务端是否支付成功
+ *
+ *  @param orderId           订单号
+ *  @param completionHandler
+ *  @param fail
+ */
++(void)checkOrderPayedSuccessfullyByOrderID:(NSString*)orderId WithCompletionHandler:(NetWorkHandler)completionHandler failedHander:(NetWorkFailHandler)fail;
 
 @end

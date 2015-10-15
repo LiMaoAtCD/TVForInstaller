@@ -29,13 +29,13 @@
 #import <QiniuSDK.h>
 #import <UIImageView+WebCache.h>
 
-#import "OngoingOrder.h"
+
+#import "CompletedNoMapController.h"
 
 
 @interface SettingViewController ()<AvatarSelectionDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *gradeLabel;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *DetailViews;
 
 //@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
@@ -87,18 +87,7 @@
     [AccountManager setTokenID:nil];
     [AccountManager setLeaderID:nil];
     [AccountManager setAvatarUrlString:nil];
-//    [AccountManager setCellphoneNumber:nil];
-//    [AccountManager setPassword:nil];
 
-    
-    [OngoingOrder setOrder:nil];
-    [OngoingOrder setExistOngoingOrder:NO];
-
-    
-    
-    
-    
-    
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     LoginNavigationController *login = [sb instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
     
@@ -124,28 +113,6 @@
     [super viewDidAppear:animated];
     
     self.nameLabel.text = [AccountManager getName];
-    self.gradeLabel.text = [NSString stringWithFormat:@"%ld",[AccountManager getScore]];
-    
-//    NSInteger level =  [AccountManager getRank];
-//    if (level == 0) {
-//        
-//      
-//        self.rankLabel.text = @"银卡";
-//        self.rankImageView.image = [UIImage imageNamed:@"yinka"];
-//
-//    } else if (level ==1){
-//        self.rankLabel.text = @"金卡";
-//        self.rankImageView.image = [UIImage imageNamed:@"jinka"];
-//
-//    } else{
-//        self.rankLabel.text = @"钻石";
-//        self.rankImageView.image = [UIImage imageNamed:@"zuanshi"];
-//
-//    }
-    
-   
-    
-    
     
     [self.DetailViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *view  = obj;
@@ -173,16 +140,25 @@
             break;
         case 1:
         {
-            MyAccoutViewController *account = [sb instantiateViewControllerWithIdentifier:@"MyAccoutViewController"];
-            account.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:account sender:self];
+            
+            CompletedNoMapController *completed = [sb instantiateViewControllerWithIdentifier:@"CompletedNoMapController"];
+            completed.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:completed sender:self];
+//            MyAccoutViewController *account = [sb instantiateViewControllerWithIdentifier:@"MyAccoutViewController"];
+//            account.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:account sender:self];
         }
             break;
         case 2:
         {
-            GradeViewController *grade = [sb instantiateViewControllerWithIdentifier:@"GradeViewController"];
-            grade.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:grade sender:self];
+            
+            InfoTableViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoTableViewController"];
+            info.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:info sender:self];
+            
+//            GradeViewController *grade = [sb instantiateViewControllerWithIdentifier:@"GradeViewController"];
+//            grade.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:grade sender:self];
         }
             break;
         case 3:
@@ -205,24 +181,30 @@
             break;
         case 5:
         {
-            InfoTableViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoTableViewController"];
-            info.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:info sender:self];
+            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+            pwd.hidesBottomBarWhenPushed = YES;
+            [self.navigationController showViewController:pwd sender:self];
+            
+//            InfoTableViewController *info = [sb instantiateViewControllerWithIdentifier:@"InfoTableViewController"];
+//            info.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:info sender:self];
         }
             break;
         case 6:
         {
-            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
-            pwd.hidesBottomBarWhenPushed = YES;
-            [self.navigationController showViewController:pwd sender:self];
-
-        }
-            break;
-        case 7:
-        {
             AboutViewController *about = [sb instantiateViewControllerWithIdentifier:@"AboutViewController"];
             about.hidesBottomBarWhenPushed = YES;
             [self.navigationController showViewController:about sender:self];
+//            ModifyPasswordViewController *pwd = [sb instantiateViewControllerWithIdentifier:@"ModifyPasswordViewController"];
+//            pwd.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController showViewController:pwd sender:self];
+
+        }
+            break;
+            
+            default:
+        {
+            NSAssert(false, @"这里不应该出现");
         }
             break;
   
@@ -315,7 +297,8 @@
                 
             } else {
                 //token获取成功
-                NSString *token = responseObject[@"obj"];
+                NSDictionary *data =responseObject[@"data"];
+                NSString *token = data[@"token"];
                 
                 //七牛初始化
                 QNUploadManager *upManager = [[QNUploadManager alloc] init];
@@ -331,6 +314,8 @@
                 
                 NSString *key = [formatter stringFromDate:date];
                 
+                key = [key stringByAppendingString:[AccountManager getTokenID]];
+                
                 //上传七牛
                 [upManager putData:imageData key:key token:token complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                     
@@ -341,8 +326,8 @@
                     if ([resp[@"success"] integerValue] == 1) {
                         
                         [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
-                        NSURL *url =[NSURL URLWithString:resp[@"obj"]];
-                        [AccountManager setAvatarUrlString:resp[@"obj"]];
+                        NSURL *url =[NSURL URLWithString:resp[@"data"][@"headImg"]];
+                        [AccountManager setAvatarUrlString:resp[@"data"][@"headImg"]];
                         [self.avatarImageView sd_setImageWithURL:url placeholderImage:tempImage];
                     
                     } else{
@@ -372,7 +357,11 @@
         } else{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSString *code = responseObject[@"obj"];
+                
+                NSDictionary *temp = responseObject[@"data"];
+                NSString *code = temp[@"inviteCode"];
+                
+                
                 [SVProgressHUD dismiss];
 
                 [self showInviteCode:code];

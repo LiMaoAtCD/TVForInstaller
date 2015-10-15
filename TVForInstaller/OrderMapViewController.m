@@ -12,7 +12,6 @@
 #import "CustomPointAnnotation.h"
 #import "OrderDetailViewController.h"
 #import "AccountManager.h"
-#import "OngoingOrder.h"
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
 
@@ -169,7 +168,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     [super viewDidAppear:animated];
     
     //如果有订单还未完成
-    self.isOrderGoing = [OngoingOrder existOngoingOrder];
+    self.isOrderGoing = YES;
     if (!self.isOrderGoing) {
         
         if (self.isStopLocatingUser) {
@@ -621,8 +620,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                 temp[@"orderType"]  = dic[@"orderType"];
                 temp[@"uid"] = dic[@"uid"];
                 
-                [OngoingOrder setExistOngoingOrder:YES];
-                [OngoingOrder setOrder:temp];
+    
 
                 if (block) {
                     block(YES);
@@ -652,8 +650,7 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
     }
     
     //是否存在进行中订单
-    self.isOrderGoing = [OngoingOrder existOngoingOrder];
-    if (!self.isOrderGoing) {
+    if (!YES) {
         
         //是否已经在请求(不发出多次请求)
         if (!self.isFetchOrder) {
@@ -683,17 +680,12 @@ typedef void (^searchResultBlock)(BOOL isExistOrder);
                             [tempOrders addObject:temp];
                         }else if ([temp[@"orderState"] integerValue] == 2 && [temp[@"engineerId"] isEqualToString:[AccountManager getTokenID]]){
                             //正在进行中的订单
-                            [OngoingOrder setExistOngoingOrder:YES];
-                            [OngoingOrder setOrder:temp];
+                          
                         }
                     }
                     
                     
-                    if (![OngoingOrder existOngoingOrder]) {
-                        self.Orders = tempOrders;
-                        [self addPointAnnotations];
-                        self.isFetchOrder = NO;
-                    }
+                 
                     
                 } else{
                     self.isFetchOrder = NO;

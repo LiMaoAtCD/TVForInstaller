@@ -10,7 +10,6 @@
 
 #import "ComminUtility.h"
 
-#import "OngoingOrder.h"
 
 #import <ZXingObjC/ZXingObjC.h>
 #import "QRCodeViewController.h"
@@ -19,7 +18,6 @@
 
 #import "NetworkingManager.h"
 #import <SVProgressHUD.h>
-#import "OngoingOrder.h"
 #import "TotalFeeViewController.h"
 
 #import "QRDecodeViewController.h"
@@ -160,22 +158,6 @@
  */
 -(void)configOrderInfo{
     
-    NSDictionary *order = [OngoingOrder onGoingOrder];
-    
-    self.OrderInfo = order;
-    self.nameLabel.text = order[@"name"];
-    self.telphoneLabel.text =  order[@"phone"];
-    self.addressLabel.text =  order[@"homeAddress"];
-    self.dateLabel.text = order[@"orderTime"];
-        
-    if ([self.OrderInfo[@"orderType"] integerValue] == 0) {
-        self.typeImageView.image = [UIImage imageNamed:@"ui03_tv"];
-    }else if ([self.OrderInfo[@"order_type"] integerValue] == 1){
-        self.typeImageView.image = [UIImage imageNamed:@"ui03_Broadband"];
-        
-    } else{
-        self.typeImageView.image = [UIImage imageNamed:@"ui03_service"];
-    }
     
 }
 
@@ -306,9 +288,7 @@
                     [self showDetailViewController:qrcodeVC sender:self];
                     
                     
-//                    NSDictionary *order = [OngoingOrder onGoingOrder];
-                    [OngoingOrder setExistOngoingOrder:NO];
-                    [OngoingOrder setOrder:nil];
+
 
                     
                 } else {
@@ -364,8 +344,7 @@
                          qrcodeVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
                          [self showDetailViewController:qrcodeVC sender:self];
                          
-                         [OngoingOrder setExistOngoingOrder:NO];
-                         [OngoingOrder setOrder:nil];
+
 
                      }
                  }
@@ -394,8 +373,7 @@
                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                      [self.navigationController popToRootViewControllerAnimated:YES];
                      
-                     [OngoingOrder setExistOngoingOrder:NO];
-                     [OngoingOrder setOrder:nil];
+                 
                  });
              } else{
                  //未成功
@@ -501,6 +479,12 @@
         
 //        [weakSelf postNewRemoteTV:code];
         self.qrcode = code;
+        NSArray *temp = [code componentsSeparatedByString:@"TVID:"];
+        
+        NSLog(@"%@",temp);
+        
+        
+        
         weakSelf.scanLabel.text = code;
         weakSelf.scanLabel.hidden = NO;
         weakSelf.scanButton.hidden = YES;

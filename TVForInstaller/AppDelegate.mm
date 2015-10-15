@@ -18,9 +18,10 @@
 #import <AFNetworkActivityIndicatorManager.h>
 
 #import "NetworkingManager.h"
-#import "OngoingOrder.h"
 #import <SVProgressHUD.h>
-@interface AppDelegate ()
+#import "WXApi.h"
+
+@interface AppDelegate ()<WXApiDelegate>
 
 
 @property (nonatomic, strong) BMKMapManager *mapManager;
@@ -40,6 +41,7 @@
     [self configureBaiduMapSetting];
     [self configureSVProgressHUDAppearance];
     [self checkNetworkEnvironment];
+    [self configureWeChat];
     
     [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
 
@@ -83,6 +85,12 @@
 
 }
 
+-(void)configureWeChat{
+    [WXApi registerApp:@"wxd5cf5a03a579d6cb" withDescription:@"demo 2.0"];
+}
+
+
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -96,7 +104,6 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[DLNAManager DefaultManager] createControlPoint];
     [BMKMapView didForeGround];
-    [self fetchOngoingOrder];
 }
 
 
@@ -150,43 +157,16 @@
         NSLog(@"manager start failed");
     }
     [BNCoreServices_Instance initServices:@"aTe5wOyxR5FMXvCeZc7PTMet"];
-//    [BNCoreServices_Instance startServicesAsyn:^{
-//        NSLog(@"success");
-//    } fail:^{
-//        NSLog(@"fail");
-//
-//    }];
+    [BNCoreServices_Instance startServicesAsyn:^{
+        NSLog(@"success");
+    } fail:^{
+        NSLog(@"fail");
+
+    }];
 
 
 }
--(void)fetchOngoingOrder{
-    //检查是否是登录状态,没有登录就不检查是否有正在执行订单
-    if ([AccountManager isLogin]) {
-        
-        [NetworkingManager FetchOngongOrderWithcompletionHandler:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([responseObject[@"status"] integerValue] == 0) {
-                
-                NSArray *pois =responseObject[@"pois"];
-                //如果获取到有正在执行的订单
-                if (!pois  && pois.count > 0) {
-                    NSMutableDictionary *temp = [pois[0] mutableCopy];
-                    if (temp[@"id"]) {
-                        temp[@"uid"] = temp[@"id"];
-                    }
-                    //添加执行中的订单
-                    
-                    [OngoingOrder setOrder:temp];
-                    [OngoingOrder setExistOngoingOrder:YES];
-                }else {
-                }
-            }
-        } failHandler:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
-    }
-    
-    
-}
+
 
 -(void)configureSVProgressHUDAppearance{
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:234./255 green:13./255 blue:125./255 alpha:1.0]];
@@ -203,6 +183,56 @@
     
     [manager startMonitoring];
 }
+
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(void)onResp:(BaseResp *)resp{
+//    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+//    NSString *strTitle;
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+//        strTitle = [NSString stringWithFormat:@"支付结果"];
+//        
+//        switch (resp.errCode) {
+//            case WXSuccess:
+//            {
+//                strMsg = @"支付结果：成功！";
+//                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+//                
+//                
+//                
+//                
+//                
+//       
+//            }
+//                break;
+//            default:
+//            {
+//                strMsg = @"支付结果：失败！";//[NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+//                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alert show];
+//                
+//                
+//            }
+//                break;
+//        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"checkWXPayIsSuccessed" object:nil];
+
+    }
+}
+
 
 
 
