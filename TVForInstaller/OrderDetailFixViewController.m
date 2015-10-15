@@ -165,7 +165,6 @@
             self.tags = [arr mutableCopy];
             
             [self.tags removeObjectAtIndex:0];
-            [self.tags removeLastObject];
             
         }
     
